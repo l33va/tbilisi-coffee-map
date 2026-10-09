@@ -5,7 +5,7 @@
    - Map tiles you've looked at are kept (up to MAX_TILES) for offline use.
    Bump VERSION whenever you change index.html, icons or vendor files. */
 
-const VERSION = "v4";
+const VERSION = "v5";
 const SHELL = `shell-${VERSION}`;
 const FONTS = "fonts";
 const TILES = "tiles";
@@ -20,11 +20,9 @@ const SHELL_FILES = [
   "vendor/leaflet/leaflet.js",
   "vendor/leaflet/leaflet.css",
   "vendor/fonts/fonts.css",
-  "vendor/fonts/bebas-neue-latin-400-normal.woff2",
-  "vendor/fonts/montserrat-latin-400-normal.woff2",
-  "vendor/fonts/montserrat-latin-500-normal.woff2",
-  "vendor/fonts/montserrat-latin-600-normal.woff2",
-  "vendor/fonts/montserrat-latin-700-normal.woff2",
+  "vendor/fonts/archivo-black-latin-400-normal.woff2",
+  "vendor/fonts/ibm-plex-mono-latin-400-normal.woff2",
+  "vendor/fonts/ibm-plex-mono-latin-500-normal.woff2",
   "icons/icon.svg",
   "icons/icon-192.png",
   "icons/icon-512.png",
