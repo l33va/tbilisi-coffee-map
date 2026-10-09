@@ -28,7 +28,9 @@ Each shop looks like this:
 - **coords**: in Google Maps, right-click (or long-press) the spot and copy the two numbers.
 - **hours** run Monday to Sunday. Use `""` for a closed day and `24:00` for midnight. A time like `09:00-02:00` means the shop closes after midnight.
 - **brew** can include any of: `espresso`, `v60`, `batch`, `aeropress`, `chemex`.
-- **rating** (optional): a number like `4.7`. It shows as ★ next to the opening hours.
+- **score** (optional): your own score out of 10, like `8.5`. Leave it as `null` until you've scored the shop. It shows as ★ 8.5/10, and once any shop has a score, the list gets a "Best score first" sort switch.
+- **instagram** (optional): the shop's Instagram handle without the @, like `"shavi.coffee"`. Leave it `""` if there isn't one.
+- **place_id**: the shop's Google place ID, used for the "Google reviews" link. Find it with Google's Place ID Finder (search "Place ID Finder"). Without it, the link falls back to a Google Maps search for the shop name.
 - **own** (optional): add `"own": true` to show the "Ours" tag.
 - Change `"updated"` at the top of the file to today's date when you edit it.
 

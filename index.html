@@ -119,6 +119,11 @@ main{position:fixed;top:var(--hdr);bottom:calc(var(--nav) + var(--safe-b));left:
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
 .tag{font-size:9px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding:3px 6px;border:1px solid var(--hair);color:var(--fg)}
 .tag.own{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.links{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px}
+.links a{font-size:9px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--fg);text-decoration:none;border-bottom:1px solid var(--hair);padding:4px 0 2px}
+.links a:active{color:var(--red)}
+.row.shut .links{opacity:.55}
+.sortby{font:inherit;color:var(--fg);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--hair);padding:0 0 1px;margin-left:2px}
 .row.soon .ix,.row.soon .nm,.row.soon .dist,.row.soon .meta{color:var(--red)}
 .row.shut .ix,.row.shut .meta{color:var(--mute)}
 .row.shut .note,.row.shut .tags{opacity:.55}
@@ -174,6 +179,12 @@ nav button[aria-selected="true"]{color:var(--fg)}
   display:block;margin-top:16px;background:var(--fg);color:var(--bg);text-decoration:none;text-align:center;
   font-family:var(--display);font-size:15px;line-height:1;text-transform:uppercase;letter-spacing:.04em;padding:14px;
 }
+.sheet .more{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.sheet .more a{
+  display:block;border:1px solid var(--fg);color:var(--fg);text-decoration:none;text-align:center;
+  font-family:var(--display);font-size:12px;line-height:1;text-transform:uppercase;letter-spacing:.02em;padding:13px 6px;white-space:nowrap;
+}
+.sheet .more a:only-child{grid-column:1 / -1}
 .sheet .x{position:absolute;right:12px;top:8px;width:32px;height:32px;color:var(--dim);font-size:22px;line-height:1}
 
 .toast{
@@ -257,7 +268,8 @@ nav button[aria-selected="true"]{color:var(--fg)}
    SHOP DATA lives in shops.json — edit that file, not this one.
    hours: Mon..Sun, "HH:MM-HH:MM", "" = closed. "24:00" = midnight.
    brew: espresso | v60 | batch | aeropress | chemex
-   rating (optional): a number like 4.7, shown next to the hours.
+   score (optional): your score out of 10, e.g. 8.5. Shown as ★ 8.5/10.
+   instagram (optional): handle without @. place_id: Google place ID for the reviews link.
    ============================================================ */
 let SHOPS = [];
 let UPDATED = "";
@@ -361,7 +373,17 @@ function matches(s){
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const BREW = [["espresso","E"],["v60","V"],["batch","B"],["aeropress","A"],["chemex","C"]];
 const brewLetters = s => BREW.filter(([k]) => s.brew.includes(k)).map(([,l]) => l).join(" ");
-const rating = s => typeof s.rating === "number" ? ` · ★ ${s.rating.toFixed(1)}` : "";
+const hasScore = s => typeof s.score === "number";
+const rating = s => hasScore(s) ? ` · ★ ${s.score.toFixed(1)}/10` : "";
+const googleUrl = s => s.place_id
+  ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.name)}&query_place_id=${encodeURIComponent(s.place_id)}`
+  : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.name + " Tbilisi")}`;
+const igUrl = s => s.instagram ? `https://www.instagram.com/${encodeURIComponent(s.instagram.replace(/^@/,""))}/` : "";
+function linksHtml(s){
+  const ig = igUrl(s);
+  return `<div class="links"><a href="${googleUrl(s)}" target="_blank" rel="noopener">Google reviews ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener">Instagram ↗</a>` : ""}</div>`;
+}
+let sortBy = "open";   // "open" | "score"
 
 function metaLine(s, now){
   return [s.area, whenText(s._st, now)].map(x => esc(x)).join(" · ") + rating(s) + (s.brew.length ? ` · ${brewLetters(s)}` : "");
@@ -379,7 +401,9 @@ function visible(){
   const now = tbilisiNow();
   const list = SHOPS.filter(s => matches(s) && [...active].every(k => FILTERS.find(f=>f.key===k).test(s)))
     .map(s => { const o = {...s, _st:status(s,now), _d: me ? metres(me, s.coords) : null}; o._f = focus(o); return o; });
-  list.sort((a,b) => (b._st.open-a._st.open) || (me ? a._d-b._d : a.name.localeCompare(b.name)));
+  const byOpen = (a,b) => (b._st.open-a._st.open) || (me ? a._d-b._d : a.name.localeCompare(b.name));
+  const sc = s => hasScore(s) ? s.score : -1;
+  list.sort(sortBy === "score" && SHOPS.some(hasScore) ? (a,b) => (sc(b)-sc(a)) || byOpen(a,b) : byOpen);
   return list;
 }
 
@@ -404,7 +428,7 @@ function renderList(list){
     return;
   }
   const now = tbilisiNow();
-  el.innerHTML = `<div class="legend">${query ? `${list.length} match${list.length===1?"":"es"} · ` : ""}Open first, ${me ? "nearest" : "A–Z"}${UPDATED ? " · updated " + esc(UPDATED) : ""} · Brew: E espresso · V V60 · B batch · A AeroPress · C Chemex</div>` +
+  el.innerHTML = `<div class="legend">${query ? `${list.length} match${list.length===1?"":"es"} · ` : ""}${SHOPS.some(hasScore) ? `<button class="sortby" id="sortby" type="button">${sortBy === "score" ? "Best score first" : "Open first, " + (me ? "nearest" : "A–Z")}</button>` : `Open first, ${me ? "nearest" : "A–Z"}`}${UPDATED ? " · updated " + esc(UPDATED) : ""} · Brew: E espresso · V V60 · B batch · A AeroPress · C Chemex</div>` +
   list.map((s,i) => `
     <article class="row ${s._f.cls}" data-id="${esc(s.id)}">
       <span class="ix">${String(i+1).padStart(2,"0")}</span>
@@ -413,6 +437,7 @@ function renderList(list){
         <div class="meta">${metaLine(s, now)}</div>
         <p class="note">${esc(s.note)}</p>
         ${tagsHtml(s)}
+        ${linksHtml(s)}
       </div>
       <div class="dist" style="--b:${s._f.b}px;--o:${s._f.o}">${s._d != null ? fmtDist(s._d) : ""}</div>
     </article>`).join("");
@@ -461,7 +486,8 @@ function openSheet(id, pan = true){
     <div class="meta">${esc(s.area)} · ${esc(s.address)}${s._d != null ? " · " + fmtDist(s._d) : ""}</div>
     <p class="note">${esc(s.note)}</p>
     ${tagsHtml(s)}
-    <a class="go" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener">Directions →</a>`;
+    <a class="go" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener">Directions →</a>
+    <div class="more"><a href="${googleUrl(s)}" target="_blank" rel="noopener">Google reviews ↗</a>${igUrl(s) ? `<a href="${igUrl(s)}" target="_blank" rel="noopener">Instagram ↗</a>` : ""}</div>`;
   document.getElementById("sheet-x").onclick = closeSheet;
   Object.entries(markers).forEach(([k,m]) => { const el = m.getElement(); if(el && el.firstChild) el.firstChild.classList.toggle("sel", k === id); });
   if(map && pan){
@@ -504,6 +530,8 @@ document.getElementById("chips").addEventListener("click", e => {
   render();
 });
 document.getElementById("rows").addEventListener("click", e => {
+  if(e.target.closest("a")) return;                       // Google / Instagram links open on their own
+  if(e.target.closest("#sortby")){ sortBy = sortBy === "score" ? "open" : "score"; render(); return; }
   const c = e.target.closest(".row"); if(!c) return;
   const s = SHOPS.find(x => x.id===c.dataset.id);
   show("map");

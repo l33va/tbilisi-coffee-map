@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-09",
+  "updated": "2026-10-10",
   "shops": [
     {
       "id": "shavi-original",
@@ -12,6 +12,9 @@
       "beans": true,
       "laptop": true,
       "brew": ["espresso", "v60", "batch"],
+      "score": null,
+      "instagram": "shavi.coffee",
+      "place_id": "ChIJQ8xRsO4NREARdIUSKVZklMQ",
       "note": "The roastery's home bar. Order a hand-brew to taste the beans at their best."
     },
     {
@@ -25,6 +28,9 @@
       "beans": true,
       "laptop": true,
       "brew": ["espresso", "v60", "batch"],
+      "score": null,
+      "instagram": "shavi.coffee",
+      "place_id": "ChIJW4QwnfcNREAR_a4D8iMld18",
       "note": "Roomy, with plugs in the back for laptops. Fills up mid-morning."
     },
     {
@@ -38,6 +44,9 @@
       "beans": true,
       "laptop": false,
       "brew": ["espresso", "v60", "batch"],
+      "score": null,
+      "instagram": "shavi.coffee",
+      "place_id": "ChIJjdGqyBUNREARk3kcT2m8TcE",
       "note": "Tiny bar on a beautiful Sololaki street. Batch brew and a courtyard."
     },
     {
@@ -51,6 +60,9 @@
       "beans": true,
       "laptop": true,
       "brew": ["espresso", "v60", "batch"],
+      "score": null,
+      "instagram": "shavi.coffee",
+      "place_id": "ChIJo_RJcwBzREAR9Vg0hP11Xhg",
       "note": "Neighbourhood bar up in Bagebi. Batch brew, a decaf option and great cookies. Laptop crowd fills the tables."
     },
     {
@@ -64,6 +76,9 @@
       "beans": true,
       "laptop": true,
       "brew": ["espresso", "v60", "chemex"],
+      "score": null,
+      "instagram": "bnkr_coffee_georgia",
+      "place_id": "ChIJAVbzDZcNREARWCWNGCy4oEI",
       "note": "Open till midnight, resident cats, signature coffee drinks with fruit."
     },
     {
@@ -77,6 +92,9 @@
       "beans": true,
       "laptop": true,
       "brew": ["espresso", "v60", "chemex"],
+      "score": null,
+      "instagram": "bnkr_coffee_georgia",
+      "place_id": "ChIJWWDAuCoNREAR76ry__TdU-I",
       "note": "Wide bean menu for pour-over. Small inside, nice terrace."
     },
     {
@@ -90,6 +108,9 @@
       "beans": true,
       "laptop": true,
       "brew": ["espresso", "v60"],
+      "score": null,
+      "instagram": "tsvari_coffee",
+      "place_id": "ChIJZZwo7FINREARsspj1geRYt8",
       "note": "Newer roaster with a big, bright room and a small shop inside."
     },
     {
@@ -103,6 +124,9 @@
       "beans": true,
       "laptop": false,
       "brew": ["espresso", "v60", "aeropress"],
+      "score": null,
+      "instagram": "brewio.ge",
+      "place_id": "ChIJF5v0mNINREARGdXfVex2oo4",
       "note": "Brew bar on a quiet dead end off the tourist streets. Strong milk drinks."
     },
     {
@@ -116,6 +140,9 @@
       "beans": false,
       "laptop": true,
       "brew": ["espresso", "v60"],
+      "score": null,
+      "instagram": "",
+      "place_id": "ChIJgdpVPQANREARf6Ce9n9bdTg",
       "note": "Riverside, inside the park by the bridge. More of a hangout than a coffee bar."
     },
     {
@@ -129,6 +156,9 @@
       "beans": true,
       "laptop": true,
       "brew": ["espresso", "v60", "batch"],
+      "score": null,
+      "instagram": "coffeelabgeorgia",
+      "place_id": "ChIJqy7D7h5zREARAxxHn9uIe4c",
       "note": "The 2016 flagship of the city's oldest specialty chain. Full kitchen."
     },
     {
@@ -142,6 +172,9 @@
       "beans": true,
       "laptop": true,
       "brew": ["espresso", "v60"],
+      "score": null,
+      "instagram": "coffeelabgeorgia",
+      "place_id": "ChIJmSFs-3lzREAR1O1edhpSsIw",
       "note": "Shaded terrace on the main Vake avenue. Breakfast crowd."
     },
     {
@@ -155,6 +188,9 @@
       "beans": true,
       "laptop": true,
       "brew": ["espresso", "v60"],
+      "score": null,
+      "instagram": "coffeelabgeorgia",
+      "place_id": "ChIJ-1JTc24NREARx8gTiUxkrCw",
       "note": "High ceilings, plenty of sockets, sunny back garden. Built for working."
     },
     {
@@ -168,6 +204,9 @@
       "beans": true,
       "laptop": true,
       "brew": ["espresso"],
+      "score": null,
+      "instagram": "coffeelabgeorgia",
+      "place_id": "ChIJMcyQWjANREARdkG5PY1CUIw",
       "note": "Counter inside the Orbeliani market hall. Espresso-focused."
     },
     {
@@ -181,6 +220,9 @@
       "beans": true,
       "laptop": false,
       "brew": ["espresso", "v60"],
+      "score": null,
+      "instagram": "probarista.ge",
+      "place_id": "ChIJRbPAwFUNREARSnQfMx3pmoU",
       "note": "Small roaster-café by the station with a serious single-origin list."
     },
     {
@@ -194,6 +236,9 @@
       "beans": false,
       "laptop": true,
       "brew": ["espresso", "v60", "batch", "chemex"],
+      "score": null,
+      "instagram": "caffeine.workin",
+      "place_id": "ChIJVWiRT2dzREARLdHZoDW32Tg",
       "note": "Designed for work: big tables and a call booth. Pastry is the highlight."
     },
     {
@@ -207,6 +252,9 @@
       "beans": false,
       "laptop": true,
       "brew": ["espresso", "v60"],
+      "score": null,
+      "instagram": "industrialcoffee.ge",
+      "place_id": "ChIJa8Xw2YRzREARAIVDNM6xwfc",
       "note": "Early opener on Chavchavadze. Pet friendly, kitchen closes at 17:00."
     },
     {
@@ -220,6 +268,9 @@
       "beans": false,
       "laptop": false,
       "brew": ["espresso", "v60"],
+      "score": null,
+      "instagram": "",
+      "place_id": "ChIJiwFNMQANREARSDZUO_YLBQ8",
       "note": "Weekend-breakfast spot first, coffee second. Good cold brew."
     },
     {
@@ -233,6 +284,9 @@
       "beans": true,
       "laptop": false,
       "brew": ["espresso", "v60"],
+      "score": null,
+      "instagram": "",
+      "place_id": "ChIJ04kKa4oNREAR8wKfapmolx8",
       "note": "More shop than café: beans, brewers and cups. Grab a cappuccino while browsing."
     }
   ]
