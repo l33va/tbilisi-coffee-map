@@ -44,6 +44,20 @@
       "note": "Tiny bar on a beautiful Sololaki street. Batch brew and a courtyard."
     },
     {
+      "id": "shavi-bagebi",
+      "name": "Shavi Coffee Roasters — Bagebi",
+      "area": "Bagebi",
+      "address": "36a Tskneti Hwy",
+      "coords": [41.7101434, 44.7283844],
+      "hours": ["08:00-19:00", "08:00-19:00", "08:00-19:00", "08:00-19:00", "08:00-19:00", "08:00-19:00", "08:00-19:00"],
+      "roasts": true,
+      "beans": true,
+      "laptop": true,
+      "own": true,
+      "brew": ["espresso", "v60", "batch"],
+      "note": "Neighbourhood bar up in Bagebi. Batch brew, a decaf option and great cookies. Laptop crowd fills the tables."
+    },
+    {
       "id": "bnkr-atoneli",
       "name": "BNKR Specialty Roasters — Atoneli",
       "area": "Sololaki",
