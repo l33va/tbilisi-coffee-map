@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0A122A">
+<meta name="theme-color" content="#0A0A0A">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Coffee Map">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <title>Tbilisi Coffee Map</title>
 <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
 <link rel="manifest" href="manifest.json">
@@ -15,165 +16,209 @@
 <link rel="stylesheet" href="vendor/fonts/fonts.css">
 <style>
 /* ============================================================
-   DESIGN TOKENS — Levan's "coffee map v2.0"
-   #0A122A navy · #698F3F green · #FBFAF8 off-white
-   #E7DECD beige · #804E49 brick
-   Green = open. Brick = warnings and "Ours".
-   (slate, slate-2, line, the soft tints and the light green
-   used on the navy header are derived)
+   DESIGN TOKENS — "Diffusion"
+   Black and white, one red. Sharp = open and near.
+   Blurred = closed or far. Red = about to close.
    ============================================================ */
 :root{
-  --ink:#0A122A;        /* navy: header, nav, text */
-  --stone:#E7DECD;      /* beige: page background */
-  --paper:#FBFAF8;      /* off-white: cards */
-  --slate:#4A5066;      /* navy-grey: secondary text */
-  --slate-2:#9A958C;    /* warm grey: muted / closed */
-  --line:#DDD3C0;       /* beige hairline */
-  --sulfur:#698F3F;     /* green: open accent */
-  --sulfur-soft:#E3EAD8;/* green tint: distance tag */
-  --green-on-dark:#A9C77F; /* lighter green, readable on navy */
-  --wine:#804E49;       /* brick: warnings, "Ours" */
-  --wine-soft:#F3E6E3;  /* brick tint */
-  --sans:"Montserrat",system-ui,-apple-system,sans-serif;          /* reading text */
-  --display:"Bebas Neue","Arial Narrow",Impact,sans-serif;          /* headings, buttons, badges */
-  --mono:var(--sans);                                               /* small data labels now use Montserrat */
-  --hdr:118px;
+  --bg:#0A0A0A;         /* page */
+  --fg:#F4F4F4;         /* text, rules, active states */
+  --dim:#B5B5B5;        /* secondary text */
+  --mute:#777;          /* closed shops */
+  --hair:#6A6A6A;       /* outlines */
+  --line:#2A2A2A;       /* row dividers */
+  --red:#FF3B2F;        /* closing soon, the pin on the logo */
+  --pin:var(--red);     /* used by the logo symbol */
+  --display:"Archivo Black","Arial Black",Impact,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --hdr:150px;
   --nav:64px;
   --safe-b:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
-  background:var(--stone);color:var(--ink);font-family:var(--sans);
+  background:var(--bg);color:var(--fg);font-family:var(--mono);
   -webkit-font-smoothing:antialiased;overflow:hidden;
 }
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
+/* ---------- Film grain over everything ---------- */
+.grain{position:fixed;inset:0;width:100%;height:100%;z-index:3000;pointer-events:none;mix-blend-mode:screen;opacity:.18}
+
 /* ---------- Header ---------- */
 header{
-  position:fixed;inset:0 0 auto 0;z-index:1000;background:var(--ink);color:var(--stone);
-  padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 10px;
+  position:fixed;inset:0 0 auto 0;z-index:1000;background:var(--bg);color:var(--fg);
+  padding:calc(env(safe-area-inset-top,0px) + 14px) 20px 12px;border-bottom:1px solid var(--line);
 }
-.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-.brand h1{font-family:var(--display);font-size:32px;font-weight:400;letter-spacing:.02em;line-height:.9}
-.brand h1 span{color:var(--green-on-dark)}
-.brand .count{font-family:var(--display);font-size:17px;letter-spacing:.04em;color:var(--slate-2);white-space:nowrap}
-.brand .count b{color:var(--green-on-dark);font-weight:400}
+.meta-row{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+  font-size:9px;line-height:1.4;letter-spacing:.04em;text-transform:uppercase;color:var(--dim);
+}
+.brand{display:flex;align-items:center;gap:8px;font-size:9px;font-weight:400;color:var(--fg)}
+.brand svg{width:26px;height:26px;color:var(--fg);flex:none}
+.meta-row .mid{text-align:center}
+.meta-row .count{text-align:right}
+.meta-row .count b{color:var(--fg);font-weight:500}
 .search{position:relative;margin-top:12px}
-.search svg{position:absolute;left:11px;top:50%;width:16px;height:16px;transform:translateY(-50%);color:var(--slate-2);pointer-events:none}
+.search svg{position:absolute;left:12px;top:50%;width:14px;height:14px;transform:translateY(-50%);color:var(--fg);pointer-events:none}
 .search input{
-  width:100%;font:inherit;font-size:16px;color:var(--paper);background:#141D38;
-  border:1px solid #2A3350;border-radius:2px;padding:9px 38px 9px 35px;outline:none;-webkit-appearance:none;appearance:none;
+  width:100%;font:inherit;font-size:16px;color:var(--fg);background:transparent;
+  border:1px solid var(--fg);border-radius:0;padding:8px 38px 8px 36px;outline:none;-webkit-appearance:none;appearance:none;
 }
-.search input::placeholder{color:var(--slate-2)}
-.search input:focus{border-color:var(--green-on-dark)}
+.search input::placeholder{color:var(--dim);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.search input:focus{border-color:var(--red)}
 .search input::-webkit-search-cancel-button{display:none}
-.search button{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:32px;height:32px;color:var(--slate-2);font-size:20px;line-height:1}
+.search button{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:32px;height:32px;color:var(--dim);font-size:20px;line-height:1}
 .search button[hidden]{display:none}
 .chips{
-  display:flex;gap:6px;margin-top:10px;overflow-x:auto;scrollbar-width:none;
-  margin-inline:-16px;padding-inline:16px;
+  display:flex;gap:8px;margin-top:10px;overflow-x:auto;scrollbar-width:none;
+  margin-inline:-20px;padding-inline:20px;
 }
 .chips::-webkit-scrollbar{display:none}
 .chip{
-  flex:0 0 auto;font-family:var(--display);font-size:16px;line-height:1;text-transform:uppercase;letter-spacing:.06em;
-  padding:7px 10px;border:1px solid #2A3350;border-radius:2px;color:var(--paper);
+  flex:0 0 auto;font-family:var(--mono);font-size:10px;font-weight:500;line-height:1;text-transform:uppercase;letter-spacing:.05em;
+  padding:8px 10px;border:1px solid var(--hair);color:var(--fg);
 }
-.chip[aria-pressed="true"]{background:var(--sulfur);border-color:var(--sulfur);color:var(--paper);font-weight:400}
+.chip[aria-pressed="true"]{background:var(--fg);border-color:var(--fg);color:var(--bg)}
 
 /* ---------- Views ---------- */
 main{position:fixed;top:var(--hdr);bottom:calc(var(--nav) + var(--safe-b));left:0;right:0}
 .view{position:absolute;inset:0;display:none}
 .view.active{display:block}
-#list{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 12px 24px}
-#map{background:#d9d9d2}
+#list{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 20px 24px}
+#map{background:var(--bg)}
+/* map tiles go black and white, then dark */
+#map .leaflet-tile-pane{filter:invert(1) grayscale(1) brightness(.8) contrast(1.15)}
 
-/* ---------- Cards ---------- */
-.card{
-  background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--slate-2);
-  padding:12px 12px 12px 14px;margin-bottom:10px;cursor:pointer;
+/* ---------- Hero: the open count, diffused ---------- */
+.hero{position:relative;margin:0 -20px}
+.hero svg{display:block;width:100%;height:auto}
+.hero-loc{
+  position:absolute;right:20px;top:16px;font-size:9px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--fg);border-bottom:1px solid var(--hair);padding-bottom:2px;
 }
-.card.is-open{border-left-color:var(--sulfur)}
-.card:active{background:#fff}
-.row1{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.card h2{font-family:var(--display);font-size:26px;font-weight:400;letter-spacing:.015em;line-height:1}
-.status{
-  font-family:var(--display);font-size:15px;font-weight:400;letter-spacing:.06em;line-height:1;padding:4px 7px 3px;
-  white-space:nowrap;border:1px solid var(--slate-2);color:var(--slate);
+.hero-loc.on{color:var(--dim);border-bottom-color:transparent}
+
+/* ---------- List rows ---------- */
+.legend{font-size:9px;line-height:1.6;letter-spacing:.04em;text-transform:uppercase;color:var(--dim);padding:10px 0 12px;border-top:1px solid var(--fg)}
+.row{
+  display:grid;grid-template-columns:24px 1fr auto;gap:8px;align-items:start;
+  padding:13px 0 12px;border-bottom:1px solid var(--line);cursor:pointer;
 }
-.status.open{background:var(--sulfur);border-color:var(--sulfur);color:var(--paper)}
-.status.soon{border:1.5px solid var(--wine);color:var(--wine);background:var(--wine-soft)}
-.spec{
-  font-family:var(--mono);font-size:10.5px;font-weight:500;color:var(--slate);margin-top:6px;
-  display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;
+.row:active{background:#141414}
+.row .ix{font-size:9px;color:var(--dim);padding-top:7px}
+.nm,.dist{
+  font-family:var(--display);text-transform:uppercase;
+  filter:blur(var(--b,0px));opacity:var(--o,1);
 }
-.spec .sep{color:var(--line)}
-.brew{display:inline-flex;gap:2px}
-.brew i{
-  font-style:normal;width:15px;height:15px;display:inline-grid;place-items:center;font-size:9px;
-  border:1px solid var(--slate-2);color:var(--slate-2);
-}
-.brew i.on{background:var(--slate);border-color:var(--slate);color:var(--paper)}
-.note{font-size:14px;line-height:1.4;margin-top:8px;color:var(--ink)}
-.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
-.tag{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;padding:2px 5px;background:var(--stone);color:var(--slate)}
-.tag.own{background:var(--wine);color:var(--paper)}
-.empty{font-family:var(--mono);font-size:12px;color:var(--slate);text-align:center;padding:48px 16px;line-height:1.6}
-.legend{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.02em;color:var(--slate);padding:4px 2px 10px;line-height:1.6}
+.nm{font-size:21px;line-height:1.05}
+.dist{font-size:16px;line-height:1.2;padding-top:3px;white-space:nowrap}
+.row .meta{font-size:9px;line-height:1.5;margin-top:6px;text-transform:uppercase;letter-spacing:.04em;color:var(--dim)}
+.row .note{font-size:12px;line-height:1.45;margin-top:7px;color:#CFCFCF}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.tag{font-size:9px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding:3px 6px;border:1px solid var(--hair);color:var(--fg)}
+.tag.own{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.row.soon .ix,.row.soon .nm,.row.soon .dist,.row.soon .meta{color:var(--red)}
+.row.shut .ix,.row.shut .meta{color:var(--mute)}
+.row.shut .note,.row.shut .tags{opacity:.55}
+.empty{font-size:12px;line-height:1.6;color:var(--dim);text-align:center;padding:48px 16px;text-transform:uppercase;letter-spacing:.04em}
 
 /* ---------- Bottom nav ---------- */
 nav{
   position:fixed;left:0;right:0;bottom:0;z-index:1000;height:calc(var(--nav) + var(--safe-b));
-  padding-bottom:var(--safe-b);background:var(--ink);display:grid;grid-template-columns:1fr 1fr;
+  padding:0 20px var(--safe-b);background:var(--bg);border-top:1px solid var(--line);
+  display:flex;align-items:center;gap:12px;
 }
+nav .rule{flex:1;height:1px;background:var(--hair)}
 nav button{
-  font-family:var(--display);font-size:19px;text-transform:uppercase;letter-spacing:.1em;color:var(--slate-2);
-  border-top:3px solid transparent;
+  font-family:var(--display);font-size:24px;line-height:1;text-transform:uppercase;color:#8A8A8A;padding:8px 0;
 }
-nav button[aria-selected="true"]{color:var(--paper);border-top-color:var(--green-on-dark)}
+nav button[aria-selected="true"]{color:var(--fg)}
 
-/* ---------- Map markers & popups ---------- */
+/* ---------- Map markers, controls, sheet ---------- */
 .pin{
-  width:18px;height:18px;border-radius:50%;background:var(--slate-2);border:3px solid var(--ink);
-  box-shadow:0 1px 3px rgba(0,0,0,.35);
+  width:16px;height:16px;border-radius:50%;background:var(--fg);border:2px solid var(--bg);
+  filter:blur(var(--b,0px));opacity:var(--o,1);
 }
-.pin.open{background:var(--sulfur)}
-/* My location */
-.loc-btn{
-  width:34px;height:34px;display:grid;place-items:center;background:#fff;color:var(--ink);cursor:pointer;
-  border:0;border-radius:4px;
-}
-.loc-btn svg{width:20px;height:20px}
-.loc-btn.on{color:var(--sulfur)}
+.pin.soon{background:var(--red)}
+.pin.shut{background:#777}
+.pin.sel{box-shadow:0 0 0 5px rgba(244,244,244,.25),0 0 0 6px var(--fg);filter:none;opacity:1}
+.leaflet-container{font-family:var(--mono)}
+.leaflet-bar{border:1px solid var(--fg) !important;border-radius:0 !important;box-shadow:none !important}
+.leaflet-bar a,.leaflet-bar button{background:var(--bg) !important;color:var(--fg) !important;border-bottom:1px solid var(--line) !important;border-radius:0 !important}
+.leaflet-bar a:last-child,.leaflet-bar button:last-child{border-bottom:0 !important}
+.leaflet-control-attribution{background:rgba(10,10,10,.75) !important;color:var(--dim) !important;font-size:9px}
+.leaflet-control-attribution a{color:var(--dim) !important}
+.loc-btn{width:30px;height:30px;display:grid;place-items:center;cursor:pointer;border:0}
+.loc-btn svg{width:18px;height:18px}
+.loc-btn.on{color:var(--red) !important}
 .loc-btn.busy svg{animation:locpulse 1s ease-in-out infinite}
 @keyframes locpulse{50%{opacity:.3}}
-.me{width:16px;height:16px;border-radius:50%;background:var(--wine);border:3px solid var(--paper);box-shadow:0 0 0 1px var(--wine),0 1px 4px rgba(0,0,0,.4)}
-.leaflet-popup-content-wrapper{border-radius:0;background:var(--paper);box-shadow:0 2px 10px rgba(0,0,0,.25)}
-.leaflet-popup-content{margin:12px 14px;font-family:var(--sans);color:var(--ink);min-width:200px}
-.pop h3{font-family:var(--display);font-size:24px;font-weight:400;letter-spacing:.015em;line-height:1;margin-bottom:6px}
-.pop .spec{margin-top:0}
-.pop p{font-size:13px;line-height:1.35;margin:8px 0 10px !important}
-.pop a{
-  display:inline-block;font-family:var(--display);font-size:16px;line-height:1;text-transform:uppercase;letter-spacing:.06em;
-  background:var(--ink);color:var(--paper) !important;padding:6px 9px;text-decoration:none;
+.me{width:18px;height:18px;border-radius:50%;border:1px solid var(--fg);background:rgba(244,244,244,.15);position:relative}
+.me::after{content:"";position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--fg)}
+
+.sheet{
+  position:absolute;left:0;right:0;bottom:0;z-index:900;background:var(--bg);border-top:1px solid var(--fg);
+  padding:16px 20px 18px;max-height:70%;overflow-y:auto;
 }
+.sheet[hidden]{display:none}
+.sheet .top{padding-right:30px;display:flex;justify-content:space-between;gap:12px;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
+.sheet .top .st{color:var(--fg)}
+.sheet.soon .top .st{color:var(--red)}
+.sheet h3{margin-top:12px;font-family:var(--display);font-weight:400;font-size:25px;line-height:1.02;text-transform:uppercase}
+.sheet .meta{margin-top:10px;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
+.sheet .note{margin-top:10px;font-size:12px;line-height:1.5;color:#CFCFCF}
+.sheet .tags{margin-top:12px}
+.sheet .go{
+  display:block;margin-top:16px;background:var(--fg);color:var(--bg);text-decoration:none;text-align:center;
+  font-family:var(--display);font-size:15px;line-height:1;text-transform:uppercase;letter-spacing:.04em;padding:14px;
+}
+.sheet .x{position:absolute;right:12px;top:8px;width:32px;height:32px;color:var(--dim);font-size:22px;line-height:1}
+
 .toast{
   position:fixed;left:50%;bottom:calc(var(--nav) + var(--safe-b) + 14px);transform:translateX(-50%);
-  background:var(--wine);color:var(--paper);font-family:var(--mono);font-size:11px;padding:8px 12px;
-  z-index:1100;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;text-align:center;
+  background:var(--fg);color:var(--bg);font-family:var(--mono);font-size:11px;padding:8px 12px;
+  z-index:3100;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;text-align:center;
 }
 .toast.show{opacity:1}
 </style>
 </head>
 <body>
 
+<!-- Shared SVG parts: logo mark and the diffusion filters -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- the logo: a cup from above, one pin on the rim -->
+    <symbol id="cup" viewBox="0 0 100 100">
+      <circle cx="44" cy="52" r="34" fill="none" stroke="currentColor" stroke-width="6"/>
+      <path d="M79 40 H88 Q95 40 95 47 V57 Q95 64 88 64 H79" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="66" cy="28" r="8" fill="var(--pin)" stroke="var(--bg)" stroke-width="3"/>
+    </symbol>
+    <!-- grainy blur for the big number -->
+    <filter id="diffuse" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="b"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="4" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  2.2 0 0 0 -0.55" result="na"/>
+      <feComposite in="b" in2="na" operator="in" result="g"/>
+      <feComponentTransfer in="g"><feFuncA type="linear" slope="3.2" intercept="0"/></feComponentTransfer>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="grainf" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="9"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -2.2 1.35"/>
+    </filter>
+  </defs>
+</svg>
+
 <header>
-  <div class="brand">
-    <h1>Tbilisi <span>Coffee</span> Map</h1>
+  <div class="meta-row">
+    <h1 class="brand"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#cup"/></svg><span>Tbilisi<br>Coffee Map</span></h1>
+    <div class="mid">Focus = open<br>Blur = closed or far</div>
     <div class="count" id="count"></div>
   </div>
   <div class="search" role="search">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input id="q" type="search" placeholder="Search shops, areas, streets" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" aria-label="Search shops">
     <button id="q-clear" type="button" aria-label="Clear search" hidden>&times;</button>
   </div>
@@ -181,15 +226,30 @@ nav button[aria-selected="true"]{color:var(--paper);border-top-color:var(--green
 </header>
 
 <main>
-  <section class="view active" id="list" aria-label="List"></section>
+  <section class="view active" id="list" aria-label="List">
+    <div class="hero">
+      <svg viewBox="0 0 390 326" role="img" aria-label="Shops open now" id="hero-svg">
+        <text class="n" x="14" y="236" font-family="'Archivo Black',sans-serif" font-size="270" fill="#F4F4F4" opacity=".28" filter="url(#diffuse)" letter-spacing="-12"></text>
+        <text class="n" x="14" y="236" font-family="'Archivo Black',sans-serif" font-size="270" fill="#F4F4F4" opacity=".55" filter="url(#soft)" letter-spacing="-12"></text>
+        <text x="18" y="292" font-family="'Archivo Black',sans-serif" font-size="50" fill="#F4F4F4" letter-spacing="-1">OPEN NOW</text>
+        <text id="hero-of" x="20" y="318" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.5" fill="#B5B5B5"></text>
+      </svg>
+      <button class="hero-loc" id="hero-loc" type="button">Use my location</button>
+    </div>
+    <div id="rows"></div>
+  </section>
   <section class="view" id="map" aria-label="Map"></section>
+  <aside class="sheet" id="sheet" hidden aria-live="polite"></aside>
 </main>
 
 <nav>
   <button id="tab-list" aria-selected="true">List</button>
+  <span class="rule"></span>
   <button id="tab-map" aria-selected="false">Map</button>
 </nav>
 <div class="toast" id="toast"></div>
+
+<svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
 
 <script src="vendor/leaflet/leaflet.js"></script>
 <script>
@@ -197,6 +257,7 @@ nav button[aria-selected="true"]{color:var(--paper);border-top-color:var(--green
    SHOP DATA lives in shops.json — edit that file, not this one.
    hours: Mon..Sun, "HH:MM-HH:MM", "" = closed. "24:00" = midnight.
    brew: espresso | v60 | batch | aeropress | chemex
+   rating (optional): a number like 4.7, shown next to the hours.
    ============================================================ */
 let SHOPS = [];
 let UPDATED = "";
@@ -229,12 +290,45 @@ function status(shop, now = tbilisiNow()){
   if(today && now.min < today.open) return {open:false, opensIn:today.open-now.min};
   return {open:false};
 }
-function todayHours(shop, now = tbilisiNow()){
-  const h = shop.hours[now.day];
-  return h ? h.replace("-", "–") : "closed today";
-}
 function opensBefore9(shop, now = tbilisiNow()){
   const t = span(shop.hours[now.day]); return !!t && t.open < 9*60;
+}
+const clock = m => { m = ((m % 1440) + 1440) % 1440; return String(Math.floor(m/60)).padStart(2,"0") + ":" + String(m%60).padStart(2,"0"); };
+/* "till 21:00", "closing in 40 min", "opens 09:00" … */
+function whenText(st, now){
+  if(st.open){
+    if(st.closesIn <= 45) return `closing in ${st.closesIn} min`;
+    const t = now.min + st.closesIn;
+    return `till ${t % 1440 === 0 ? "24:00" : clock(t)}`;
+  }
+  if(st.opensIn != null) return st.opensIn <= 90 ? `opens in ${st.opensIn} min` : `opens ${clock(now.min + st.opensIn)}`;
+  return "closed";
+}
+
+/* ============================================================
+   DISTANCE — only once the visitor shares their location
+   ============================================================ */
+let me = null;                                   // [lat, lng]
+function metres(a, b){
+  const R = 6371000, rad = x => x*Math.PI/180;
+  const dLat = rad(b[0]-a[0]), dLng = rad(b[1]-a[1]);
+  const h = Math.sin(dLat/2)**2 + Math.cos(rad(a[0]))*Math.cos(rad(b[0]))*Math.sin(dLng/2)**2;
+  return 2*R*Math.asin(Math.sqrt(h));
+}
+const fmtDist = m => m < 1000 ? Math.max(10, Math.round(m/10)*10) + "M" : (m/1000).toFixed(1) + "K";
+
+/* ============================================================
+   FOCUS — how sharp a shop looks: open and near = sharp,
+   far = a little soft, closed = heavily blurred
+   ============================================================ */
+function focus(s){
+  const st = s._st;
+  if(!st.open) return {b:2.4, o:.6, cls:"shut"};
+  if(st.closesIn <= 45) return {b:1.2, o:1, cls:"soon"};
+  const d = s._d;
+  if(d == null || d < 600) return {b:0, o:1, cls:""};
+  const f = Math.min(1, (d-600)/3000);
+  return {b:+(f*1.8).toFixed(1), o:+(1-f*.15).toFixed(2), cls:""};
 }
 
 /* ============================================================
@@ -254,7 +348,7 @@ const active = new Set();
    SEARCH — matches name, area, address and note; every word must match
    ============================================================ */
 let query = "";
-const norm = t => String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+const norm = t => String(t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 function matches(s){
   if(!query) return true;
   const hay = norm([s.name, s.area, s.address, s.note].join(" "));
@@ -266,29 +360,26 @@ function matches(s){
    ============================================================ */
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const BREW = [["espresso","E"],["v60","V"],["batch","B"],["aeropress","A"],["chemex","C"]];
-const brewBoxes = s => `<span class="brew" title="Espresso · V60 · Batch · AeroPress · Chemex">${
-  BREW.map(([k,l]) => `<i class="${s.brew.includes(k)?"on":""}">${l}</i>`).join("")}</span>`;
+const brewLetters = s => BREW.filter(([k]) => s.brew.includes(k)).map(([,l]) => l).join(" ");
+const rating = s => typeof s.rating === "number" ? ` · ★ ${s.rating.toFixed(1)}` : "";
 
-function statusBadge(st){
-  if(st.open && st.closesIn <= 45) return `<span class="status soon">CLOSES ${st.closesIn}M</span>`;
-  if(st.open) return `<span class="status open">OPEN</span>`;
-  if(st.opensIn && st.opensIn <= 90) return `<span class="status soon">OPENS ${st.opensIn}M</span>`;
-  return `<span class="status">CLOSED</span>`;
+function metaLine(s, now){
+  return [s.area, whenText(s._st, now)].map(x => esc(x)).join(" · ") + rating(s) + (s.brew.length ? ` · ${brewLetters(s)}` : "");
 }
-function specLine(s){
-  return `<div class="spec">
-    <span>${esc(s.area.toUpperCase())}</span><span class="sep">/</span>
-    <span>${esc(todayHours(s))}</span><span class="sep">/</span>
-    <span>${s.coords[0].toFixed(4)} ${s.coords[1].toFixed(4)}</span>
-    ${brewBoxes(s)}
-  </div>`;
+function tagsHtml(s){
+  const t = [];
+  if(s.roasts) t.push(`<span class="tag">Roasts own</span>`);
+  if(s.beans)  t.push(`<span class="tag">Beans</span>`);
+  if(s.laptop) t.push(`<span class="tag">Laptop OK</span>`);
+  if(s.own)    t.push(`<span class="tag own">Ours</span>`);
+  return t.length ? `<div class="tags">${t.join("")}</div>` : "";
 }
 
 function visible(){
   const now = tbilisiNow();
-  let list = SHOPS.filter(s => matches(s) && [...active].every(k => FILTERS.find(f=>f.key===k).test(s)))
-    .map(s => ({...s, _st:status(s,now)}));
-  list.sort((a,b) => (b._st.open-a._st.open) || a.name.localeCompare(b.name));
+  const list = SHOPS.filter(s => matches(s) && [...active].every(k => FILTERS.find(f=>f.key===k).test(s)))
+    .map(s => { const o = {...s, _st:status(s,now), _d: me ? metres(me, s.coords) : null}; o._f = focus(o); return o; });
+  list.sort((a,b) => (b._st.open-a._st.open) || (me ? a._d-b._d : a.name.localeCompare(b.name)));
   return list;
 }
 
@@ -297,36 +388,38 @@ function renderChips(){
     `<button class="chip" data-k="${f.key}" aria-pressed="${active.has(f.key)}">${f.label}</button>`).join("");
 }
 
+function renderHero(){
+  const open = SHOPS.filter(s => status(s).open).length;
+  document.querySelectorAll("#hero-svg .n").forEach(t => t.textContent = SHOPS.length ? open : "");
+  document.getElementById("hero-of").textContent = SHOPS.length ? `OF ${SHOPS.length} SHOPS` : "";
+  document.getElementById("count").innerHTML = SHOPS.length ? `<b>${open}</b> of ${SHOPS.length}<br>open` : "";
+}
+
 function renderList(list){
-  const el = document.getElementById("list");
+  const el = document.getElementById("rows");
   if(!list.length){
     el.innerHTML = query
       ? `<div class="empty">No shops match “${esc(query)}”${active.size ? " with these filters" : ""}.<br>Try a different word.</div>`
       : `<div class="empty">Nothing matches all of those filters.<br>Try turning one off.</div>`;
     return;
   }
-  el.innerHTML = `<div class="legend">${query ? `${list.length} MATCH${list.length===1?"":"ES"} · ` : ""}OPEN FIRST, A–Z${UPDATED ? " · LIST UPDATED " + esc(UPDATED) : ""} · BREW: E espresso · V V60 · B batch · A AeroPress · C Chemex</div>` +
-  list.map(s => `
-    <article class="card ${s._st.open?"is-open":""}" data-id="${s.id}">
-      <div class="row1"><h2>${esc(s.name)}</h2>${statusBadge(s._st)}</div>
-      ${specLine(s)}
-      <p class="note">${esc(s.note)}</p>
-      <div class="meta">
-        ${s.roasts ? `<span class="tag">Roasts own</span>` : ""}
-        ${s.beans ? `<span class="tag">Beans</span>` : ""}
-        ${s.laptop ? `<span class="tag">Laptop OK</span>` : ""}
-        ${s.own ? `<span class="tag own">Ours</span>` : ""}
+  const now = tbilisiNow();
+  el.innerHTML = `<div class="legend">${query ? `${list.length} match${list.length===1?"":"es"} · ` : ""}Open first, ${me ? "nearest" : "A–Z"}${UPDATED ? " · updated " + esc(UPDATED) : ""} · Brew: E espresso · V V60 · B batch · A AeroPress · C Chemex</div>` +
+  list.map((s,i) => `
+    <article class="row ${s._f.cls}" data-id="${esc(s.id)}">
+      <span class="ix">${String(i+1).padStart(2,"0")}</span>
+      <div>
+        <h2 class="nm" style="--b:${s._f.b}px;--o:${s._f.o}">${esc(s.name)}</h2>
+        <div class="meta">${metaLine(s, now)}</div>
+        <p class="note">${esc(s.note)}</p>
+        ${tagsHtml(s)}
       </div>
+      <div class="dist" style="--b:${s._f.b}px;--o:${s._f.o}">${s._d != null ? fmtDist(s._d) : ""}</div>
     </article>`).join("");
 }
 
-function renderCount(){
-  const open = SHOPS.filter(s => status(s).open).length;
-  document.getElementById("count").innerHTML = `<b>${open}</b>/${SHOPS.length} OPEN`;
-}
-
 /* ---------- Map (lazy) ---------- */
-let map = null, layer = null;
+let map = null, layer = null, sel = null;
 const markers = {};
 function initMap(){
   if(map || !window.L) return;
@@ -337,24 +430,54 @@ function initMap(){
   L.control.zoom({position:"topright"}).addTo(map);
   addLocateControl();
   layer = L.layerGroup().addTo(map);
-}
-function popupHtml(s){
-  return `<div class="pop"><h3>${esc(s.name)}</h3>${specLine(s)}
-    <p>${esc(s.note)}</p>
-    <a href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener">Directions →</a></div>`;
+  map.on("click", closeSheet);
+  if(me) drawMe(false);
 }
 function renderMap(list){
   if(!map) return;
   layer.clearLayers();
+  Object.keys(markers).forEach(k => delete markers[k]);
   list.forEach(s => {
-    const icon = L.divIcon({className:"", html:`<div class="pin ${s._st.open?"open":""}"></div>`, iconSize:[18,18], iconAnchor:[9,9]});
-    markers[s.id] = L.marker(s.coords, {icon, title:s.name}).bindPopup(popupHtml(s)).addTo(layer);
+    const f = s._f;
+    const icon = L.divIcon({className:"", html:`<div class="pin ${f.cls} ${s.id===sel?"sel":""}" style="--b:${f.b}px;--o:${f.o}"></div>`, iconSize:[16,16], iconAnchor:[8,8]});
+    markers[s.id] = L.marker(s.coords, {icon, title:s.name, alt:s.name}).on("click", () => openSheet(s.id)).addTo(layer);
   });
+  if(sel && !markers[sel]) closeSheet();
+}
+
+/* ---------- Shop sheet (replaces the popup) ---------- */
+function openSheet(id, pan = true){
+  const s = visible().find(x => x.id === id) || SHOPS.map(x => ({...x, _st:status(x), _d: me ? metres(me, x.coords) : null})).find(x => x.id === id);
+  if(!s) return;
+  sel = id;
+  const now = tbilisiNow();
+  const sh = document.getElementById("sheet");
+  const idx = visible().findIndex(x => x.id === id);
+  sh.className = "sheet" + (s._st.open && s._st.closesIn <= 45 ? " soon" : "");
+  sh.hidden = false;
+  sh.innerHTML = `<button class="x" type="button" aria-label="Close" id="sheet-x">&times;</button>
+    <div class="top"><span>${idx >= 0 ? String(idx+1).padStart(2,"0") + " / " + String(visible().length).padStart(2,"0") : ""}</span><span class="st">${s._st.open ? "● " : "○ "}${esc(whenText(s._st, now))}${rating(s)}</span></div>
+    <h3>${esc(s.name)}</h3>
+    <div class="meta">${esc(s.area)} · ${esc(s.address)}${s._d != null ? " · " + fmtDist(s._d) : ""}</div>
+    <p class="note">${esc(s.note)}</p>
+    ${tagsHtml(s)}
+    <a class="go" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener">Directions →</a>`;
+  document.getElementById("sheet-x").onclick = closeSheet;
+  Object.entries(markers).forEach(([k,m]) => { const el = m.getElement(); if(el && el.firstChild) el.firstChild.classList.toggle("sel", k === id); });
+  if(map && pan){
+    const p = map.latLngToContainerPoint(s.coords), limit = map.getSize().y - sh.offsetHeight - 30;
+    if(p.y > limit) map.panBy([0, p.y - limit]);
+  }
+}
+function closeSheet(){
+  sel = null;
+  document.getElementById("sheet").hidden = true;
+  Object.values(markers).forEach(m => { const el = m.getElement(); if(el && el.firstChild) el.firstChild.classList.remove("sel"); });
 }
 
 function render(){
   const list = visible();
-  renderChips(); renderCount(); renderList(list); renderMap(list);
+  renderChips(); renderHero(); renderList(list); renderMap(list);
 }
 
 /* ============================================================
@@ -364,6 +487,7 @@ function show(view){
   document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id===view));
   document.getElementById("tab-list").setAttribute("aria-selected", view==="list");
   document.getElementById("tab-map").setAttribute("aria-selected", view==="map");
+  if(view==="list") closeSheet();
   if(view==="map"){
     if(!window.L){ toast("Map library failed to load. Reopen the app."); return; }
     initMap(); render(); setTimeout(()=>{ map.invalidateSize(); fitToMatches(); }, 0);
@@ -379,11 +503,11 @@ document.getElementById("chips").addEventListener("click", e => {
   active.has(b.dataset.k) ? active.delete(b.dataset.k) : active.add(b.dataset.k);
   render();
 });
-document.getElementById("list").addEventListener("click", e => {
-  const c = e.target.closest(".card"); if(!c) return;
+document.getElementById("rows").addEventListener("click", e => {
+  const c = e.target.closest(".row"); if(!c) return;
   const s = SHOPS.find(x => x.id===c.dataset.id);
   show("map");
-  if(map){ map.setView(s.coords, 16); setTimeout(()=>markers[s.id] && markers[s.id].openPopup(), 50); }
+  if(map){ setTimeout(() => { map.setView(s.coords, 16); openSheet(s.id, false); }, 60); }
 });
 document.getElementById("tab-list").onclick = () => show("list");
 document.getElementById("tab-map").onclick  = () => show("map");
@@ -391,7 +515,8 @@ document.getElementById("tab-map").onclick  = () => show("map");
 // Search: filters list and map as you type; on the map, zooms to the matches
 const qEl = document.getElementById("q"), qClear = document.getElementById("q-clear");
 const mapShown = () => document.getElementById("map").classList.contains("active");
-/* ---------- My location (map only) ---------- */
+
+/* ---------- My location ---------- */
 let meMarker = null, meCircle = null;
 function addLocateControl(){
   const Locate = L.Control.extend({
@@ -402,35 +527,47 @@ function addLocateControl(){
       btn.type = "button"; btn.id = "locate"; btn.title = "My location"; btn.setAttribute("aria-label", "Show my location");
       btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>';
       L.DomEvent.disableClickPropagation(wrap);
-      L.DomEvent.on(btn, "click", locateMe);
+      L.DomEvent.on(btn, "click", () => locateMe(true));
       return wrap;
     }
   });
   map.addControl(new Locate());
+  if(me) document.getElementById("locate").classList.add("on");
 }
-function locateMe(){
+let accuracy = 0;
+function drawMe(center){
+  if(!map || !me) return;
+  if(meMarker){ meMarker.setLatLng(me); meCircle.setLatLng(me).setRadius(accuracy); }
+  else{
+    meCircle = L.circle(me, {radius:accuracy, color:"#F4F4F4", weight:1, fillColor:"#F4F4F4", fillOpacity:.08, interactive:false}).addTo(map);
+    meMarker = L.marker(me, {icon:L.divIcon({className:"", html:'<div class="me"></div>', iconSize:[18,18], iconAnchor:[9,9]}), interactive:false, zIndexOffset:1000}).addTo(map);
+  }
+  if(center) map.setView(me, Math.max(map.getZoom(), 15));
+}
+function locateMe(fromMap){
   const btn = document.getElementById("locate");
+  const hl = document.getElementById("hero-loc");
   if(!navigator.geolocation){ toast("Location isn't available on this device."); return; }
-  btn.classList.add("busy");
+  if(btn) btn.classList.add("busy");
+  hl.textContent = "Locating…";
   navigator.geolocation.getCurrentPosition(p => {
-    btn.classList.remove("busy"); btn.classList.add("on");
-    const ll = [p.coords.latitude, p.coords.longitude], acc = p.coords.accuracy;
-    if(meMarker){ meMarker.setLatLng(ll); meCircle.setLatLng(ll).setRadius(acc); }
-    else{
-      meCircle = L.circle(ll, {radius:acc, color:"#804E49", weight:1, fillColor:"#804E49", fillOpacity:.12, interactive:false}).addTo(map);
-      meMarker = L.marker(ll, {icon:L.divIcon({className:"", html:'<div class="me"></div>', iconSize:[16,16], iconAnchor:[8,8]}), interactive:false, zIndexOffset:1000}).addTo(map);
-    }
-    map.setView(ll, Math.max(map.getZoom(), 15));
+    me = [p.coords.latitude, p.coords.longitude]; accuracy = p.coords.accuracy;
+    if(btn){ btn.classList.remove("busy"); btn.classList.add("on"); }
+    hl.textContent = "Sorted by distance"; hl.classList.add("on");
+    render();
+    drawMe(fromMap && mapShown());
   }, err => {
-    btn.classList.remove("busy");
+    if(btn) btn.classList.remove("busy");
+    hl.textContent = "Use my location";
     toast(err.code === 1 ? "Location is blocked. Allow it for this site in your browser settings." : "Couldn't find your location. Try again.");
   }, {enableHighAccuracy:true, timeout:10000, maximumAge:30000});
 }
+document.getElementById("hero-loc").onclick = () => locateMe(false);
 
 function fitToMatches(){
   if(!map || !query || !mapShown()) return;
   const list = visible();
-  if(list.length === 1){ map.setView(list[0].coords, 16); markers[list[0].id] && markers[list[0].id].openPopup(); }
+  if(list.length === 1){ map.setView(list[0].coords, 16); openSheet(list[0].id, false); }
   else if(list.length > 1) map.fitBounds(L.latLngBounds(list.map(s => s.coords)), {padding:[40,40], maxZoom:16});
 }
 let qTimer;
@@ -464,7 +601,7 @@ async function boot(){
     render();
     setInterval(render, 60000);
   }catch(err){
-    document.getElementById("list").innerHTML =
+    document.getElementById("rows").innerHTML =
       `<div class="empty">Couldn't load the shop list.<br>Check your connection and reopen the app.</div>`;
   }
 }

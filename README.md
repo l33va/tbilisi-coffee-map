@@ -28,6 +28,7 @@ Each shop looks like this:
 - **coords**: in Google Maps, right-click (or long-press) the spot and copy the two numbers.
 - **hours** run Monday to Sunday. Use `""` for a closed day and `24:00` for midnight. A time like `09:00-02:00` means the shop closes after midnight.
 - **brew** can include any of: `espresso`, `v60`, `batch`, `aeropress`, `chemex`.
+- **rating** (optional): a number like `4.7`. It shows as ★ next to the opening hours.
 - **own** (optional): add `"own": true` to show the "Ours" tag.
 - Change `"updated"` at the top of the file to today's date when you edit it.
 
@@ -49,4 +50,4 @@ If you change `index.html`, the icons or anything in `vendor/` (map library, fon
 ## Credits
 
 Map data © OpenStreetMap contributors. Map library: Leaflet (license in `vendor/leaflet/LICENSE`).
-Fonts: Bebas Neue and Montserrat, bundled in `vendor/fonts/` (SIL Open Font License; license files included).
+Fonts: Archivo Black and IBM Plex Mono, bundled in `vendor/fonts/` (SIL Open Font License; license files included).
