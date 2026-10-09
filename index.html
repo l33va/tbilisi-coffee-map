@@ -139,6 +139,16 @@ nav button[aria-selected="true"]{color:var(--paper);border-top-color:var(--green
   box-shadow:0 1px 3px rgba(0,0,0,.35);
 }
 .pin.open{background:var(--sulfur)}
+/* My location */
+.loc-btn{
+  width:34px;height:34px;display:grid;place-items:center;background:#fff;color:var(--ink);cursor:pointer;
+  border:0;border-radius:4px;
+}
+.loc-btn svg{width:20px;height:20px}
+.loc-btn.on{color:var(--sulfur)}
+.loc-btn.busy svg{animation:locpulse 1s ease-in-out infinite}
+@keyframes locpulse{50%{opacity:.3}}
+.me{width:16px;height:16px;border-radius:50%;background:var(--wine);border:3px solid var(--paper);box-shadow:0 0 0 1px var(--wine),0 1px 4px rgba(0,0,0,.4)}
 .leaflet-popup-content-wrapper{border-radius:0;background:var(--paper);box-shadow:0 2px 10px rgba(0,0,0,.25)}
 .leaflet-popup-content{margin:12px 14px;font-family:var(--sans);color:var(--ink);min-width:200px}
 .pop h3{font-size:16px;font-weight:700;margin-bottom:4px}
@@ -326,6 +336,7 @@ function initMap(){
     maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
   L.control.zoom({position:"topright"}).addTo(map);
+  addLocateControl();
   layer = L.layerGroup().addTo(map);
 }
 function popupHtml(s){
@@ -381,6 +392,42 @@ document.getElementById("tab-map").onclick  = () => show("map");
 // Search: filters list and map as you type; on the map, zooms to the matches
 const qEl = document.getElementById("q"), qClear = document.getElementById("q-clear");
 const mapShown = () => document.getElementById("map").classList.contains("active");
+/* ---------- My location (map only) ---------- */
+let meMarker = null, meCircle = null;
+function addLocateControl(){
+  const Locate = L.Control.extend({
+    options:{position:"topright"},
+    onAdd(){
+      const wrap = L.DomUtil.create("div", "leaflet-bar leaflet-control");
+      const btn = L.DomUtil.create("button", "loc-btn", wrap);
+      btn.type = "button"; btn.id = "locate"; btn.title = "My location"; btn.setAttribute("aria-label", "Show my location");
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>';
+      L.DomEvent.disableClickPropagation(wrap);
+      L.DomEvent.on(btn, "click", locateMe);
+      return wrap;
+    }
+  });
+  map.addControl(new Locate());
+}
+function locateMe(){
+  const btn = document.getElementById("locate");
+  if(!navigator.geolocation){ toast("Location isn't available on this device."); return; }
+  btn.classList.add("busy");
+  navigator.geolocation.getCurrentPosition(p => {
+    btn.classList.remove("busy"); btn.classList.add("on");
+    const ll = [p.coords.latitude, p.coords.longitude], acc = p.coords.accuracy;
+    if(meMarker){ meMarker.setLatLng(ll); meCircle.setLatLng(ll).setRadius(acc); }
+    else{
+      meCircle = L.circle(ll, {radius:acc, color:"#804E49", weight:1, fillColor:"#804E49", fillOpacity:.12, interactive:false}).addTo(map);
+      meMarker = L.marker(ll, {icon:L.divIcon({className:"", html:'<div class="me"></div>', iconSize:[16,16], iconAnchor:[8,8]}), interactive:false, zIndexOffset:1000}).addTo(map);
+    }
+    map.setView(ll, Math.max(map.getZoom(), 15));
+  }, err => {
+    btn.classList.remove("busy");
+    toast(err.code === 1 ? "Location is blocked. Allow it for this site in your browser settings." : "Couldn't find your location. Try again.");
+  }, {enableHighAccuracy:true, timeout:10000, maximumAge:30000});
+}
+
 function fitToMatches(){
   if(!map || !query || !mapShown()) return;
   const list = visible();
