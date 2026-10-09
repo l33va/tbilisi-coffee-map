@@ -60,8 +60,19 @@ header{
 .brand h1 span{color:var(--green-on-dark)}
 .brand .count{font-family:var(--mono);font-size:11px;color:var(--slate-2);white-space:nowrap}
 .brand .count b{color:var(--green-on-dark);font-weight:700}
+.search{position:relative;margin-top:12px}
+.search svg{position:absolute;left:11px;top:50%;width:16px;height:16px;transform:translateY(-50%);color:var(--slate-2);pointer-events:none}
+.search input{
+  width:100%;font:inherit;font-size:16px;color:var(--paper);background:#141D38;
+  border:1px solid #2A3350;border-radius:2px;padding:9px 38px 9px 35px;outline:none;-webkit-appearance:none;appearance:none;
+}
+.search input::placeholder{color:var(--slate-2)}
+.search input:focus{border-color:var(--green-on-dark)}
+.search input::-webkit-search-cancel-button{display:none}
+.search button{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:32px;height:32px;color:var(--slate-2);font-size:20px;line-height:1}
+.search button[hidden]{display:none}
 .chips{
-  display:flex;gap:6px;margin-top:12px;overflow-x:auto;scrollbar-width:none;
+  display:flex;gap:6px;margin-top:10px;overflow-x:auto;scrollbar-width:none;
   margin-inline:-16px;padding-inline:16px;
 }
 .chips::-webkit-scrollbar{display:none}
@@ -107,7 +118,6 @@ main{position:fixed;top:var(--hdr);bottom:calc(var(--nav) + var(--safe-b));left:
 .note{font-size:14px;line-height:1.4;margin-top:8px;color:var(--ink)}
 .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
 .tag{font-family:var(--mono);font-size:10px;text-transform:uppercase;padding:2px 5px;background:var(--stone);color:var(--slate)}
-.tag.dist{background:var(--sulfur-soft);color:var(--ink)}
 .tag.own{background:var(--wine);color:var(--paper)}
 .empty{font-family:var(--mono);font-size:12px;color:var(--slate);text-align:center;padding:48px 16px;line-height:1.6}
 .legend{font-family:var(--mono);font-size:10px;color:var(--slate);padding:4px 2px 10px;line-height:1.6}
@@ -115,16 +125,13 @@ main{position:fixed;top:var(--hdr);bottom:calc(var(--nav) + var(--safe-b));left:
 /* ---------- Bottom nav ---------- */
 nav{
   position:fixed;left:0;right:0;bottom:0;z-index:1000;height:calc(var(--nav) + var(--safe-b));
-  padding-bottom:var(--safe-b);background:var(--ink);display:grid;grid-template-columns:1fr 1fr auto;
+  padding-bottom:var(--safe-b);background:var(--ink);display:grid;grid-template-columns:1fr 1fr;
 }
 nav button{
   font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--slate-2);
   border-top:3px solid transparent;
 }
 nav button[aria-selected="true"]{color:var(--paper);border-top-color:var(--green-on-dark)}
-#locate{padding:0 20px;display:flex;align-items:center;gap:6px;color:var(--paper)}
-#locate svg{width:18px;height:18px}
-#locate.on{color:var(--green-on-dark)}
 
 /* ---------- Map markers & popups ---------- */
 .pin{
@@ -132,7 +139,6 @@ nav button[aria-selected="true"]{color:var(--paper);border-top-color:var(--green
   box-shadow:0 1px 3px rgba(0,0,0,.35);
 }
 .pin.open{background:var(--sulfur)}
-.me{width:14px;height:14px;border-radius:50%;background:var(--wine);border:3px solid var(--paper);box-shadow:0 0 0 2px var(--wine)}
 .leaflet-popup-content-wrapper{border-radius:0;background:var(--paper);box-shadow:0 2px 10px rgba(0,0,0,.25)}
 .leaflet-popup-content{margin:12px 14px;font-family:var(--sans);color:var(--ink);min-width:200px}
 .pop h3{font-size:16px;font-weight:700;margin-bottom:4px}
@@ -157,6 +163,11 @@ nav button[aria-selected="true"]{color:var(--paper);border-top-color:var(--green
     <h1>Tbilisi <span>Coffee</span> Map</h1>
     <div class="count" id="count"></div>
   </div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search shops, areas, streets" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" aria-label="Search shops">
+    <button id="q-clear" type="button" aria-label="Clear search" hidden>&times;</button>
+  </div>
   <div class="chips" id="chips" role="group" aria-label="Filters"></div>
 </header>
 
@@ -168,10 +179,6 @@ nav button[aria-selected="true"]{color:var(--paper);border-top-color:var(--green
 <nav>
   <button id="tab-list" aria-selected="true">List</button>
   <button id="tab-map" aria-selected="false">Map</button>
-  <button id="locate" aria-label="Sort by distance from me">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
-    <span>Near me</span>
-  </button>
 </nav>
 <div class="toast" id="toast"></div>
 
@@ -235,15 +242,15 @@ const FILTERS = [
 const active = new Set();
 
 /* ============================================================
-   DISTANCE
+   SEARCH — matches name, area, address and note; every word must match
    ============================================================ */
-let me = null;
-function km([a,b],[c,d]){
-  const R=6371, r=x=>x*Math.PI/180, dl=r(c-a), dn=r(d-b);
-  const h=Math.sin(dl/2)**2+Math.cos(r(a))*Math.cos(r(c))*Math.sin(dn/2)**2;
-  return 2*R*Math.asin(Math.sqrt(h));
+let query = "";
+const norm = t => String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+function matches(s){
+  if(!query) return true;
+  const hay = norm([s.name, s.area, s.address, s.note].join(" "));
+  return norm(query).split(/\s+/).filter(Boolean).every(w => hay.includes(w));
 }
-const fmtDist = k => k < 1 ? `${Math.round(k*1000/10)*10} m` : `${k.toFixed(1)} km`;
 
 /* ============================================================
    RENDER
@@ -270,10 +277,9 @@ function specLine(s){
 
 function visible(){
   const now = tbilisiNow();
-  let list = SHOPS.filter(s => [...active].every(k => FILTERS.find(f=>f.key===k).test(s)))
-    .map(s => ({...s, _st:status(s,now), _d: me ? km(me, s.coords) : null}));
-  list.sort((a,b) => me ? a._d-b._d
-    : (b._st.open-a._st.open) || a.name.localeCompare(b.name));
+  let list = SHOPS.filter(s => matches(s) && [...active].every(k => FILTERS.find(f=>f.key===k).test(s)))
+    .map(s => ({...s, _st:status(s,now)}));
+  list.sort((a,b) => (b._st.open-a._st.open) || a.name.localeCompare(b.name));
   return list;
 }
 
@@ -285,17 +291,18 @@ function renderChips(){
 function renderList(list){
   const el = document.getElementById("list");
   if(!list.length){
-    el.innerHTML = `<div class="empty">Nothing matches all of those filters.<br>Try turning one off.</div>`;
+    el.innerHTML = query
+      ? `<div class="empty">No shops match “${esc(query)}”${active.size ? " with these filters" : ""}.<br>Try a different word.</div>`
+      : `<div class="empty">Nothing matches all of those filters.<br>Try turning one off.</div>`;
     return;
   }
-  el.innerHTML = `<div class="legend">${me ? "SORTED BY DISTANCE" : "OPEN FIRST, A–Z"}${UPDATED ? " · LIST UPDATED " + esc(UPDATED) : ""} · BREW: E espresso · V V60 · B batch · A AeroPress · C Chemex</div>` +
+  el.innerHTML = `<div class="legend">${query ? `${list.length} MATCH${list.length===1?"":"ES"} · ` : ""}OPEN FIRST, A–Z${UPDATED ? " · LIST UPDATED " + esc(UPDATED) : ""} · BREW: E espresso · V V60 · B batch · A AeroPress · C Chemex</div>` +
   list.map(s => `
     <article class="card ${s._st.open?"is-open":""}" data-id="${s.id}">
       <div class="row1"><h2>${esc(s.name)}</h2>${statusBadge(s._st)}</div>
       ${specLine(s)}
       <p class="note">${esc(s.note)}</p>
       <div class="meta">
-        ${s._d!=null ? `<span class="tag dist">${fmtDist(s._d)}</span>` : ""}
         ${s.roasts ? `<span class="tag">Roasts own</span>` : ""}
         ${s.beans ? `<span class="tag">Beans</span>` : ""}
         ${s.laptop ? `<span class="tag">Laptop OK</span>` : ""}
@@ -310,7 +317,7 @@ function renderCount(){
 }
 
 /* ---------- Map (lazy) ---------- */
-let map = null, layer = null, meMarker = null;
+let map = null, layer = null;
 const markers = {};
 function initMap(){
   if(map || !window.L) return;
@@ -333,10 +340,6 @@ function renderMap(list){
     const icon = L.divIcon({className:"", html:`<div class="pin ${s._st.open?"open":""}"></div>`, iconSize:[18,18], iconAnchor:[9,9]});
     markers[s.id] = L.marker(s.coords, {icon, title:s.name}).bindPopup(popupHtml(s)).addTo(layer);
   });
-  if(me){
-    if(meMarker) meMarker.remove();
-    meMarker = L.marker(me, {icon:L.divIcon({className:"", html:'<div class="me"></div>', iconSize:[14,14], iconAnchor:[7,7]}), interactive:false}).addTo(map);
-  }
 }
 
 function render(){
@@ -353,7 +356,7 @@ function show(view){
   document.getElementById("tab-map").setAttribute("aria-selected", view==="map");
   if(view==="map"){
     if(!window.L){ toast("Map library failed to load. Reopen the app."); return; }
-    initMap(); render(); setTimeout(()=>map.invalidateSize(), 0);
+    initMap(); render(); setTimeout(()=>{ map.invalidateSize(); fitToMatches(); }, 0);
   }
 }
 function toast(msg){
@@ -374,17 +377,25 @@ document.getElementById("list").addEventListener("click", e => {
 });
 document.getElementById("tab-list").onclick = () => show("list");
 document.getElementById("tab-map").onclick  = () => show("map");
-document.getElementById("locate").onclick = () => {
-  if(me){ me = null; document.getElementById("locate").classList.remove("on"); if(meMarker){meMarker.remove(); meMarker=null;} render(); return; }
-  if(!navigator.geolocation){ toast("Location isn't available on this device."); return; }
-  navigator.geolocation.getCurrentPosition(p => {
-    me = [p.coords.latitude, p.coords.longitude];
-    document.getElementById("locate").classList.add("on");
-    render();
-    if(map) map.setView(me, 14);
-  }, () => toast("Couldn't get your location. Allow it in the browser and try again."),
-  {enableHighAccuracy:true, timeout:10000, maximumAge:60000});
-};
+
+// Search: filters list and map as you type; on the map, zooms to the matches
+const qEl = document.getElementById("q"), qClear = document.getElementById("q-clear");
+const mapShown = () => document.getElementById("map").classList.contains("active");
+function fitToMatches(){
+  if(!map || !query || !mapShown()) return;
+  const list = visible();
+  if(list.length === 1){ map.setView(list[0].coords, 16); markers[list[0].id] && markers[list[0].id].openPopup(); }
+  else if(list.length > 1) map.fitBounds(L.latLngBounds(list.map(s => s.coords)), {padding:[40,40], maxZoom:16});
+}
+let qTimer;
+qEl.addEventListener("input", () => {
+  query = qEl.value.trim();
+  qClear.hidden = !qEl.value;
+  render();
+  clearTimeout(qTimer); qTimer = setTimeout(fitToMatches, 350);
+});
+qEl.addEventListener("keydown", e => { if(e.key === "Enter"){ qEl.blur(); fitToMatches(); } });
+qClear.onclick = () => { qEl.value = ""; query = ""; qClear.hidden = true; render(); qEl.focus(); };
 
 // Fit content under the header, whatever its real height on this phone
 function fitHeader(){
