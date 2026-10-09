@@ -44,8 +44,9 @@ On a phone, open that link, then choose **Add to Home Screen** (Safari share men
 
 `sw.js` saves the app on first visit, so it opens with no signal. The shop list and page are fetched fresh whenever there's a connection. Map areas you've already looked at stay available offline.
 
-If you change `index.html`, the icons or anything in `vendor/`, raise `VERSION` in `sw.js` (for example from `"v1"` to `"v2"`) so phones pick up the new files. Edits to `shops.json` alone don't need this.
+If you change `index.html`, the icons or anything in `vendor/` (map library, fonts), raise `VERSION` in `sw.js` (for example from `"v1"` to `"v2"`) so phones pick up the new files. Edits to `shops.json` alone don't need this.
 
 ## Credits
 
 Map data © OpenStreetMap contributors. Map library: Leaflet (license in `vendor/leaflet/LICENSE`).
+Fonts: Bebas Neue and Montserrat, bundled in `vendor/fonts/` (SIL Open Font License; license files included).
