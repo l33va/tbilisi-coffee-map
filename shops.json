@@ -11,7 +11,6 @@
       "roasts": true,
       "beans": true,
       "laptop": true,
-      "own": true,
       "brew": ["espresso", "v60", "batch"],
       "note": "The roastery's home bar. Order a hand-brew to taste the beans at their best."
     },
@@ -25,7 +24,6 @@
       "roasts": true,
       "beans": true,
       "laptop": true,
-      "own": true,
       "brew": ["espresso", "v60", "batch"],
       "note": "Roomy, with plugs in the back for laptops. Fills up mid-morning."
     },
@@ -39,7 +37,6 @@
       "roasts": true,
       "beans": true,
       "laptop": false,
-      "own": true,
       "brew": ["espresso", "v60", "batch"],
       "note": "Tiny bar on a beautiful Sololaki street. Batch brew and a courtyard."
     },
@@ -53,7 +50,6 @@
       "roasts": true,
       "beans": true,
       "laptop": true,
-      "own": true,
       "brew": ["espresso", "v60", "batch"],
       "note": "Neighbourhood bar up in Bagebi. Batch brew, a decaf option and great cookies. Laptop crowd fills the tables."
     },
