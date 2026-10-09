@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A122A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Coffee Map">
+<title>Tbilisi Coffee Map</title>
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS — Levan's "coffee map v2.0"
+   #0A122A navy · #698F3F green · #FBFAF8 off-white
+   #E7DECD beige · #804E49 brick
+   Green = open. Brick = warnings and "Ours".
+   (slate, slate-2, line, the soft tints and the light green
+   used on the navy header are derived)
+   ============================================================ */
+:root{
+  --ink:#0A122A;        /* navy: header, nav, text */
+  --stone:#E7DECD;      /* beige: page background */
+  --paper:#FBFAF8;      /* off-white: cards */
+  --slate:#4A5066;      /* navy-grey: secondary text */
+  --slate-2:#9A958C;    /* warm grey: muted / closed */
+  --line:#DDD3C0;       /* beige hairline */
+  --sulfur:#698F3F;     /* green: open accent */
+  --sulfur-soft:#E3EAD8;/* green tint: distance tag */
+  --green-on-dark:#A9C77F; /* lighter green, readable on navy */
+  --wine:#804E49;       /* brick: warnings, "Ours" */
+  --wine-soft:#F3E6E3;  /* brick tint */
+  --sans:"Familjen Grotesk",system-ui,-apple-system,sans-serif;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --hdr:118px;
+  --nav:64px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--stone);color:var(--ink);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;overflow:hidden;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* ---------- Header ---------- */
+header{
+  position:fixed;inset:0 0 auto 0;z-index:1000;background:var(--ink);color:var(--stone);
+  padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 10px;
+}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.brand h1{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.brand h1 span{color:var(--green-on-dark)}
+.brand .count{font-family:var(--mono);font-size:11px;color:var(--slate-2);white-space:nowrap}
+.brand .count b{color:var(--green-on-dark);font-weight:700}
+.chips{
+  display:flex;gap:6px;margin-top:12px;overflow-x:auto;scrollbar-width:none;
+  margin-inline:-16px;padding-inline:16px;
+}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  flex:0 0 auto;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.04em;
+  padding:7px 10px;border:1px solid #2A3350;border-radius:2px;color:var(--paper);
+}
+.chip[aria-pressed="true"]{background:var(--sulfur);border-color:var(--sulfur);color:var(--paper);font-weight:700}
+
+/* ---------- Views ---------- */
+main{position:fixed;top:var(--hdr);bottom:calc(var(--nav) + var(--safe-b));left:0;right:0}
+.view{position:absolute;inset:0;display:none}
+.view.active{display:block}
+#list{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 12px 24px}
+#map{background:#d9d9d2}
+
+/* ---------- Cards ---------- */
+.card{
+  background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--slate-2);
+  padding:12px 12px 12px 14px;margin-bottom:10px;cursor:pointer;
+}
+.card.is-open{border-left-color:var(--sulfur)}
+.card:active{background:#fff}
+.row1{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card h2{font-size:18px;font-weight:700;letter-spacing:-.01em;line-height:1.15}
+.status{
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 6px;
+  white-space:nowrap;border:1px solid var(--slate-2);color:var(--slate);
+}
+.status.open{background:var(--sulfur);border-color:var(--sulfur);color:var(--paper)}
+.status.soon{border:1.5px solid var(--wine);color:var(--wine);background:var(--wine-soft)}
+.spec{
+  font-family:var(--mono);font-size:10.5px;color:var(--slate);margin-top:6px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;
+}
+.spec .sep{color:var(--line)}
+.brew{display:inline-flex;gap:2px}
+.brew i{
+  font-style:normal;width:15px;height:15px;display:inline-grid;place-items:center;font-size:9px;
+  border:1px solid var(--slate-2);color:var(--slate-2);
+}
+.brew i.on{background:var(--slate);border-color:var(--slate);color:var(--paper)}
+.note{font-size:14px;line-height:1.4;margin-top:8px;color:var(--ink)}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.tag{font-family:var(--mono);font-size:10px;text-transform:uppercase;padding:2px 5px;background:var(--stone);color:var(--slate)}
+.tag.dist{background:var(--sulfur-soft);color:var(--ink)}
+.tag.own{background:var(--wine);color:var(--paper)}
+.empty{font-family:var(--mono);font-size:12px;color:var(--slate);text-align:center;padding:48px 16px;line-height:1.6}
+.legend{font-family:var(--mono);font-size:10px;color:var(--slate);padding:4px 2px 10px;line-height:1.6}
+
+/* ---------- Bottom nav ---------- */
+nav{
+  position:fixed;left:0;right:0;bottom:0;z-index:1000;height:calc(var(--nav) + var(--safe-b));
+  padding-bottom:var(--safe-b);background:var(--ink);display:grid;grid-template-columns:1fr 1fr auto;
+}
+nav button{
+  font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--slate-2);
+  border-top:3px solid transparent;
+}
+nav button[aria-selected="true"]{color:var(--paper);border-top-color:var(--green-on-dark)}
+#locate{padding:0 20px;display:flex;align-items:center;gap:6px;color:var(--paper)}
+#locate svg{width:18px;height:18px}
+#locate.on{color:var(--green-on-dark)}
+
+/* ---------- Map markers & popups ---------- */
+.pin{
+  width:18px;height:18px;border-radius:50%;background:var(--slate-2);border:3px solid var(--ink);
+  box-shadow:0 1px 3px rgba(0,0,0,.35);
+}
+.pin.open{background:var(--sulfur)}
+.me{width:14px;height:14px;border-radius:50%;background:var(--wine);border:3px solid var(--paper);box-shadow:0 0 0 2px var(--wine)}
+.leaflet-popup-content-wrapper{border-radius:0;background:var(--paper);box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.leaflet-popup-content{margin:12px 14px;font-family:var(--sans);color:var(--ink);min-width:200px}
+.pop h3{font-size:16px;font-weight:700;margin-bottom:4px}
+.pop .spec{margin-top:0}
+.pop p{font-size:13px;line-height:1.35;margin:8px 0 10px !important}
+.pop a{
+  display:inline-block;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;
+  background:var(--ink);color:var(--paper) !important;padding:6px 9px;text-decoration:none;
+}
+.toast{
+  position:fixed;left:50%;bottom:calc(var(--nav) + var(--safe-b) + 14px);transform:translateX(-50%);
+  background:var(--wine);color:var(--paper);font-family:var(--mono);font-size:11px;padding:8px 12px;
+  z-index:1100;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;text-align:center;
+}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <h1>Tbilisi <span>Coffee</span> Map</h1>
+    <div class="count" id="count"></div>
+  </div>
+  <div class="chips" id="chips" role="group" aria-label="Filters"></div>
+</header>
+
+<main>
+  <section class="view active" id="list" aria-label="List"></section>
+  <section class="view" id="map" aria-label="Map"></section>
+</main>
+
+<nav>
+  <button id="tab-list" aria-selected="true">List</button>
+  <button id="tab-map" aria-selected="false">Map</button>
+  <button id="locate" aria-label="Sort by distance from me">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+    <span>Near me</span>
+  </button>
+</nav>
+<div class="toast" id="toast"></div>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script>
+/* ============================================================
+   SHOP DATA lives in shops.json — edit that file, not this one.
+   hours: Mon..Sun, "HH:MM-HH:MM", "" = closed. "24:00" = midnight.
+   brew: espresso | v60 | batch | aeropress | chemex
+   ============================================================ */
+let SHOPS = [];
+let UPDATED = "";
+
+/* ============================================================
+   TIME — always computed in Tbilisi time, whatever the phone's zone
+   ============================================================ */
+const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+function tbilisiNow(){
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-US",{
+    timeZone:"Asia/Tbilisi",weekday:"short",hour:"2-digit",minute:"2-digit",hourCycle:"h23"
+  }).formatToParts(new Date()).map(x=>[x.type,x.value]));
+  return { day: DAYS.indexOf(p.weekday), min: (+p.hour)*60 + (+p.minute) };
+}
+const toMin = t => { const [h,m] = t.split(":").map(Number); return h*60+m; };
+function span(str){
+  if(!str) return null;
+  const [o,c] = str.split("-");
+  let open = toMin(o), close = toMin(c);
+  if(close <= open) close += 1440;              // closes after midnight
+  return {open, close};
+}
+function status(shop, now = tbilisiNow()){
+  const today = span(shop.hours[now.day]);
+  const yest  = span(shop.hours[(now.day+6)%7]);
+  if(yest && yest.close > 1440 && now.min < yest.close-1440)
+    return {open:true, closesIn:(yest.close-1440)-now.min};
+  if(today && now.min >= today.open && now.min < today.close)
+    return {open:true, closesIn:today.close-now.min};
+  if(today && now.min < today.open) return {open:false, opensIn:today.open-now.min};
+  return {open:false};
+}
+function todayHours(shop, now = tbilisiNow()){
+  const h = shop.hours[now.day];
+  return h ? h.replace("-", "–") : "closed today";
+}
+function opensBefore9(shop, now = tbilisiNow()){
+  const t = span(shop.hours[now.day]); return !!t && t.open < 9*60;
+}
+
+/* ============================================================
+   FILTERS
+   ============================================================ */
+const FILTERS = [
+  {key:"open",     label:"Open now",       test:s => status(s).open},
+  {key:"roasts",   label:"Roasts own",     test:s => s.roasts},
+  {key:"pour",     label:"Pour-over",      test:s => s.brew.includes("v60") || s.brew.includes("chemex") || s.brew.includes("aeropress")},
+  {key:"laptop",   label:"Laptop OK",      test:s => s.laptop},
+  {key:"early",    label:"Opens before 9", test:s => opensBefore9(s)},
+  {key:"beans",    label:"Sells beans",    test:s => s.beans},
+];
+const active = new Set();
+
+/* ============================================================
+   DISTANCE
+   ============================================================ */
+let me = null;
+function km([a,b],[c,d]){
+  const R=6371, r=x=>x*Math.PI/180, dl=r(c-a), dn=r(d-b);
+  const h=Math.sin(dl/2)**2+Math.cos(r(a))*Math.cos(r(c))*Math.sin(dn/2)**2;
+  return 2*R*Math.asin(Math.sqrt(h));
+}
+const fmtDist = k => k < 1 ? `${Math.round(k*1000/10)*10} m` : `${k.toFixed(1)} km`;
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const BREW = [["espresso","E"],["v60","V"],["batch","B"],["aeropress","A"],["chemex","C"]];
+const brewBoxes = s => `<span class="brew" title="Espresso · V60 · Batch · AeroPress · Chemex">${
+  BREW.map(([k,l]) => `<i class="${s.brew.includes(k)?"on":""}">${l}</i>`).join("")}</span>`;
+
+function statusBadge(st){
+  if(st.open && st.closesIn <= 45) return `<span class="status soon">CLOSES ${st.closesIn}M</span>`;
+  if(st.open) return `<span class="status open">OPEN</span>`;
+  if(st.opensIn && st.opensIn <= 90) return `<span class="status soon">OPENS ${st.opensIn}M</span>`;
+  return `<span class="status">CLOSED</span>`;
+}
+function specLine(s){
+  return `<div class="spec">
+    <span>${esc(s.area.toUpperCase())}</span><span class="sep">/</span>
+    <span>${esc(todayHours(s))}</span><span class="sep">/</span>
+    <span>${s.coords[0].toFixed(4)} ${s.coords[1].toFixed(4)}</span>
+    ${brewBoxes(s)}
+  </div>`;
+}
+
+function visible(){
+  const now = tbilisiNow();
+  let list = SHOPS.filter(s => [...active].every(k => FILTERS.find(f=>f.key===k).test(s)))
+    .map(s => ({...s, _st:status(s,now), _d: me ? km(me, s.coords) : null}));
+  list.sort((a,b) => me ? a._d-b._d
+    : (b._st.open-a._st.open) || a.name.localeCompare(b.name));
+  return list;
+}
+
+function renderChips(){
+  document.getElementById("chips").innerHTML = FILTERS.map(f =>
+    `<button class="chip" data-k="${f.key}" aria-pressed="${active.has(f.key)}">${f.label}</button>`).join("");
+}
+
+function renderList(list){
+  const el = document.getElementById("list");
+  if(!list.length){
+    el.innerHTML = `<div class="empty">Nothing matches all of those filters.<br>Try turning one off.</div>`;
+    return;
+  }
+  el.innerHTML = `<div class="legend">${me ? "SORTED BY DISTANCE" : "OPEN FIRST, A–Z"}${UPDATED ? " · LIST UPDATED " + esc(UPDATED) : ""} · BREW: E espresso · V V60 · B batch · A AeroPress · C Chemex</div>` +
+  list.map(s => `
+    <article class="card ${s._st.open?"is-open":""}" data-id="${s.id}">
+      <div class="row1"><h2>${esc(s.name)}</h2>${statusBadge(s._st)}</div>
+      ${specLine(s)}
+      <p class="note">${esc(s.note)}</p>
+      <div class="meta">
+        ${s._d!=null ? `<span class="tag dist">${fmtDist(s._d)}</span>` : ""}
+        ${s.roasts ? `<span class="tag">Roasts own</span>` : ""}
+        ${s.beans ? `<span class="tag">Beans</span>` : ""}
+        ${s.laptop ? `<span class="tag">Laptop OK</span>` : ""}
+        ${s.own ? `<span class="tag own">Ours</span>` : ""}
+      </div>
+    </article>`).join("");
+}
+
+function renderCount(){
+  const open = SHOPS.filter(s => status(s).open).length;
+  document.getElementById("count").innerHTML = `<b>${open}</b>/${SHOPS.length} OPEN`;
+}
+
+/* ---------- Map (lazy) ---------- */
+let map = null, layer = null, meMarker = null;
+const markers = {};
+function initMap(){
+  if(map || !window.L) return;
+  map = L.map("map", {zoomControl:false, attributionControl:true}).setView([41.705, 44.785], 13);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+  L.control.zoom({position:"topright"}).addTo(map);
+  layer = L.layerGroup().addTo(map);
+}
+function popupHtml(s){
+  return `<div class="pop"><h3>${esc(s.name)}</h3>${specLine(s)}
+    <p>${esc(s.note)}</p>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener">Directions →</a></div>`;
+}
+function renderMap(list){
+  if(!map) return;
+  layer.clearLayers();
+  list.forEach(s => {
+    const icon = L.divIcon({className:"", html:`<div class="pin ${s._st.open?"open":""}"></div>`, iconSize:[18,18], iconAnchor:[9,9]});
+    markers[s.id] = L.marker(s.coords, {icon, title:s.name}).bindPopup(popupHtml(s)).addTo(layer);
+  });
+  if(me){
+    if(meMarker) meMarker.remove();
+    meMarker = L.marker(me, {icon:L.divIcon({className:"", html:'<div class="me"></div>', iconSize:[14,14], iconAnchor:[7,7]}), interactive:false}).addTo(map);
+  }
+}
+
+function render(){
+  const list = visible();
+  renderChips(); renderCount(); renderList(list); renderMap(list);
+}
+
+/* ============================================================
+   INTERACTION
+   ============================================================ */
+function show(view){
+  document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id===view));
+  document.getElementById("tab-list").setAttribute("aria-selected", view==="list");
+  document.getElementById("tab-map").setAttribute("aria-selected", view==="map");
+  if(view==="map"){
+    if(!window.L){ toast("Map library failed to load. Reopen the app."); return; }
+    initMap(); render(); setTimeout(()=>map.invalidateSize(), 0);
+  }
+}
+function toast(msg){
+  const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toast._t); toast._t = setTimeout(()=>t.classList.remove("show"), 2600);
+}
+
+document.getElementById("chips").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if(!b) return;
+  active.has(b.dataset.k) ? active.delete(b.dataset.k) : active.add(b.dataset.k);
+  render();
+});
+document.getElementById("list").addEventListener("click", e => {
+  const c = e.target.closest(".card"); if(!c) return;
+  const s = SHOPS.find(x => x.id===c.dataset.id);
+  show("map");
+  if(map){ map.setView(s.coords, 16); setTimeout(()=>markers[s.id] && markers[s.id].openPopup(), 50); }
+});
+document.getElementById("tab-list").onclick = () => show("list");
+document.getElementById("tab-map").onclick  = () => show("map");
+document.getElementById("locate").onclick = () => {
+  if(me){ me = null; document.getElementById("locate").classList.remove("on"); if(meMarker){meMarker.remove(); meMarker=null;} render(); return; }
+  if(!navigator.geolocation){ toast("Location isn't available on this device."); return; }
+  navigator.geolocation.getCurrentPosition(p => {
+    me = [p.coords.latitude, p.coords.longitude];
+    document.getElementById("locate").classList.add("on");
+    render();
+    if(map) map.setView(me, 14);
+  }, () => toast("Couldn't get your location. Allow it in the browser and try again."),
+  {enableHighAccuracy:true, timeout:10000, maximumAge:60000});
+};
+
+// Fit content under the header, whatever its real height on this phone
+function fitHeader(){
+  document.documentElement.style.setProperty("--hdr", document.querySelector("header").offsetHeight + "px");
+  if(map) map.invalidateSize();
+}
+addEventListener("resize", fitHeader);
+document.fonts && document.fonts.ready.then(fitHeader);
+if(window.ResizeObserver) new ResizeObserver(fitHeader).observe(document.querySelector("header"));
+renderChips();
+fitHeader();
+
+// Load the shop list, then draw. Keep "open now" honest every minute.
+async function boot(){
+  try{
+    const r = await fetch("shops.json", {cache:"no-cache"});
+    if(!r.ok) throw new Error(r.status);
+    const data = await r.json();
+    SHOPS = data.shops; UPDATED = data.updated || "";
+    render();
+    setInterval(render, 60000);
+  }catch(err){
+    document.getElementById("list").innerHTML =
+      `<div class="empty">Couldn't load the shop list.<br>Check your connection and reopen the app.</div>`;
+  }
+}
+boot();
+
+// Offline support (works on https and localhost)
+if("serviceWorker" in navigator && (location.protocol==="https:" || location.hostname==="localhost" || location.hostname==="127.0.0.1")){
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(()=>{}));
+}
+
+</script>
+</body>
+</html>
