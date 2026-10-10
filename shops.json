@@ -142,6 +142,12 @@
       "brew": ["espresso", "v60"],
       "score": null,
       "instagram": "cityhikers_tbilisi",
+      "photos": [
+        {"src": "photos/cityhikers-1.webp", "alt": "CITYHIKERS container café with outdoor seating by the bridge"},
+        {"src": "photos/cityhikers-2.webp", "alt": "At the CITYHIKERS bar"},
+        {"src": "photos/cityhikers-3.webp", "alt": "Iced matcha being poured at CITYHIKERS"},
+        {"src": "photos/cityhikers-4.webp", "alt": "An evening at CITYHIKERS"}
+      ],
       "place_id": "ChIJgdpVPQANREARf6Ce9n9bdTg",
       "note": "Riverside, inside the park by the bridge. More of a hangout than a coffee bar."
     },
