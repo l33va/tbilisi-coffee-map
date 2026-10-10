@@ -59,6 +59,7 @@
       "roasts": true,
       "beans": true,
       "laptop": true,
+      "pets": true,
       "brew": ["espresso", "v60", "batch"],
       "score": null,
       "instagram": "shavi.coffee",
