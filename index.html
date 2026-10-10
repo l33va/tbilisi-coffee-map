@@ -242,9 +242,15 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .field input:focus,.field textarea:focus{border-color:var(--fg)}
 .lab{margin-top:14px}
 .chips-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.share-btn{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px 0 4px}
-.share-btn svg{width:18px;height:18px}
-.share-btn[disabled]{opacity:.6}
+.share-btn{
+  position:absolute;right:20px;top:14px;display:flex;align-items:center;gap:6px;height:30px;padding:0 10px;
+  background:transparent;border:1px solid var(--hair);color:var(--fg);
+  font-size:9px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;
+}
+.share-btn svg{width:13px;height:13px}
+.share-btn:active,.share-btn:focus-visible{border-color:var(--fg)}
+.share-btn[hidden]{display:none}
+.share-btn[disabled]{opacity:.5}
 .btn{display:block;width:100%;margin-top:16px;background:var(--fg);color:var(--bg);font-family:var(--display);font-size:15px;line-height:1;text-transform:uppercase;letter-spacing:.04em;padding:14px;text-align:center}
 .prefs{margin-top:28px;border-top:1px solid var(--fg);padding-top:14px}
 .prefs-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
@@ -402,6 +408,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
         <text class="fn" x="14" y="150" font-family="'Archivo Black',sans-serif" font-size="190" fill="#F4F4F4" opacity=".55" filter="url(#soft)" letter-spacing="-8"></text>
         <text x="18" y="198" font-family="'Archivo Black',sans-serif" font-size="46" fill="#F4F4F4" letter-spacing="-1">FAVOURITES</text>
       </svg>
+      <button class="share-btn" type="button" id="fave-share" aria-label="Share favourites as a picture" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share</button>
     </div>
     <div id="fave-rows"></div>
   </section>
@@ -710,6 +717,7 @@ function renderFaves(){
   const list = faveList();
   document.querySelectorAll("#fave-hero .fn").forEach(t => t.textContent = String(list.length).padStart(2,"0"));
   const el = document.getElementById("fave-rows");
+  document.getElementById("fave-share").hidden = !list.length;
   if(!list.length){
     el.innerHTML = `<div class="fave-empty">
       <h2>Nothing<br>saved yet</h2>
@@ -727,7 +735,7 @@ function renderFaves(){
         <div class="meta">${metaLine(s, now)}${s._d != null ? " · " + fmtDist(s._d) : ""}</div>
       </div>
       <div class="side">${favBtn(s.id)}</div>
-    </article>`).join("") + `<button class="btn share-btn" type="button" id="fave-share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share as a picture</button>
+    </article>`).join("") + `
     <p class="foot">Favourites are kept on this phone only. Nothing is sent anywhere unless you share the picture.</p>`;
 }
 
