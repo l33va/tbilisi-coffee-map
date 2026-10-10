@@ -465,6 +465,21 @@
       "instagram": "minimalist.tbilisi",
       "place_id": "ChIJJ_4Qf8ZzREAROM9C9BVeCeg",
       "note": "Clean, modern café at the top of Paliashvili with a dedicated work zone. Strong breakfast menu; the syrniki are the order."
+    },
+    {
+      "id": "karaqi-zubalashvili",
+      "name": "Karaqi Bakery",
+      "area": "Sololaki",
+      "address": "29/7 Dzmebi Zubalashvilebi St",
+      "coords": [41.6993113, 44.7949334],
+      "hours": ["09:00-17:00", "09:00-17:00", "09:00-17:00", "09:00-17:00", "09:00-17:00", "09:00-17:00", "09:00-17:00"],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": ["espresso"],
+      "score": null,
+      "instagram": "karaqi.bakery.tbi",
+      "note": "Small bakery behind the music school: flaky croissants, cruffins and canelés, with coffee to go with them."
     }
   ]
 }
