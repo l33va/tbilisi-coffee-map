@@ -486,6 +486,29 @@
         {"src": "photos/karaqi-4.webp", "alt": "Window table by the brick wall at Karaqi"}
       ],
       "note": "Small bakery behind the music school: flaky croissants, cruffins and canelés, with coffee to go with them."
+    },
+    {
+      "id": "slink",
+      "name": "Slink Café",
+      "area": "Marjanishvili",
+      "address": "73a Davit Aghmashenebeli Ave",
+      "coords": [41.7090493, 44.7997114],
+      "hours": ["", "10:00-18:00", "10:00-18:00", "10:00-18:00", "10:00-18:00", "10:00-18:00", "10:00-18:00"],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "pets": true,
+      "roaster": ["Shavi"],
+      "brew": ["espresso"],
+      "score": null,
+      "instagram": "slinkcafe",
+      "place_id": "ChIJkwPRR88NREARTl5sC7HXdJM",
+      "note": "Brunch spot in a glasshouse in the park, with a sunny gravel garden. Dog friendly. Closed Mondays.",
+      "photos": [
+        {"src": "photos/slink-1.webp", "alt": "The glasshouse dining room and bar at Slink Café"},
+        {"src": "photos/slink-2.webp", "alt": "Pink bistro tables in Slink Café's gravel garden"},
+        {"src": "photos/slink-3.webp", "alt": "Brunch with coffee at Slink Café"}
+      ]
     }
   ]
 }
