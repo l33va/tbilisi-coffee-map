@@ -400,6 +400,22 @@
       "instagram": "pulp.tbilisi",
       "place_id": "ChIJf_Mu8P0NREARWWZEbxclDvM",
       "note": "Relaxed, buzzy room with careful hand brew and batch. Buns and pastries; a laptop table and outdoor seats."
+    },
+    {
+      "id": "shukura",
+      "name": "Shukura",
+      "area": "Vake",
+      "address": "49 Irakli Abashidze St",
+      "coords": [41.7084352, 44.7601533],
+      "hours": ["10:00-22:00", "10:00-22:00", "10:00-22:00", "10:00-22:00", "10:00-22:00", "10:00-22:00", "10:00-22:00"],
+      "roasts": false,
+      "beans": false,
+      "laptop": true,
+      "brew": ["espresso"],
+      "score": null,
+      "instagram": "shukura.coffee",
+      "place_id": "ChIJ57yQL_FzREARq2OXWvTVZR0",
+      "note": "All-day café with a big coffee menu, a full kitchen and a year-round terrace. Popular for working and long breakfasts."
     }
   ]
 }
