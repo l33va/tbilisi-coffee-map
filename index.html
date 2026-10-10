@@ -36,7 +36,8 @@
   --nav:64px;
   --safe-b:env(safe-area-inset-bottom,0px);
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+button,a,.row,.chip,.sw{touch-action:manipulation}
 html,body{height:100%}
 body{
   background:var(--bg);color:var(--fg);font-family:var(--mono);
