@@ -86,7 +86,8 @@ header{
 main{position:fixed;top:var(--hdr);bottom:calc(var(--nav) + var(--safe-b));left:0;right:0}
 .view{position:absolute;inset:0;display:none}
 .view.active{display:block}
-#list{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 20px 24px}
+#list,#faves,#contact{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 20px 24px}
+body.v-faves .search,body.v-faves .chips,body.v-contact .search,body.v-contact .chips{display:none}
 #map{background:var(--bg)}
 /* map tiles go black and white, then dark */
 #map .leaflet-tile-pane{filter:invert(1) grayscale(1) brightness(.8) contrast(1.15)}
@@ -133,11 +134,11 @@ main{position:fixed;top:var(--hdr);bottom:calc(var(--nav) + var(--safe-b));left:
 nav{
   position:fixed;left:0;right:0;bottom:0;z-index:1000;height:calc(var(--nav) + var(--safe-b));
   padding:0 20px var(--safe-b);background:var(--bg);border-top:1px solid var(--line);
-  display:flex;align-items:center;gap:12px;
+  display:flex;align-items:center;gap:8px;
 }
 nav .rule{flex:1;height:1px;background:var(--hair)}
 nav button{
-  font-family:var(--display);font-size:24px;line-height:1;text-transform:uppercase;color:#8A8A8A;padding:8px 0;
+  font-family:var(--display);font-size:17px;line-height:1;text-transform:uppercase;color:#8A8A8A;padding:12px 0;
 }
 nav button[aria-selected="true"]{color:var(--fg)}
 
@@ -168,7 +169,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
   padding:16px 20px 18px;max-height:70%;overflow-y:auto;
 }
 .sheet[hidden]{display:none}
-.sheet .top{padding-right:30px;display:flex;justify-content:space-between;gap:12px;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
+.sheet .top{padding-right:76px;display:flex;justify-content:space-between;gap:12px;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
 .sheet .top .st{color:var(--fg)}
 .sheet.soon .top .st{color:var(--red)}
 .sheet h3{margin-top:12px;font-family:var(--display);font-weight:400;font-size:25px;line-height:1.02;text-transform:uppercase}
@@ -186,6 +187,64 @@ nav button[aria-selected="true"]{color:var(--fg)}
 }
 .sheet .more a:only-child{grid-column:1 / -1}
 .sheet .x{position:absolute;right:12px;top:8px;width:32px;height:32px;color:var(--dim);font-size:22px;line-height:1}
+
+/* ---------- Favourites ---------- */
+.side{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.fav{width:34px;height:34px;display:grid;place-items:center;color:var(--fg);margin-right:-6px}
+.fav svg{width:20px;height:20px}
+.row.soon .fav{color:var(--red)}
+.row.shut .fav{color:var(--mute)}
+.sheet .sheet-fav{position:absolute;right:42px;top:6px}
+.foot{font-size:9px;line-height:1.6;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);padding:14px 0 0}
+.fave-empty{padding:28px 0 0;border-top:1px solid var(--fg)}
+.fave-empty h2{font-family:var(--display);font-weight:400;font-size:32px;line-height:1;text-transform:uppercase}
+.fave-empty p{margin-top:16px;font-size:12px;line-height:1.6;color:#CFCFCF}
+.fave-empty .demo{margin-top:24px;border:1px solid var(--hair);padding:14px;display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center}
+.fave-empty .demo b{font-family:var(--display);font-weight:400;font-size:19px;line-height:1.05;text-transform:uppercase}
+.fave-empty .demo span{font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
+.fave-empty .demo svg{width:24px;height:24px;color:var(--fg)}
+
+/* ---------- Contact ---------- */
+.seg{display:grid;grid-template-columns:1fr 1fr 1fr;margin-top:16px;border:1px solid var(--fg)}
+.seg button{padding:10px 4px;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;text-align:center}
+.seg button+button{border-left:1px solid var(--hair)}
+.seg button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+.panel{padding-top:20px}
+.panel[hidden]{display:none}
+.panel .h{font-family:var(--display);font-weight:400;font-size:30px;line-height:1;text-transform:uppercase}
+.panel .lead{margin-top:8px;font-size:11px;line-height:1.5;color:var(--dim)}
+.field{margin-top:12px}
+.field label,.lab{display:block;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--dim)}
+.field input,.field textarea{
+  display:block;width:100%;margin-top:5px;font:inherit;font-size:16px;color:var(--fg);background:transparent;
+  border:1px solid var(--hair);border-radius:0;padding:9px 12px;outline:none;-webkit-appearance:none;appearance:none;
+}
+.field textarea{min-height:76px;resize:none}
+.field input::placeholder,.field textarea::placeholder{color:var(--mute)}
+.field input:focus,.field textarea:focus{border-color:var(--fg)}
+.lab{margin-top:14px}
+.chips-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.btn{display:block;width:100%;margin-top:16px;background:var(--fg);color:var(--bg);font-family:var(--display);font-size:15px;line-height:1;text-transform:uppercase;letter-spacing:.04em;padding:14px;text-align:center}
+.prefs{margin-top:28px;border-top:1px solid var(--fg);padding-top:14px}
+.prefs-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.prefs-head h3{font-family:var(--display);font-weight:400;font-size:21px;line-height:1;text-transform:uppercase}
+.prefs-head span{font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
+.switches{margin-top:12px;border-top:1px solid var(--line)}
+.sw{display:flex;justify-content:space-between;align-items:center;width:100%;padding:12px 0;border-bottom:1px solid var(--line);font-size:11px;text-transform:uppercase;letter-spacing:.04em;text-align:left}
+.sw i{width:36px;height:20px;border:1px solid var(--hair);position:relative;flex:none}
+.sw i::after{content:"";position:absolute;left:2px;top:2px;width:14px;height:14px;background:var(--hair)}
+.sw[aria-checked="true"] i{background:var(--fg);border-color:var(--fg)}
+.sw[aria-checked="true"] i::after{left:auto;right:2px;background:var(--bg)}
+.about-top{display:flex;gap:16px;align-items:center}
+.about-top svg{width:96px;height:96px;flex:none;color:var(--fg)}
+.about-top p{font-family:var(--display);font-size:23px;line-height:1.05;text-transform:uppercase}
+.about-sec{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+.about-sec:first-of-type{border-top-color:var(--fg)}
+.about-sec p{margin-top:6px;font-size:12px;line-height:1.6;color:#CFCFCF}
+.about-sec a{color:var(--fg);border-bottom:1px solid var(--hair);text-decoration:none}
+.legend-grid{margin-top:8px;display:grid;grid-template-columns:96px 1fr;gap:8px 12px;align-items:center}
+.legend-grid b{font-family:var(--display);font-weight:400;font-size:19px;line-height:1.1;text-transform:uppercase}
+.legend-grid span{font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
 
 .toast{
   position:fixed;left:50%;bottom:calc(var(--nav) + var(--safe-b) + 14px);transform:translateX(-50%);
@@ -206,6 +265,8 @@ nav button[aria-selected="true"]{color:var(--fg)}
       <path d="M79 40 H88 Q95 40 95 47 V57 Q95 64 88 64 H79" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
       <circle cx="66" cy="28" r="8" fill="var(--pin)" stroke="var(--bg)" stroke-width="3"/>
     </symbol>
+    <symbol id="heart-on" viewBox="0 0 24 24"><path d="M12 21s-7.2-4.6-9.4-9.2A5.4 5.4 0 0 1 12 6.3a5.4 5.4 0 0 1 9.4 5.5C19.2 16.4 12 21 12 21z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="heart-off" viewBox="0 0 24 24"><path d="M12 21s-7.2-4.6-9.4-9.2A5.4 5.4 0 0 1 12 6.3a5.4 5.4 0 0 1 9.4 5.5C19.2 16.4 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
     <!-- grainy blur for the big number -->
     <filter id="diffuse" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="b"/>
@@ -225,7 +286,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
 <header>
   <div class="meta-row">
     <h1 class="brand"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#cup"/></svg><span>Tbilisi<br>Coffee Map</span></h1>
-    <div class="mid">Focus = open<br>Blur = closed or far</div>
+    <div class="mid" id="mid">Focus = open<br>Blur = closed or far</div>
     <div class="count" id="count"></div>
   </div>
   <div class="search" role="search">
@@ -249,12 +310,83 @@ nav button[aria-selected="true"]{color:var(--fg)}
     </div>
     <div id="rows"></div>
   </section>
+  <section class="view" id="faves" aria-label="Favourites">
+    <div class="hero">
+      <svg viewBox="0 0 390 210" role="img" aria-label="Saved shops" id="fave-hero">
+        <text class="fn" x="14" y="150" font-family="'Archivo Black',sans-serif" font-size="190" fill="#F4F4F4" opacity=".28" filter="url(#diffuse)" letter-spacing="-8"></text>
+        <text class="fn" x="14" y="150" font-family="'Archivo Black',sans-serif" font-size="190" fill="#F4F4F4" opacity=".55" filter="url(#soft)" letter-spacing="-8"></text>
+        <text x="18" y="198" font-family="'Archivo Black',sans-serif" font-size="46" fill="#F4F4F4" letter-spacing="-1">FAVOURITES</text>
+      </svg>
+    </div>
+    <div id="fave-rows"></div>
+  </section>
+  <section class="view" id="contact" aria-label="Contact us">
+    <div class="seg" role="tablist" aria-label="Contact sections" id="seg">
+      <button type="button" role="tab" aria-selected="true" data-panel="suggest">Suggest</button>
+      <button type="button" role="tab" aria-selected="false" data-panel="shops">For shops</button>
+      <button type="button" role="tab" aria-selected="false" data-panel="about">About</button>
+    </div>
+
+    <div class="panel" id="panel-suggest">
+      <h2 class="h">Suggest a shop</h2>
+      <p class="lead">Know a place we're missing, or a detail that's wrong? Tell us.</p>
+      <form id="f-suggest">
+        <div class="field"><label for="s-name">Shop name</label><input id="s-name" name="name" required autocomplete="off" placeholder="e.g. Kokoro Coffee"></div>
+        <div class="field"><label for="s-area">Area or address</label><input id="s-area" name="area" autocomplete="off" placeholder="e.g. Vake, Chavchavadze Ave"></div>
+        <div class="field"><label for="s-why">Why we should add it</label><textarea id="s-why" name="why" placeholder="Good V60, quiet in the morning…"></textarea></div>
+        <button class="btn" type="submit">Send suggestion</button>
+      </form>
+      <div class="prefs">
+        <div class="prefs-head"><h3>Your preferences</h3><span>Kept on this phone</span></div>
+        <div class="lab">I drink</div>
+        <div class="chips-wrap" id="pref-brew"></div>
+        <div class="switches" id="pref-switches"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-shops" hidden>
+      <h2 class="h">Add your shop</h2>
+      <p class="lead">Run a specialty coffee shop in Tbilisi? Tell us about it. We review every entry before it goes on the map.</p>
+      <form id="f-shop">
+        <div class="field"><label for="p-name">Shop name</label><input id="p-name" name="name" required autocomplete="off" placeholder="Your shop's name"></div>
+        <div class="field"><label for="p-addr">Address or Google Maps link</label><input id="p-addr" name="addr" required autocomplete="off" placeholder="Street, number, area"></div>
+        <div class="field"><label for="p-ig">Instagram link</label><input id="p-ig" name="ig" required autocomplete="off" inputmode="url" placeholder="instagram.com/yourshop"></div>
+        <div class="field"><label for="p-hours">Opening hours</label><input id="p-hours" name="hours" autocomplete="off" placeholder="Mon–Fri 08–21, Sat–Sun 09–20"></div>
+        <div class="lab">What you offer</div>
+        <div class="chips-wrap" id="shop-tags"></div>
+        <div class="lab">Brew methods</div>
+        <div class="chips-wrap" id="shop-brew"></div>
+        <button class="btn" type="submit">Send for review</button>
+      </form>
+    </div>
+
+    <div class="panel" id="panel-about" hidden>
+      <div class="about-top">
+        <svg viewBox="0 0 100 100" role="img" aria-label="Logo: a cup from above with a red pin"><use href="#cup"/></svg>
+        <p>A phone map of specialty coffee in Tbilisi</p>
+      </div>
+      <div class="about-sec"><div class="lab" style="margin-top:0">What it does</div><p>Shows which specialty shops are open right now, which are close to you, and how each one brews. Once opened, it works with no signal.</p></div>
+      <div class="about-sec"><div class="lab" style="margin-top:0">How to read it</div>
+        <div class="legend-grid">
+          <b>Sharp</b><span>Open and near</span>
+          <b style="filter:blur(2.4px);opacity:.6">Blurred</b><span>Closed or far away</span>
+          <b style="color:var(--red);filter:blur(1.2px)">Red</b><span>Closing in 45 minutes or less</span>
+        </div>
+      </div>
+      <div class="about-sec"><div class="lab" style="margin-top:0">Data and credits</div><p id="about-data"></p></div>
+      <div class="about-sec"><div class="lab" style="margin-top:0">Get in touch</div><p>Made in Tbilisi by Levan Bezarashvili. Write to<a id="about-mail" href="mailto:bezarashwili@gmail.com">bezarashwili@gmail.com</a></p></div>
+    </div>
+  </section>
   <section class="view" id="map" aria-label="Map"></section>
   <aside class="sheet" id="sheet" hidden aria-live="polite"></aside>
 </main>
 
 <nav>
   <button id="tab-list" aria-selected="true">List</button>
+  <span class="rule"></span>
+  <button id="tab-faves" aria-selected="false">Faves</button>
+  <span class="rule"></span>
+  <button id="tab-contact" aria-selected="false">Contact</button>
   <span class="rule"></span>
   <button id="tab-map" aria-selected="false">Map</button>
 </nav>
@@ -273,6 +405,19 @@ nav button[aria-selected="true"]{color:var(--fg)}
    ============================================================ */
 let SHOPS = [];
 let UPDATED = "";
+
+/* ============================================================
+   THIS PHONE — favourites and preferences (never sent anywhere)
+   CONTACT — where the "suggest a shop" and "add your shop" forms go
+   ============================================================ */
+const CONTACT = "bezarashwili@gmail.com";
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+const favs = new Set(store.get("cm-favs", []));
+const prefs = Object.assign({brew:[], hideClosed:false, laptop:false, early:false}, store.get("cm-prefs", {}));
+const prefsOn = () => prefs.brew.length > 0 || prefs.hideClosed || prefs.laptop || prefs.early;
 
 /* ============================================================
    TIME — always computed in Tbilisi time, whatever the phone's zone
@@ -397,11 +542,26 @@ function tagsHtml(s){
   return t.length ? `<div class="tags">${t.join("")}</div>` : "";
 }
 
+function decorate(s, now){
+  const o = {...s, _st:status(s,now), _d: me ? metres(me, s.coords) : null};
+  o._f = focus(o);
+  return o;
+}
+/* shops that match your preferences come first (after open ones) */
+function prefScore(s){
+  let n = 0;
+  if(prefs.brew.length && s.brew.some(b => prefs.brew.includes(b))) n++;
+  if(prefs.laptop && s.laptop) n++;
+  if(prefs.early && opensBefore9(s)) n++;
+  return n;
+}
+const rank = (a,b) => (b._st.open-a._st.open) || (prefScore(b)-prefScore(a)) || (me ? a._d-b._d : a.name.localeCompare(b.name));
+
 function visible(){
   const now = tbilisiNow();
-  const list = SHOPS.filter(s => matches(s) && [...active].every(k => FILTERS.find(f=>f.key===k).test(s)))
-    .map(s => { const o = {...s, _st:status(s,now), _d: me ? metres(me, s.coords) : null}; o._f = focus(o); return o; });
-  const byOpen = (a,b) => (b._st.open-a._st.open) || (me ? a._d-b._d : a.name.localeCompare(b.name));
+  const list = SHOPS.filter(s => matches(s) && [...active].every(k => FILTERS.find(f=>f.key===k).test(s)) && (!prefs.hideClosed || status(s,now).open))
+    .map(s => decorate(s, now));
+  const byOpen = rank;
   const sc = s => hasScore(s) ? s.score : -1;
   list.sort(sortBy === "score" && SHOPS.some(hasScore) ? (a,b) => (sc(b)-sc(a)) || byOpen(a,b) : byOpen);
   return list;
@@ -416,7 +576,6 @@ function renderHero(){
   const open = SHOPS.filter(s => status(s).open).length;
   document.querySelectorAll("#hero-svg .n").forEach(t => t.textContent = SHOPS.length ? open : "");
   document.getElementById("hero-of").textContent = SHOPS.length ? `OF ${SHOPS.length} SHOPS` : "";
-  document.getElementById("count").innerHTML = SHOPS.length ? `<b>${open}</b> of ${SHOPS.length}<br>open` : "";
 }
 
 function renderList(list){
@@ -428,7 +587,7 @@ function renderList(list){
     return;
   }
   const now = tbilisiNow();
-  el.innerHTML = `<div class="legend">${query ? `${list.length} match${list.length===1?"":"es"} · ` : ""}${SHOPS.some(hasScore) ? `<button class="sortby" id="sortby" type="button">${sortBy === "score" ? "Best score first" : "Open first, " + (me ? "nearest" : "A–Z")}</button>` : `Open first, ${me ? "nearest" : "A–Z"}`}${UPDATED ? " · updated " + esc(UPDATED) : ""} · Brew: E espresso · V V60 · B batch · A AeroPress · C Chemex</div>` +
+  el.innerHTML = `<div class="legend">${query ? `${list.length} match${list.length===1?"":"es"} · ` : ""}${SHOPS.some(hasScore) ? `<button class="sortby" id="sortby" type="button">${sortBy === "score" ? "Best score first" : "Open first, " + (me ? "nearest" : "A–Z")}</button>` : `Open first, ${me ? "nearest" : "A–Z"}`}${prefsOn() ? " · your preferences" : ""}${UPDATED ? " · updated " + esc(UPDATED) : ""} · Brew: E espresso · V V60 · B batch · A AeroPress · C Chemex</div>` +
   list.map((s,i) => `
     <article class="row ${s._f.cls}" data-id="${esc(s.id)}">
       <span class="ix">${String(i+1).padStart(2,"0")}</span>
@@ -439,8 +598,50 @@ function renderList(list){
         ${tagsHtml(s)}
         ${linksHtml(s)}
       </div>
-      <div class="dist" style="--b:${s._f.b}px;--o:${s._f.o}">${s._d != null ? fmtDist(s._d) : ""}</div>
+      <div class="side"><div class="dist" style="--b:${s._f.b}px;--o:${s._f.o}">${s._d != null ? fmtDist(s._d) : ""}</div>${favBtn(s.id)}</div>
     </article>`).join("");
+}
+
+/* ---------- Favourites ---------- */
+const favBtn = id => { const on = favs.has(id); return `<button class="fav" type="button" data-fav="${esc(id)}" aria-pressed="${on}" aria-label="${on ? "Remove from favourites" : "Add to favourites"}"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#heart-${on ? "on" : "off"}"/></svg></button>`; };
+function renderFaves(){
+  const now = tbilisiNow();
+  const list = SHOPS.filter(s => favs.has(s.id)).map(s => decorate(s, now)).sort(rank);
+  document.querySelectorAll("#fave-hero .fn").forEach(t => t.textContent = String(list.length).padStart(2,"0"));
+  const el = document.getElementById("fave-rows");
+  if(!list.length){
+    el.innerHTML = `<div class="fave-empty">
+      <h2>Nothing<br>saved yet</h2>
+      <p>Tap the heart on any shop to keep it here. Your favourites stay one tap away, even with no signal.</p>
+      <div class="demo"><b>Any shop</b><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#heart-off"/></svg><span>Tap the heart</span><span style="text-align:right">to save it</span></div>
+      <button class="btn" type="button" id="fave-browse" style="background:transparent;color:var(--fg);border:1px solid var(--fg)">Browse the list →</button>
+    </div>`;
+    return;
+  }
+  el.innerHTML = `<div class="legend">Open first · tap the heart to remove</div>` + list.map((s,i) => `
+    <article class="row ${s._f.cls}" data-id="${esc(s.id)}">
+      <span class="ix">${String(i+1).padStart(2,"0")}</span>
+      <div>
+        <h2 class="nm" style="--b:${s._f.b}px;--o:${s._f.o}">${esc(s.name)}</h2>
+        <div class="meta">${metaLine(s, now)}${s._d != null ? " · " + fmtDist(s._d) : ""}</div>
+      </div>
+      <div class="side">${favBtn(s.id)}</div>
+    </article>`).join("") + `<p class="foot">Favourites are kept on this phone only. Nothing is sent anywhere.</p>`;
+}
+
+/* ---------- Header text follows the tab ---------- */
+let current = "list";
+function updateHeader(){
+  const mid = document.getElementById("mid"), cnt = document.getElementById("count");
+  document.body.className = "v-" + current;
+  if(current === "contact"){ mid.innerHTML = ""; cnt.textContent = "Contact us"; return; }
+  if(current === "faves"){
+    const f = SHOPS.filter(s => favs.has(s.id)), o = f.filter(s => status(s).open).length;
+    mid.innerHTML = "Saved on<br>this phone"; cnt.innerHTML = `<b>${o}</b> of ${f.length}<br>open`; return;
+  }
+  mid.innerHTML = "Focus = open<br>Blur = closed or far";
+  const open = SHOPS.filter(s => status(s).open).length;
+  cnt.innerHTML = SHOPS.length ? `<b>${open}</b> of ${SHOPS.length}<br>open` : "";
 }
 
 /* ---------- Map (lazy) ---------- */
@@ -472,7 +673,7 @@ function renderMap(list){
 
 /* ---------- Shop sheet (replaces the popup) ---------- */
 function openSheet(id, pan = true){
-  const s = visible().find(x => x.id === id) || SHOPS.map(x => ({...x, _st:status(x), _d: me ? metres(me, x.coords) : null})).find(x => x.id === id);
+  const s = visible().find(x => x.id === id) || SHOPS.map(x => decorate(x, tbilisiNow())).find(x => x.id === id);
   if(!s) return;
   sel = id;
   const now = tbilisiNow();
@@ -480,7 +681,7 @@ function openSheet(id, pan = true){
   const idx = visible().findIndex(x => x.id === id);
   sh.className = "sheet" + (s._st.open && s._st.closesIn <= 45 ? " soon" : "");
   sh.hidden = false;
-  sh.innerHTML = `<button class="x" type="button" aria-label="Close" id="sheet-x">&times;</button>
+  sh.innerHTML = `<button class="x" type="button" aria-label="Close" id="sheet-x">&times;</button>${favBtn(s.id).replace('class="fav"', 'class="fav sheet-fav"')}
     <div class="top"><span>${idx >= 0 ? String(idx+1).padStart(2,"0") + " / " + String(visible().length).padStart(2,"0") : ""}</span><span class="st">${s._st.open ? "● " : "○ "}${esc(whenText(s._st, now))}${rating(s)}</span></div>
     <h3>${esc(s.name)}</h3>
     <div class="meta">${esc(s.area)} · ${esc(s.address)}${s._d != null ? " · " + fmtDist(s._d) : ""}</div>
@@ -503,17 +704,22 @@ function closeSheet(){
 
 function render(){
   const list = visible();
-  renderChips(); renderHero(); renderList(list); renderMap(list);
+  renderChips(); renderHero(); renderList(list); renderMap(list); renderFaves(); updateHeader();
+  renderPrefs(); renderAbout();
 }
 
 /* ============================================================
    INTERACTION
    ============================================================ */
+const VIEWS = ["list","faves","contact","map"];
 function show(view){
-  document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id===view));
-  document.getElementById("tab-list").setAttribute("aria-selected", view==="list");
-  document.getElementById("tab-map").setAttribute("aria-selected", view==="map");
-  if(view==="list") closeSheet();
+  current = view;
+  VIEWS.forEach(v => {
+    document.getElementById(v).classList.toggle("active", v===view);
+    document.getElementById("tab-"+v).setAttribute("aria-selected", v===view);
+  });
+  updateHeader();
+  if(view!=="map") closeSheet();
   if(view==="map"){
     if(!window.L){ toast("Map library failed to load. Reopen the app."); return; }
     initMap(); render(); setTimeout(()=>{ map.invalidateSize(); fitToMatches(); }, 0);
@@ -529,16 +735,89 @@ document.getElementById("chips").addEventListener("click", e => {
   active.has(b.dataset.k) ? active.delete(b.dataset.k) : active.add(b.dataset.k);
   render();
 });
-document.getElementById("rows").addEventListener("click", e => {
-  if(e.target.closest("a")) return;                       // Google / Instagram links open on their own
-  if(e.target.closest("#sortby")){ sortBy = sortBy === "score" ? "open" : "score"; render(); return; }
-  const c = e.target.closest(".row"); if(!c) return;
-  const s = SHOPS.find(x => x.id===c.dataset.id);
+function openOnMap(id){
+  const s = SHOPS.find(x => x.id===id); if(!s) return;
   show("map");
   if(map){ setTimeout(() => { map.setView(s.coords, 16); openSheet(s.id, false); }, 60); }
+}
+function toggleFav(id){
+  favs.has(id) ? favs.delete(id) : favs.add(id);
+  store.set("cm-favs", [...favs]);
+  render();
+  if(sel) openSheet(sel, false);
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest(".fav"); if(b) toggleFav(b.dataset.fav);
+  if(e.target.closest("#fave-browse")) show("list");
 });
-document.getElementById("tab-list").onclick = () => show("list");
-document.getElementById("tab-map").onclick  = () => show("map");
+document.getElementById("fave-rows").addEventListener("click", e => {
+  if(e.target.closest(".fav") || e.target.closest("a")) return;
+  const c = e.target.closest(".row"); if(c) openOnMap(c.dataset.id);
+});
+document.getElementById("rows").addEventListener("click", e => {
+  if(e.target.closest("a") || e.target.closest(".fav")) return;   // links and hearts act on their own
+  if(e.target.closest("#sortby")){ sortBy = sortBy === "score" ? "open" : "score"; render(); return; }
+  const c = e.target.closest(".row"); if(!c) return;
+  openOnMap(c.dataset.id);
+});
+VIEWS.forEach(v => { document.getElementById("tab-"+v).onclick = () => show(v); });
+
+/* ---------- Contact: sections, preferences, forms ---------- */
+const BREW_LABELS = [["espresso","Espresso"],["v60","V60"],["batch","Batch"],["aeropress","AeroPress"],["chemex","Chemex"]];
+const PREF_SWITCHES = [["hideClosed","Hide closed shops"],["laptop","Laptop-friendly first"],["early","Early openers first"]];
+const chipHtml = (attr, key, label, on) => `<button class="chip" type="button" ${attr}="${key}" aria-pressed="${on}">${label}</button>`;
+function renderPrefs(){
+  document.getElementById("pref-brew").innerHTML = BREW_LABELS.map(([k,l]) => chipHtml("data-pbrew", k, l, prefs.brew.includes(k))).join("");
+  document.getElementById("pref-switches").innerHTML = PREF_SWITCHES.map(([k,l]) =>
+    `<button class="sw" type="button" role="switch" data-pref="${k}" aria-checked="${prefs[k]}"><span>${l}</span><i></i></button>`).join("");
+}
+function renderAbout(){
+  document.getElementById("about-data").textContent =
+    `${SHOPS.length} shops${UPDATED ? ", list updated " + UPDATED : ""}. Hours are read in Tbilisi time. Map data © OpenStreetMap contributors. Map by Leaflet. Type: Archivo Black and IBM Plex Mono.`;
+}
+function renderShopForm(){
+  document.getElementById("shop-tags").innerHTML = [["roasts","Roasts own"],["beans","Sells beans"],["laptop","Laptop OK"]].map(([k,l]) => chipHtml("data-ftag", k, l, false)).join("");
+  document.getElementById("shop-brew").innerHTML = BREW_LABELS.map(([k,l]) => chipHtml("data-fbrew", k, l, false)).join("");
+}
+function mailtoUrl(subject, rows){
+  const body = rows.map(([k,v]) => `${k}: ${v || "-"}`).join("\n");
+  return `mailto:${CONTACT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+const picked = attr => [...document.querySelectorAll(`[${attr}][aria-pressed="true"]`)].map(b => b.getAttribute(attr)).join(", ");
+function sendMail(url){ toast("Opening your email app…"); location.href = url; }
+
+document.getElementById("seg").addEventListener("click", e => {
+  const b = e.target.closest("button"); if(!b) return;
+  document.querySelectorAll("#seg button").forEach(x => x.setAttribute("aria-selected", x === b));
+  document.querySelectorAll(".panel").forEach(p => p.hidden = p.id !== "panel-" + b.dataset.panel);
+  document.getElementById("contact").scrollTo(0, 0);
+});
+document.getElementById("contact").addEventListener("click", e => {
+  const chip = e.target.closest("[data-pbrew]");
+  if(chip){
+    const k = chip.dataset.pbrew;
+    prefs.brew = prefs.brew.includes(k) ? prefs.brew.filter(x => x !== k) : [...prefs.brew, k];
+    store.set("cm-prefs", prefs); render(); return;
+  }
+  const sw = e.target.closest("[data-pref]");
+  if(sw){ prefs[sw.dataset.pref] = !prefs[sw.dataset.pref]; store.set("cm-prefs", prefs); render(); return; }
+  const tgl = e.target.closest("[data-ftag],[data-fbrew]");
+  if(tgl) tgl.setAttribute("aria-pressed", tgl.getAttribute("aria-pressed") !== "true");
+});
+document.getElementById("f-suggest").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target;
+  sendMail(mailtoUrl("Coffee map suggestion: " + f.name.value.trim(), [
+    ["Shop", f.name.value.trim()], ["Area or address", f.area.value.trim()], ["Why add it", f.why.value.trim()]]));
+});
+document.getElementById("f-shop").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target;
+  sendMail(mailtoUrl("Add my shop: " + f.name.value.trim(), [
+    ["Shop", f.name.value.trim()], ["Address or map link", f.addr.value.trim()], ["Instagram", f.ig.value.trim()],
+    ["Opening hours", f.hours.value.trim()], ["Offers", picked("data-ftag")], ["Brew methods", picked("data-fbrew")]]));
+});
+renderShopForm();
 
 // Search: filters list and map as you type; on the map, zooms to the matches
 const qEl = document.getElementById("q"), qClear = document.getElementById("q-clear");

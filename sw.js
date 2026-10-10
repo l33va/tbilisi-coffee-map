@@ -5,7 +5,7 @@
    - Map tiles you've looked at are kept (up to MAX_TILES) for offline use.
    Bump VERSION whenever you change index.html, icons or vendor files. */
 
-const VERSION = "v7";
+const VERSION = "v9";
 const SHELL = `shell-${VERSION}`;
 const FONTS = "fonts";
 const TILES = "tiles";

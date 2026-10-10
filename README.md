@@ -34,6 +34,11 @@ Each shop looks like this:
 - **own** (optional): add `"own": true` to show the "Ours" tag.
 - Change `"updated"` at the top of the file to today's date when you edit it.
 
+## Favourites, preferences and contact forms
+
+- **Faves** tab: tap the heart on any shop to save it. Favourites and the preferences in **Contact → Suggest** (brew methods, hide closed shops, laptop-friendly first, early openers first) are kept on the phone only, in the browser's local storage.
+- **Contact** tab: the "Suggest a shop" and "Add your shop" forms open the visitor's email app with the message filled in, addressed to the email in `CONTACT` near the top of the script in `index.html`. Nothing is stored on a server.
+
 ## Publishing on GitHub Pages
 
 1. Create a new public repository on GitHub, for example `tbilisi-coffee-map`.
