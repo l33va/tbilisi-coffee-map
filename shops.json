@@ -320,6 +320,54 @@
       "instagram": "roots.coffeeandmore",
       "place_id": "ChIJNZy9f2ENREARqROeI-ROlXk",
       "note": "Café and shop with a tree growing inside and a quiet backyard. Good filter coffee and matcha."
+    },
+    {
+      "id": "chika-rustaveli",
+      "name": "Chika — Rustaveli",
+      "area": "Rustaveli",
+      "address": "9 Merab Kostava St",
+      "coords": [41.7051577, 44.7895322],
+      "hours": ["08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00"],
+      "roasts": true,
+      "beans": true,
+      "laptop": false,
+      "brew": ["espresso"],
+      "score": null,
+      "instagram": "chika.coffee",
+      "place_id": "ChIJZYfRHccNREARiU6A62dG4yg",
+      "note": "The flagship: brunch spot on a busy street that still feels calm inside. Open from 8, known for syrniki. Order at the counter."
+    },
+    {
+      "id": "chika-laghidze",
+      "name": "Chika — Laghidze",
+      "area": "Sololaki",
+      "address": "6 Mitropan Laghidze St",
+      "coords": [41.6997312, 44.7957046],
+      "hours": ["08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00"],
+      "roasts": true,
+      "beans": true,
+      "laptop": false,
+      "brew": ["espresso"],
+      "score": null,
+      "instagram": "chika.coffee",
+      "place_id": "ChIJCZddbcANREARCJ3uFILTblc",
+      "note": "Smaller, modern room near Freedom Square. Good coffee and breakfast; can get busy, so expect a short wait for a table."
+    },
+    {
+      "id": "chika-orbeliani",
+      "name": "Chika — Bazari Orbeliani",
+      "area": "Sololaki",
+      "address": "3a Vekua St (Bazari Orbeliani)",
+      "coords": [41.6974413, 44.8039503],
+      "hours": ["10:00-18:30", "10:00-18:30", "10:00-18:30", "10:00-18:30", "10:00-18:30", "10:00-18:30", "10:00-18:30"],
+      "roasts": true,
+      "beans": true,
+      "laptop": false,
+      "brew": ["espresso"],
+      "score": null,
+      "instagram": "chika.coffee",
+      "place_id": "ChIJm12jC4wNREARfIZMIGVdphc",
+      "note": "Counter inside the Orbeliani market hall. Coffee, matcha and light plates; closes early."
     }
   ]
 }
