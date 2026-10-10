@@ -243,11 +243,11 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .lab{margin-top:14px}
 .chips-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .share-btn{
-  position:absolute;right:20px;top:14px;display:flex;align-items:center;gap:6px;height:30px;padding:0 10px;
+  position:absolute;right:20px;top:14px;display:grid;place-items:center;width:34px;height:34px;padding:0;
   background:transparent;border:1px solid var(--hair);color:var(--fg);
   font-size:9px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;
 }
-.share-btn svg{width:13px;height:13px}
+.share-btn svg{width:15px;height:15px}
 .share-btn:active,.share-btn:focus-visible{border-color:var(--fg)}
 .share-btn[hidden]{display:none}
 .share-btn[disabled]{opacity:.5}
@@ -408,7 +408,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
         <text class="fn" x="14" y="150" font-family="'Archivo Black',sans-serif" font-size="190" fill="#F4F4F4" opacity=".55" filter="url(#soft)" letter-spacing="-8"></text>
         <text x="18" y="198" font-family="'Archivo Black',sans-serif" font-size="46" fill="#F4F4F4" letter-spacing="-1">FAVOURITES</text>
       </svg>
-      <button class="share-btn" type="button" id="fave-share" aria-label="Share favourites as a picture" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share</button>
+      <button class="share-btn" type="button" id="fave-share" aria-label="Share favourites as a picture" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></button>
     </div>
     <div id="fave-rows"></div>
   </section>
