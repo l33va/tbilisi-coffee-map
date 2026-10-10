@@ -33,7 +33,7 @@ Each shop looks like this:
 - **instagram** (optional): the shop's Instagram handle without the @, like `"shavi.coffee"`. Leave it `""` if there isn't one.
 - **place_id**: the shop's Google place ID, used for the "Google reviews" link. Find it with Google's Place ID Finder (search "Place ID Finder"). Without it, the link falls back to a Google Maps search for the shop name.
 - **roaster** (optional): who roasts the beans, as text (`"Shavi"`) or a list (`["Shavi", "Mamuli", "Tasty"]`). Shops with `"roasts": true` and no `roaster` show "Own roastery".
-- **prices** (optional): `{"espresso": 6, "cappuccino": 8, "batch": 7}` in GEL. Any price you leave out shows as a dash.
+- **prices** (optional): `{"espresso": 6, "cappuccino": 8, "batch": 7}` in GEL. For two sizes, give both: `"espresso": [5, 7]` shows as 5/7. Any price you leave out shows as a dash.
 - **pets** (optional): `true` or `false`. Leave it out and the card says "Not listed". **laptop** works the same way.
 - **own** (optional): add `"own": true` to show the "Ours" tag.
 - Change `"updated"` at the top of the file to today's date when you edit it.

@@ -897,7 +897,10 @@ function bindSave(id){
   b.onclick = () => { toggleFav(id); b.outerHTML = saveBtn(id); bindSave(id); document.getElementById("gsave").focus({preventScroll:true}); };
 }
 const saveBtn = id => { const on = favs.has(id); return `<button class="gsaved" id="gsave" type="button" aria-pressed="${on}"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#heart-${on ? "on" : "off"}"/></svg><span>${on ? "Saved on this phone" : "Save to favourites"}</span></button>`; };
-const priceCell = (label, v) => `<div class="gpc"><small>${label}</small><b class="${typeof v === "number" ? "" : "na"}">${typeof v === "number" ? v.toFixed(1) : "—"}</b></div>`;
+/* a price is a number (8) or two sizes ([5, 7], shown as 5/7) */
+const isPrice = v => typeof v === "number" || (Array.isArray(v) && v.length > 0 && v.every(x => typeof x === "number"));
+const fmtPrice = v => (Array.isArray(v) ? v : [v]).map(x => Number.isInteger(x) ? String(x) : x.toFixed(1)).join("/");
+const priceCell = (label, v) => `<div class="gpc"><small>${label}</small><b class="${isPrice(v) ? "" : "na"}">${isPrice(v) ? fmtPrice(v) : "—"}</b></div>`;
 const yesNo = v => v === true ? `<span class="mk yes"><i></i>Yes</span>` : v === false ? `<span class="mk no"><i></i>No</span>` : `<span class="mk na"><i></i>Not listed</span>`;
 const roasterText = s => {
   const r = Array.isArray(s.roaster) ? s.roaster.join(", ") : s.roaster;
@@ -924,7 +927,7 @@ function glassHtml(s, i, total, back){
     : "Closed" + (st.opensIn != null ? " · " + whenText(st, now) : "");
   const hrs = s.hours[now.day] ? s.hours[now.day].replace("-", "–") : "Closed today";
   const pr = s.prices || {};
-  const missing = typeof pr.espresso !== "number" || typeof pr.cappuccino !== "number" || typeof pr.batch !== "number";
+  const missing = !isPrice(pr.espresso) || !isPrice(pr.cappuccino) || !isPrice(pr.batch);
   const ig = igUrl(s);
   return `
     <div class="gtop">

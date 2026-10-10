@@ -62,6 +62,10 @@
       "brew": ["espresso", "v60", "batch"],
       "score": null,
       "instagram": "shavi.coffee",
+      "prices": {"espresso": [5, 7], "cappuccino": 10, "batch": [9, 11]},
+      "photos": [
+        {"src": "photos/shavi-bagebi-1.webp", "alt": "Inside Shavi Coffee Roasters Bagebi: bar, grinder and laptop tables"}
+      ],
       "place_id": "ChIJo_RJcwBzREAR9Vg0hP11Xhg",
       "note": "Neighbourhood bar up in Bagebi. Batch brew, a decaf option and great cookies. Laptop crowd fills the tables."
     },
