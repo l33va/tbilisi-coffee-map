@@ -449,6 +449,22 @@
       "instagram": "shukura.coffee",
       "place_id": "ChIJ57yQL_FzREARq2OXWvTVZR0",
       "note": "All-day café with a big coffee menu, a full kitchen and a year-round terrace. Popular for working and long breakfasts."
+    },
+    {
+      "id": "minimalist",
+      "name": "Minimalist",
+      "area": "Vake",
+      "address": "110 Zakaria Paliashvili St",
+      "coords": [41.7097969, 44.7547726],
+      "hours": ["09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00"],
+      "roasts": false,
+      "beans": false,
+      "laptop": true,
+      "brew": ["espresso"],
+      "score": null,
+      "instagram": "minimalist.tbilisi",
+      "place_id": "ChIJJ_4Qf8ZzREAROM9C9BVeCeg",
+      "note": "Clean, modern café at the top of Paliashvili with a dedicated work zone. Strong breakfast menu; the syrniki are the order."
     }
   ]
 }
