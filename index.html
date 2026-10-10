@@ -191,6 +191,21 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .sheet .more a:only-child{grid-column:1 / -1}
 .sheet .x{position:absolute;right:12px;top:8px;width:32px;height:32px;color:var(--dim);font-size:22px;line-height:1}
 
+/* ---------- Photos ---------- */
+.pics{display:flex;gap:6px;margin-top:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.pics::-webkit-scrollbar{display:none}
+.pics button{flex:0 0 auto;padding:0;border:1px solid var(--line);scroll-snap-align:start;line-height:0}
+.pics img{display:block;height:120px;width:auto;object-fit:cover;background:#141414}
+.sheet .pics{margin-top:12px}
+.sheet .pics img{height:170px}
+.gc .pics{margin-top:18px}
+.gc .pics img{height:190px}
+.lightbox{position:fixed;inset:0;z-index:3050;background:rgba(10,10,10,.96);display:flex;align-items:center;justify-content:center;padding:56px 12px calc(24px + env(safe-area-inset-bottom,0px))}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain}
+.lightbox .lx{position:absolute;right:12px;top:calc(env(safe-area-inset-top,0px) + 10px);width:40px;height:40px;color:var(--fg);font-size:28px;line-height:1}
+.lightbox .cap{position:absolute;left:20px;top:calc(env(safe-area-inset-top,0px) + 20px);font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--dim)}
+
 /* ---------- Favourites ---------- */
 .side{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
 .fav{width:34px;height:34px;display:grid;place-items:center;color:var(--fg);margin-right:-6px}
@@ -459,6 +474,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
   <button id="tab-map" aria-selected="false">Map</button>
 </nav>
 <div class="glass" id="glass" role="dialog" aria-modal="true" aria-label="Shop details"><div class="gc" id="gc"></div></div>
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo"><span class="cap" id="lb-cap"></span><button class="lx" type="button" id="lb-x" aria-label="Close photo">&times;</button><img id="lb-img" alt=""></div>
 <div class="toast" id="toast"></div>
 
 <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
@@ -597,6 +613,18 @@ function linksHtml(s){
   const ig = igUrl(s);
   return `<div class="links"><a href="${googleUrl(s)}" target="_blank" rel="noopener">Google reviews ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener">Instagram ↗</a>` : ""}</div>`;
 }
+/* photos: "photos/x.webp" or {"src": "...", "alt": "..."} */
+const photoList = s => (Array.isArray(s.photos) ? s.photos : []).map((p,i) => typeof p === "string" ? {src:p, alt:`${s.name}, photo ${i+1}`} : {src:p.src, alt:p.alt || `${s.name}, photo ${i+1}`}).filter(p => p.src);
+function photosHtml(s){
+  const ps = photoList(s);
+  return ps.length ? `<div class="pics">${ps.map(p => `<button type="button" data-photo="${esc(p.src)}" data-alt="${esc(p.alt)}" aria-label="Open ${esc(p.alt)}"><img src="${esc(p.src)}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></button>`).join("")}</div>` : "";
+}
+function openPhoto(src, alt){
+  const lb = document.getElementById("lightbox"), img = document.getElementById("lb-img");
+  img.src = src; img.alt = alt; document.getElementById("lb-cap").textContent = alt;
+  lb.hidden = false; document.getElementById("lb-x").focus();
+}
+function closePhoto(){ const lb = document.getElementById("lightbox"); lb.hidden = true; document.getElementById("lb-img").removeAttribute("src"); }
 let sortBy = "open";   // "open" | "score"
 
 function metaLine(s, now){
@@ -756,6 +784,7 @@ function openSheet(id, pan = true){
     <h3>${esc(s.name)}</h3>
     <div class="meta">${esc(s.area)} · ${esc(s.address)}${s._d != null ? " · " + fmtDist(s._d) : ""}</div>
     <p class="note">${esc(s.note)}</p>
+    ${photosHtml(s)}
     ${tagsHtml(s)}
     <a class="go" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener">Directions →</a>
     <div class="more"><a href="${googleUrl(s)}" target="_blank" rel="noopener">Google reviews ↗</a>${igUrl(s) ? `<a href="${igUrl(s)}" target="_blank" rel="noopener">Instagram ↗</a>` : ""}</div>`;
@@ -906,6 +935,7 @@ function glassHtml(s, i, total, back){
     <span class="fx s2 gname">${esc(a)}</span>
     ${b ? `<span class="fx s3 gname" style="margin-top:0">${esc(b)}</span>` : ""}
     <span class="fx s4 gstat ${soon ? "soon" : ""}"><i style="background:${st.open ? (soon ? "var(--red)" : "var(--fg)") : "transparent"}"></i>${esc(status)}</span>
+    ${photoList(s).length ? `<div class="fx s4">${photosHtml(s)}</div>` : ""}
     <div style="flex:1;min-height:8px"></div>
     <span class="fx s5">${saveBtn(s.id)}</span>
     <span class="fx s5" id="gdist">${distHtml(s)}</span>
@@ -971,7 +1001,12 @@ function closeGlass(instant){
   later(() => { glass.className = "glass"; markRows(null); const r = faveRow(glassId); if(r) r.scrollIntoView({block:"nearest"}); }, 910);
   later(() => { glassPhase = "closed"; gc.className = "gc"; }, 1370);
 }
-addEventListener("keydown", e => { if(e.key === "Escape") closeGlass(); });
+addEventListener("keydown", e => { if(e.key !== "Escape") return; if(!document.getElementById("lightbox").hidden){ closePhoto(); return; } closeGlass(); });
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-photo]");
+  if(b){ e.stopPropagation(); openPhoto(b.dataset.photo, b.dataset.alt); return; }
+  if(e.target.closest("#lightbox")) closePhoto();
+}, true);
 
 /* ---------- Contact: sections, preferences, forms ---------- */
 const BREW_LABELS = [["espresso","Espresso"],["v60","V60"],["batch","Batch"],["aeropress","AeroPress"],["chemex","Chemex"]];

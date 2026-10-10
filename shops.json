@@ -271,6 +271,10 @@
       "brew": ["espresso", "v60"],
       "score": null,
       "instagram": "sash.coffee",
+      "photos": [
+        {"src": "photos/sash-1.webp", "alt": "SASH. storefront on Bazaleti St"},
+        {"src": "photos/sash-2.webp", "alt": "A slice of berry tart at SASH."}
+      ],
       "place_id": "ChIJiwFNMQANREARSDZUO_YLBQ8",
       "note": "Weekend-breakfast spot first, coffee second. Good cold brew."
     },
