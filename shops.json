@@ -304,6 +304,38 @@
       "instagram": "okroroastery",
       "place_id": "ChIJ5QdNuqINREARN63aGjGuxaw",
       "note": "Big, beautiful roastery-bakery. Weekly roasts, long-fermented bread, strong pastry case. No laptops."
+    },
+    {
+      "id": "roots-kakabadze",
+      "name": "Roots Coffee and More — Kakabadze",
+      "area": "Mtatsminda",
+      "address": "45 Polikarpe Kakabadze St",
+      "coords": [41.7011138, 44.7877179],
+      "hours": ["08:00-22:00", "08:00-22:00", "08:00-22:00", "08:00-22:00", "09:00-24:00", "09:00-24:00", "09:00-24:00"],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": ["espresso"],
+      "score": null,
+      "instagram": "roots.coffeeandmore",
+      "place_id": "ChIJbfcWjkINREARsEgA0_qaQdQ",
+      "note": "Bright, roomy space with a balcony and a big city view. Breakfast all day, open till midnight on weekends."
+    },
+    {
+      "id": "roots-concept",
+      "name": "Roots Coffee and More — Concept Store",
+      "area": "Vake",
+      "address": "7 Iovel Kutateladze St",
+      "coords": [41.7068912, 44.7754632],
+      "hours": ["09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00"],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": ["espresso", "v60"],
+      "score": null,
+      "instagram": "roots.coffeeandmore",
+      "place_id": "ChIJNZy9f2ENREARqROeI-ROlXk",
+      "note": "Café and shop with a tree growing inside and a quiet backyard. Good filter coffee and matcha."
     }
   ]
 }
