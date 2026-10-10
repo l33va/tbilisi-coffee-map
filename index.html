@@ -27,6 +27,7 @@
   --mute:#777;          /* closed shops */
   --hair:#6A6A6A;       /* outlines */
   --line:#2A2A2A;       /* row dividers */
+  --gold:#F0B73C;       /* favourites on the map */
   --red:#FF3B2F;        /* closing soon, the pin on the logo */
   --pin:var(--red);     /* used by the logo symbol */
   --display:"Archivo Black","Arial Black",Impact,sans-serif;
@@ -149,6 +150,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
 }
 .pin.soon{background:var(--red)}
 .pin.shut{background:#777}
+.pin.starred{background:var(--gold)}
 .pin.sel{box-shadow:0 0 0 5px rgba(244,244,244,.25),0 0 0 6px var(--fg);filter:none;opacity:1}
 .leaflet-container{font-family:var(--mono)}
 .leaflet-bar{border:1px solid var(--fg) !important;border-radius:0 !important;box-shadow:none !important}
@@ -371,6 +373,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
           <b>Sharp</b><span>Open and near</span>
           <b style="filter:blur(2.4px);opacity:.6">Blurred</b><span>Closed or far away</span>
           <b style="color:var(--red);filter:blur(1.2px)">Red</b><span>Closing in 45 minutes or less</span>
+          <b style="color:var(--gold)">Gold</b><span>Your favourite, on the map</span>
         </div>
       </div>
       <div class="about-sec"><div class="lab" style="margin-top:0">Data and credits</div><p id="about-data"></p></div>
@@ -665,7 +668,7 @@ function renderMap(list){
   Object.keys(markers).forEach(k => delete markers[k]);
   list.forEach(s => {
     const f = s._f;
-    const icon = L.divIcon({className:"", html:`<div class="pin ${f.cls} ${s.id===sel?"sel":""}" style="--b:${f.b}px;--o:${f.o}"></div>`, iconSize:[16,16], iconAnchor:[8,8]});
+    const icon = L.divIcon({className:"", html:`<div class="pin ${f.cls} ${favs.has(s.id)?"starred":""} ${s.id===sel?"sel":""}" style="--b:${f.b}px;--o:${f.o}"></div>`, iconSize:[16,16], iconAnchor:[8,8]});
     markers[s.id] = L.marker(s.coords, {icon, title:s.name, alt:s.name}).on("click", () => openSheet(s.id)).addTo(layer);
   });
   if(sel && !markers[sel]) closeSheet();
