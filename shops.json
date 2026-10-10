@@ -479,6 +479,12 @@
       "brew": ["espresso"],
       "score": null,
       "instagram": "karaqi.bakery.tbi",
+      "photos": [
+        {"src": "photos/karaqi-1.webp", "alt": "Lamp and speaker in a quiet corner at Karaqi"},
+        {"src": "photos/karaqi-2.webp", "alt": "Croissants, cruffins and buns on Karaqi's pastry shelf"},
+        {"src": "photos/karaqi-3.webp", "alt": "Order tickets on the spike at Karaqi's bar"},
+        {"src": "photos/karaqi-4.webp", "alt": "Window table by the brick wall at Karaqi"}
+      ],
       "note": "Small bakery behind the music school: flaky croissants, cruffins and canelés, with coffee to go with them."
     }
   ]
