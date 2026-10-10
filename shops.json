@@ -368,6 +368,22 @@
       "instagram": "chika.coffee",
       "place_id": "ChIJm12jC4wNREARfIZMIGVdphc",
       "note": "Counter inside the Orbeliani market hall. Coffee, matcha and light plates; closes early."
+    },
+    {
+      "id": "salty",
+      "name": "Salty Cafe",
+      "area": "Vake",
+      "address": "14 Platon Ioseliani St",
+      "coords": [41.7160747, 44.7743736],
+      "hours": ["10:00-20:00", "10:00-20:00", "10:00-20:00", "10:00-20:00", "10:00-20:00", "10:00-20:00", "10:00-20:00"],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": ["espresso", "v60"],
+      "score": null,
+      "instagram": "salty__cafe",
+      "place_id": "ChIJz9eWpFNzREARWh1-IyW7acY",
+      "note": "Cosy coffee bar with a bike mechanic on site, a cyclists' favourite. Good filter, great banana bread."
     }
   ]
 }
