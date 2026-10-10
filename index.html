@@ -248,6 +248,48 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .legend-grid b{font-family:var(--display);font-weight:400;font-size:19px;line-height:1.1;text-transform:uppercase}
 .legend-grid span{font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
 
+/* ---------- Frosted glass shop view (opens from Faves) ---------- */
+#fave-rows .row{transition:filter .42s ease,opacity .36s ease,transform .42s ease,background-color .11s ease}
+#fave-rows.busy .row:not(.pressed){transform:scale(.985);opacity:.9}
+#fave-rows .row.pressed{background:rgba(244,244,244,.09)}
+#fave-rows .row.pressed .nm{filter:blur(0) !important;opacity:1 !important}
+.glass{
+  position:fixed;inset:0;z-index:2000;color:var(--fg);visibility:hidden;box-sizing:border-box;
+  padding:calc(env(safe-area-inset-top,0px) + 20px) 20px calc(env(safe-area-inset-bottom,0px) + 20px);
+  background-color:rgba(24,24,24,.12);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.glass.show{visibility:visible}
+.glass.frost{background-color:rgba(24,24,24,.52);-webkit-backdrop-filter:blur(22px) saturate(140%);backdrop-filter:blur(22px) saturate(140%)}
+.glass.anim{transition:clip-path .76s cubic-bezier(.76,0,.24,1),backdrop-filter .76s ease,-webkit-backdrop-filter .76s ease,background-color .76s ease}
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){.glass.frost{background-color:rgba(14,14,14,.94)}}
+.gc{display:flex;flex-direction:column;height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.fx{display:block;transform:translateY(16px);filter:blur(16px);opacity:0;transition:transform .76s cubic-bezier(.16,1,.3,1),filter .76s cubic-bezier(.16,1,.3,1),opacity .42s ease}
+.gc.in .fx{transform:none;filter:blur(0);opacity:1}
+.gc.in .s2{transition-delay:.06s}.gc.in .s3{transition-delay:.12s}.gc.in .s4{transition-delay:.19s}
+.gc.in .s5{transition-delay:.25s}.gc.in .s6{transition-delay:.31s}.gc.in .s7{transition-delay:.36s}.gc.in .s8{transition-delay:.42s}
+.gc.out .fx{transform:none;filter:blur(8px);opacity:0;transition:opacity .16s ease,filter .16s ease}
+.gtop{display:flex;justify-content:space-between;align-items:center}
+.gback{height:44px;padding:0 14px;border:1.5px solid rgba(244,244,244,.6);font-size:12px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:8px;box-sizing:border-box;text-align:left}
+.gback:hover,.gback:focus-visible{background:var(--fg);color:var(--bg)}
+.gm{font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.gname{margin-top:12px;font-family:var(--display);font-weight:400;font-size:38px;line-height:1.02;text-transform:uppercase}
+.gstat{margin-top:16px;display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.gstat i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--fg);box-sizing:border-box;flex:none}
+.gstat.soon{color:var(--red)}
+.gstat.soon i{border-color:var(--red)}
+.gsaved{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-top:28px}
+.gsaved svg{width:16px;height:15px;color:var(--red)}
+.gbig{margin-top:8px;font-family:var(--display);font-weight:400;font-size:72px;line-height:.95;text-transform:uppercase}
+.glab{margin-top:4px;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.ginfo{margin-top:16px;border-top:1px solid rgba(244,244,244,.28)}
+.ginf{display:flex;justify-content:space-between;align-items:center;gap:12px;height:40px;border-bottom:1px solid rgba(244,244,244,.28);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.glinks{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px}
+.glinks a,.glinks button{font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--fg);text-decoration:none;border-bottom:1px solid var(--hair);padding:4px 0 2px}
+.gdir{margin-top:16px;width:100%;height:52px;background:var(--red);color:#141414;display:flex;align-items:center;justify-content:space-between;padding:0 18px;box-sizing:border-box;font-family:var(--display);font-size:19px;text-transform:uppercase;text-decoration:none;flex:none}
+.gback:focus-visible,.gdir:focus-visible,.glinks a:focus-visible,.glinks button:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.glass.anim,.fx,#fave-rows .row{transition:none !important}}
+
 .toast{
   position:fixed;left:50%;bottom:calc(var(--nav) + var(--safe-b) + 14px);transform:translateX(-50%);
   background:var(--fg);color:var(--bg);font-family:var(--mono);font-size:11px;padding:8px 12px;
@@ -393,6 +435,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
   <span class="rule"></span>
   <button id="tab-map" aria-selected="false">Map</button>
 </nav>
+<div class="glass" id="glass" role="dialog" aria-modal="true" aria-label="Shop details"><div class="gc" id="gc"></div></div>
 <div class="toast" id="toast"></div>
 
 <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
@@ -607,9 +650,10 @@ function renderList(list){
 
 /* ---------- Favourites ---------- */
 const favBtn = id => { const on = favs.has(id); return `<button class="fav" type="button" data-fav="${esc(id)}" aria-pressed="${on}" aria-label="${on ? "Remove from favourites" : "Add to favourites"}"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#heart-${on ? "on" : "off"}"/></svg></button>`; };
+const faveList = () => { const now = tbilisiNow(); return SHOPS.filter(s => favs.has(s.id)).map(s => decorate(s, now)).sort(rank); };
 function renderFaves(){
   const now = tbilisiNow();
-  const list = SHOPS.filter(s => favs.has(s.id)).map(s => decorate(s, now)).sort(rank);
+  const list = faveList();
   document.querySelectorAll("#fave-hero .fn").forEach(t => t.textContent = String(list.length).padStart(2,"0"));
   const el = document.getElementById("fave-rows");
   if(!list.length){
@@ -755,7 +799,7 @@ document.addEventListener("click", e => {
 });
 document.getElementById("fave-rows").addEventListener("click", e => {
   if(e.target.closest(".fav") || e.target.closest("a")) return;
-  const c = e.target.closest(".row"); if(c) openOnMap(c.dataset.id);
+  const c = e.target.closest(".row"); if(c) openGlass(c.dataset.id);
 });
 document.getElementById("rows").addEventListener("click", e => {
   if(e.target.closest("a") || e.target.closest(".fav")) return;   // links and hearts act on their own
@@ -764,6 +808,108 @@ document.getElementById("rows").addEventListener("click", e => {
   openOnMap(c.dataset.id);
 });
 VIEWS.forEach(v => { document.getElementById("tab-"+v).onclick = () => show(v); });
+
+
+/* ============================================================
+   FROSTED GLASS — tapping a favourite floods the screen with frosted
+   glass from that row, then the shop's details blur in. Back collapses
+   it into the row again.
+   ============================================================ */
+const glass = document.getElementById("glass"), gc = document.getElementById("gc");
+const FULL = "inset(0px 0px 0px 0px round 0px)";
+let glassPhase = "closed", glassTimers = [], glassId = null;
+const later = (fn, ms) => glassTimers.push(setTimeout(fn, ms));
+const calm = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+const setInert = on => ["header","main","nav"].forEach(t => { const el = document.querySelector(t); if(el) el.inert = on; });
+const faveRow = id => document.querySelector(`#fave-rows .row[data-id="${CSS.escape(id)}"]`);
+function rowClip(id){
+  const row = faveRow(id);
+  const r = row ? row.getBoundingClientRect() : {top:innerHeight/2-30, bottom:innerHeight/2+30};
+  return `inset(${Math.max(0, r.top)}px 8px ${Math.max(0, innerHeight - r.bottom)}px 8px round 14px)`;
+}
+function markRows(id){
+  const box = document.getElementById("fave-rows");
+  box.classList.toggle("busy", !!id);
+  box.querySelectorAll(".row").forEach(r => r.classList.toggle("pressed", !!id && r.dataset.id === id));
+}
+const splitName = n => {
+  const m = n.match(/^(.*?—)\s*(.+)$/); if(m) return [m[1], m[2]];
+  const i = n.lastIndexOf(" "); return i > 0 ? [n.slice(0,i), n.slice(i+1)] : [n, ""];
+};
+const longDist = m => m < 1000 ? Math.max(10, Math.round(m/10)*10) + " M" : (m/1000).toFixed(1) + " KM";
+function glassHtml(s, i, total){
+  const now = tbilisiNow(), st = s._st;
+  const soon = st.open && st.closesIn <= 45;
+  const [a, b] = splitName(s.name);
+  const status = st.open ? (soon ? `Closing in ${st.closesIn} min` : "Open now") : "Closed" + (st.opensIn != null ? " · " + whenText(st, now) : "");
+  const closeAt = (now.min + (st.closesIn || 0)) % 1440 === 0 ? "24:00" : clock(now.min + (st.closesIn || 0));
+  let big, lab;
+  if(s._d != null){ big = longDist(s._d); lab = "From where you are"; }
+  else if(st.open){ big = closeAt; lab = "Open until"; }
+  else if(st.opensIn != null){ big = clock(now.min + st.opensIn); lab = "Opens at"; }
+  else { big = "—"; lab = "Closed today"; }
+  const hrs = s.hours[now.day] ? s.hours[now.day].replace("-", "–") : "Closed today";
+  const ig = igUrl(s);
+  return `
+    <div class="gtop">
+      <span class="fx s1"><button class="gback" id="gback" type="button"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M6 1 1 6l5 5M1 6h14" stroke="currentColor" stroke-width="1.6"/></svg>Faves</button></span>
+      <span class="fx s1 gm">${String(i+1).padStart(2,"0")} / ${String(total).padStart(2,"0")}</span>
+    </div>
+    <span class="fx s1 gm" style="margin-top:40px">${esc(s.area)} · Tbilisi</span>
+    <span class="fx s2 gname">${esc(a)}</span>
+    ${b ? `<span class="fx s3 gname" style="margin-top:0">${esc(b)}</span>` : ""}
+    <span class="fx s4 gstat ${soon ? "soon" : ""}"><i style="background:${st.open ? (soon ? "var(--red)" : "var(--fg)") : "transparent"}"></i>${esc(status)}</span>
+    <div style="flex:1;min-height:12px"></div>
+    <span class="fx s5 gsaved"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 20.5s-7.6-4.6-9.7-9.3C.8 7.8 3 3.8 6.8 3.8c2.1 0 3.6 1.1 4.4 2.5.8-1.4 2.3-2.5 4.4-2.5 3.8 0 6 4 4.5 7.4-2.1 4.7-8.1 9.3-8.1 9.3z" fill="currentColor"/></svg>Saved on this phone</span>
+    <span class="fx s5 gbig">${esc(big)}</span>
+    <span class="fx s5 glab">${esc(lab)}</span>
+    <div class="ginfo">
+      <span class="fx s6 ginf"><span>Hours today</span><span>${esc(hrs)}</span></span>
+      <span class="fx s7 ginf"><span>Area</span><span>${esc(s.area)}</span></span>
+    </div>
+    <div class="fx s7 glinks"><button type="button" id="gmap">Show on map →</button><a href="${googleUrl(s)}" target="_blank" rel="noopener">Google reviews ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener">Instagram ↗</a>` : ""}</div>
+    <span class="fx s8"><a class="gdir" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener"><span>Directions</span><svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M13 1l7 7-7 7M20 8H1" stroke="currentColor" stroke-width="2"/></svg></a></span>`;
+}
+function openGlass(id){
+  if(glassPhase !== "closed") return;
+  const list = faveList(), i = list.findIndex(x => x.id === id);
+  if(i < 0) return;
+  glassTimers.forEach(clearTimeout); glassTimers = [];
+  glassId = id;
+  gc.innerHTML = glassHtml(list[i], i, list.length);
+  document.getElementById("gback").onclick = closeGlass;
+  document.getElementById("gmap").onclick = () => { closeGlass(true); openOnMap(id); };
+  if(calm()){
+    glassPhase = "detail";
+    glass.style.clipPath = FULL; glass.className = "glass show frost"; gc.className = "gc in";
+    setInert(true); document.getElementById("gback").focus({preventScroll:true});
+    return;
+  }
+  glassPhase = "press";
+  gc.className = "gc";
+  glass.style.clipPath = rowClip(id);
+  glass.className = "glass show";
+  markRows(id);
+  void glass.offsetWidth;                                  // let the row-shaped glass paint first
+  later(() => { glassPhase = "flood"; glass.className = "glass show anim frost"; glass.style.clipPath = FULL; }, 150);
+  later(() => { glassPhase = "detail"; gc.className = "gc in"; setInert(true); document.getElementById("gback").focus({preventScroll:true}); }, 510);
+}
+function closeGlass(instant){
+  if(glassPhase !== "detail") return;
+  glassTimers.forEach(clearTimeout); glassTimers = [];
+  setInert(false);
+  if(instant === true || calm()){
+    glass.className = "glass"; gc.className = "gc"; glassPhase = "closed"; markRows(null);
+    return;
+  }
+  glassPhase = "closing";
+  gc.className = "gc out";
+  glass.className = "glass show frost";
+  later(() => { glassPhase = "collapse"; glass.className = "glass show anim"; glass.style.clipPath = rowClip(glassId); }, 170);
+  later(() => { glass.className = "glass"; markRows(null); const r = faveRow(glassId); if(r) r.scrollIntoView({block:"nearest"}); }, 910);
+  later(() => { glassPhase = "closed"; gc.className = "gc"; }, 1370);
+}
+addEventListener("keydown", e => { if(e.key === "Escape") closeGlass(); });
 
 /* ---------- Contact: sections, preferences, forms ---------- */
 const BREW_LABELS = [["espresso","Espresso"],["v60","V60"],["batch","Batch"],["aeropress","AeroPress"],["chemex","Chemex"]];
