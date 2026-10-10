@@ -228,6 +228,12 @@
       "brew": ["espresso", "v60"],
       "score": null,
       "instagram": "probarista.ge",
+      "photos": [
+        {"src": "photos/pro-barista-1.webp", "alt": "Terrace under the red awning at Pro Barista"},
+        {"src": "photos/pro-barista-2.webp", "alt": "Pro Barista storefront and outdoor seating"},
+        {"src": "photos/pro-barista-3.webp", "alt": "Bags of Pro Barista's own Microlot coffee"},
+        {"src": "photos/pro-barista-4.webp", "alt": "Fresh beans cooling in Pro Barista's Giesen roaster"}
+      ],
       "place_id": "ChIJRbPAwFUNREARSnQfMx3pmoU",
       "note": "Small roaster-café by the station with a serious single-origin list."
     },
