@@ -242,6 +242,9 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .field input:focus,.field textarea:focus{border-color:var(--fg)}
 .lab{margin-top:14px}
 .chips-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.share-btn{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px 0 4px}
+.share-btn svg{width:18px;height:18px}
+.share-btn[disabled]{opacity:.6}
 .btn{display:block;width:100%;margin-top:16px;background:var(--fg);color:var(--bg);font-family:var(--display);font-size:15px;line-height:1;text-transform:uppercase;letter-spacing:.04em;padding:14px;text-align:center}
 .prefs{margin-top:28px;border-top:1px solid var(--fg);padding-top:14px}
 .prefs-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
@@ -724,7 +727,8 @@ function renderFaves(){
         <div class="meta">${metaLine(s, now)}${s._d != null ? " · " + fmtDist(s._d) : ""}</div>
       </div>
       <div class="side">${favBtn(s.id)}</div>
-    </article>`).join("") + `<p class="foot">Favourites are kept on this phone only. Nothing is sent anywhere.</p>`;
+    </article>`).join("") + `<button class="btn share-btn" type="button" id="fave-share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share as a picture</button>
+    <p class="foot">Favourites are kept on this phone only. Nothing is sent anywhere unless you share the picture.</p>`;
 }
 
 /* ---------- Header text follows the tab ---------- */
@@ -848,7 +852,102 @@ function toggleFav(id){
 document.addEventListener("click", e => {
   const b = e.target.closest(".fav"); if(b) toggleFav(b.dataset.fav);
   if(e.target.closest("#fave-browse")) show("list");
+  if(e.target.closest("#fave-share")) shareFaves();
 });
+
+/* ============================================================
+   SHARE FAVOURITES — draws a 1080×1920 story picture on a canvas
+   and hands it to the phone's share sheet (Instagram, WhatsApp…).
+   Where sharing files isn't supported, it downloads the PNG.
+   ============================================================ */
+const APP_URL = (location.host + location.pathname).replace(/index\.html$/, "").replace(/\/$/, "");
+async function drawFavesCard(list){
+  const W = 1080, H = 1920, P = 80;
+  const c = document.createElement("canvas"); c.width = W; c.height = H;
+  const x = c.getContext("2d");
+  const FG = "#F4F4F4", DIM = "#B5B5B5", MUTE = "#777", LINE = "#2A2A2A", RED = "#FF3B2F", BG = "#0A0A0A";
+  const DISP = "'Archivo Black', 'Arial Black', sans-serif", MONO = "'IBM Plex Mono', ui-monospace, monospace";
+  try{ await Promise.all([document.fonts.load(`400 60px "Archivo Black"`), document.fonts.load(`500 30px "IBM Plex Mono"`), document.fonts.load(`400 30px "IBM Plex Mono"`)]); }catch(e){}
+
+  x.fillStyle = BG; x.fillRect(0, 0, W, H);
+
+  // header: logo mark + name, and the date
+  const cupX = P + 38, cupY = 128;
+  x.strokeStyle = FG; x.lineWidth = 6; x.lineCap = "round"; x.lineJoin = "round";
+  x.beginPath(); x.arc(cupX - 4, cupY + 2, 30, 0, Math.PI*2); x.stroke();
+  x.beginPath(); x.moveTo(cupX + 27, cupY - 9); x.lineTo(cupX + 36, cupY - 9); x.quadraticCurveTo(cupX + 43, cupY - 9, cupX + 43, cupY - 2); x.lineTo(cupX + 43, cupY + 6); x.quadraticCurveTo(cupX + 43, cupY + 13, cupX + 36, cupY + 13); x.lineTo(cupX + 27, cupY + 13); x.stroke();
+  x.fillStyle = RED; x.strokeStyle = BG; x.lineWidth = 4; x.beginPath(); x.arc(cupX + 15, cupY - 20, 9, 0, Math.PI*2); x.fill(); x.stroke();
+  x.fillStyle = FG; x.font = `500 30px ${MONO}`; x.textBaseline = "alphabetic";
+  x.fillText("TBILISI", P + 104, cupY - 6); x.fillText("COFFEE MAP", P + 104, cupY + 32);
+  const d = new Date().toLocaleDateString("en-GB", {day:"2-digit", month:"short", year:"numeric", timeZone:"Asia/Tbilisi"}).toUpperCase();
+  x.fillStyle = DIM; x.textAlign = "right"; x.fillText(d, W - P, cupY + 32); x.textAlign = "left";
+
+  // the big diffused count (shadow trick works in every browser); smaller when the list is long
+  const MAX = 8, shown = list.slice(0, MAX), more = list.length - shown.length;
+  const big = shown.length <= 4;
+  const numSize = big ? 560 : 360, numBase = big ? 700 : 470, titleSize = big ? 112 : 96;
+  const n = String(list.length).padStart(2, "0");
+  x.font = `400 ${numSize}px ${DISP}`;
+  const drawSoft = (blur, alpha) => { x.save(); x.shadowColor = `rgba(244,244,244,${alpha})`; x.shadowBlur = blur; x.shadowOffsetX = -3000; x.fillStyle = "#000"; x.fillText(n, P - 24 + 3000, numBase); x.restore(); };
+  drawSoft(big ? 60 : 44, .55); drawSoft(big ? 26 : 20, .7); drawSoft(8, .45);
+  x.fillStyle = FG; x.font = `400 ${titleSize}px ${DISP}`;
+  const t1 = numBase + titleSize * 1.25, t2 = t1 + titleSize * 1.03;
+  x.fillText("MY FAVOURITE", P, t1); x.fillText("COFFEE SHOPS", P, t2);
+
+  // the list: each row = name, address, divider; sized to fit the space left
+  const ruleY = t2 + 54;
+  x.fillStyle = FG; x.fillRect(P, ruleY, W - 2*P, 3);
+  const top = ruleY + 26, bottom = H - 200;
+  const rowH = Math.min(150, Math.floor((bottom - top - (more ? 50 : 0)) / Math.max(shown.length, 1)));
+  const nameSize = Math.min(58, Math.round(rowH * .44)), metaSize = Math.min(26, Math.max(20, Math.round(rowH * .22)));
+  const textX = P + 70, textW = W - P - textX;
+  const clip = (txt, font, maxW) => { x.font = font; if(x.measureText(txt).width <= maxW) return txt; let t = txt; while(t.length > 1 && x.measureText(t + "…").width > maxW) t = t.slice(0, -1); return t.trimEnd() + "…"; };
+  const fitName = txt => {                       // shrink up to 25% before cutting
+    for(let sz = nameSize; sz >= nameSize * .75; sz -= 1){ x.font = `400 ${sz}px ${DISP}`; if(x.measureText(txt).width <= textW) return [txt, sz]; }
+    const sz = Math.floor(nameSize * .75); return [clip(txt, `400 ${sz}px ${DISP}`, textW), sz];
+  };
+  shown.forEach((s, i) => {
+    const y = top + i * rowH, nameY = y + nameSize * .9, metaY = nameY + metaSize * 1.5 + 4;
+    x.fillStyle = DIM; x.font = `400 ${metaSize}px ${MONO}`; x.fillText(String(i+1).padStart(2, "0"), P, nameY);
+    const [nm, sz] = fitName(s.name.toUpperCase());
+    x.fillStyle = FG; x.font = `400 ${sz}px ${DISP}`; x.fillText(nm, textX, nameY);
+    x.fillStyle = DIM;
+    const meta = clip(`${s.area} · ${s.address}`.toUpperCase(), `400 ${metaSize}px ${MONO}`, textW);
+    x.font = `400 ${metaSize}px ${MONO}`; x.fillText(meta, textX, metaY);
+    if(i < shown.length - 1){ x.fillStyle = LINE; x.fillRect(P, y + rowH - 4, W - 2*P, 2); }
+  });
+  if(more){ x.fillStyle = MUTE; x.font = `500 ${metaSize + 2}px ${MONO}`; x.fillText(`+ ${more} MORE`, textX, top + shown.length * rowH + 34); }
+
+  // footer
+  x.fillStyle = FG; x.fillRect(P, H - 170, W - 2*P, 3);
+  x.fillStyle = DIM; x.font = `400 26px ${MONO}`; x.fillText("FIND THEM ON", P, H - 110);
+  x.fillStyle = FG; x.font = `500 32px ${MONO}`; x.fillText(clip(APP_URL.toUpperCase(), `500 32px ${MONO}`, W - 2*P - 50), P, H - 66);
+  x.fillStyle = RED; x.beginPath(); x.arc(W - P - 14, H - 78, 14, 0, Math.PI*2); x.fill();
+
+  // light film grain, like the app
+  const g = x.getImageData(0, 0, W, H), a = g.data;
+  for(let i = 0; i < a.length; i += 4){ const r = (Math.random() - .5) * 22; a[i] += r; a[i+1] += r; a[i+2] += r; }
+  x.putImageData(g, 0, 0);
+  return new Promise(res => c.toBlob(res, "image/png"));
+}
+async function shareFaves(){
+  const list = faveList(); if(!list.length) return;
+  const btn = document.getElementById("fave-share"); if(btn) btn.disabled = true;
+  try{
+    const blob = await drawFavesCard(list);
+    const file = new File([blob], "my-tbilisi-coffee.png", {type:"image/png"});
+    const text = `My favourite coffee shops in Tbilisi — ${location.origin + location.pathname}`;
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      await navigator.share({files:[file], title:"My favourite coffee shops", text});
+    }else{
+      const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = file.name;
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      toast("Picture saved. Share it from your photos or downloads.");
+    }
+  }catch(err){
+    if(err && err.name !== "AbortError") toast("Couldn't make the picture. Try again.");
+  }finally{ if(btn) btn.disabled = false; }
+}
 document.getElementById("fave-rows").addEventListener("click", e => {
   if(e.target.closest(".fav") || e.target.closest("a")) return;
   const c = e.target.closest(".row"); if(c) openGlass(c.dataset.id);
