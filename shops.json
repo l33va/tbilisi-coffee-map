@@ -288,6 +288,22 @@
       "instagram": "",
       "place_id": "ChIJ04kKa4oNREAR8wKfapmolx8",
       "note": "More shop than café: beans, brewers and cups. Grab a cappuccino while browsing."
+    },
+    {
+      "id": "okro",
+      "name": "OKRO Coffee Roastery and Bakery",
+      "area": "Vake",
+      "address": "12 Iakob Nikoladze St",
+      "coords": [41.7094078, 44.7820775],
+      "hours": ["08:00-18:00", "08:00-18:00", "08:00-18:00", "08:00-18:00", "08:00-18:00", "08:00-18:00", "08:00-18:00"],
+      "roasts": true,
+      "beans": true,
+      "laptop": false,
+      "brew": ["espresso", "v60"],
+      "score": null,
+      "instagram": "okroroastery",
+      "place_id": "ChIJ5QdNuqINREARN63aGjGuxaw",
+      "note": "Big, beautiful roastery-bakery. Weekly roasts, long-fermented bread, strong pastry case. No laptops."
     }
   ]
 }
