@@ -509,6 +509,30 @@
         {"src": "photos/slink-2.webp", "alt": "Pink bistro tables in Slink Café's gravel garden"},
         {"src": "photos/slink-3.webp", "alt": "Brunch with coffee at Slink Café"}
       ]
+    },
+    {
+      "id": "barr",
+      "name": "BARR",
+      "area": "Vake",
+      "address": "64 Ilia Chavchavadze Ave",
+      "coords": [41.7105963, 44.7589041],
+      "hours": ["09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00"],
+      "roasts": false,
+      "beans": true,
+      "laptop": false,
+      "roaster": ["Bonanza"],
+      "brew": ["espresso", "batch"],
+      "prices": {"espresso": 9, "cappuccino": [11, 13], "batch": 9},
+      "score": null,
+      "instagram": "barr.tbs",
+      "place_id": "ChIJJ9MTxn9zREAR4-pdl_pL06E",
+      "note": "All-steel bar on Chavchavadze pouring Berlin's Bonanza beans. Small and busy at peak times; good pastry and breakfasts.",
+      "photos": [
+        {"src": "photos/barr-1.webp", "alt": "BARR's stainless-steel bar seen through the glass door"},
+        {"src": "photos/barr-2.webp", "alt": "Steel table and stools at BARR"},
+        {"src": "photos/barr-3.webp", "alt": "Bags of Bonanza Coffee Roasters beans on BARR's shelf"},
+        {"src": "photos/barr-4.webp", "alt": "BARR's steel menu board"}
+      ]
     }
   ]
 }
