@@ -267,6 +267,7 @@
       "roasts": false,
       "beans": false,
       "laptop": false,
+      "roaster": ["Shavi", "Mamuli", "Tasty"],
       "brew": ["espresso", "v60"],
       "score": null,
       "instagram": "",
