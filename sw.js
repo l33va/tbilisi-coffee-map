@@ -5,7 +5,7 @@
    - Map tiles you've looked at are kept (up to MAX_TILES) for offline use.
    Bump VERSION whenever you change index.html, icons or vendor files. */
 
-const VERSION = "v17";
+const VERSION = "v18";
 const SHELL = `shell-${VERSION}`;
 const FONTS = "fonts";
 const TILES = "tiles";
@@ -72,7 +72,7 @@ async function networkFirst(req) {
   const cache = await caches.open(SHELL);
   try {
     const res = await Promise.race([
-      fetch(req),
+      fetch(new Request(req.url, { cache: "no-cache" })),   // always check GitHub for a newer copy
       new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), NETWORK_TIMEOUT_MS)),
     ]);
     if (res.ok) cache.put(req.mode === "navigate" ? "index.html" : req, res.clone());
