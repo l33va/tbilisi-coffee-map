@@ -449,8 +449,8 @@ const markers = {};
 function initMap(){
   if(map || !window.L) return;
   map = L.map("map", {zoomControl:false, attributionControl:true}).setView([41.705, 44.785], 13);
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
   }).addTo(map);
   L.control.zoom({position:"topright"}).addTo(map);
   addLocateControl();
