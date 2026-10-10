@@ -249,10 +249,10 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .legend-grid span{font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
 
 /* ---------- Frosted glass shop view (opens from Faves) ---------- */
-#fave-rows .row{transition:filter .42s ease,opacity .36s ease,transform .42s ease,background-color .11s ease}
-#fave-rows.busy .row:not(.pressed){transform:scale(.985);opacity:.9}
-#fave-rows .row.pressed{background:rgba(244,244,244,.09)}
-#fave-rows .row.pressed .nm{filter:blur(0) !important;opacity:1 !important}
+#fave-rows .row,#rows .row{transition:filter .42s ease,opacity .36s ease,transform .42s ease,background-color .11s ease}
+#fave-rows.busy .row:not(.pressed),#rows.busy .row:not(.pressed){transform:scale(.985);opacity:.9}
+#fave-rows .row.pressed,#rows .row.pressed{background:rgba(244,244,244,.09)}
+#fave-rows .row.pressed .nm,#rows .row.pressed .nm{filter:blur(0) !important;opacity:1 !important}
 .glass{
   position:fixed;inset:0;z-index:2000;color:var(--fg);visibility:hidden;box-sizing:border-box;
   padding:calc(env(safe-area-inset-top,0px) + 20px) 20px calc(env(safe-area-inset-bottom,0px) + 20px);
@@ -278,8 +278,10 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .gstat i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--fg);box-sizing:border-box;flex:none}
 .gstat.soon{color:var(--red)}
 .gstat.soon i{border-color:var(--red)}
-.gsaved{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-top:28px}
-.gsaved svg{width:16px;height:15px;color:var(--red)}
+.gsaved{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-top:28px;padding:6px 0;text-align:left}
+.gsaved svg{width:16px;height:16px;color:var(--fg);flex:none}
+.gsaved[aria-pressed="true"] svg{color:var(--red)}
+.gsaved:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
 .gbig{margin-top:8px;font-family:var(--display);font-weight:400;font-size:72px;line-height:.95;text-transform:uppercase}
 .glab{margin-top:4px;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .ginfo{margin-top:16px;border-top:1px solid rgba(244,244,244,.28)}
@@ -288,7 +290,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .glinks a,.glinks button{font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--fg);text-decoration:none;border-bottom:1px solid var(--hair);padding:4px 0 2px}
 .gdir{margin-top:16px;width:100%;height:52px;background:var(--red);color:#141414;display:flex;align-items:center;justify-content:space-between;padding:0 18px;box-sizing:border-box;font-family:var(--display);font-size:19px;text-transform:uppercase;text-decoration:none;flex:none}
 .gback:focus-visible,.gdir:focus-visible,.glinks a:focus-visible,.glinks button:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
-@media (prefers-reduced-motion:reduce){.glass.anim,.fx,#fave-rows .row{transition:none !important}}
+@media (prefers-reduced-motion:reduce){.glass.anim,.fx,#fave-rows .row,#rows .row{transition:none !important}}
 
 .toast{
   position:fixed;left:50%;bottom:calc(var(--nav) + var(--safe-b) + 14px);transform:translateX(-50%);
@@ -805,7 +807,7 @@ document.getElementById("rows").addEventListener("click", e => {
   if(e.target.closest("a") || e.target.closest(".fav")) return;   // links and hearts act on their own
   if(e.target.closest("#sortby")){ sortBy = sortBy === "score" ? "open" : "score"; render(); return; }
   const c = e.target.closest(".row"); if(!c) return;
-  openOnMap(c.dataset.id);
+  openGlass(c.dataset.id, "list");
 });
 VIEWS.forEach(v => { document.getElementById("tab-"+v).onclick = () => show(v); });
 
@@ -817,27 +819,35 @@ VIEWS.forEach(v => { document.getElementById("tab-"+v).onclick = () => show(v); 
    ============================================================ */
 const glass = document.getElementById("glass"), gc = document.getElementById("gc");
 const FULL = "inset(0px 0px 0px 0px round 0px)";
-let glassPhase = "closed", glassTimers = [], glassId = null;
+let glassPhase = "closed", glassTimers = [], glassId = null, glassSrc = "faves";
+const srcSel = () => glassSrc === "list" ? "#rows" : "#fave-rows";
 const later = (fn, ms) => glassTimers.push(setTimeout(fn, ms));
 const calm = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 const setInert = on => ["header","main","nav"].forEach(t => { const el = document.querySelector(t); if(el) el.inert = on; });
-const faveRow = id => document.querySelector(`#fave-rows .row[data-id="${CSS.escape(id)}"]`);
+const faveRow = id => document.querySelector(`${srcSel()} .row[data-id="${CSS.escape(id)}"]`);
 function rowClip(id){
   const row = faveRow(id);
   const r = row ? row.getBoundingClientRect() : {top:innerHeight/2-30, bottom:innerHeight/2+30};
   return `inset(${Math.max(0, r.top)}px 8px ${Math.max(0, innerHeight - r.bottom)}px 8px round 14px)`;
 }
 function markRows(id){
-  const box = document.getElementById("fave-rows");
-  box.classList.toggle("busy", !!id);
-  box.querySelectorAll(".row").forEach(r => r.classList.toggle("pressed", !!id && r.dataset.id === id));
+  ["#fave-rows", "#rows"].forEach(sel => {
+    const box = document.querySelector(sel), on = !!id && sel === srcSel();
+    box.classList.toggle("busy", on);
+    box.querySelectorAll(".row").forEach(r => r.classList.toggle("pressed", on && r.dataset.id === id));
+  });
 }
 const splitName = n => {
   const m = n.match(/^(.*?—)\s*(.+)$/); if(m) return [m[1], m[2]];
   const i = n.lastIndexOf(" "); return i > 0 ? [n.slice(0,i), n.slice(i+1)] : [n, ""];
 };
 const longDist = m => m < 1000 ? Math.max(10, Math.round(m/10)*10) + " M" : (m/1000).toFixed(1) + " KM";
-function glassHtml(s, i, total){
+function bindSave(id){
+  const b = document.getElementById("gsave"); if(!b) return;
+  b.onclick = () => { toggleFav(id); b.outerHTML = saveBtn(id); bindSave(id); document.getElementById("gsave").focus({preventScroll:true}); };
+}
+const saveBtn = id => { const on = favs.has(id); return `<button class="gsaved" id="gsave" type="button" aria-pressed="${on}"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#heart-${on ? "on" : "off"}"/></svg><span>${on ? "Saved on this phone" : "Save to favourites"}</span></button>`; };
+function glassHtml(s, i, total, back){
   const now = tbilisiNow(), st = s._st;
   const soon = st.open && st.closesIn <= 45;
   const [a, b] = splitName(s.name);
@@ -852,7 +862,7 @@ function glassHtml(s, i, total){
   const ig = igUrl(s);
   return `
     <div class="gtop">
-      <span class="fx s1"><button class="gback" id="gback" type="button"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M6 1 1 6l5 5M1 6h14" stroke="currentColor" stroke-width="1.6"/></svg>Faves</button></span>
+      <span class="fx s1"><button class="gback" id="gback" type="button"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M6 1 1 6l5 5M1 6h14" stroke="currentColor" stroke-width="1.6"/></svg>${back}</button></span>
       <span class="fx s1 gm">${String(i+1).padStart(2,"0")} / ${String(total).padStart(2,"0")}</span>
     </div>
     <span class="fx s1 gm" style="margin-top:40px">${esc(s.area)} · Tbilisi</span>
@@ -860,7 +870,7 @@ function glassHtml(s, i, total){
     ${b ? `<span class="fx s3 gname" style="margin-top:0">${esc(b)}</span>` : ""}
     <span class="fx s4 gstat ${soon ? "soon" : ""}"><i style="background:${st.open ? (soon ? "var(--red)" : "var(--fg)") : "transparent"}"></i>${esc(status)}</span>
     <div style="flex:1;min-height:12px"></div>
-    <span class="fx s5 gsaved"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 20.5s-7.6-4.6-9.7-9.3C.8 7.8 3 3.8 6.8 3.8c2.1 0 3.6 1.1 4.4 2.5.8-1.4 2.3-2.5 4.4-2.5 3.8 0 6 4 4.5 7.4-2.1 4.7-8.1 9.3-8.1 9.3z" fill="currentColor"/></svg>Saved on this phone</span>
+    <span class="fx s5">${saveBtn(s.id)}</span>
     <span class="fx s5 gbig">${esc(big)}</span>
     <span class="fx s5 glab">${esc(lab)}</span>
     <div class="ginfo">
@@ -870,15 +880,17 @@ function glassHtml(s, i, total){
     <div class="fx s7 glinks"><button type="button" id="gmap">Show on map →</button><a href="${googleUrl(s)}" target="_blank" rel="noopener">Google reviews ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener">Instagram ↗</a>` : ""}</div>
     <span class="fx s8"><a class="gdir" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener"><span>Directions</span><svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M13 1l7 7-7 7M20 8H1" stroke="currentColor" stroke-width="2"/></svg></a></span>`;
 }
-function openGlass(id){
+function openGlass(id, src = "faves"){
   if(glassPhase !== "closed") return;
-  const list = faveList(), i = list.findIndex(x => x.id === id);
+  glassSrc = src;
+  const list = src === "list" ? visible() : faveList(), i = list.findIndex(x => x.id === id);
   if(i < 0) return;
   glassTimers.forEach(clearTimeout); glassTimers = [];
   glassId = id;
-  gc.innerHTML = glassHtml(list[i], i, list.length);
+  gc.innerHTML = glassHtml(list[i], i, list.length, src === "list" ? "List" : "Faves");
   document.getElementById("gback").onclick = closeGlass;
   document.getElementById("gmap").onclick = () => { closeGlass(true); openOnMap(id); };
+  bindSave(id);
   if(calm()){
     glassPhase = "detail";
     glass.style.clipPath = FULL; glass.className = "glass show frost"; gc.className = "gc in";
