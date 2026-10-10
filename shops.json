@@ -394,6 +394,12 @@
       "brew": ["espresso", "v60"],
       "score": null,
       "instagram": "salty__cafe",
+      "photos": [
+        {"src": "photos/salty-1.webp", "alt": "Coffee being poured outside Salty, café and bicycle workshop"},
+        {"src": "photos/salty-2.webp", "alt": "Open sandwich with mortadella, olives and pesto at Salty"},
+        {"src": "photos/salty-3.webp", "alt": "Sunlit communal table and art inside Salty"},
+        {"src": "photos/salty-4.webp", "alt": "Cyclists gathering outside Salty"}
+      ],
       "place_id": "ChIJz9eWpFNzREARWh1-IyW7acY",
       "note": "Cosy coffee bar with a bike mechanic on site, a cyclists' favourite. Good filter, great banana bread."
     },
