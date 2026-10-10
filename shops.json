@@ -274,22 +274,6 @@
       "note": "Weekend-breakfast spot first, coffee second. Good cold brew."
     },
     {
-      "id": "coffee-house-vera",
-      "name": "Coffee House on Vera",
-      "area": "Vera",
-      "address": "24 Merab Kostava St",
-      "coords": [41.7063821, 44.7868482],
-      "hours": ["09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "12:00-21:00"],
-      "roasts": false,
-      "beans": true,
-      "laptop": false,
-      "brew": ["espresso", "v60"],
-      "score": null,
-      "instagram": "",
-      "place_id": "ChIJ04kKa4oNREAR8wKfapmolx8",
-      "note": "More shop than café: beans, brewers and cups. Grab a cappuccino while browsing."
-    },
-    {
       "id": "okro",
       "name": "OKRO Coffee Roastery and Bakery",
       "area": "Vake",
