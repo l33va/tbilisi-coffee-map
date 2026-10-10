@@ -384,6 +384,22 @@
       "instagram": "salty__cafe",
       "place_id": "ChIJz9eWpFNzREARWh1-IyW7acY",
       "note": "Cosy coffee bar with a bike mechanic on site, a cyclists' favourite. Good filter, great banana bread."
+    },
+    {
+      "id": "pulp-janashia",
+      "name": "Pulp — Janashia",
+      "area": "Vera",
+      "address": "22 Simon Janashia St",
+      "coords": [41.7059778, 44.7814868],
+      "hours": ["09:30-20:00", "09:30-20:00", "09:30-20:00", "09:30-20:00", "09:30-21:00", "10:00-21:00", "10:00-20:00"],
+      "roasts": false,
+      "beans": false,
+      "laptop": true,
+      "brew": ["espresso", "v60", "batch"],
+      "score": null,
+      "instagram": "pulp.tbilisi",
+      "place_id": "ChIJf_Mu8P0NREARWWZEbxclDvM",
+      "note": "Relaxed, buzzy room with careful hand brew and batch. Buns and pastries; a laptop table and outdoor seats."
     }
   ]
 }
