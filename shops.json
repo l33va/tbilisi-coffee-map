@@ -545,6 +545,7 @@
       "beans": false,
       "laptop": false,
       "pets": true,
+      "roaster": ["Kuro"],
       "brew": ["espresso", "v60", "batch"],
       "prices": {"espresso": 7, "cappuccino": [9, 11], "batch": 8},
       "score": null,
