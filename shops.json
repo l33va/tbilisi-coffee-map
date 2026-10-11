@@ -533,6 +533,24 @@
         {"src": "photos/barr-3.webp", "alt": "Bags of Bonanza Coffee Roasters beans on BARR's shelf"},
         {"src": "photos/barr-4.webp", "alt": "BARR's steel menu board"}
       ]
+    },
+    {
+      "id": "brinks",
+      "name": "BRINKS",
+      "area": "Vera",
+      "address": "8 Leo Kiacheli St",
+      "coords": [41.7054309, 44.790908],
+      "hours": ["09:00-19:00", "09:00-19:00", "09:00-19:00", "09:00-19:00", "09:00-19:00", "09:00-19:00", "09:00-19:00"],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "pets": true,
+      "brew": ["espresso", "v60", "batch"],
+      "prices": {"espresso": 7, "cappuccino": [9, 11], "batch": 8},
+      "score": null,
+      "instagram": "brinks.cafe",
+      "place_id": "ChIJ-4JB5IKLQ0ARl1NB9oBcEFo",
+      "note": "All-day breakfast spot with V60 and batch brew. Very dog friendly; good music."
     }
   ]
 }
