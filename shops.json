@@ -552,6 +552,22 @@
       "instagram": "brinks.cafe",
       "place_id": "ChIJ-4JB5IKLQ0ARl1NB9oBcEFo",
       "note": "All-day breakfast spot with V60 and batch brew. Very dog friendly; good music."
+    },
+    {
+      "id": "no-more-mondays",
+      "name": "No More Mondays",
+      "area": "Vera",
+      "address": "21 Merab Kostava St (1 Vashlovani St)",
+      "coords": [41.7059199, 44.7882839],
+      "hours": ["09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00"],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": ["espresso"],
+      "score": null,
+      "instagram": "nomomocafe",
+      "place_id": "ChIJX9_iDTMNREARo0AmMRRrNnI",
+      "note": "Charming breakfast café on Kostava with good coffee and loud, well-picked music."
     }
   ]
 }
