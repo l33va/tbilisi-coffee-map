@@ -570,6 +570,22 @@
       "instagram": "nomomocafe",
       "place_id": "ChIJX9_iDTMNREARo0AmMRRrNnI",
       "note": "Charming breakfast café on Kostava with good coffee and loud, well-picked music."
+    },
+    {
+      "id": "baba-bakery",
+      "name": "Baba Bakery",
+      "area": "Sololaki",
+      "address": "4 Ivane Machabeli St",
+      "coords": [41.6920272, 44.7999395],
+      "hours": ["08:30-20:30", "08:30-20:30", "08:30-19:30", "08:30-20:30", "08:30-21:30", "08:30-21:30", "08:30-21:30"],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": ["espresso"],
+      "score": null,
+      "instagram": "baba_bakery_tbilisi",
+      "place_id": "ChIJ-QWDUjsNREARIVXBAwdmClA",
+      "note": "Small storefront in Sololaki that opens into a pretty seating room. Excellent croissants and cruffins; open from 8:30."
     }
   ]
 }
