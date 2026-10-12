@@ -1200,7 +1200,11 @@
       "score": null,
       "instagram": "808.eightoeight",
       "place_id": "ChIJpbc6BgANREARx2fIyYe71ks",
-      "note": "Small East Asian café on Kostava: onigirazu, mochi and matcha alongside the coffee."
+      "note": "Small East Asian café on Kostava: onigirazu, mochi and matcha alongside the coffee.",
+      "prices": {
+        "espresso": 6,
+        "cappuccino": 12
+      }
     }
   ]
 }
