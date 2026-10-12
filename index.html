@@ -872,10 +872,10 @@ document.addEventListener("click", e => {
    ============================================================ */
 const APP_URL = (location.host + location.pathname).replace(/index\.html$/, "").replace(/\/$/, "");
 async function drawFavesCard(list){
-  const W = 1080, H = 1920, P = 80;
+  const W = 1080, H = 1920, P = 66;
   const c = document.createElement("canvas"); c.width = W; c.height = H;
   const x = c.getContext("2d");
-  const FG = "#F4F4F4", DIM = "#B5B5B5", MUTE = "#777", LINE = "#2A2A2A", RED = "#FF3B2F", BG = "#0A0A0A";
+  const FG = "#F4F4F4", DIM = "#B5B5B5", MUTE = "#777", LINE = "#2A2A2A", RED = "#FF3B2F", BG = "#0A0A0A", GOLD = "#F0B73C";
   const DISP = "'Archivo Black', 'Arial Black', sans-serif", MONO = "'IBM Plex Mono', ui-monospace, monospace";
   try{ await Promise.all([document.fonts.load(`400 60px "Archivo Black"`), document.fonts.load(`500 30px "IBM Plex Mono"`), document.fonts.load(`400 30px "IBM Plex Mono"`)]); }catch(e){}
 
@@ -890,43 +890,72 @@ async function drawFavesCard(list){
   x.fillStyle = FG; x.font = `500 30px ${MONO}`; x.textBaseline = "alphabetic";
   x.fillText("TBILISI", P + 104, cupY - 6); x.fillText("COFFEE MAP", P + 104, cupY + 32);
   const d = new Date().toLocaleDateString("en-GB", {day:"2-digit", month:"short", year:"numeric", timeZone:"Asia/Tbilisi"}).toUpperCase();
-  x.fillStyle = DIM; x.textAlign = "right"; x.fillText(d, W - P, cupY + 32); x.textAlign = "left";
+  x.fillStyle = DIM; x.textAlign = "right"; x.fillText(d, W - P, cupY + 32);
 
-  // the big diffused count (shadow trick works in every browser); smaller when the list is long
+  // title and the gold count
+  x.textAlign = "left"; x.fillStyle = FG; x.font = `400 108px ${DISP}`;
+  x.fillText("MY", P, 300); x.fillText("TBILISI", P, 402);
+  x.fillStyle = GOLD; x.textAlign = "right"; x.fillText(String(list.length).padStart(2, "0"), W - P, 300);
+  x.fillStyle = DIM; x.font = `400 25px ${MONO}`; x.fillText("FAVOURITES", W - P, 346); x.textAlign = "left";
+
+  // layout: map on top, the first eight shops under it
   const MAX = 8, shown = list.slice(0, MAX), more = list.length - shown.length;
-  const big = shown.length <= 4;
-  const numSize = big ? 560 : 360, numBase = big ? 700 : 470, titleSize = big ? 112 : 96;
-  const n = String(list.length).padStart(2, "0");
-  x.font = `400 ${numSize}px ${DISP}`;
-  const drawSoft = (blur, alpha) => { x.save(); x.shadowColor = `rgba(244,244,244,${alpha})`; x.shadowBlur = blur; x.shadowOffsetX = -3000; x.fillStyle = "#000"; x.fillText(n, P - 24 + 3000, numBase); x.restore(); };
-  drawSoft(big ? 60 : 44, .55); drawSoft(big ? 26 : 20, .7); drawSoft(8, .45);
-  x.fillStyle = FG; x.font = `400 ${titleSize}px ${DISP}`;
-  const t1 = numBase + titleSize * 1.25, t2 = t1 + titleSize * 1.03;
-  x.fillText("MY FAVOURITE", P, t1); x.fillText("COFFEE SHOPS", P, t2);
+  const rowH = shown.length <= 5 ? 66 : 57;
+  const listH = shown.length * rowH + (more ? 48 : 0);
+  const mapX = P, mapY = 468, mapW = W - 2*P;
+  const mapH = Math.max(520, Math.min(1100, 1700 - mapY - 36 - listH));
 
-  // the list: each row = name, address, divider; sized to fit the space left
-  const ruleY = t2 + 54;
-  x.fillStyle = FG; x.fillRect(P, ruleY, W - 2*P, 3);
-  const top = ruleY + 26, bottom = H - 200;
-  const rowH = Math.min(150, Math.floor((bottom - top - (more ? 50 : 0)) / Math.max(shown.length, 1)));
-  const nameSize = Math.min(58, Math.round(rowH * .44)), metaSize = Math.min(26, Math.max(20, Math.round(rowH * .22)));
-  const textX = P + 70, textW = W - P - textX;
-  const clip = (txt, font, maxW) => { x.font = font; if(x.measureText(txt).width <= maxW) return txt; let t = txt; while(t.length > 1 && x.measureText(t + "…").width > maxW) t = t.slice(0, -1); return t.trimEnd() + "…"; };
-  const fitName = txt => {                       // shrink up to 25% before cutting
-    for(let sz = nameSize; sz >= nameSize * .75; sz -= 1){ x.font = `400 ${sz}px ${DISP}`; if(x.measureText(txt).width <= textW) return [txt, sz]; }
-    const sz = Math.floor(nameSize * .75); return [clip(txt, `400 ${sz}px ${DISP}`, textW), sz];
-  };
-  shown.forEach((s, i) => {
-    const y = top + i * rowH, nameY = y + nameSize * .9, metaY = nameY + metaSize * 1.5 + 4;
-    x.fillStyle = DIM; x.font = `400 ${metaSize}px ${MONO}`; x.fillText(String(i+1).padStart(2, "0"), P, nameY);
-    const [nm, sz] = fitName(s.name.toUpperCase());
-    x.fillStyle = FG; x.font = `400 ${sz}px ${DISP}`; x.fillText(nm, textX, nameY);
-    x.fillStyle = DIM;
-    const meta = clip(`${s.area} · ${s.address}`.toUpperCase(), `400 ${metaSize}px ${MONO}`, textW);
-    x.font = `400 ${metaSize}px ${MONO}`; x.fillText(meta, textX, metaY);
-    if(i < shown.length - 1){ x.fillStyle = LINE; x.fillRect(P, y + rowH - 4, W - 2*P, 2); }
+  // the map: a quiet street grid, then the pins at their real positions, fitted to your favourites
+  x.fillStyle = "#0F0F0F"; x.fillRect(mapX, mapY, mapW, mapH);
+  x.save(); x.beginPath(); x.rect(mapX, mapY, mapW, mapH); x.clip();
+  const seg = (x1, y1, x2, y2, w, col) => { x.strokeStyle = col; x.lineWidth = w; x.lineCap = "round"; x.beginPath(); x.moveTo(mapX + x1*mapW/320, mapY + y1*mapH/300); x.lineTo(mapX + x2*mapW/320, mapY + y2*mapH/300); x.stroke(); };
+  [[-60,70,380,90],[-60,210,380,175],[90,-10,110,310],[250,-10,270,310],[-60,145,380,155]].forEach(l => seg(...l, 6, "#262626"));
+  [[-60,35,380,60],[-60,255,380,235],[160,-10,170,310]].forEach(l => seg(...l, 10, "#3A3A3A"));
+
+  const lats = list.map(s => s.coords[0]), lngs = list.map(s => s.coords[1]);
+  const minLat = Math.min(...lats), maxLat = Math.max(...lats), minLng = Math.min(...lngs), maxLng = Math.max(...lngs);
+  const k = Math.cos((minLat + maxLat) / 2 * Math.PI / 180);
+  const spanLat = Math.max(maxLat - minLat, .004), spanLng = Math.max(maxLng - minLng, .004 / k), pad = 90;
+  const sc = Math.min((mapW - 2*pad) / (spanLng * k), (mapH - 2*pad) / spanLat);
+  const ox = mapX + (mapW - (maxLng - minLng) * k * sc) / 2, oy = mapY + (mapH - (maxLat - minLat) * sc) / 2;
+  const pts = list.map((s, i) => ({x: ox + (s.coords[1] - minLng) * k * sc, y: oy + (maxLat - s.coords[0]) * sc, r: i < MAX ? 28 : 15, i}));
+  for(let it = 0; it < 80; it++) for(let i = 0; i < pts.length; i++) for(let j = i + 1; j < pts.length; j++){   // nudge overlapping pins apart
+    const a = pts[i], b = pts[j], dx = b.x - a.x, dy = b.y - a.y, dist = Math.hypot(dx, dy) || .1, min = a.r + b.r + 8;
+    if(dist < min){ const m = (min - dist) / 2, ux = dx / dist, uy = dy / dist; a.x -= ux*m; a.y -= uy*m; b.x += ux*m; b.y += uy*m; }
+  }
+  pts.forEach(q => { q.x = Math.min(mapX + mapW - q.r - 6, Math.max(mapX + q.r + 6, q.x)); q.y = Math.min(mapY + mapH - q.r - 6, Math.max(mapY + q.r + 6, q.y)); });
+  pts.forEach(q => { const g = x.createRadialGradient(q.x, q.y, 0, q.x, q.y, 110); g.addColorStop(0, "rgba(240,183,60,.22)"); g.addColorStop(1, "rgba(240,183,60,0)"); x.fillStyle = g; x.fillRect(q.x - 110, q.y - 110, 220, 220); });
+  pts.filter(q => q.i >= MAX).forEach(q => { x.fillStyle = GOLD; x.beginPath(); x.arc(q.x, q.y, q.r, 0, Math.PI*2); x.fill(); });
+  x.textAlign = "center"; x.textBaseline = "middle";
+  pts.filter(q => q.i < MAX).forEach(q => {
+    x.fillStyle = GOLD; x.strokeStyle = "#0F0F0F"; x.lineWidth = 6; x.beginPath(); x.arc(q.x, q.y, q.r, 0, Math.PI*2); x.fill(); x.stroke();
+    x.fillStyle = BG; x.font = `400 30px ${DISP}`; x.fillText(String(q.i + 1), q.x, q.y + 2);
   });
-  if(more){ x.fillStyle = MUTE; x.font = `500 ${metaSize + 2}px ${MONO}`; x.fillText(`+ ${more} MORE`, textX, top + shown.length * rowH + 34); }
+  x.textAlign = "left"; x.textBaseline = "alphabetic";
+  x.restore();
+  x.strokeStyle = LINE; x.lineWidth = 3; x.strokeRect(mapX + 1.5, mapY + 1.5, mapW - 3, mapH - 3);
+
+  // the list: number, name, area
+  const clip = (txt, font, maxW) => { x.font = font; if(x.measureText(txt).width <= maxW) return txt; let t = txt; while(t.length > 1 && x.measureText(t + "…").width > maxW) t = t.slice(0, -1); return t.trimEnd() + "…"; };
+  const lyTop = mapY + mapH + 36;
+  shown.forEach((s, i) => {
+    const y = lyTop + i * rowH, base = y + rowH * .62;
+    x.fillStyle = GOLD; x.font = `500 27px ${MONO}`; x.fillText(String(i + 1), P, base);
+    const area = s.area.toUpperCase();
+    x.font = `400 27px ${MONO}`; const aw = x.measureText(area).width;
+    x.fillStyle = DIM; x.textAlign = "right"; x.fillText(area, W - P, base); x.textAlign = "left";
+    const maxW = W - 2*P - 54 - aw - 30;
+    let sz = 32, nm = s.name.toUpperCase();
+    for(; sz >= 24; sz--){ x.font = `400 ${sz}px ${DISP}`; if(x.measureText(nm).width <= maxW) break; }
+    nm = clip(nm, `400 ${sz}px ${DISP}`, maxW);
+    x.fillStyle = FG; x.font = `400 ${sz}px ${DISP}`; x.fillText(nm, P + 54, base);
+    if(i < shown.length - 1){ x.fillStyle = LINE; x.fillRect(P, y + rowH - 3, W - 2*P, 2); }
+  });
+  if(more){
+    const my = lyTop + shown.length * rowH + 30;
+    x.fillStyle = GOLD; x.beginPath(); x.arc(P + 9, my - 9, 9, 0, Math.PI*2); x.fill();
+    x.fillStyle = MUTE; x.font = `500 27px ${MONO}`; x.fillText(`+ ${more} MORE, SHOWN AS DOTS ON THE MAP`, P + 34, my);
+  }
 
   // footer
   x.fillStyle = FG; x.fillRect(P, H - 170, W - 2*P, 3);
