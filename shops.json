@@ -1205,6 +1205,48 @@
         "espresso": 6,
         "cappuccino": 12
       }
+    },
+    {
+      "id": "corner",
+      "name": "Corner Coffee",
+      "area": "Vake",
+      "address": "9 Ilo Mosashvili St",
+      "coords": [
+        41.7106815,
+        44.7555205
+      ],
+      "hours": [
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": [
+        "espresso",
+        "v60",
+        "batch"
+      ],
+      "prices": {
+        "espresso": [
+          7,
+          9
+        ],
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": 10
+      },
+      "score": null,
+      "instagram": "corner.tbilisi",
+      "place_id": "ChIJP758ujRzREAR-tpS2w9gkT4",
+      "note": "Calm little café near Vake Park with V60, batch brew and good pastries."
     }
   ]
 }
