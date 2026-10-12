@@ -62,3 +62,7 @@ If you change `index.html`, the icons or anything in `vendor/` (map library, fon
 
 Map data © OpenStreetMap contributors. Map library: Leaflet (license in `vendor/leaflet/LICENSE`).
 Fonts: Archivo Black and IBM Plex Mono, bundled in `vendor/fonts/` (SIL Open Font License; license files included).
+
+## Visitor counts
+
+Visits are counted anonymously with GoatCounter (no cookies, nothing personal). See the numbers at https://tbilisicoffeemap.goatcounter.com. Taps on Directions, Google reviews, Instagram and Share favourites are counted as events, named like `directions/barr`.

@@ -344,6 +344,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
 }
 .toast.show{opacity:1}
 </style>
+<script data-goatcounter="https://tbilisicoffeemap.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -466,6 +467,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
           <b style="color:var(--gold)">Gold</b><span>Your favourite, on the map</span>
         </div>
       </div>
+      <div class="about-sec"><div class="lab" style="margin-top:0">Privacy</div><p>We count visits anonymously with GoatCounter. No cookies, no accounts, nothing personal. Your favourites stay on your phone.</p></div>
       <div class="about-sec"><div class="lab" style="margin-top:0">Data and credits</div><p id="about-data"></p></div>
       <div class="about-sec"><div class="lab" style="margin-top:0">Get in touch</div><p>Made in Tbilisi by Levan Bezarashvili. Write to<a id="about-mail" href="mailto:bezarashwili@gmail.com">bezarashwili@gmail.com</a></p></div>
     </div>
@@ -621,7 +623,7 @@ const googleUrl = s => s.place_id
 const igUrl = s => s.instagram ? `https://www.instagram.com/${encodeURIComponent(s.instagram.replace(/^@/,""))}/` : "";
 function linksHtml(s){
   const ig = igUrl(s);
-  return `<div class="links"><a href="${googleUrl(s)}" target="_blank" rel="noopener">Google reviews ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener">Instagram ↗</a>` : ""}</div>`;
+  return `<div class="links"><a href="${googleUrl(s)}" target="_blank" rel="noopener" data-ev="google" data-shop="${s.id}">Google reviews ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener" data-ev="instagram" data-shop="${s.id}">Instagram ↗</a>` : ""}</div>`;
 }
 /* photos: "photos/x.webp" or {"src": "...", "alt": "..."} */
 const photoList = s => (Array.isArray(s.photos) ? s.photos : []).map((p,i) => typeof p === "string" ? {src:p, alt:`${s.name}, photo ${i+1}`} : {src:p.src, alt:p.alt || `${s.name}, photo ${i+1}`}).filter(p => p.src);
@@ -798,8 +800,8 @@ function openSheet(id, pan = true){
     <p class="note">${esc(s.note)}</p>
     ${photosHtml(s)}
     ${tagsHtml(s)}
-    <a class="go" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener">Directions →</a>
-    <div class="more"><a href="${googleUrl(s)}" target="_blank" rel="noopener">Google reviews ↗</a>${igUrl(s) ? `<a href="${igUrl(s)}" target="_blank" rel="noopener">Instagram ↗</a>` : ""}</div>`;
+    <a class="go" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener" data-ev="directions" data-shop="${s.id}">Directions →</a>
+    <div class="more"><a href="${googleUrl(s)}" target="_blank" rel="noopener" data-ev="google" data-shop="${s.id}">Google reviews ↗</a>${igUrl(s) ? `<a href="${igUrl(s)}" target="_blank" rel="noopener" data-ev="instagram" data-shop="${s.id}">Instagram ↗</a>` : ""}</div>`;
   document.getElementById("sheet-x").onclick = closeSheet;
   Object.entries(markers).forEach(([k,m]) => { const el = m.getElement(); if(el && el.firstChild) el.firstChild.classList.toggle("sel", k === id); });
   if(map && pan){
@@ -938,8 +940,18 @@ async function drawFavesCard(list){
   x.putImageData(g, 0, 0);
   return new Promise(res => c.toBlob(res, "image/png"));
 }
+/* Anonymous counts (GoatCounter): no cookies, nothing personal */
+function countEvent(path, title){
+  try{ if(window.goatcounter && window.goatcounter.count) window.goatcounter.count({path, title, event:true}); }catch(e){}
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest && e.target.closest("a[data-ev]");
+  if(a) countEvent(`${a.dataset.ev}/${a.dataset.shop}`, `${a.dataset.ev} · ${a.dataset.shop}`);
+}, true);
+
 async function shareFaves(){
   const list = faveList(); if(!list.length) return;
+  countEvent("share-faves", "Share favourites");
   const btn = document.getElementById("fave-share"); if(btn) btn.disabled = true;
   try{
     const blob = await drawFavesCard(list);
@@ -1056,8 +1068,8 @@ function glassHtml(s, i, total, back){
       <span class="fx s7 ginf"><span>Hours today</span><span>${esc(hrs)}</span></span>
       <div class="fx s7 g2"><span class="ginf"><span>Pets</span>${yesNo(s.pets)}</span><span class="ginf"><span>Laptop</span>${yesNo(s.laptop)}</span></div>
     </div>
-    <div class="fx s7 glinks"><button type="button" id="gmap">Show on map →</button><a href="${googleUrl(s)}" target="_blank" rel="noopener">Google reviews ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener">Instagram ↗</a>` : ""}</div>
-    <span class="fx s8"><a class="gdir" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener"><span>Directions</span><svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M13 1l7 7-7 7M20 8H1" stroke="currentColor" stroke-width="2"/></svg></a></span>`;
+    <div class="fx s7 glinks"><button type="button" id="gmap">Show on map →</button><a href="${googleUrl(s)}" target="_blank" rel="noopener" data-ev="google" data-shop="${s.id}">Google reviews ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener" data-ev="instagram" data-shop="${s.id}">Instagram ↗</a>` : ""}</div>
+    <span class="fx s8"><a class="gdir" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener" data-ev="directions" data-shop="${s.id}"><span>Directions</span><svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M13 1l7 7-7 7M20 8H1" stroke="currentColor" stroke-width="2"/></svg></a></span>`;
 }
 /* "Know them? Tell us" opens the suggestion form with the shop already filled in */
 function tellUs(id){
