@@ -1,18 +1,33 @@
 {
-  "updated": "2026-10-10",
+  "updated": "2026-10-12",
   "shops": [
     {
       "id": "shavi-original",
       "name": "Shavi Coffee Roasters — The Original",
       "area": "Vera",
       "address": "40 Mikheil Zandukeli St",
-      "coords": [41.704105, 44.7840165],
-      "hours": ["08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00"],
+      "coords": [
+        41.704105,
+        44.7840165
+      ],
+      "hours": [
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": true,
       "pets": true,
-      "brew": ["espresso", "v60", "batch"],
+      "brew": [
+        "espresso",
+        "v60",
+        "batch"
+      ],
       "score": null,
       "instagram": "shavi.coffee",
       "place_id": "ChIJQ8xRsO4NREARdIUSKVZklMQ",
@@ -23,13 +38,28 @@
       "name": "Shavi Coffee Roasters — Ninoshvili",
       "area": "Marjanishvili",
       "address": "17 Egnate Ninoshvili St",
-      "coords": [41.7114994, 44.8016915],
-      "hours": ["08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00"],
+      "coords": [
+        41.7114994,
+        44.8016915
+      ],
+      "hours": [
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": true,
       "pets": true,
-      "brew": ["espresso", "v60", "batch"],
+      "brew": [
+        "espresso",
+        "v60",
+        "batch"
+      ],
       "score": null,
       "instagram": "shavi.coffee",
       "place_id": "ChIJW4QwnfcNREAR_a4D8iMld18",
@@ -40,13 +70,28 @@
       "name": "Shavi Coffee Roasters — Garage",
       "area": "Sololaki",
       "address": "28 Lado Asatiani St",
-      "coords": [41.6895483, 44.8017532],
-      "hours": ["08:30-19:00", "08:30-19:00", "08:30-19:00", "08:30-19:00", "08:30-19:00", "08:30-19:00", "08:30-19:00"],
+      "coords": [
+        41.6895483,
+        44.8017532
+      ],
+      "hours": [
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": false,
       "pets": true,
-      "brew": ["espresso", "v60", "batch"],
+      "brew": [
+        "espresso",
+        "v60",
+        "batch"
+      ],
       "score": null,
       "instagram": "shavi.coffee",
       "place_id": "ChIJjdGqyBUNREARk3kcT2m8TcE",
@@ -57,18 +102,46 @@
       "name": "Shavi Coffee Roasters — Bagebi",
       "area": "Bagebi",
       "address": "36a Tskneti Hwy",
-      "coords": [41.7101434, 44.7283844],
-      "hours": ["08:00-19:00", "08:00-19:00", "08:00-19:00", "08:00-19:00", "08:00-19:00", "08:00-19:00", "08:00-19:00"],
+      "coords": [
+        41.7101434,
+        44.7283844
+      ],
+      "hours": [
+        "08:00-19:00",
+        "08:00-19:00",
+        "08:00-19:00",
+        "08:00-19:00",
+        "08:00-19:00",
+        "08:00-19:00",
+        "08:00-19:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": true,
       "pets": true,
-      "brew": ["espresso", "v60", "batch"],
+      "brew": [
+        "espresso",
+        "v60",
+        "batch"
+      ],
       "score": null,
       "instagram": "shavi.coffee",
-      "prices": {"espresso": [5, 7], "cappuccino": 10, "batch": [9, 11]},
+      "prices": {
+        "espresso": [
+          5,
+          7
+        ],
+        "cappuccino": 10,
+        "batch": [
+          9,
+          11
+        ]
+      },
       "photos": [
-        {"src": "photos/shavi-bagebi-1.webp", "alt": "Inside Shavi Coffee Roasters Bagebi: bar, grinder and laptop tables"}
+        {
+          "src": "photos/shavi-bagebi-1.webp",
+          "alt": "Inside Shavi Coffee Roasters Bagebi: bar, grinder and laptop tables"
+        }
       ],
       "place_id": "ChIJo_RJcwBzREAR9Vg0hP11Xhg",
       "note": "Neighbourhood bar up in Bagebi. Batch brew, a decaf option and great cookies. Laptop crowd fills the tables."
@@ -78,12 +151,27 @@
       "name": "BNKR Specialty Roasters — Atoneli",
       "area": "Sololaki",
       "address": "19 Atoneli St",
-      "coords": [41.6987103, 44.8032039],
-      "hours": ["09:00-24:00", "09:00-24:00", "09:00-24:00", "09:00-24:00", "09:00-24:00", "09:00-24:00", "09:00-24:00"],
+      "coords": [
+        41.6987103,
+        44.8032039
+      ],
+      "hours": [
+        "09:00-24:00",
+        "09:00-24:00",
+        "09:00-24:00",
+        "09:00-24:00",
+        "09:00-24:00",
+        "09:00-24:00",
+        "09:00-24:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": true,
-      "brew": ["espresso", "v60", "chemex"],
+      "brew": [
+        "espresso",
+        "v60",
+        "chemex"
+      ],
       "score": null,
       "instagram": "bnkr_coffee_georgia",
       "place_id": "ChIJAVbzDZcNREARWCWNGCy4oEI",
@@ -94,12 +182,27 @@
       "name": "BNKR Specialty Roasters — Janashia",
       "area": "Vera",
       "address": "26 Simon Janashia St",
-      "coords": [41.7056732, 44.7814234],
-      "hours": ["09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "10:00-22:00", "10:00-22:00"],
+      "coords": [
+        41.7056732,
+        44.7814234
+      ],
+      "hours": [
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": true,
-      "brew": ["espresso", "v60", "chemex"],
+      "brew": [
+        "espresso",
+        "v60",
+        "chemex"
+      ],
       "score": null,
       "instagram": "bnkr_coffee_georgia",
       "place_id": "ChIJWWDAuCoNREAR76ry__TdU-I",
@@ -110,12 +213,26 @@
       "name": "Tsvari Roasters",
       "area": "Chugureti",
       "address": "64 Egnate Ninoshvili St",
-      "coords": [41.7173303, 44.7972156],
-      "hours": ["08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00"],
+      "coords": [
+        41.7173303,
+        44.7972156
+      ],
+      "hours": [
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": true,
-      "brew": ["espresso", "v60"],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "tsvari_coffee",
       "place_id": "ChIJZZwo7FINREARsspj1geRYt8",
@@ -126,12 +243,27 @@
       "name": "Brewio Old Town",
       "area": "Old Tbilisi",
       "address": "1 Ovanes Tumaniani II Dead End",
-      "coords": [41.6895215, 44.8072612],
-      "hours": ["09:00-19:00", "09:00-19:00", "09:00-19:00", "09:00-19:00", "09:00-19:00", "09:00-19:00", "09:00-19:00"],
+      "coords": [
+        41.6895215,
+        44.8072612
+      ],
+      "hours": [
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00"
+      ],
       "roasts": false,
       "beans": true,
       "laptop": false,
-      "brew": ["espresso", "v60", "aeropress"],
+      "brew": [
+        "espresso",
+        "v60",
+        "aeropress"
+      ],
       "score": null,
       "instagram": "brewio.ge",
       "place_id": "ChIJF5v0mNINREARGdXfVex2oo4",
@@ -142,19 +274,45 @@
       "name": "CITYHIKERS Specialty Coffee",
       "area": "Dedaena Park",
       "address": "Dedaena Park",
-      "coords": [41.7015355, 44.8036853],
-      "hours": ["09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-24:00", "09:00-24:00", "09:00-24:00", "09:00-24:00"],
+      "coords": [
+        41.7015355,
+        44.8036853
+      ],
+      "hours": [
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-24:00",
+        "09:00-24:00",
+        "09:00-24:00",
+        "09:00-24:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": true,
-      "brew": ["espresso", "v60"],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "cityhikers_tbilisi",
       "photos": [
-        {"src": "photos/cityhikers-1.webp", "alt": "CITYHIKERS container café with outdoor seating by the bridge"},
-        {"src": "photos/cityhikers-2.webp", "alt": "At the CITYHIKERS bar"},
-        {"src": "photos/cityhikers-3.webp", "alt": "Iced matcha being poured at CITYHIKERS"},
-        {"src": "photos/cityhikers-4.webp", "alt": "An evening at CITYHIKERS"}
+        {
+          "src": "photos/cityhikers-1.webp",
+          "alt": "CITYHIKERS container café with outdoor seating by the bridge"
+        },
+        {
+          "src": "photos/cityhikers-2.webp",
+          "alt": "At the CITYHIKERS bar"
+        },
+        {
+          "src": "photos/cityhikers-3.webp",
+          "alt": "Iced matcha being poured at CITYHIKERS"
+        },
+        {
+          "src": "photos/cityhikers-4.webp",
+          "alt": "An evening at CITYHIKERS"
+        }
       ],
       "place_id": "ChIJgdpVPQANREARf6Ce9n9bdTg",
       "note": "Riverside, inside the park by the bridge. More of a hangout than a coffee bar."
@@ -164,12 +322,27 @@
       "name": "Coffee LAB — Kazbegi",
       "area": "Saburtalo",
       "address": "27 Alexander Kazbegi Ave",
-      "coords": [41.7256389, 44.7549732],
-      "hours": ["09:00-23:00", "09:00-23:00", "09:00-23:00", "09:00-23:00", "09:00-23:00", "09:00-23:00", "09:00-23:00"],
+      "coords": [
+        41.7256389,
+        44.7549732
+      ],
+      "hours": [
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": true,
-      "brew": ["espresso", "v60", "batch"],
+      "brew": [
+        "espresso",
+        "v60",
+        "batch"
+      ],
       "score": null,
       "instagram": "coffeelabgeorgia",
       "place_id": "ChIJqy7D7h5zREARAxxHn9uIe4c",
@@ -180,12 +353,26 @@
       "name": "Coffee LAB — Chavchavadze",
       "area": "Vake",
       "address": "37 Ilia Chavchavadze Ave",
-      "coords": [41.7115923, 44.7566922],
-      "hours": ["09:00-23:00", "09:00-23:00", "09:00-23:00", "09:00-23:00", "09:00-23:00", "09:00-23:00", "09:00-23:00"],
+      "coords": [
+        41.7115923,
+        44.7566922
+      ],
+      "hours": [
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": true,
-      "brew": ["espresso", "v60"],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "coffeelabgeorgia",
       "place_id": "ChIJmSFs-3lzREAR1O1edhpSsIw",
@@ -196,12 +383,26 @@
       "name": "Coffee LAB — Paliashvili",
       "area": "Vake",
       "address": "24 Paliashvili St",
-      "coords": [41.7078361, 44.7733922],
-      "hours": ["09:00-20:30", "09:00-20:30", "09:00-20:30", "09:00-20:30", "09:00-20:30", "09:00-20:30", "09:00-20:30"],
+      "coords": [
+        41.7078361,
+        44.7733922
+      ],
+      "hours": [
+        "09:00-20:30",
+        "09:00-20:30",
+        "09:00-20:30",
+        "09:00-20:30",
+        "09:00-20:30",
+        "09:00-20:30",
+        "09:00-20:30"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": true,
-      "brew": ["espresso", "v60"],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "coffeelabgeorgia",
       "place_id": "ChIJ-1JTc24NREARx8gTiUxkrCw",
@@ -212,12 +413,25 @@
       "name": "Coffee LAB — Bazari Orbeliani",
       "area": "Sololaki",
       "address": "3a Vekua St (Bazari Orbeliani)",
-      "coords": [41.6974789, 44.8040422],
-      "hours": ["10:00-23:00", "10:00-23:00", "10:00-23:00", "10:00-23:00", "10:00-23:00", "10:00-23:00", "10:00-23:00"],
+      "coords": [
+        41.6974789,
+        44.8040422
+      ],
+      "hours": [
+        "10:00-23:00",
+        "10:00-23:00",
+        "10:00-23:00",
+        "10:00-23:00",
+        "10:00-23:00",
+        "10:00-23:00",
+        "10:00-23:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": true,
-      "brew": ["espresso"],
+      "brew": [
+        "espresso"
+      ],
       "score": null,
       "instagram": "coffeelabgeorgia",
       "place_id": "ChIJMcyQWjANREARdkG5PY1CUIw",
@@ -228,20 +442,46 @@
       "name": "Pro Barista",
       "area": "Station Square",
       "address": "63 Giorgi Chubinashvili St",
-      "coords": [41.7185128, 44.7980803],
-      "hours": ["08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00"],
+      "coords": [
+        41.7185128,
+        44.7980803
+      ],
+      "hours": [
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": true,
       "pets": true,
-      "brew": ["espresso", "v60"],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "probarista.ge",
       "photos": [
-        {"src": "photos/pro-barista-1.webp", "alt": "Terrace under the red awning at Pro Barista"},
-        {"src": "photos/pro-barista-2.webp", "alt": "Pro Barista storefront and outdoor seating"},
-        {"src": "photos/pro-barista-3.webp", "alt": "Bags of Pro Barista's own Microlot coffee"},
-        {"src": "photos/pro-barista-4.webp", "alt": "Fresh beans cooling in Pro Barista's Giesen roaster"}
+        {
+          "src": "photos/pro-barista-1.webp",
+          "alt": "Terrace under the red awning at Pro Barista"
+        },
+        {
+          "src": "photos/pro-barista-2.webp",
+          "alt": "Pro Barista storefront and outdoor seating"
+        },
+        {
+          "src": "photos/pro-barista-3.webp",
+          "alt": "Bags of Pro Barista's own Microlot coffee"
+        },
+        {
+          "src": "photos/pro-barista-4.webp",
+          "alt": "Fresh beans cooling in Pro Barista's Giesen roaster"
+        }
       ],
       "place_id": "ChIJRbPAwFUNREARSnQfMx3pmoU",
       "note": "Small roaster-café by the station with a serious single-origin list."
@@ -251,12 +491,28 @@
       "name": "Caffeine by WorkIn",
       "area": "Saburtalo",
       "address": "34 Pekini Ave",
-      "coords": [41.7261691, 44.7685813],
-      "hours": ["09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00"],
+      "coords": [
+        41.7261691,
+        44.7685813
+      ],
+      "hours": [
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": true,
-      "brew": ["espresso", "v60", "batch", "chemex"],
+      "brew": [
+        "espresso",
+        "v60",
+        "batch",
+        "chemex"
+      ],
       "score": null,
       "instagram": "caffeine.workin",
       "place_id": "ChIJVWiRT2dzREARLdHZoDW32Tg",
@@ -267,12 +523,26 @@
       "name": "Industrial Specialty Coffee",
       "area": "Vake",
       "address": "27/29 Ilia Chavchavadze Ave",
-      "coords": [41.7106053, 44.7661919],
-      "hours": ["08:00-22:00", "08:00-22:00", "08:00-22:00", "08:00-22:00", "08:00-22:00", "08:00-22:00", "08:00-22:00"],
+      "coords": [
+        41.7106053,
+        44.7661919
+      ],
+      "hours": [
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": true,
-      "brew": ["espresso", "v60"],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "industrialcoffee.ge",
       "place_id": "ChIJa8Xw2YRzREARAIVDNM6xwfc",
@@ -283,19 +553,43 @@
       "name": "SASH. coffee & more",
       "area": "Vake",
       "address": "8 Bazaleti St",
-      "coords": [41.7075797, 44.7728069],
-      "hours": ["09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00"],
+      "coords": [
+        41.7075797,
+        44.7728069
+      ],
+      "hours": [
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": true,
       "pets": true,
-      "roaster": ["Shavi", "Mamuli", "Tasty"],
-      "brew": ["espresso", "v60"],
+      "roaster": [
+        "Shavi",
+        "Mamuli",
+        "Tasty"
+      ],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "sash.coffee",
       "photos": [
-        {"src": "photos/sash-1.webp", "alt": "SASH. storefront on Bazaleti St"},
-        {"src": "photos/sash-2.webp", "alt": "A slice of berry tart at SASH."}
+        {
+          "src": "photos/sash-1.webp",
+          "alt": "SASH. storefront on Bazaleti St"
+        },
+        {
+          "src": "photos/sash-2.webp",
+          "alt": "A slice of berry tart at SASH."
+        }
       ],
       "place_id": "ChIJiwFNMQANREARSDZUO_YLBQ8",
       "note": "Weekend-breakfast spot first, coffee second. Good cold brew."
@@ -305,12 +599,26 @@
       "name": "OKRO Coffee Roastery and Bakery",
       "area": "Vake",
       "address": "12 Iakob Nikoladze St",
-      "coords": [41.7094078, 44.7820775],
-      "hours": ["08:00-18:00", "08:00-18:00", "08:00-18:00", "08:00-18:00", "08:00-18:00", "08:00-18:00", "08:00-18:00"],
+      "coords": [
+        41.7094078,
+        44.7820775
+      ],
+      "hours": [
+        "08:00-18:00",
+        "08:00-18:00",
+        "08:00-18:00",
+        "08:00-18:00",
+        "08:00-18:00",
+        "08:00-18:00",
+        "08:00-18:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": false,
-      "brew": ["espresso", "v60"],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "okroroastery",
       "place_id": "ChIJ5QdNuqINREARN63aGjGuxaw",
@@ -321,12 +629,25 @@
       "name": "Roots Coffee and More — Kakabadze",
       "area": "Mtatsminda",
       "address": "45 Polikarpe Kakabadze St",
-      "coords": [41.7011138, 44.7877179],
-      "hours": ["08:00-22:00", "08:00-22:00", "08:00-22:00", "08:00-22:00", "09:00-24:00", "09:00-24:00", "09:00-24:00"],
+      "coords": [
+        41.7011138,
+        44.7877179
+      ],
+      "hours": [
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "09:00-24:00",
+        "09:00-24:00",
+        "09:00-24:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": false,
-      "brew": ["espresso"],
+      "brew": [
+        "espresso"
+      ],
       "score": null,
       "instagram": "roots.coffeeandmore",
       "place_id": "ChIJbfcWjkINREARsEgA0_qaQdQ",
@@ -337,12 +658,26 @@
       "name": "Roots Coffee and More — Concept Store",
       "area": "Vake",
       "address": "7 Iovel Kutateladze St",
-      "coords": [41.7068912, 44.7754632],
-      "hours": ["09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00"],
+      "coords": [
+        41.7068912,
+        44.7754632
+      ],
+      "hours": [
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": false,
-      "brew": ["espresso", "v60"],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "roots.coffeeandmore",
       "place_id": "ChIJNZy9f2ENREARqROeI-ROlXk",
@@ -353,12 +688,26 @@
       "name": "Chika — Rustaveli",
       "area": "Rustaveli",
       "address": "9 Merab Kostava St",
-      "coords": [41.7051577, 44.7895322],
-      "hours": ["08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00"],
+      "coords": [
+        41.7051577,
+        44.7895322
+      ],
+      "hours": [
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": false,
-      "brew": ["espresso", "v60"],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "chika.coffee",
       "place_id": "ChIJZYfRHccNREARiU6A62dG4yg",
@@ -369,12 +718,26 @@
       "name": "Chika — Laghidze",
       "area": "Sololaki",
       "address": "6 Mitropan Laghidze St",
-      "coords": [41.6997312, 44.7957046],
-      "hours": ["08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00"],
+      "coords": [
+        41.6997312,
+        44.7957046
+      ],
+      "hours": [
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00",
+        "08:00-21:00"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": false,
-      "brew": ["espresso", "v60"],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "chika.coffee",
       "place_id": "ChIJCZddbcANREARCJ3uFILTblc",
@@ -385,12 +748,26 @@
       "name": "Chika — Bazari Orbeliani",
       "area": "Sololaki",
       "address": "3a Vekua St (Bazari Orbeliani)",
-      "coords": [41.6974413, 44.8039503],
-      "hours": ["10:00-18:30", "10:00-18:30", "10:00-18:30", "10:00-18:30", "10:00-18:30", "10:00-18:30", "10:00-18:30"],
+      "coords": [
+        41.6974413,
+        44.8039503
+      ],
+      "hours": [
+        "10:00-18:30",
+        "10:00-18:30",
+        "10:00-18:30",
+        "10:00-18:30",
+        "10:00-18:30",
+        "10:00-18:30",
+        "10:00-18:30"
+      ],
       "roasts": true,
       "beans": true,
       "laptop": false,
-      "brew": ["espresso", "v60"],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "chika.coffee",
       "place_id": "ChIJm12jC4wNREARfIZMIGVdphc",
@@ -401,19 +778,45 @@
       "name": "Salty Cafe",
       "area": "Saburtalo",
       "address": "14 Platon Ioseliani St",
-      "coords": [41.7160747, 44.7743736],
-      "hours": ["10:00-20:00", "10:00-20:00", "10:00-20:00", "10:00-20:00", "10:00-20:00", "10:00-20:00", "10:00-20:00"],
+      "coords": [
+        41.7160747,
+        44.7743736
+      ],
+      "hours": [
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": true,
-      "brew": ["espresso", "v60"],
+      "brew": [
+        "espresso",
+        "v60"
+      ],
       "score": null,
       "instagram": "salty__cafe",
       "photos": [
-        {"src": "photos/salty-1.webp", "alt": "Coffee being poured outside Salty, café and bicycle workshop"},
-        {"src": "photos/salty-2.webp", "alt": "Open sandwich with mortadella, olives and pesto at Salty"},
-        {"src": "photos/salty-3.webp", "alt": "Sunlit communal table and art inside Salty"},
-        {"src": "photos/salty-4.webp", "alt": "Cyclists gathering outside Salty"}
+        {
+          "src": "photos/salty-1.webp",
+          "alt": "Coffee being poured outside Salty, café and bicycle workshop"
+        },
+        {
+          "src": "photos/salty-2.webp",
+          "alt": "Open sandwich with mortadella, olives and pesto at Salty"
+        },
+        {
+          "src": "photos/salty-3.webp",
+          "alt": "Sunlit communal table and art inside Salty"
+        },
+        {
+          "src": "photos/salty-4.webp",
+          "alt": "Cyclists gathering outside Salty"
+        }
       ],
       "place_id": "ChIJz9eWpFNzREARWh1-IyW7acY",
       "note": "Cosy coffee bar with a bike mechanic on site, a cyclists' favourite. Good filter, great banana bread."
@@ -423,12 +826,27 @@
       "name": "Pulp — Janashia",
       "area": "Vera",
       "address": "22 Simon Janashia St",
-      "coords": [41.7059778, 44.7814868],
-      "hours": ["09:30-20:00", "09:30-20:00", "09:30-20:00", "09:30-20:00", "09:30-21:00", "10:00-21:00", "10:00-20:00"],
+      "coords": [
+        41.7059778,
+        44.7814868
+      ],
+      "hours": [
+        "09:30-20:00",
+        "09:30-20:00",
+        "09:30-20:00",
+        "09:30-20:00",
+        "09:30-21:00",
+        "10:00-21:00",
+        "10:00-20:00"
+      ],
       "roasts": false,
       "beans": true,
       "laptop": true,
-      "brew": ["espresso", "v60", "batch"],
+      "brew": [
+        "espresso",
+        "v60",
+        "batch"
+      ],
       "score": null,
       "instagram": "pulp.tbilisi",
       "place_id": "ChIJf_Mu8P0NREARWWZEbxclDvM",
@@ -439,12 +857,25 @@
       "name": "Shukura",
       "area": "Vake",
       "address": "49 Irakli Abashidze St",
-      "coords": [41.7084352, 44.7601533],
-      "hours": ["10:00-22:00", "10:00-22:00", "10:00-22:00", "10:00-22:00", "10:00-22:00", "10:00-22:00", "10:00-22:00"],
+      "coords": [
+        41.7084352,
+        44.7601533
+      ],
+      "hours": [
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": true,
-      "brew": ["espresso"],
+      "brew": [
+        "espresso"
+      ],
       "score": null,
       "instagram": "shukura.coffee",
       "place_id": "ChIJ57yQL_FzREARq2OXWvTVZR0",
@@ -455,12 +886,25 @@
       "name": "Minimalist",
       "area": "Vake",
       "address": "110 Zakaria Paliashvili St",
-      "coords": [41.7097969, 44.7547726],
-      "hours": ["09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00"],
+      "coords": [
+        41.7097969,
+        44.7547726
+      ],
+      "hours": [
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": true,
-      "brew": ["espresso"],
+      "brew": [
+        "espresso"
+      ],
       "score": null,
       "instagram": "minimalist.tbilisi",
       "place_id": "ChIJJ_4Qf8ZzREAROM9C9BVeCeg",
@@ -471,19 +915,44 @@
       "name": "Karaqi Bakery",
       "area": "Sololaki",
       "address": "29/7 Dzmebi Zubalashvilebi St",
-      "coords": [41.6993113, 44.7949334],
-      "hours": ["09:00-17:00", "09:00-17:00", "09:00-17:00", "09:00-17:00", "09:00-17:00", "09:00-17:00", "09:00-17:00"],
+      "coords": [
+        41.6993113,
+        44.7949334
+      ],
+      "hours": [
+        "09:00-17:00",
+        "09:00-17:00",
+        "09:00-17:00",
+        "09:00-17:00",
+        "09:00-17:00",
+        "09:00-17:00",
+        "09:00-17:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": false,
-      "brew": ["espresso"],
+      "brew": [
+        "espresso"
+      ],
       "score": null,
       "instagram": "karaqi.bakery.tbi",
       "photos": [
-        {"src": "photos/karaqi-1.webp", "alt": "Lamp and speaker in a quiet corner at Karaqi"},
-        {"src": "photos/karaqi-2.webp", "alt": "Croissants, cruffins and buns on Karaqi's pastry shelf"},
-        {"src": "photos/karaqi-3.webp", "alt": "Order tickets on the spike at Karaqi's bar"},
-        {"src": "photos/karaqi-4.webp", "alt": "Window table by the brick wall at Karaqi"}
+        {
+          "src": "photos/karaqi-1.webp",
+          "alt": "Lamp and speaker in a quiet corner at Karaqi"
+        },
+        {
+          "src": "photos/karaqi-2.webp",
+          "alt": "Croissants, cruffins and buns on Karaqi's pastry shelf"
+        },
+        {
+          "src": "photos/karaqi-3.webp",
+          "alt": "Order tickets on the spike at Karaqi's bar"
+        },
+        {
+          "src": "photos/karaqi-4.webp",
+          "alt": "Window table by the brick wall at Karaqi"
+        }
       ],
       "note": "Small bakery behind the music school: flaky croissants, cruffins and canelés, with coffee to go with them."
     },
@@ -492,22 +961,46 @@
       "name": "Slink Café",
       "area": "Marjanishvili",
       "address": "73a Davit Aghmashenebeli Ave",
-      "coords": [41.7090493, 44.7997114],
-      "hours": ["", "10:00-18:00", "10:00-18:00", "10:00-18:00", "10:00-18:00", "10:00-18:00", "10:00-18:00"],
+      "coords": [
+        41.7090493,
+        44.7997114
+      ],
+      "hours": [
+        "",
+        "10:00-18:00",
+        "10:00-18:00",
+        "10:00-18:00",
+        "10:00-18:00",
+        "10:00-18:00",
+        "10:00-18:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": false,
       "pets": true,
-      "roaster": ["Shavi"],
-      "brew": ["espresso"],
+      "roaster": [
+        "Shavi"
+      ],
+      "brew": [
+        "espresso"
+      ],
       "score": null,
       "instagram": "slinkcafe",
       "place_id": "ChIJkwPRR88NREARTl5sC7HXdJM",
       "note": "Brunch spot in a glasshouse in the park, with a sunny gravel garden. Dog friendly. Closed Mondays.",
       "photos": [
-        {"src": "photos/slink-1.webp", "alt": "The glasshouse dining room and bar at Slink Café"},
-        {"src": "photos/slink-2.webp", "alt": "Pink bistro tables in Slink Café's gravel garden"},
-        {"src": "photos/slink-3.webp", "alt": "Brunch with coffee at Slink Café"}
+        {
+          "src": "photos/slink-1.webp",
+          "alt": "The glasshouse dining room and bar at Slink Café"
+        },
+        {
+          "src": "photos/slink-2.webp",
+          "alt": "Pink bistro tables in Slink Café's gravel garden"
+        },
+        {
+          "src": "photos/slink-3.webp",
+          "alt": "Brunch with coffee at Slink Café"
+        }
       ]
     },
     {
@@ -515,23 +1008,58 @@
       "name": "BARR",
       "area": "Vake",
       "address": "64 Ilia Chavchavadze Ave",
-      "coords": [41.7105963, 44.7589041],
-      "hours": ["09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00", "09:00-22:00"],
+      "coords": [
+        41.7105963,
+        44.7589041
+      ],
+      "hours": [
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00"
+      ],
       "roasts": false,
       "beans": true,
       "laptop": false,
-      "roaster": ["Bonanza"],
-      "brew": ["espresso", "batch"],
-      "prices": {"espresso": 9, "cappuccino": [11, 13], "batch": 9},
+      "roaster": [
+        "Bonanza"
+      ],
+      "brew": [
+        "espresso",
+        "batch"
+      ],
+      "prices": {
+        "espresso": 9,
+        "cappuccino": [
+          11,
+          13
+        ],
+        "batch": 9
+      },
       "score": null,
       "instagram": "barr.tbs",
       "place_id": "ChIJJ9MTxn9zREAR4-pdl_pL06E",
       "note": "All-steel bar on Chavchavadze pouring Berlin's Bonanza beans. Small and busy at peak times; good pastry and breakfasts.",
       "photos": [
-        {"src": "photos/barr-1.webp", "alt": "BARR's stainless-steel bar seen through the glass door"},
-        {"src": "photos/barr-2.webp", "alt": "Steel table and stools at BARR"},
-        {"src": "photos/barr-3.webp", "alt": "Bags of Bonanza Coffee Roasters beans on BARR's shelf"},
-        {"src": "photos/barr-4.webp", "alt": "BARR's steel menu board"}
+        {
+          "src": "photos/barr-1.webp",
+          "alt": "BARR's stainless-steel bar seen through the glass door"
+        },
+        {
+          "src": "photos/barr-2.webp",
+          "alt": "Steel table and stools at BARR"
+        },
+        {
+          "src": "photos/barr-3.webp",
+          "alt": "Bags of Bonanza Coffee Roasters beans on BARR's shelf"
+        },
+        {
+          "src": "photos/barr-4.webp",
+          "alt": "BARR's steel menu board"
+        }
       ]
     },
     {
@@ -539,15 +1067,39 @@
       "name": "BRINKS",
       "area": "Vera",
       "address": "8 Leo Kiacheli St",
-      "coords": [41.7054309, 44.790908],
-      "hours": ["09:00-19:00", "09:00-19:00", "09:00-19:00", "09:00-19:00", "09:00-19:00", "09:00-19:00", "09:00-19:00"],
+      "coords": [
+        41.7054309,
+        44.790908
+      ],
+      "hours": [
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": false,
       "pets": true,
-      "roaster": ["Kuro"],
-      "brew": ["espresso", "v60", "batch"],
-      "prices": {"espresso": 7, "cappuccino": [9, 11], "batch": 8},
+      "roaster": [
+        "Kuro"
+      ],
+      "brew": [
+        "espresso",
+        "v60",
+        "batch"
+      ],
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          9,
+          11
+        ],
+        "batch": 8
+      },
       "score": null,
       "instagram": "brinks.cafe",
       "place_id": "ChIJ-4JB5IKLQ0ARl1NB9oBcEFo",
@@ -558,14 +1110,32 @@
       "name": "No More Mondays",
       "area": "Vera",
       "address": "21 Merab Kostava St (1 Vashlovani St)",
-      "coords": [41.7059199, 44.7882839],
-      "hours": ["09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00", "09:00-21:00"],
+      "coords": [
+        41.7059199,
+        44.7882839
+      ],
+      "hours": [
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": false,
       "pets": true,
-      "brew": ["espresso", "batch"],
-      "prices": {"espresso": 7, "cappuccino": 10, "batch": 8},
+      "brew": [
+        "espresso",
+        "batch"
+      ],
+      "prices": {
+        "espresso": 7,
+        "cappuccino": 10,
+        "batch": 8
+      },
       "score": null,
       "instagram": "nomomocafe",
       "place_id": "ChIJX9_iDTMNREARo0AmMRRrNnI",
@@ -576,16 +1146,61 @@
       "name": "Baba Bakery",
       "area": "Sololaki",
       "address": "4 Ivane Machabeli St",
-      "coords": [41.6920272, 44.7999395],
-      "hours": ["08:30-20:30", "08:30-20:30", "08:30-19:30", "08:30-20:30", "08:30-21:30", "08:30-21:30", "08:30-21:30"],
+      "coords": [
+        41.6920272,
+        44.7999395
+      ],
+      "hours": [
+        "08:30-20:30",
+        "08:30-20:30",
+        "08:30-19:30",
+        "08:30-20:30",
+        "08:30-21:30",
+        "08:30-21:30",
+        "08:30-21:30"
+      ],
       "roasts": false,
       "beans": false,
       "laptop": false,
-      "brew": ["espresso"],
+      "brew": [
+        "espresso"
+      ],
       "score": null,
       "instagram": "baba_bakery_tbilisi",
       "place_id": "ChIJ-QWDUjsNREARIVXBAwdmClA",
       "note": "Small storefront in Sololaki that opens into a pretty seating room. Excellent croissants and cruffins; open from 8:30."
+    },
+    {
+      "id": "808",
+      "name": "808",
+      "area": "Vera",
+      "address": "23 Merab Kostava St",
+      "coords": [
+        41.7063075,
+        44.7879776
+      ],
+      "hours": [
+        "11:00-23:00",
+        "11:00-23:00",
+        "11:00-23:00",
+        "11:00-23:00",
+        "11:00-23:00",
+        "11:00-23:00",
+        "11:00-23:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "roaster": [
+        "Mamuli"
+      ],
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "808.eightoeight",
+      "place_id": "ChIJpbc6BgANREARx2fIyYe71ks",
+      "note": "Small East Asian café on Kostava: onigirazu, mochi and matcha alongside the coffee."
     }
   ]
 }
