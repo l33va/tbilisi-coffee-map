@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-12",
+  "updated": "2026-10-13",
   "shops": [
     {
       "id": "shavi-original",
@@ -1247,6 +1247,36 @@
       "instagram": "corner.tbilisi",
       "place_id": "ChIJP758ujRzREAR-tpS2w9gkT4",
       "note": "Calm little café near Vake Park with V60, batch brew and good pastries."
+    },
+    {
+      "id": "asters",
+      "name": "Asters",
+      "area": "Marjanishvili",
+      "address": "4 Kote Marjanishvili St",
+      "coords": [
+        41.7085107,
+        44.7941757
+      ],
+      "hours": [
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00"
+      ],
+      "roasts": false,
+      "beans": true,
+      "laptop": false,
+      "pets": true,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "asters_coffeeplace_tbilisi",
+      "place_id": "ChIJU4C7sU8NREARCrnyli_pqig",
+      "note": "Cosy little spot near Marjanishvili metro with good pastries and a shelf of vintage tableware."
     }
   ]
 }
