@@ -30,8 +30,8 @@
   --gold:#F0B73C;       /* favourites on the map */
   --red:#FF3B2F;        /* closing soon, the pin on the logo */
   --pin:var(--red);     /* used by the logo symbol */
-  --display:"Archivo Black","Arial Black",Impact,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --display:"Archivo Black","Georgian Display","Arial Black",Impact,sans-serif;
+  --mono:"IBM Plex Mono","Georgian Text",ui-monospace,Menlo,monospace;
   --hdr:150px;
   --nav:64px;
   --safe-b:env(safe-area-inset-bottom,0px);
@@ -269,8 +269,8 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .about-sec:first-of-type{border-top-color:var(--fg)}
 .about-sec p{margin-top:6px;font-size:12px;line-height:1.6;color:#CFCFCF}
 .about-sec a{color:var(--fg);border-bottom:1px solid var(--hair);text-decoration:none}
-.legend-grid{margin-top:8px;display:grid;grid-template-columns:96px 1fr;gap:8px 12px;align-items:center}
-.legend-grid b{font-family:var(--display);font-weight:400;font-size:19px;line-height:1.1;text-transform:uppercase}
+.legend-grid{margin-top:8px;display:grid;grid-template-columns:max-content 1fr;gap:8px 12px;align-items:center}
+.legend-grid b{font-family:var(--display);font-weight:400;font-size:19px;min-width:84px;line-height:1.1;text-transform:uppercase}
 .legend-grid span{font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
 
 /* ---------- Frosted glass shop view (opens from Faves) ---------- */
@@ -377,26 +377,26 @@ nav button[aria-selected="true"]{color:var(--fg)}
 
 <header>
   <div class="meta-row">
-    <h1 class="brand"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#cup"/></svg><span>Tbilisi<br>Coffee Map</span></h1>
+    <h1 class="brand"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#cup"/></svg><span data-t="brand">Tbilisi<br>Coffee Map</span></h1>
     <div class="mid" id="mid">Focus = open<br>Blur = closed or far</div>
     <div class="count" id="count"></div>
   </div>
   <div class="search" role="search">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    <input id="q" type="search" placeholder="Search shops, areas, streets" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" aria-label="Search shops">
-    <button id="q-clear" type="button" aria-label="Clear search" hidden>&times;</button>
+    <input id="q" type="search" placeholder="Search shops, areas, streets" data-tp="q" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" aria-label="Search shops" data-ta="q">
+    <button id="q-clear" type="button" aria-label="Clear search" data-ta="qclear" hidden>&times;</button>
   </div>
-  <div class="chips" id="chips" role="group" aria-label="Filters"></div>
+  <div class="chips" id="chips" role="group" aria-label="Filters" data-ta="filters"></div>
 </header>
 
 <main>
   <section class="view active" id="list" aria-label="List">
     <div class="hero">
-      <svg viewBox="0 0 390 326" role="img" aria-label="Shops open now" id="hero-svg">
-        <text class="n" x="14" y="236" font-family="'Archivo Black',sans-serif" font-size="270" fill="#F4F4F4" opacity=".28" filter="url(#diffuse)" letter-spacing="-12"></text>
-        <text class="n" x="14" y="236" font-family="'Archivo Black',sans-serif" font-size="270" fill="#F4F4F4" opacity=".55" filter="url(#soft)" letter-spacing="-12"></text>
-        <text x="18" y="292" font-family="'Archivo Black',sans-serif" font-size="50" fill="#F4F4F4" letter-spacing="-1">OPEN NOW</text>
-        <text id="hero-of" x="20" y="318" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.5" fill="#B5B5B5"></text>
+      <svg viewBox="0 0 390 326" role="img" aria-label="Shops open now" data-ta="heroaria" id="hero-svg">
+        <text class="n" x="14" y="236" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="270" fill="#F4F4F4" opacity=".28" filter="url(#diffuse)" letter-spacing="-12"></text>
+        <text class="n" x="14" y="236" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="270" fill="#F4F4F4" opacity=".55" filter="url(#soft)" letter-spacing="-12"></text>
+        <text x="18" y="292" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="50" fill="#F4F4F4" letter-spacing="-1" data-t="opennow">OPEN NOW</text>
+        <text id="hero-of" x="20" y="318" font-family="'IBM Plex Mono','Georgian Text',monospace" font-size="10" letter-spacing="0.5" fill="#B5B5B5"></text>
       </svg>
       <button class="hero-loc" id="hero-loc" type="button">Use my location</button>
     </div>
@@ -404,72 +404,72 @@ nav button[aria-selected="true"]{color:var(--fg)}
   </section>
   <section class="view" id="faves" aria-label="Favourites">
     <div class="hero">
-      <svg viewBox="0 0 390 210" role="img" aria-label="Saved shops" id="fave-hero">
-        <text class="fn" x="14" y="150" font-family="'Archivo Black',sans-serif" font-size="190" fill="#F4F4F4" opacity=".28" filter="url(#diffuse)" letter-spacing="-8"></text>
-        <text class="fn" x="14" y="150" font-family="'Archivo Black',sans-serif" font-size="190" fill="#F4F4F4" opacity=".55" filter="url(#soft)" letter-spacing="-8"></text>
-        <text x="18" y="198" font-family="'Archivo Black',sans-serif" font-size="46" fill="#F4F4F4" letter-spacing="-1">FAVOURITES</text>
+      <svg viewBox="0 0 390 210" role="img" aria-label="Saved shops" data-ta="favearia" id="fave-hero">
+        <text class="fn" x="14" y="150" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="190" fill="#F4F4F4" opacity=".28" filter="url(#diffuse)" letter-spacing="-8"></text>
+        <text class="fn" x="14" y="150" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="190" fill="#F4F4F4" opacity=".55" filter="url(#soft)" letter-spacing="-8"></text>
+        <text x="18" y="198" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="46" fill="#F4F4F4" letter-spacing="-1" data-t="favtitle">FAVOURITES</text>
       </svg>
-      <button class="share-btn" type="button" id="fave-share" aria-label="Share favourites as a picture" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></button>
+      <button class="share-btn" type="button" id="fave-share" aria-label="Share favourites as a picture" data-ta="share" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></button>
     </div>
     <div id="fave-rows"></div>
   </section>
   <section class="view" id="contact" aria-label="Contact us">
     <div class="seg" role="tablist" aria-label="Contact sections" id="seg">
-      <button type="button" role="tab" aria-selected="true" data-panel="suggest">Suggest</button>
-      <button type="button" role="tab" aria-selected="false" data-panel="shops">For shops</button>
-      <button type="button" role="tab" aria-selected="false" data-panel="about">About</button>
+      <button type="button" role="tab" aria-selected="true" data-panel="suggest" data-t="seg1">Suggest</button>
+      <button type="button" role="tab" aria-selected="false" data-panel="shops" data-t="seg2">For shops</button>
+      <button type="button" role="tab" aria-selected="false" data-panel="about" data-t="seg3">About</button>
     </div>
 
     <div class="panel" id="panel-suggest">
-      <h2 class="h">Suggest a shop</h2>
-      <p class="lead">Know a place we're missing, or a detail that's wrong? Tell us.</p>
+      <h2 class="h" data-t="hsug">Suggest a shop</h2>
+      <p class="lead" data-t="leadsug">Know a place we're missing, or a detail that's wrong? Tell us.</p>
       <form id="f-suggest">
-        <div class="field"><label for="s-name">Shop name</label><input id="s-name" name="name" required autocomplete="off" placeholder="e.g. Kokoro Coffee"></div>
-        <div class="field"><label for="s-area">Area or address</label><input id="s-area" name="area" autocomplete="off" placeholder="e.g. Vake, Chavchavadze Ave"></div>
-        <div class="field"><label for="s-why">Why we should add it</label><textarea id="s-why" name="why" placeholder="Good V60, quiet in the morning…"></textarea></div>
-        <button class="btn" type="submit">Send suggestion</button>
+        <div class="field"><label for="s-name" data-t="shopname">Shop name</label><input id="s-name" name="name" required autocomplete="off" placeholder="e.g. Kokoro Coffee" data-tp="sname"></div>
+        <div class="field"><label for="s-area" data-t="areaaddr">Area or address</label><input id="s-area" name="area" autocomplete="off" placeholder="e.g. Vake, Chavchavadze Ave" data-tp="sarea"></div>
+        <div class="field"><label for="s-why" data-t="why">Why we should add it</label><textarea id="s-why" name="why" placeholder="Good V60, quiet in the morning…" data-tp="swhy"></textarea></div>
+        <button class="btn" type="submit" data-t="sendsug">Send suggestion</button>
       </form>
       <div class="prefs">
-        <div class="prefs-head"><h3>Your preferences</h3><span>Kept on this phone</span></div>
-        <div class="lab">I drink</div>
+        <div class="prefs-head"><h3 data-t="prefh">Your preferences</h3><span data-t="kept">Kept on this phone</span></div>
+        <div class="lab" data-t="idrink">I drink</div>
         <div class="chips-wrap" id="pref-brew"></div>
         <div class="switches" id="pref-switches"></div>
       </div>
     </div>
 
     <div class="panel" id="panel-shops" hidden>
-      <h2 class="h">Add your shop</h2>
-      <p class="lead">Run a specialty coffee shop in Tbilisi? Tell us about it. We review every entry before it goes on the map.</p>
+      <h2 class="h" data-t="hshop">Add your shop</h2>
+      <p class="lead" data-t="leadshop">Run a specialty coffee shop in Tbilisi? Tell us about it. We review every entry before it goes on the map.</p>
       <form id="f-shop">
-        <div class="field"><label for="p-name">Shop name</label><input id="p-name" name="name" required autocomplete="off" placeholder="Your shop's name"></div>
-        <div class="field"><label for="p-addr">Address or Google Maps link</label><input id="p-addr" name="addr" required autocomplete="off" placeholder="Street, number, area"></div>
-        <div class="field"><label for="p-ig">Instagram link</label><input id="p-ig" name="ig" required autocomplete="off" inputmode="url" placeholder="instagram.com/yourshop"></div>
-        <div class="field"><label for="p-hours">Opening hours</label><input id="p-hours" name="hours" autocomplete="off" placeholder="Mon–Fri 08–21, Sat–Sun 09–20"></div>
-        <div class="lab">What you offer</div>
+        <div class="field"><label for="p-name" data-t="shopname">Shop name</label><input id="p-name" name="name" required autocomplete="off" placeholder="Your shop's name" data-tp="pname"></div>
+        <div class="field"><label for="p-addr" data-t="paddr">Address or Google Maps link</label><input id="p-addr" name="addr" required autocomplete="off" placeholder="Street, number, area" data-tp="paddr"></div>
+        <div class="field"><label for="p-ig" data-t="pig">Instagram link</label><input id="p-ig" name="ig" required autocomplete="off" inputmode="url" placeholder="instagram.com/yourshop"></div>
+        <div class="field"><label for="p-hours" data-t="phours">Opening hours</label><input id="p-hours" name="hours" autocomplete="off" placeholder="Mon–Fri 08–21, Sat–Sun 09–20" data-tp="phours"></div>
+        <div class="lab" data-t="offer">What you offer</div>
         <div class="chips-wrap" id="shop-tags"></div>
-        <div class="lab">Brew methods</div>
+        <div class="lab" data-t="brewm">Brew methods</div>
         <div class="chips-wrap" id="shop-brew"></div>
-        <button class="btn" type="submit">Send for review</button>
+        <button class="btn" type="submit" data-t="sendshop">Send for review</button>
       </form>
     </div>
 
     <div class="panel" id="panel-about" hidden>
       <div class="about-top">
-        <svg viewBox="0 0 100 100" role="img" aria-label="Logo: a cup from above with a red pin"><use href="#cup"/></svg>
-        <p>A phone map of specialty coffee in Tbilisi</p>
+        <svg viewBox="0 0 100 100" role="img" aria-label="Logo: a cup from above with a red pin" data-ta="logo"><use href="#cup"/></svg>
+        <p data-t="tagline">A phone map of specialty coffee in Tbilisi</p>
       </div>
-      <div class="about-sec"><div class="lab" style="margin-top:0">What it does</div><p>Shows which specialty shops are open right now, which are close to you, and how each one brews. Once opened, it works with no signal.</p></div>
-      <div class="about-sec"><div class="lab" style="margin-top:0">How to read it</div>
+      <div class="about-sec"><div class="lab" style="margin-top:0" data-t="whath">What it does</div><p data-t="what">Shows which specialty shops are open right now, which are close to you, and how each one brews. Once opened, it works with no signal.</p></div>
+      <div class="about-sec"><div class="lab" style="margin-top:0" data-t="readh">How to read it</div>
         <div class="legend-grid">
-          <b>Sharp</b><span>Open and near</span>
-          <b style="filter:blur(2.4px);opacity:.6">Blurred</b><span>Closed or far away</span>
-          <b style="color:var(--red);filter:blur(1.2px)">Red</b><span>Closing in 45 minutes or less</span>
-          <b style="color:var(--gold)">Gold</b><span>Your favourite, on the map</span>
+          <b data-t="sharp">Sharp</b><span data-t="sharpd">Open and near</span>
+          <b style="filter:blur(2.4px);opacity:.6" data-t="blur">Blurred</b><span data-t="blurd">Closed or far away</span>
+          <b style="color:var(--red);filter:blur(1.2px)" data-t="red">Red</b><span data-t="redd">Closing in 45 minutes or less</span>
+          <b style="color:var(--gold)" data-t="gold">Gold</b><span data-t="goldd">Your favourite, on the map</span>
         </div>
       </div>
-      <div class="about-sec"><div class="lab" style="margin-top:0">Privacy</div><p>We count visits anonymously with GoatCounter. No cookies, no accounts, nothing personal. Your favourites stay on your phone.</p></div>
-      <div class="about-sec"><div class="lab" style="margin-top:0">Data and credits</div><p id="about-data"></p></div>
-      <div class="about-sec"><div class="lab" style="margin-top:0">Get in touch</div><p>Made in Tbilisi by Levan Bezarashvili. Write to<a id="about-mail" href="mailto:bezarashwili@gmail.com">bezarashwili@gmail.com</a></p></div>
+      <div class="about-sec"><div class="lab" style="margin-top:0" data-t="privh">Privacy</div><p data-t="priv">We count visits anonymously with GoatCounter. No cookies, no accounts, nothing personal. Your favourites stay on your phone.</p></div>
+      <div class="about-sec"><div class="lab" style="margin-top:0" data-t="datah">Data and credits</div><p id="about-data"></p></div>
+      <div class="about-sec"><div class="lab" style="margin-top:0" data-t="touchh">Get in touch</div><p><span data-t="touch">Made in Tbilisi by Levan Bezarashvili. Write to</span><a id="about-mail" href="mailto:bezarashwili@gmail.com">bezarashwili@gmail.com</a></p></div>
     </div>
   </section>
   <section class="view" id="map" aria-label="Map"></section>
@@ -477,16 +477,16 @@ nav button[aria-selected="true"]{color:var(--fg)}
 </main>
 
 <nav>
-  <button id="tab-list" aria-selected="true">List</button>
+  <button id="tab-list" aria-selected="true" data-t="nlist">List</button>
   <span class="rule"></span>
-  <button id="tab-faves" aria-selected="false">Faves</button>
+  <button id="tab-faves" aria-selected="false" data-t="nfaves">Faves</button>
   <span class="rule"></span>
-  <button id="tab-contact" aria-selected="false">Contact</button>
+  <button id="tab-contact" aria-selected="false" data-t="ncontact">Contact</button>
   <span class="rule"></span>
-  <button id="tab-map" aria-selected="false">Map</button>
+  <button id="tab-map" aria-selected="false" data-t="nmap">Map</button>
 </nav>
-<div class="glass" id="glass" role="dialog" aria-modal="true" aria-label="Shop details"><div class="gc" id="gc"></div></div>
-<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo"><span class="cap" id="lb-cap"></span><button class="lx" type="button" id="lb-x" aria-label="Close photo">&times;</button><img id="lb-img" alt=""></div>
+<div class="glass" id="glass" role="dialog" aria-modal="true" aria-label="Shop details" data-ta="details"><div class="gc" id="gc"></div></div>
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo" data-ta="photo"><span class="cap" id="lb-cap"></span><button class="lx" type="button" id="lb-x" aria-label="Close photo" data-ta="closephoto">&times;</button><img id="lb-img" alt=""></div>
 <div class="toast" id="toast"></div>
 
 <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
@@ -514,6 +514,56 @@ const store = {
 };
 const favs = new Set(store.get("cm-favs", []));
 const prefs = Object.assign({brew:[], hideClosed:false, laptop:false, early:false}, store.get("cm-prefs", {}));
+prefs.laptop = false;   // the "Laptop-friendly first" switch was replaced by the language switch
+/* ============================================================
+   LANGUAGE — English or Georgian (kept on this phone).
+   Shop names stay in English. Notes come from note_ka in shops.json.
+   ============================================================ */
+let lang = store.get("cm-lang", "en") === "ka" ? "ka" : "en";
+const tr = (en, ka) => lang === "ka" ? ka : en;
+const KA = {
+  brand:"თბილისის<br>ყავის რუკა", opennow:"ახლა ღიაა", favtitle:"რჩეულები",
+  seg1:"შემოთავაზება", seg2:"კაფეებისთვის", seg3:"შესახებ",
+  hsug:"შემოგვთავაზე კაფე", leadsug:"იცი ადგილი, რომელიც აქ არ არის, ან რამე არასწორადაა მითითებული? მოგვწერე.",
+  shopname:"კაფის სახელი", areaaddr:"უბანი ან მისამართი", why:"რატომ უნდა დავამატოთ", sendsug:"გაგზავნა",
+  prefh:"შენი არჩევანი", kept:"ინახება ამ ტელეფონში", idrink:"ვსვამ",
+  hshop:"დაამატე შენი კაფე", leadshop:"გაქვს სპეშელთი ყავის კაფე თბილისში? მოგვიყევი. ყველა განაცხადს ვამოწმებთ, სანამ რუკაზე დაემატება.",
+  paddr:"მისამართი ან Google Maps ბმული", pig:"Instagram ბმული", phours:"სამუშაო საათები",
+  offer:"რა გაქვთ", brewm:"მომზადების მეთოდები", sendshop:"გაგზავნა განსახილველად",
+  tagline:"თბილისის სპეშელთი ყავის რუკა ტელეფონისთვის",
+  whath:"რას აკეთებს", what:"გაჩვენებს, რომელი სპეშელთი კაფეებია ახლა ღია, რომლებია შენთან ახლოს და როგორ ამზადებენ ყავას. ერთხელ გახსნის შემდეგ ინტერნეტის გარეშეც მუშაობს.",
+  readh:"როგორ წავიკითხოთ", sharp:"მკვეთრი", sharpd:"ღიაა და ახლოსაა", blur:"ბუნდოვანი", blurd:"დაკეტილია ან შორსაა",
+  red:"წითელი", redd:"იკეტება 45 წუთში ან უფრო ადრე", gold:"ოქროსფერი", goldd:"შენი რჩეული, რუკაზე",
+  privh:"კონფიდენციალურობა", priv:"ვიზიტებს ანონიმურად ვითვლით GoatCounter-ით. არანაირი cookie, ანგარიში ან პირადი მონაცემი. რჩეულები შენს ტელეფონში რჩება.",
+  datah:"მონაცემები და კრედიტები", touchh:"დაგვიკავშირდი", touch:"შექმნილია თბილისში, ავტორი ლევან ბეზარაშვილი. მოგვწერე:",
+  nlist:"სია", nfaves:"რჩეულები", ncontact:"კონტაქტი", nmap:"რუკა"
+};
+const KA_PH = {q:"მოძებნე კაფე, უბანი, ქუჩა", sname:"მაგ. Kokoro Coffee", sarea:"მაგ. ვაკე, ჭავჭავაძის გამზ.", swhy:"კარგი V60, დილით მშვიდია…",
+  pname:"შენი კაფის სახელი", paddr:"ქუჩა, ნომერი, უბანი", phours:"ორშ–პარ 08–21, შაბ–კვ 09–20"};
+const KA_ARIA = {q:"კაფეების ძებნა", qclear:"ძებნის გასუფთავება", filters:"ფილტრები", heroaria:"ახლა ღია კაფეები", favearia:"შენახული კაფეები",
+  share:"რჩეულების გაზიარება სურათად", logo:"ლოგო: ფინჯანი ზემოდან, წითელი ნიშნულით", details:"კაფის დეტალები", photo:"ფოტო", closephoto:"ფოტოს დახურვა"};
+const AREA_KA = {"Bagebi":"ბაგები","Chugureti":"ჩუღურეთი","Dedaena Park":"დედაენის პარკი","Marjanishvili":"მარჯანიშვილი","Mtatsminda":"მთაწმინდა",
+  "Old Tbilisi":"ძველი თბილისი","Rustaveli":"რუსთაველი","Saburtalo":"საბურთალო","Sololaki":"სოლოლაკი","Station Square":"სადგურის მოედანი","Vake":"ვაკე","Vera":"ვერა"};
+const areaOf = s => lang === "ka" ? (AREA_KA[s.area] || s.area) : s.area;
+const noteOf = s => lang === "ka" && s.note_ka ? s.note_ka : s.note;
+/* English text is read from the page itself, so it only lives in one place */
+const EN = {t:{}, tp:{}, ta:{}};
+document.querySelectorAll("[data-t]").forEach(el => EN.t[el.dataset.t] = el.innerHTML);
+document.querySelectorAll("[data-tp]").forEach(el => EN.tp[el.dataset.tp] = el.placeholder);
+document.querySelectorAll("[data-ta]").forEach(el => EN.ta[el.dataset.ta] = el.getAttribute("aria-label"));
+function applyStatic(){
+  document.documentElement.lang = lang;
+  document.title = tr("Tbilisi Coffee Map", "თბილისის ყავის რუკა");
+  document.querySelectorAll("[data-t]").forEach(el => el.innerHTML = lang === "ka" && KA[el.dataset.t] ? KA[el.dataset.t] : EN.t[el.dataset.t]);
+  document.querySelectorAll("[data-tp]").forEach(el => el.placeholder = lang === "ka" && KA_PH[el.dataset.tp] ? KA_PH[el.dataset.tp] : EN.tp[el.dataset.tp]);
+  document.querySelectorAll("[data-ta]").forEach(el => el.setAttribute("aria-label", lang === "ka" && KA_ARIA[el.dataset.ta] ? KA_ARIA[el.dataset.ta] : EN.ta[el.dataset.ta]));
+}
+function setLang(l){
+  lang = l; store.set("cm-lang", l);
+  countEvent("lang/" + l, "Language: " + l);
+  applyStatic(); renderShopForm(); heroLoc(); render();
+  if(map){ const b = document.getElementById("locate"); if(b){ b.title = tr("My location","ჩემი მდებარეობა"); b.setAttribute("aria-label", tr("Show my location","ჩემი მდებარეობის ჩვენება")); } }
+}
 const prefsOn = () => prefs.brew.length > 0 || prefs.hideClosed || prefs.laptop || prefs.early;
 
 /* ============================================================
@@ -551,12 +601,13 @@ const clock = m => { m = ((m % 1440) + 1440) % 1440; return String(Math.floor(m/
 /* "till 21:00", "closing in 40 min", "opens 09:00" … */
 function whenText(st, now){
   if(st.open){
-    if(st.closesIn <= 45) return `closing in ${st.closesIn} min`;
+    if(st.closesIn <= 45) return tr(`closing in ${st.closesIn} min`, `იკეტება ${st.closesIn} წუთში`);
     const t = now.min + st.closesIn;
-    return `till ${t % 1440 === 0 ? "24:00" : clock(t)}`;
+    const tt = t % 1440 === 0 ? "24:00" : clock(t);
+    return tr(`till ${tt}`, `${tt}-მდე`);
   }
-  if(st.opensIn != null) return st.opensIn <= 90 ? `opens in ${st.opensIn} min` : `opens ${clock(now.min + st.opensIn)}`;
-  return "closed";
+  if(st.opensIn != null) return st.opensIn <= 90 ? tr(`opens in ${st.opensIn} min`, `გაიხსნება ${st.opensIn} წუთში`) : tr(`opens ${clock(now.min + st.opensIn)}`, `გაიხსნება ${clock(now.min + st.opensIn)}-ზე`);
+  return tr("closed", "დაკეტილია");
 }
 
 /* ============================================================
@@ -569,7 +620,7 @@ function metres(a, b){
   const h = Math.sin(dLat/2)**2 + Math.cos(rad(a[0]))*Math.cos(rad(b[0]))*Math.sin(dLng/2)**2;
   return 2*R*Math.asin(Math.sqrt(h));
 }
-const fmtDist = m => m < 1000 ? Math.max(10, Math.round(m/10)*10) + "M" : (m/1000).toFixed(1) + "K";
+const fmtDist = m => m < 1000 ? Math.max(10, Math.round(m/10)*10) + tr("M"," მ") : (m/1000).toFixed(1) + tr("K"," კმ");
 
 /* ============================================================
    FOCUS — how sharp a shop looks: open and near = sharp,
@@ -589,12 +640,12 @@ function focus(s){
    FILTERS
    ============================================================ */
 const FILTERS = [
-  {key:"open",     label:"Open now",       test:s => status(s).open},
-  {key:"roasts",   label:"Roasts own",     test:s => s.roasts},
-  {key:"pour",     label:"Pour-over",      test:s => s.brew.includes("v60") || s.brew.includes("chemex") || s.brew.includes("aeropress")},
-  {key:"laptop",   label:"Laptop OK",      test:s => s.laptop},
-  {key:"early",    label:"Opens before 9", test:s => opensBefore9(s)},
-  {key:"beans",    label:"Sells beans",    test:s => s.beans},
+  {key:"open",     label:"Open now",       ka:"ახლა ღიაა",        test:s => status(s).open},
+  {key:"roasts",   label:"Roasts own",     ka:"საკუთარი მოხალვა", test:s => s.roasts},
+  {key:"pour",     label:"Pour-over",      ka:"ფილტრი",           test:s => s.brew.includes("v60") || s.brew.includes("chemex") || s.brew.includes("aeropress")},
+  {key:"laptop",   label:"Laptop OK",      ka:"ლეპტოპით",         test:s => s.laptop},
+  {key:"early",    label:"Opens before 9", ka:"იხსნება 9-მდე",    test:s => opensBefore9(s)},
+  {key:"beans",    label:"Sells beans",    ka:"ყიდის მარცვალს",   test:s => s.beans},
 ];
 const active = new Set();
 
@@ -605,7 +656,7 @@ let query = "";
 const norm = t => String(t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 function matches(s){
   if(!query) return true;
-  const hay = norm([s.name, s.area, s.address, s.note].join(" "));
+  const hay = norm([s.name, s.area, AREA_KA[s.area] || "", s.address, s.note, s.note_ka || ""].join(" "));
   return norm(query).split(/\s+/).filter(Boolean).every(w => hay.includes(w));
 }
 
@@ -623,13 +674,13 @@ const googleUrl = s => s.place_id
 const igUrl = s => s.instagram ? `https://www.instagram.com/${encodeURIComponent(s.instagram.replace(/^@/,""))}/` : "";
 function linksHtml(s){
   const ig = igUrl(s);
-  return `<div class="links"><a href="${googleUrl(s)}" target="_blank" rel="noopener" data-ev="google" data-shop="${s.id}">Google reviews ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener" data-ev="instagram" data-shop="${s.id}">Instagram ↗</a>` : ""}</div>`;
+  return `<div class="links"><a href="${googleUrl(s)}" target="_blank" rel="noopener" data-ev="google" data-shop="${s.id}">${tr("Google reviews","Google შეფასებები")} ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener" data-ev="instagram" data-shop="${s.id}">Instagram ↗</a>` : ""}</div>`;
 }
 /* photos: "photos/x.webp" or {"src": "...", "alt": "..."} */
-const photoList = s => (Array.isArray(s.photos) ? s.photos : []).map((p,i) => typeof p === "string" ? {src:p, alt:`${s.name}, photo ${i+1}`} : {src:p.src, alt:p.alt || `${s.name}, photo ${i+1}`}).filter(p => p.src);
+const photoList = s => (Array.isArray(s.photos) ? s.photos : []).map((p,i) => typeof p === "string" ? {src:p, alt:`${s.name}, ${tr("photo","ფოტო")} ${i+1}`} : {src:p.src, alt:(lang === "en" && p.alt) || `${s.name}, ${tr("photo","ფოტო")} ${i+1}`}).filter(p => p.src);
 function photosHtml(s){
   const ps = photoList(s);
-  return ps.length ? `<div class="pics">${ps.map(p => `<button type="button" data-photo="${esc(p.src)}" data-alt="${esc(p.alt)}" aria-label="Open ${esc(p.alt)}"><img src="${esc(p.src)}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></button>`).join("")}</div>` : "";
+  return ps.length ? `<div class="pics">${ps.map(p => `<button type="button" data-photo="${esc(p.src)}" data-alt="${esc(p.alt)}" aria-label="${tr("Open","გახსენი:")} ${esc(p.alt)}"><img src="${esc(p.src)}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></button>`).join("")}</div>` : "";
 }
 function openPhoto(src, alt){
   const lb = document.getElementById("lightbox"), img = document.getElementById("lb-img");
@@ -640,14 +691,14 @@ function closePhoto(){ const lb = document.getElementById("lightbox"); lb.hidden
 let sortBy = "open";   // "open" | "score"
 
 function metaLine(s, now){
-  return [s.area, whenText(s._st, now)].map(x => esc(x)).join(" · ") + rating(s) + (s.brew.length ? ` · ${brewLetters(s)}` : "");
+  return [areaOf(s), whenText(s._st, now)].map(x => esc(x)).join(" · ") + rating(s) + (s.brew.length ? ` · ${brewLetters(s)}` : "");
 }
 function tagsHtml(s){
   const t = [];
-  if(s.roasts) t.push(`<span class="tag">Roasts own</span>`);
-  if(s.beans)  t.push(`<span class="tag">Beans</span>`);
-  if(s.laptop) t.push(`<span class="tag">Laptop OK</span>`);
-  if(s.own)    t.push(`<span class="tag own">Ours</span>`);
+  if(s.roasts) t.push(`<span class="tag">${tr("Roasts own","საკუთარი მოხალვა")}</span>`);
+  if(s.beans)  t.push(`<span class="tag">${tr("Beans","მარცვალი")}</span>`);
+  if(s.laptop) t.push(`<span class="tag">${tr("Laptop OK","ლეპტოპით")}</span>`);
+  if(s.own)    t.push(`<span class="tag own">${tr("Ours","ჩვენი")}</span>`);
   return t.length ? `<div class="tags">${t.join("")}</div>` : "";
 }
 
@@ -678,32 +729,35 @@ function visible(){
 
 function renderChips(){
   document.getElementById("chips").innerHTML = FILTERS.map(f =>
-    `<button class="chip" data-k="${f.key}" aria-pressed="${active.has(f.key)}">${f.label}</button>`).join("");
+    `<button class="chip" data-k="${f.key}" aria-pressed="${active.has(f.key)}">${tr(f.label, f.ka)}</button>`).join("");
 }
 
 function renderHero(){
   const open = SHOPS.filter(s => status(s).open).length;
   document.querySelectorAll("#hero-svg .n").forEach(t => t.textContent = SHOPS.length ? open : "");
-  document.getElementById("hero-of").textContent = SHOPS.length ? `OF ${SHOPS.length} SHOPS` : "";
+  document.getElementById("hero-of").textContent = SHOPS.length ? tr(`OF ${SHOPS.length} SHOPS`, `${SHOPS.length} კაფედან`) : "";
 }
 
 function renderList(list){
   const el = document.getElementById("rows");
   if(!list.length){
     el.innerHTML = query
-      ? `<div class="empty">No shops match “${esc(query)}”${active.size ? " with these filters" : ""}.<br>Try a different word.</div>`
-      : `<div class="empty">Nothing matches all of those filters.<br>Try turning one off.</div>`;
+      ? tr(`<div class="empty">No shops match “${esc(query)}”${active.size ? " with these filters" : ""}.<br>Try a different word.</div>`,
+           `<div class="empty">„${esc(query)}“ ვერ მოიძებნა${active.size ? " ამ ფილტრებით" : ""}.<br>სცადე სხვა სიტყვა.</div>`)
+      : tr(`<div class="empty">Nothing matches all of those filters.<br>Try turning one off.</div>`,
+           `<div class="empty">ყველა ფილტრს ერთად არაფერი შეესაბამება.<br>სცადე ერთის გამორთვა.</div>`);
     return;
   }
   const now = tbilisiNow();
-  el.innerHTML = `<div class="legend">${query ? `${list.length} match${list.length===1?"":"es"} · ` : ""}${SHOPS.some(hasScore) ? `<button class="sortby" id="sortby" type="button">${sortBy === "score" ? "Best score first" : "Open first, " + (me ? "nearest" : "A–Z")}</button>` : `Open first, ${me ? "nearest" : "A–Z"}`}${prefsOn() ? " · your preferences" : ""}${UPDATED ? " · updated " + esc(UPDATED) : ""} · Brew: E espresso · V V60 · B batch · A AeroPress · C Chemex</div>` +
+  const order = tr("Open first, ", "ჯერ ღია, ") + (me ? tr("nearest", "უახლოესი") : tr("A–Z", "A–Z"));
+  el.innerHTML = `<div class="legend">${query ? tr(`${list.length} match${list.length===1?"":"es"} · `, `${list.length} შედეგი · `) : ""}${SHOPS.some(hasScore) ? `<button class="sortby" id="sortby" type="button">${sortBy === "score" ? tr("Best score first","ჯერ საუკეთესო ქულით") : order}</button>` : order}${prefsOn() ? tr(" · your preferences"," · შენი არჩევანით") : ""}${UPDATED ? tr(" · updated "," · განახლდა ") + esc(UPDATED) : ""} · ${tr("Brew: E espresso · V V60 · B batch · A AeroPress · C Chemex","მომზადება: E ესპრესო · V V60 · B ბეჩ ბრიუ · A AeroPress · C Chemex")}</div>` +
   list.map((s,i) => `
     <article class="row ${s._f.cls}" data-id="${esc(s.id)}">
       <span class="ix">${String(i+1).padStart(2,"0")}</span>
       <div>
         <h2 class="nm" style="--b:${s._f.b}px;--o:${s._f.o}">${esc(s.name)}</h2>
         <div class="meta">${metaLine(s, now)}</div>
-        <p class="note">${esc(s.note)}</p>
+        <p class="note">${esc(noteOf(s))}</p>
         ${tagsHtml(s)}
         ${linksHtml(s)}
       </div>
@@ -712,7 +766,7 @@ function renderList(list){
 }
 
 /* ---------- Favourites ---------- */
-const favBtn = id => { const on = favs.has(id); return `<button class="fav" type="button" data-fav="${esc(id)}" aria-pressed="${on}" aria-label="${on ? "Remove from favourites" : "Add to favourites"}"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#heart-${on ? "on" : "off"}"/></svg></button>`; };
+const favBtn = id => { const on = favs.has(id); return `<button class="fav" type="button" data-fav="${esc(id)}" aria-pressed="${on}" aria-label="${on ? tr("Remove from favourites","რჩეულებიდან წაშლა") : tr("Add to favourites","რჩეულებში დამატება")}"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#heart-${on ? "on" : "off"}"/></svg></button>`; };
 const faveList = () => { const now = tbilisiNow(); return SHOPS.filter(s => favs.has(s.id)).map(s => decorate(s, now)).sort(rank); };
 function renderFaves(){
   const now = tbilisiNow();
@@ -722,14 +776,14 @@ function renderFaves(){
   document.getElementById("fave-share").hidden = !list.length;
   if(!list.length){
     el.innerHTML = `<div class="fave-empty">
-      <h2>Nothing<br>saved yet</h2>
-      <p>Tap the heart on any shop to keep it here. Your favourites stay one tap away, even with no signal.</p>
-      <div class="demo"><b>Any shop</b><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#heart-off"/></svg><span>Tap the heart</span><span style="text-align:right">to save it</span></div>
-      <button class="btn" type="button" id="fave-browse" style="background:transparent;color:var(--fg);border:1px solid var(--fg)">Browse the list →</button>
+      <h2>${tr("Nothing<br>saved yet","ჯერ არაფერი<br>შეგინახავს")}</h2>
+      <p>${tr("Tap the heart on any shop to keep it here. Your favourites stay one tap away, even with no signal.","დააჭირე გულს ნებისმიერ კაფეზე და ის აქ შეინახება. რჩეულები ერთი შეხებით ხელმისაწვდომია, ინტერნეტის გარეშეც.")}</p>
+      <div class="demo"><b>${tr("Any shop","ნებისმიერი კაფე")}</b><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#heart-off"/></svg><span>${tr("Tap the heart","დააჭირე გულს")}</span><span style="text-align:right">${tr("to save it","შესანახად")}</span></div>
+      <button class="btn" type="button" id="fave-browse" style="background:transparent;color:var(--fg);border:1px solid var(--fg)">${tr("Browse the list →","სიის ნახვა →")}</button>
     </div>`;
     return;
   }
-  el.innerHTML = `<div class="legend">Open first · tap the heart to remove</div>` + list.map((s,i) => `
+  el.innerHTML = `<div class="legend">${tr("Open first · tap the heart to remove","ჯერ ღია · წასაშლელად დააჭირე გულს")}</div>` + list.map((s,i) => `
     <article class="row ${s._f.cls}" data-id="${esc(s.id)}">
       <span class="ix">${String(i+1).padStart(2,"0")}</span>
       <div>
@@ -738,7 +792,7 @@ function renderFaves(){
       </div>
       <div class="side">${favBtn(s.id)}</div>
     </article>`).join("") + `
-    <p class="foot">Favourites are kept on this phone only. Nothing is sent anywhere unless you share the picture.</p>`;
+    <p class="foot">${tr("Favourites are kept on this phone only. Nothing is sent anywhere unless you share the picture.","რჩეულები ინახება მხოლოდ ამ ტელეფონში. არაფერი იგზავნება, თუ სურათს თავად არ გააზიარებ.")}</p>`;
 }
 
 /* ---------- Header text follows the tab ---------- */
@@ -746,14 +800,14 @@ let current = "list";
 function updateHeader(){
   const mid = document.getElementById("mid"), cnt = document.getElementById("count");
   document.body.className = "v-" + current;
-  if(current === "contact"){ mid.innerHTML = ""; cnt.textContent = "Contact us"; return; }
+  if(current === "contact"){ mid.innerHTML = ""; cnt.textContent = tr("Contact us","კონტაქტი"); return; }
   if(current === "faves"){
     const f = SHOPS.filter(s => favs.has(s.id)), o = f.filter(s => status(s).open).length;
-    mid.innerHTML = "Saved on<br>this phone"; cnt.innerHTML = `<b>${o}</b> of ${f.length}<br>open`; return;
+    mid.innerHTML = tr("Saved on<br>this phone","შენახულია<br>ამ ტელეფონში"); cnt.innerHTML = tr(`<b>${o}</b> of ${f.length}<br>open`, `<b>${o}</b> / ${f.length}<br>ღიაა`); return;
   }
-  mid.innerHTML = "Focus = open<br>Blur = closed or far";
+  mid.innerHTML = tr("Focus = open<br>Blur = closed or far","მკვეთრი = ღიაა<br>ბუნდოვანი = დაკეტილი ან შორს");
   const open = SHOPS.filter(s => status(s).open).length;
-  cnt.innerHTML = SHOPS.length ? `<b>${open}</b> of ${SHOPS.length}<br>open` : "";
+  cnt.innerHTML = SHOPS.length ? tr(`<b>${open}</b> of ${SHOPS.length}<br>open`, `<b>${open}</b> / ${SHOPS.length}<br>ღიაა`) : "";
 }
 
 /* ---------- Map (lazy) ---------- */
@@ -793,15 +847,15 @@ function openSheet(id, pan = true){
   const idx = visible().findIndex(x => x.id === id);
   sh.className = "sheet" + (s._st.open && s._st.closesIn <= 45 ? " soon" : "");
   sh.hidden = false;
-  sh.innerHTML = `<button class="x" type="button" aria-label="Close" id="sheet-x">&times;</button>${favBtn(s.id).replace('class="fav"', 'class="fav sheet-fav"')}
+  sh.innerHTML = `<button class="x" type="button" aria-label="${tr("Close","დახურვა")}" id="sheet-x">&times;</button>${favBtn(s.id).replace('class="fav"', 'class="fav sheet-fav"')}
     <div class="top"><span>${idx >= 0 ? String(idx+1).padStart(2,"0") + " / " + String(visible().length).padStart(2,"0") : ""}</span><span class="st">${s._st.open ? "● " : "○ "}${esc(whenText(s._st, now))}${rating(s)}</span></div>
     <h3>${esc(s.name)}</h3>
-    <div class="meta">${esc(s.area)} · ${esc(s.address)}${s._d != null ? " · " + fmtDist(s._d) : ""}</div>
-    <p class="note">${esc(s.note)}</p>
+    <div class="meta">${esc(areaOf(s))} · ${esc(s.address)}${s._d != null ? " · " + fmtDist(s._d) : ""}</div>
+    <p class="note">${esc(noteOf(s))}</p>
     ${photosHtml(s)}
     ${tagsHtml(s)}
-    <a class="go" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener" data-ev="directions" data-shop="${s.id}">Directions →</a>
-    <div class="more"><a href="${googleUrl(s)}" target="_blank" rel="noopener" data-ev="google" data-shop="${s.id}">Google reviews ↗</a>${igUrl(s) ? `<a href="${igUrl(s)}" target="_blank" rel="noopener" data-ev="instagram" data-shop="${s.id}">Instagram ↗</a>` : ""}</div>`;
+    <a class="go" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener" data-ev="directions" data-shop="${s.id}">${tr("Directions →","მარშრუტი →")}</a>
+    <div class="more"><a href="${googleUrl(s)}" target="_blank" rel="noopener" data-ev="google" data-shop="${s.id}">${tr("Google reviews","Google შეფასებები")} ↗</a>${igUrl(s) ? `<a href="${igUrl(s)}" target="_blank" rel="noopener" data-ev="instagram" data-shop="${s.id}">Instagram ↗</a>` : ""}</div>`;
   document.getElementById("sheet-x").onclick = closeSheet;
   Object.entries(markers).forEach(([k,m]) => { const el = m.getElement(); if(el && el.firstChild) el.firstChild.classList.toggle("sel", k === id); });
   if(map && pan){
@@ -834,7 +888,7 @@ function show(view){
   updateHeader();
   if(view!=="map") closeSheet();
   if(view==="map"){
-    if(!window.L){ toast("Map library failed to load. Reopen the app."); return; }
+    if(!window.L){ toast(tr("Map library failed to load. Reopen the app.","რუკა ვერ ჩაიტვირთა. გახსენი აპი თავიდან.")); return; }
     initMap(); render(); setTimeout(()=>{ map.invalidateSize(); fitToMatches(); }, 0);
   }
 }
@@ -876,8 +930,8 @@ async function drawFavesCard(list){
   const c = document.createElement("canvas"); c.width = W; c.height = H;
   const x = c.getContext("2d");
   const FG = "#F4F4F4", DIM = "#B5B5B5", MUTE = "#777", LINE = "#2A2A2A", RED = "#FF3B2F", BG = "#0A0A0A", GOLD = "#F0B73C";
-  const DISP = "'Archivo Black', 'Arial Black', sans-serif", MONO = "'IBM Plex Mono', ui-monospace, monospace";
-  try{ await Promise.all([document.fonts.load(`400 60px "Archivo Black"`), document.fonts.load(`500 30px "IBM Plex Mono"`), document.fonts.load(`400 30px "IBM Plex Mono"`)]); }catch(e){}
+  const DISP = "'Archivo Black', 'Georgian Display', 'Arial Black', sans-serif", MONO = "'IBM Plex Mono', 'Georgian Text', ui-monospace, monospace";
+  try{ await Promise.all([document.fonts.load(`400 60px "Archivo Black"`), document.fonts.load(`500 30px "IBM Plex Mono"`), document.fonts.load(`400 30px "IBM Plex Mono"`), document.fonts.load(`400 60px "Georgian Display"`, "ა"), document.fonts.load(`500 30px "Georgian Text"`, "ა"), document.fonts.load(`400 30px "Georgian Text"`, "ა")]); }catch(e){}
 
   x.fillStyle = BG; x.fillRect(0, 0, W, H);
 
@@ -888,15 +942,17 @@ async function drawFavesCard(list){
   x.beginPath(); x.moveTo(cupX + 27, cupY - 9); x.lineTo(cupX + 36, cupY - 9); x.quadraticCurveTo(cupX + 43, cupY - 9, cupX + 43, cupY - 2); x.lineTo(cupX + 43, cupY + 6); x.quadraticCurveTo(cupX + 43, cupY + 13, cupX + 36, cupY + 13); x.lineTo(cupX + 27, cupY + 13); x.stroke();
   x.fillStyle = RED; x.strokeStyle = BG; x.lineWidth = 4; x.beginPath(); x.arc(cupX + 15, cupY - 20, 9, 0, Math.PI*2); x.fill(); x.stroke();
   x.fillStyle = FG; x.font = `500 30px ${MONO}`; x.textBaseline = "alphabetic";
-  x.fillText("TBILISI", P + 104, cupY - 6); x.fillText("COFFEE MAP", P + 104, cupY + 32);
-  const d = new Date().toLocaleDateString("en-GB", {day:"2-digit", month:"short", year:"numeric", timeZone:"Asia/Tbilisi"}).toUpperCase();
+  x.fillText(tr("TBILISI","თბილისის"), P + 104, cupY - 6); x.fillText(tr("COFFEE MAP","ყავის რუკა"), P + 104, cupY + 32);
+  const KA_MON = ["იან","თებ","მარ","აპრ","მაი","ივნ","ივლ","აგვ","სექ","ოქტ","ნოე","დეკ"];
+  const dp = Object.fromEntries(new Intl.DateTimeFormat("en-GB", {day:"2-digit", month:"numeric", year:"numeric", timeZone:"Asia/Tbilisi"}).formatToParts(new Date()).map(q => [q.type, q.value]));
+  const d = lang === "ka" ? `${dp.day} ${KA_MON[+dp.month - 1]} ${dp.year}` : new Date().toLocaleDateString("en-GB", {day:"2-digit", month:"short", year:"numeric", timeZone:"Asia/Tbilisi"}).toUpperCase();
   x.fillStyle = DIM; x.textAlign = "right"; x.fillText(d, W - P, cupY + 32);
 
   // title and the gold count
   x.textAlign = "left"; x.fillStyle = FG; x.font = `400 108px ${DISP}`;
-  x.fillText("MY", P, 300); x.fillText("TBILISI", P, 402);
+  x.fillText(tr("MY","ჩემი"), P, 300); x.fillText(tr("TBILISI","თბილისი"), P, 402);
   x.fillStyle = GOLD; x.textAlign = "right"; x.fillText(String(list.length).padStart(2, "0"), W - P, 300);
-  x.fillStyle = DIM; x.font = `400 25px ${MONO}`; x.fillText("FAVOURITES", W - P, 346); x.textAlign = "left";
+  x.fillStyle = DIM; x.font = `400 25px ${MONO}`; x.fillText(tr("FAVOURITES","რჩეულები"), W - P, 346); x.textAlign = "left";
 
   // layout: map on top, the first eight shops under it
   const MAX = 8, shown = list.slice(0, MAX), more = list.length - shown.length;
@@ -941,7 +997,7 @@ async function drawFavesCard(list){
   shown.forEach((s, i) => {
     const y = lyTop + i * rowH, base = y + rowH * .62;
     x.fillStyle = GOLD; x.font = `500 27px ${MONO}`; x.fillText(String(i + 1), P, base);
-    const area = s.area.toUpperCase();
+    const area = lang === "ka" ? areaOf(s) : areaOf(s).toUpperCase();
     x.font = `400 27px ${MONO}`; const aw = x.measureText(area).width;
     x.fillStyle = DIM; x.textAlign = "right"; x.fillText(area, W - P, base); x.textAlign = "left";
     const maxW = W - 2*P - 54 - aw - 30;
@@ -954,12 +1010,12 @@ async function drawFavesCard(list){
   if(more){
     const my = lyTop + shown.length * rowH + 30;
     x.fillStyle = GOLD; x.beginPath(); x.arc(P + 9, my - 9, 9, 0, Math.PI*2); x.fill();
-    x.fillStyle = MUTE; x.font = `500 27px ${MONO}`; x.fillText(`+ ${more} MORE, SHOWN AS DOTS ON THE MAP`, P + 34, my);
+    x.fillStyle = MUTE; x.font = `500 27px ${MONO}`; x.fillText(tr(`+ ${more} MORE, SHOWN AS DOTS ON THE MAP`, `+ ${more} სხვა, რუკაზე წერტილებით`), P + 34, my);
   }
 
   // footer
   x.fillStyle = FG; x.fillRect(P, H - 170, W - 2*P, 3);
-  x.fillStyle = DIM; x.font = `400 26px ${MONO}`; x.fillText("FIND THEM ON", P, H - 110);
+  x.fillStyle = DIM; x.font = `400 26px ${MONO}`; x.fillText(tr("FIND THEM ON","იპოვე აქ"), P, H - 110);
   x.fillStyle = FG; x.font = `500 32px ${MONO}`; x.fillText(clip(APP_URL.toUpperCase(), `500 32px ${MONO}`, W - 2*P - 50), P, H - 66);
   x.fillStyle = RED; x.beginPath(); x.arc(W - P - 14, H - 78, 14, 0, Math.PI*2); x.fill();
 
@@ -985,16 +1041,16 @@ async function shareFaves(){
   try{
     const blob = await drawFavesCard(list);
     const file = new File([blob], "my-tbilisi-coffee.png", {type:"image/png"});
-    const text = `My favourite coffee shops in Tbilisi — ${location.origin + location.pathname}`;
+    const text = tr("My favourite coffee shops in Tbilisi", "ჩემი საყვარელი ყავის ადგილები თბილისში") + ` — ${location.origin + location.pathname}`;
     if(navigator.canShare && navigator.canShare({files:[file]})){
-      await navigator.share({files:[file], title:"My favourite coffee shops", text});
+      await navigator.share({files:[file], title:tr("My favourite coffee shops","ჩემი საყვარელი ყავის ადგილები"), text});
     }else{
       const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = file.name;
       document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-      toast("Picture saved. Share it from your photos or downloads.");
+      toast(tr("Picture saved. Share it from your photos or downloads.","სურათი შენახულია. გააზიარე ფოტოებიდან ან ჩამოტვირთვებიდან."));
     }
   }catch(err){
-    if(err && err.name !== "AbortError") toast("Couldn't make the picture. Try again.");
+    if(err && err.name !== "AbortError") toast(tr("Couldn't make the picture. Try again.","სურათი ვერ შეიქმნა. სცადე თავიდან."));
   }finally{ if(btn) btn.disabled = false; }
 }
 document.getElementById("fave-rows").addEventListener("click", e => {
@@ -1039,24 +1095,24 @@ const splitName = n => {
   const m = n.match(/^(.*?—)\s*(.+)$/); if(m) return [m[1], m[2]];
   const i = n.lastIndexOf(" "); return i > 0 ? [n.slice(0,i), n.slice(i+1)] : [n, ""];
 };
-const longDist = m => m < 1000 ? Math.max(10, Math.round(m/10)*10) + " M" : (m/1000).toFixed(1) + " KM";
+const longDist = m => m < 1000 ? Math.max(10, Math.round(m/10)*10) + tr(" M"," მ") : (m/1000).toFixed(1) + tr(" KM"," კმ");
 function bindSave(id){
   const b = document.getElementById("gsave"); if(!b) return;
   b.onclick = () => { toggleFav(id); b.outerHTML = saveBtn(id); bindSave(id); document.getElementById("gsave").focus({preventScroll:true}); };
 }
-const saveBtn = id => { const on = favs.has(id); return `<button class="gsaved" id="gsave" type="button" aria-pressed="${on}"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#heart-${on ? "on" : "off"}"/></svg><span>${on ? "Saved on this phone" : "Save to favourites"}</span></button>`; };
+const saveBtn = id => { const on = favs.has(id); return `<button class="gsaved" id="gsave" type="button" aria-pressed="${on}"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#heart-${on ? "on" : "off"}"/></svg><span>${on ? tr("Saved on this phone","შენახულია ამ ტელეფონში") : tr("Save to favourites","რჩეულებში შენახვა")}</span></button>`; };
 /* a price is a number (8) or two sizes ([5, 7], shown as 5/7) */
 const isPrice = v => typeof v === "number" || (Array.isArray(v) && v.length > 0 && v.every(x => typeof x === "number"));
 const fmtPrice = v => (Array.isArray(v) ? v : [v]).map(x => Number.isInteger(x) ? String(x) : x.toFixed(1)).join("/");
 const priceCell = (label, v) => `<div class="gpc"><small>${label}</small><b class="${isPrice(v) ? "" : "na"}">${isPrice(v) ? fmtPrice(v) : "—"}</b></div>`;
-const yesNo = v => v === true ? `<span class="mk yes"><i></i>Yes</span>` : v === false ? `<span class="mk no"><i></i>No</span>` : `<span class="mk na"><i></i>Not listed</span>`;
+const yesNo = v => v === true ? `<span class="mk yes"><i></i>${tr("Yes","კი")}</span>` : v === false ? `<span class="mk no"><i></i>${tr("No","არა")}</span>` : `<span class="mk na"><i></i>${tr("Not listed","უცნობია")}</span>`;
 const roasterText = s => {
   const r = Array.isArray(s.roaster) ? s.roaster.join(", ") : s.roaster;
-  return r ? `<span>${esc(r)}</span>` : s.roasts ? `<span>Own roastery</span>` : `<span class="na">Not listed</span>`;
+  return r ? `<span>${esc(r)}</span>` : s.roasts ? `<span>${tr("Own roastery","საკუთარი მოხალვა")}</span>` : `<span class="na">${tr("Not listed","უცნობია")}</span>`;
 };
 const distHtml = s => s._d != null
-  ? `<span class="gbig">${longDist(s._d)}</span><span class="glab">From where you are</span>`
-  : `<button class="gloc" id="gloc" type="button">Show distance from me →</button>`;
+  ? `<span class="gbig">${longDist(s._d)}</span><span class="glab">${tr("From where you are","შენგან")}</span>`
+  : `<button class="gloc" id="gloc" type="button">${tr("Show distance from me →","მანძილის ჩვენება →")}</button>`;
 function bindDist(){
   const b = document.getElementById("gloc"); if(b) b.onclick = () => locateMe(false);
 }
@@ -1071,9 +1127,9 @@ function glassHtml(s, i, total, back){
   const [a, b] = splitName(s.name);
   const closeAt = (now.min + (st.closesIn || 0)) % 1440 === 0 ? "24:00" : clock(now.min + (st.closesIn || 0));
   const status = st.open
-    ? (soon ? `Closing in ${st.closesIn} min` : "Open now") + ` · till ${closeAt}`
-    : "Closed" + (st.opensIn != null ? " · " + whenText(st, now) : "");
-  const hrs = s.hours[now.day] ? s.hours[now.day].replace("-", "–") : "Closed today";
+    ? (soon ? tr(`Closing in ${st.closesIn} min`, `იკეტება ${st.closesIn} წუთში`) : tr("Open now","ახლა ღიაა")) + tr(` · till ${closeAt}`, ` · ${closeAt}-მდე`)
+    : tr("Closed","დაკეტილია") + (st.opensIn != null ? " · " + whenText(st, now) : "");
+  const hrs = s.hours[now.day] ? s.hours[now.day].replace("-", "–") : tr("Closed today","დღეს დაკეტილია");
   const pr = s.prices || {};
   const missing = !isPrice(pr.espresso) || !isPrice(pr.cappuccino) || !isPrice(pr.batch);
   const ig = igUrl(s);
@@ -1090,15 +1146,15 @@ function glassHtml(s, i, total, back){
     <div style="flex:1;min-height:8px"></div>
     <span class="fx s5">${saveBtn(s.id)}</span>
     <span class="fx s5" id="gdist">${distHtml(s)}</span>
-    <div class="fx s6 gph"><span>Price · GEL</span>${missing ? `<button class="gtell" id="gtell" type="button">Know them? Tell us →</button>` : ""}</div>
-    <div class="fx s6 gprices">${priceCell("Espresso", pr.espresso)}${priceCell("Cappuccino", pr.cappuccino)}${priceCell("Batch brew", pr.batch)}</div>
+    <div class="fx s6 gph"><span>${tr("Price · GEL","ფასი · ლარი")}</span>${missing ? `<button class="gtell" id="gtell" type="button">${tr("Know them? Tell us →","იცი ფასები? მოგვწერე →")}</button>` : ""}</div>
+    <div class="fx s6 gprices">${priceCell(tr("Espresso","ესპრესო"), pr.espresso)}${priceCell(tr("Cappuccino","კაპუჩინო"), pr.cappuccino)}${priceCell(tr("Batch brew","ბეჩ ბრიუ"), pr.batch)}</div>
     <div class="ginfo">
-      <span class="fx s6 ginf"><span>Roaster</span>${roasterText(s)}</span>
-      <span class="fx s7 ginf"><span>Hours today</span><span>${esc(hrs)}</span></span>
-      <div class="fx s7 g2"><span class="ginf"><span>Pets</span>${yesNo(s.pets)}</span><span class="ginf"><span>Laptop</span>${yesNo(s.laptop)}</span></div>
+      <span class="fx s6 ginf"><span>${tr("Roaster","როუსტერი")}</span>${roasterText(s)}</span>
+      <span class="fx s7 ginf"><span>${tr("Hours today","დღეს ღიაა")}</span><span>${esc(hrs)}</span></span>
+      <div class="fx s7 g2"><span class="ginf"><span>${tr("Pets","ცხოველები")}</span>${yesNo(s.pets)}</span><span class="ginf"><span>${tr("Laptop","ლეპტოპი")}</span>${yesNo(s.laptop)}</span></div>
     </div>
-    <div class="fx s7 glinks"><button type="button" id="gmap">Show on map →</button><a href="${googleUrl(s)}" target="_blank" rel="noopener" data-ev="google" data-shop="${s.id}">Google reviews ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener" data-ev="instagram" data-shop="${s.id}">Instagram ↗</a>` : ""}</div>
-    <span class="fx s8"><a class="gdir" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener" data-ev="directions" data-shop="${s.id}"><span>Directions</span><svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M13 1l7 7-7 7M20 8H1" stroke="currentColor" stroke-width="2"/></svg></a></span>`;
+    <div class="fx s7 glinks"><button type="button" id="gmap">${tr("Show on map →","რუკაზე ნახვა →")}</button><a href="${googleUrl(s)}" target="_blank" rel="noopener" data-ev="google" data-shop="${s.id}">${tr("Google reviews","Google შეფასებები")} ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener" data-ev="instagram" data-shop="${s.id}">Instagram ↗</a>` : ""}</div>
+    <span class="fx s8"><a class="gdir" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener" data-ev="directions" data-shop="${s.id}"><span>${tr("Directions","მარშრუტი")}</span><svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M13 1l7 7-7 7M20 8H1" stroke="currentColor" stroke-width="2"/></svg></a></span>`;
 }
 /* "Know them? Tell us" opens the suggestion form with the shop already filled in */
 function tellUs(id){
@@ -1108,7 +1164,7 @@ function tellUs(id){
   document.querySelector('#seg [data-panel="suggest"]').click();
   document.getElementById("s-name").value = sh.name;
   document.getElementById("s-area").value = sh.address;
-  document.getElementById("s-why").value = "Missing info (prices, roaster, pets): ";
+  document.getElementById("s-why").value = tr("Missing info (prices, roaster, pets): ","აკლია ინფორმაცია (ფასები, როუსტერი, ცხოველები): ");
 }
 function openGlass(id, src = "faves"){
   if(glassPhase !== "closed") return;
@@ -1117,7 +1173,7 @@ function openGlass(id, src = "faves"){
   if(i < 0) return;
   glassTimers.forEach(clearTimeout); glassTimers = [];
   glassId = id;
-  gc.innerHTML = glassHtml(list[i], i, list.length, src === "list" ? "List" : "Faves");
+  gc.innerHTML = glassHtml(list[i], i, list.length, src === "list" ? tr("List","სია") : tr("Faves","რჩეულები"));
   document.getElementById("gback").onclick = closeGlass;
   document.getElementById("gmap").onclick = () => { closeGlass(true); openOnMap(id); };
   bindSave(id); bindDist();
@@ -1160,28 +1216,32 @@ document.addEventListener("click", e => {
 }, true);
 
 /* ---------- Contact: sections, preferences, forms ---------- */
-const BREW_LABELS = [["espresso","Espresso"],["v60","V60"],["batch","Batch"],["aeropress","AeroPress"],["chemex","Chemex"]];
-const PREF_SWITCHES = [["hideClosed","Hide closed shops"],["laptop","Laptop-friendly first"],["early","Early openers first"]];
+const BREW_LABELS = () => [["espresso",tr("Espresso","ესპრესო")],["v60","V60"],["batch",tr("Batch","ბეჩ ბრიუ")],["aeropress","AeroPress"],["chemex","Chemex"]];
+const PREF_SWITCHES = () => [["hideClosed",tr("Hide closed shops","დაკეტილების დამალვა")],["lang","ქართული · Georgian"],["early",tr("Early openers first","ჯერ ადრე გახსნილები")]];
 const chipHtml = (attr, key, label, on) => `<button class="chip" type="button" ${attr}="${key}" aria-pressed="${on}">${label}</button>`;
 function renderPrefs(){
-  document.getElementById("pref-brew").innerHTML = BREW_LABELS.map(([k,l]) => chipHtml("data-pbrew", k, l, prefs.brew.includes(k))).join("");
-  document.getElementById("pref-switches").innerHTML = PREF_SWITCHES.map(([k,l]) =>
-    `<button class="sw" type="button" role="switch" data-pref="${k}" aria-checked="${prefs[k]}"><span>${l}</span><i></i></button>`).join("");
+  document.getElementById("pref-brew").innerHTML = BREW_LABELS().map(([k,l]) => chipHtml("data-pbrew", k, l, prefs.brew.includes(k))).join("");
+  document.getElementById("pref-switches").innerHTML = PREF_SWITCHES().map(([k,l]) => k === "lang"
+    ? `<button class="sw" type="button" role="switch" data-lang aria-checked="${lang === "ka"}" lang="ka"><span>${l}</span><i></i></button>`
+    : `<button class="sw" type="button" role="switch" data-pref="${k}" aria-checked="${prefs[k]}"><span>${l}</span><i></i></button>`).join("");
 }
 function renderAbout(){
   document.getElementById("about-data").textContent =
-    `${SHOPS.length} shops${UPDATED ? ", list updated " + UPDATED : ""}. Hours are read in Tbilisi time. Map data © OpenStreetMap contributors. Map by Leaflet. Type: Archivo Black and IBM Plex Mono.`;
+    tr(`${SHOPS.length} shops${UPDATED ? ", list updated " + UPDATED : ""}. Hours are read in Tbilisi time. Map data © OpenStreetMap contributors. Map by Leaflet. Type: Archivo Black, IBM Plex Mono and Noto Sans Georgian.`,
+       `${SHOPS.length} კაფე${UPDATED ? ", სია განახლდა " + UPDATED : ""}. საათები თბილისის დროით. რუკის მონაცემები © OpenStreetMap-ის მონაწილეები. რუკა: Leaflet. შრიფტები: Archivo Black, IBM Plex Mono და Noto Sans Georgian.`);
 }
 function renderShopForm(){
-  document.getElementById("shop-tags").innerHTML = [["roasts","Roasts own"],["beans","Sells beans"],["laptop","Laptop OK"]].map(([k,l]) => chipHtml("data-ftag", k, l, false)).join("");
-  document.getElementById("shop-brew").innerHTML = BREW_LABELS.map(([k,l]) => chipHtml("data-fbrew", k, l, false)).join("");
+  const keep = attr => new Set([...document.querySelectorAll(`[${attr}][aria-pressed="true"]`)].map(b => b.getAttribute(attr)));
+  const t1 = keep("data-ftag"), t2 = keep("data-fbrew");
+  document.getElementById("shop-tags").innerHTML = [["roasts",tr("Roasts own","საკუთარი მოხალვა")],["beans",tr("Sells beans","ყიდის მარცვალს")],["laptop",tr("Laptop OK","ლეპტოპით")]].map(([k,l]) => chipHtml("data-ftag", k, l, t1.has(k))).join("");
+  document.getElementById("shop-brew").innerHTML = BREW_LABELS().map(([k,l]) => chipHtml("data-fbrew", k, l, t2.has(k))).join("");
 }
 function mailtoUrl(subject, rows){
   const body = rows.map(([k,v]) => `${k}: ${v || "-"}`).join("\n");
   return `mailto:${CONTACT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 const picked = attr => [...document.querySelectorAll(`[${attr}][aria-pressed="true"]`)].map(b => b.getAttribute(attr)).join(", ");
-function sendMail(url){ toast("Opening your email app…"); location.href = url; }
+function sendMail(url){ toast(tr("Opening your email app…","იხსნება ელფოსტის აპი…")); location.href = url; }
 
 document.getElementById("seg").addEventListener("click", e => {
   const b = e.target.closest("button"); if(!b) return;
@@ -1198,6 +1258,7 @@ document.getElementById("contact").addEventListener("click", e => {
   }
   const sw = e.target.closest("[data-pref]");
   if(sw){ prefs[sw.dataset.pref] = !prefs[sw.dataset.pref]; store.set("cm-prefs", prefs); render(); return; }
+  if(e.target.closest("[data-lang]")){ setLang(lang === "ka" ? "en" : "ka"); return; }
   const tgl = e.target.closest("[data-ftag],[data-fbrew]");
   if(tgl) tgl.setAttribute("aria-pressed", tgl.getAttribute("aria-pressed") !== "true");
 });
@@ -1228,7 +1289,7 @@ function addLocateControl(){
     onAdd(){
       const wrap = L.DomUtil.create("div", "leaflet-bar leaflet-control");
       const btn = L.DomUtil.create("button", "loc-btn", wrap);
-      btn.type = "button"; btn.id = "locate"; btn.title = "My location"; btn.setAttribute("aria-label", "Show my location");
+      btn.type = "button"; btn.id = "locate"; btn.title = tr("My location","ჩემი მდებარეობა"); btn.setAttribute("aria-label", tr("Show my location","ჩემი მდებარეობის ჩვენება"));
       btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>';
       L.DomEvent.disableClickPropagation(wrap);
       L.DomEvent.on(btn, "click", () => locateMe(true));
@@ -1251,21 +1312,27 @@ function drawMe(center){
 function locateMe(fromMap){
   const btn = document.getElementById("locate");
   const hl = document.getElementById("hero-loc");
-  if(!navigator.geolocation){ toast("Location isn't available on this device."); return; }
+  if(!navigator.geolocation){ toast(tr("Location isn't available on this device.","ამ მოწყობილობაზე მდებარეობა მიუწვდომელია.")); return; }
   if(btn) btn.classList.add("busy");
-  hl.textContent = "Locating…";
+  locating = true; heroLoc();
   navigator.geolocation.getCurrentPosition(p => {
     me = [p.coords.latitude, p.coords.longitude]; accuracy = p.coords.accuracy;
     if(btn){ btn.classList.remove("busy"); btn.classList.add("on"); }
-    hl.textContent = "Sorted by distance"; hl.classList.add("on");
+    locating = false; heroLoc();
     render();
     drawMe(fromMap && mapShown());
     if(glassPhase === "detail") { refreshGlassDist(); }
   }, err => {
     if(btn) btn.classList.remove("busy");
-    hl.textContent = "Use my location";
-    toast(err.code === 1 ? "Location is blocked. Allow it for this site in your browser settings." : "Couldn't find your location. Try again.");
+    locating = false; heroLoc();
+    toast(err.code === 1 ? tr("Location is blocked. Allow it for this site in your browser settings.","მდებარეობა დაბლოკილია. დაუშვი ამ საიტისთვის ბრაუზერის პარამეტრებში.") : tr("Couldn't find your location. Try again.","მდებარეობა ვერ მოიძებნა. სცადე თავიდან."));
   }, {enableHighAccuracy:true, timeout:10000, maximumAge:30000});
+}
+let locating = false;
+function heroLoc(){
+  const hl = document.getElementById("hero-loc");
+  hl.textContent = locating ? tr("Locating…","ვეძებ…") : me ? tr("Sorted by distance","დალაგებულია მანძილით") : tr("Use my location","ჩემი მდებარეობა");
+  hl.classList.toggle("on", !!me && !locating);
 }
 document.getElementById("hero-loc").onclick = () => locateMe(false);
 
@@ -1293,6 +1360,7 @@ function fitHeader(){
 addEventListener("resize", fitHeader);
 document.fonts && document.fonts.ready.then(fitHeader);
 if(window.ResizeObserver) new ResizeObserver(fitHeader).observe(document.querySelector("header"));
+applyStatic(); heroLoc();
 renderChips();
 fitHeader();
 
@@ -1307,7 +1375,7 @@ async function boot(){
     setInterval(render, 60000);
   }catch(err){
     document.getElementById("rows").innerHTML =
-      `<div class="empty">Couldn't load the shop list.<br>Check your connection and reopen the app.</div>`;
+      tr(`<div class="empty">Couldn't load the shop list.<br>Check your connection and reopen the app.</div>`, `<div class="empty">კაფეების სია ვერ ჩაიტვირთა.<br>შეამოწმე ინტერნეტი და გახსენი აპი თავიდან.</div>`);
   }
 }
 boot();

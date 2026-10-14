@@ -27,6 +27,7 @@ Each shop looks like this:
 - **id** must be unique, lowercase, with no spaces.
 - **coords**: in Google Maps, right-click (or long-press) the spot and copy the two numbers.
 - **hours** run Monday to Sunday. Use `""` for a closed day and `24:00` for midnight. A time like `09:00-02:00` means the shop closes after midnight.
+- **note_ka** (optional): the same note in Georgian, shown when the app is switched to Georgian. Without it, the English note is shown.
 - **brew** can include any of: `espresso`, `v60`, `batch`, `aeropress`, `chemex`.
 - **score** (optional): your own score out of 10, like `8.5`. Leave it as `null` until you've scored the shop. It shows as ★ 8.5/10, and once any shop has a score, the list gets a "Best score first" sort switch.
 - **photos** (optional): a list of pictures shown on the shop card, each like `{"src": "photos/shop-1.webp", "alt": "what's in the picture"}`. Put the image files in the `photos/` folder. Keep them small: about 1400 px on the long side, WebP or JPEG, under 200 KB each.
@@ -66,3 +67,7 @@ Fonts: Archivo Black and IBM Plex Mono, bundled in `vendor/fonts/` (SIL Open Fon
 ## Visitor counts
 
 Visits are counted anonymously with GoatCounter (no cookies, nothing personal). See the numbers at https://tbilisicoffeemap.goatcounter.com. Taps on Directions, Google reviews, Instagram and Share favourites are counted as events, named like `directions/barr`.
+
+## Languages
+
+The app has English and Georgian. People switch with the "ქართული · Georgian" switch in Contact → Suggest → Your preferences, and the choice is kept on their phone. Shop names and addresses stay in English. Area names are translated in `index.html` (`AREA_KA`), so if you add a shop in a new area, add its Georgian name there too.
