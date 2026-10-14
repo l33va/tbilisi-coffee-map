@@ -14,6 +14,15 @@
 <link rel="icon" href="icons/icon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="stylesheet" href="vendor/fonts/fonts.css">
+<script>
+/* theme: set before first paint so there is no flash */
+function cmApplyTheme(choice){
+  var light = choice === "light" || (choice !== "dark" && window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches);
+  document.documentElement.setAttribute("data-theme", light ? "light" : "dark");
+  var m = document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute("content", light ? "#F4F4F0" : "#0A0A0A");
+}
+(function(){ var c = "auto"; try{ c = (JSON.parse(localStorage.getItem("cm-prefs")) || {}).theme || "auto"; }catch(e){} cmApplyTheme(c); })();
+</script>
 <style>
 /* ============================================================
    DESIGN TOKENS — "Diffusion"
@@ -30,11 +39,41 @@
   --gold:#F0B73C;       /* favourites on the map */
   --red:#FF3B2F;        /* closing soon, the pin on the logo */
   --pin:var(--red);     /* used by the logo symbol */
+  --on-red:#141414;     /* text on red buttons */
+  --note:var(--note);       /* body copy */
+  --shut:#777;          /* closed pins */
+  --row-active:#141414;
+  --nav-off:#8A8A8A;
+  --press:rgba(244,244,244,.09);
+  --attr-bg:rgba(10,10,10,.75);
+  --sel-ring:rgba(244,244,244,.25);
+  --me-fill:rgba(244,244,244,.15);
+  --pic-bg:#141414;
+  --lb-bg:rgba(10,10,10,.96);
+  --glass-1:rgba(24,24,24,.12);
+  --glass-2:rgba(24,24,24,.52);
+  --glass-fb:rgba(14,14,14,.94);
+  --edge-1:rgba(255,255,255,.22);
+  --edge-2:rgba(255,255,255,.08);
+  --g-line:var(--g-line);
+  --g-btn:rgba(244,244,244,.6);
+  color-scheme:dark;
   --display:"Archivo Black","Georgian Display","Arial Black",Impact,sans-serif;
   --mono:"IBM Plex Mono","Georgian Text",ui-monospace,Menlo,monospace;
   --hdr:150px;
   --nav:64px;
   --safe-b:env(safe-area-inset-bottom,0px);
+}
+/* ---------- Light theme: warm off-white, ink, a deeper red ---------- */
+html[data-theme="light"]{
+  --bg:#F4F4F0; --fg:#0A0A0A; --dim:#5C5C58; --mute:#8E8E89; --hair:#A9A9A3; --line:#D5D5CF; --red:#D9261A;
+  --on-red:#FFFFFF; --note:#2A2A28; --shut:#A9A9A3; --row-active:#E9E9E4; --nav-off:#8E8E89;
+  --press:rgba(10,10,10,.06); --attr-bg:rgba(244,244,240,.8); --sel-ring:rgba(10,10,10,.18); --me-fill:rgba(10,10,10,.12);
+  --pic-bg:#E9E9E4; --lb-bg:rgba(244,244,240,.97);
+  --glass-1:rgba(255,255,255,.18); --glass-2:rgba(255,255,255,.62); --glass-fb:rgba(244,244,240,.96);
+  --edge-1:rgba(255,255,255,.8); --edge-2:rgba(10,10,10,.08);
+  --g-line:rgba(10,10,10,.22); --g-btn:rgba(10,10,10,.6);
+  color-scheme:light;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 button,a,.row,.chip,.sw{touch-action:manipulation}
@@ -47,6 +86,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ---------- Film grain over everything ---------- */
 .grain{position:fixed;inset:0;width:100%;height:100%;z-index:3000;pointer-events:none;mix-blend-mode:screen;opacity:.18}
+html[data-theme="light"] .grain{mix-blend-mode:multiply;opacity:.12}
+html[data-theme="light"] .grain rect{filter:url(#grainf-l)}
+html[data-theme="light"] [filter="url(#diffuse)"]{filter:url(#diffuse-l)}
 
 /* ---------- Header ---------- */
 header{
@@ -93,6 +135,8 @@ body.v-faves .search,body.v-faves .chips,body.v-contact .search,body.v-contact .
 #map{background:var(--bg)}
 /* map tiles go black and white, then dark */
 #map .leaflet-tile-pane{filter:invert(1) grayscale(1) brightness(.8) contrast(1.15)}
+html[data-theme="light"] #map .leaflet-tile-pane{filter:grayscale(1) contrast(.95) brightness(1.04)}
+.me-ring{stroke:var(--fg);fill:var(--fg)}
 
 /* ---------- Hero: the open count, diffused ---------- */
 .hero{position:relative;margin:0 -20px}
@@ -109,7 +153,7 @@ body.v-faves .search,body.v-faves .chips,body.v-contact .search,body.v-contact .
   display:grid;grid-template-columns:24px 1fr auto;gap:8px;align-items:start;
   padding:13px 0 12px;border-bottom:1px solid var(--line);cursor:pointer;
 }
-.row:active{background:#141414}
+.row:active{background:var(--row-active)}
 .row .ix{font-size:9px;color:var(--dim);padding-top:7px}
 .nm,.dist{
   font-family:var(--display);text-transform:uppercase;
@@ -118,7 +162,7 @@ body.v-faves .search,body.v-faves .chips,body.v-contact .search,body.v-contact .
 .nm{font-size:21px;line-height:1.05}
 .dist{font-size:16px;line-height:1.2;padding-top:3px;white-space:nowrap}
 .row .meta{font-size:9px;line-height:1.5;margin-top:6px;text-transform:uppercase;letter-spacing:.04em;color:var(--dim)}
-.row .note{font-size:12px;line-height:1.45;margin-top:7px;color:#CFCFCF}
+.row .note{font-size:12px;line-height:1.45;margin-top:7px;color:var(--note)}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
 .tag{font-size:9px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding:3px 6px;border:1px solid var(--hair);color:var(--fg)}
 .tag.own{background:var(--fg);border-color:var(--fg);color:var(--bg)}
@@ -140,7 +184,7 @@ nav{
 }
 nav .rule{flex:1;height:1px;background:var(--hair)}
 nav button{
-  font-family:var(--display);font-size:17px;line-height:1;text-transform:uppercase;color:#8A8A8A;padding:12px 0;
+  font-family:var(--display);font-size:17px;line-height:1;text-transform:uppercase;color:var(--nav-off);padding:12px 0;
 }
 nav button[aria-selected="true"]{color:var(--fg)}
 
@@ -150,21 +194,21 @@ nav button[aria-selected="true"]{color:var(--fg)}
   filter:blur(var(--b,0px));opacity:var(--o,1);
 }
 .pin.soon{background:var(--red)}
-.pin.shut{background:#777}
+.pin.shut{background:var(--shut)}
 .pin.starred{background:var(--gold)}
-.pin.sel{box-shadow:0 0 0 5px rgba(244,244,244,.25),0 0 0 6px var(--fg);filter:none;opacity:1}
+.pin.sel{box-shadow:0 0 0 5px var(--sel-ring),0 0 0 6px var(--fg);filter:none;opacity:1}
 .leaflet-container{font-family:var(--mono)}
 .leaflet-bar{border:1px solid var(--fg) !important;border-radius:0 !important;box-shadow:none !important}
 .leaflet-bar a,.leaflet-bar button{background:var(--bg) !important;color:var(--fg) !important;border-bottom:1px solid var(--line) !important;border-radius:0 !important}
 .leaflet-bar a:last-child,.leaflet-bar button:last-child{border-bottom:0 !important}
-.leaflet-control-attribution{background:rgba(10,10,10,.75) !important;color:var(--dim) !important;font-size:9px}
+.leaflet-control-attribution{background:var(--attr-bg) !important;color:var(--dim) !important;font-size:9px}
 .leaflet-control-attribution a{color:var(--dim) !important}
 .loc-btn{width:30px;height:30px;display:grid;place-items:center;cursor:pointer;border:0}
 .loc-btn svg{width:18px;height:18px}
 .loc-btn.on{color:var(--red) !important}
 .loc-btn.busy svg{animation:locpulse 1s ease-in-out infinite}
 @keyframes locpulse{50%{opacity:.3}}
-.me{width:18px;height:18px;border-radius:50%;border:1px solid var(--fg);background:rgba(244,244,244,.15);position:relative}
+.me{width:18px;height:18px;border-radius:50%;border:1px solid var(--fg);background:var(--me-fill);position:relative}
 .me::after{content:"";position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--fg)}
 
 .sheet{
@@ -177,7 +221,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .sheet.soon .top .st{color:var(--red)}
 .sheet h3{margin-top:12px;font-family:var(--display);font-weight:400;font-size:25px;line-height:1.02;text-transform:uppercase}
 .sheet .meta{margin-top:10px;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
-.sheet .note{margin-top:10px;font-size:12px;line-height:1.5;color:#CFCFCF}
+.sheet .note{margin-top:10px;font-size:12px;line-height:1.5;color:var(--note)}
 .sheet .tags{margin-top:12px}
 .sheet .go{
   display:block;margin-top:16px;background:var(--fg);color:var(--bg);text-decoration:none;text-align:center;
@@ -195,12 +239,12 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .pics{display:flex;gap:6px;margin-top:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .pics::-webkit-scrollbar{display:none}
 .pics button{flex:0 0 auto;padding:0;border:1px solid var(--line);scroll-snap-align:start;line-height:0}
-.pics img{display:block;height:120px;width:auto;object-fit:cover;background:#141414}
+.pics img{display:block;height:120px;width:auto;object-fit:cover;background:var(--pic-bg)}
 .sheet .pics{margin-top:12px}
 .sheet .pics img{height:170px}
 .gc .pics{margin-top:18px}
 .gc .pics img{height:190px}
-.lightbox{position:fixed;inset:0;z-index:3050;background:rgba(10,10,10,.96);display:flex;align-items:center;justify-content:center;padding:56px 12px calc(24px + env(safe-area-inset-bottom,0px))}
+.lightbox{position:fixed;inset:0;z-index:3050;background:var(--lb-bg);display:flex;align-items:center;justify-content:center;padding:56px 12px calc(24px + env(safe-area-inset-bottom,0px))}
 .lightbox[hidden]{display:none}
 .lightbox img{max-width:100%;max-height:100%;object-fit:contain}
 .lightbox .lx{position:absolute;right:12px;top:calc(env(safe-area-inset-top,0px) + 10px);width:40px;height:40px;color:var(--fg);font-size:28px;line-height:1}
@@ -216,7 +260,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .foot{font-size:9px;line-height:1.6;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);padding:14px 0 0}
 .fave-empty{padding:28px 0 0;border-top:1px solid var(--fg)}
 .fave-empty h2{font-family:var(--display);font-weight:400;font-size:32px;line-height:1;text-transform:uppercase}
-.fave-empty p{margin-top:16px;font-size:12px;line-height:1.6;color:#CFCFCF}
+.fave-empty p{margin-top:16px;font-size:12px;line-height:1.6;color:var(--note)}
 .fave-empty .demo{margin-top:24px;border:1px solid var(--hair);padding:14px;display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center}
 .fave-empty .demo b{font-family:var(--display);font-weight:400;font-size:19px;line-height:1.05;text-transform:uppercase}
 .fave-empty .demo span{font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
@@ -262,12 +306,17 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .sw i::after{content:"";position:absolute;left:2px;top:2px;width:14px;height:14px;background:var(--hair)}
 .sw[aria-checked="true"] i{background:var(--fg);border-color:var(--fg)}
 .sw[aria-checked="true"] i::after{left:auto;right:2px;background:var(--bg)}
+.trow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.tseg{display:flex;border:1px solid var(--fg);flex:none}
+.tseg button{padding:7px 12px;font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+.tseg button+button{border-left:1px solid var(--hair)}
+.tseg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
 .about-top{display:flex;gap:16px;align-items:center}
 .about-top svg{width:96px;height:96px;flex:none;color:var(--fg)}
 .about-top p{font-family:var(--display);font-size:23px;line-height:1.05;text-transform:uppercase}
 .about-sec{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
 .about-sec:first-of-type{border-top-color:var(--fg)}
-.about-sec p{margin-top:6px;font-size:12px;line-height:1.6;color:#CFCFCF}
+.about-sec p{margin-top:6px;font-size:12px;line-height:1.6;color:var(--note)}
 .about-sec a{color:var(--fg);border-bottom:1px solid var(--hair);text-decoration:none}
 .legend-grid{margin-top:8px;display:grid;grid-template-columns:max-content 1fr;gap:8px 12px;align-items:center}
 .legend-grid b{font-family:var(--display);font-weight:400;font-size:19px;min-width:84px;line-height:1.1;text-transform:uppercase}
@@ -276,18 +325,18 @@ nav button[aria-selected="true"]{color:var(--fg)}
 /* ---------- Frosted glass shop view (opens from Faves) ---------- */
 #fave-rows .row,#rows .row{transition:filter .42s ease,opacity .36s ease,transform .42s ease,background-color .11s ease}
 #fave-rows.busy .row:not(.pressed),#rows.busy .row:not(.pressed){transform:scale(.985);opacity:.9}
-#fave-rows .row.pressed,#rows .row.pressed{background:rgba(244,244,244,.09)}
+#fave-rows .row.pressed,#rows .row.pressed{background:var(--press)}
 #fave-rows .row.pressed .nm,#rows .row.pressed .nm{filter:blur(0) !important;opacity:1 !important}
 .glass{
   position:fixed;inset:0;z-index:2000;color:var(--fg);visibility:hidden;box-sizing:border-box;
   padding:calc(env(safe-area-inset-top,0px) + 20px) 20px calc(env(safe-area-inset-bottom,0px) + 20px);
-  background-color:rgba(24,24,24,.12);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.08);
+  background-color:var(--glass-1);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+  box-shadow:inset 0 1px 0 var(--edge-1),inset 0 0 0 1px var(--edge-2);
 }
 .glass.show{visibility:visible}
-.glass.frost{background-color:rgba(24,24,24,.52);-webkit-backdrop-filter:blur(22px) saturate(140%);backdrop-filter:blur(22px) saturate(140%)}
+.glass.frost{background-color:var(--glass-2);-webkit-backdrop-filter:blur(22px) saturate(140%);backdrop-filter:blur(22px) saturate(140%)}
 .glass.anim{transition:clip-path .76s cubic-bezier(.76,0,.24,1),backdrop-filter .76s ease,-webkit-backdrop-filter .76s ease,background-color .76s ease}
-@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){.glass.frost{background-color:rgba(14,14,14,.94)}}
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){.glass.frost{background-color:var(--glass-fb)}}
 .gc{display:flex;flex-direction:column;height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .fx{display:block;transform:translateY(16px);filter:blur(16px);opacity:0;transition:transform .76s cubic-bezier(.16,1,.3,1),filter .76s cubic-bezier(.16,1,.3,1),opacity .42s ease}
 .gc.in .fx{transform:none;filter:blur(0);opacity:1}
@@ -295,7 +344,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .gc.in .s5{transition-delay:.25s}.gc.in .s6{transition-delay:.31s}.gc.in .s7{transition-delay:.36s}.gc.in .s8{transition-delay:.42s}
 .gc.out .fx{transform:none;filter:blur(8px);opacity:0;transition:opacity .16s ease,filter .16s ease}
 .gtop{display:flex;justify-content:space-between;align-items:center}
-.gback{height:44px;padding:0 14px;border:1.5px solid rgba(244,244,244,.6);font-size:12px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:8px;box-sizing:border-box;text-align:left}
+.gback{height:44px;padding:0 14px;border:1.5px solid var(--g-btn);font-size:12px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:8px;box-sizing:border-box;text-align:left}
 .gback:hover,.gback:focus-visible{background:var(--fg);color:var(--bg)}
 .gm{font-size:12px;letter-spacing:.06em;text-transform:uppercase}
 .gname{margin-top:12px;font-family:var(--display);font-weight:400;font-size:38px;line-height:1.02;text-transform:uppercase}
@@ -313,14 +362,14 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .gloc:focus-visible,.gtell:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
 .gph{margin-top:16px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .gtell{font-size:9px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--fg);border-bottom:1px solid var(--hair);padding-bottom:1px}
-.gprices{margin-top:6px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid rgba(244,244,244,.28)}
+.gprices{margin-top:6px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--g-line)}
 .gpc{padding:10px 12px}
-.gpc+.gpc{border-left:1px solid rgba(244,244,244,.28)}
+.gpc+.gpc{border-left:1px solid var(--g-line)}
 .gpc small{display:block;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .gpc b{display:block;margin-top:4px;font-family:var(--display);font-weight:400;font-size:26px;line-height:1}
 .gpc b.na{color:var(--mute)}
 .g2{display:grid;grid-template-columns:1fr 1fr}
-.g2 .ginf:last-child{border-left:1px solid rgba(244,244,244,.28);padding-left:12px}
+.g2 .ginf:last-child{border-left:1px solid var(--g-line);padding-left:12px}
 .g2 .ginf:first-child{padding-right:12px}
 .mk{display:inline-flex;align-items:center;gap:6px}
 .mk i{width:10px;height:10px;box-sizing:border-box;display:inline-block;flex:none}
@@ -329,11 +378,11 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .mk.na{color:var(--mute)}
 .mk.na i{border:1.5px dashed var(--mute)}
 .ginf .na{color:var(--mute)}
-.ginfo{margin-top:12px;border-top:1px solid rgba(244,244,244,.28)}
-.ginf{display:flex;justify-content:space-between;align-items:center;gap:12px;height:40px;border-bottom:1px solid rgba(244,244,244,.28);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.ginfo{margin-top:12px;border-top:1px solid var(--g-line)}
+.ginf{display:flex;justify-content:space-between;align-items:center;gap:12px;height:40px;border-bottom:1px solid var(--g-line);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
 .glinks{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px}
 .glinks a,.glinks button{font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--fg);text-decoration:none;border-bottom:1px solid var(--hair);padding:4px 0 2px}
-.gdir{margin-top:16px;width:100%;height:52px;background:var(--red);color:#141414;display:flex;align-items:center;justify-content:space-between;padding:0 18px;box-sizing:border-box;font-family:var(--display);font-size:19px;text-transform:uppercase;text-decoration:none;flex:none}
+.gdir{margin-top:16px;width:100%;height:52px;background:var(--red);color:var(--on-red);display:flex;align-items:center;justify-content:space-between;padding:0 18px;box-sizing:border-box;font-family:var(--display);font-size:19px;text-transform:uppercase;text-decoration:none;flex:none}
 .gback:focus-visible,.gdir:focus-visible,.glinks a:focus-visible,.glinks button:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.glass.anim,.fx,#fave-rows .row,#rows .row{transition:none !important}}
 
@@ -367,10 +416,21 @@ nav button[aria-selected="true"]{color:var(--fg)}
       <feComposite in="b" in2="na" operator="in" result="g"/>
       <feComponentTransfer in="g"><feFuncA type="linear" slope="3.2" intercept="0"/></feComponentTransfer>
     </filter>
+    <filter id="diffuse-l" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="b"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="4" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 .04  0 0 0 0 .04  0 0 0 0 .04  2.2 0 0 0 -0.55" result="na"/>
+      <feComposite in="b" in2="na" operator="in" result="g"/>
+      <feComponentTransfer in="g"><feFuncA type="linear" slope="3.2" intercept="0"/></feComponentTransfer>
+    </filter>
     <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
     <filter id="grainf" x="0" y="0" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="9"/>
       <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -2.2 1.35"/>
+    </filter>
+    <filter id="grainf-l" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="9"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.35"/>
     </filter>
   </defs>
 </svg>
@@ -393,10 +453,10 @@ nav button[aria-selected="true"]{color:var(--fg)}
   <section class="view active" id="list" aria-label="List">
     <div class="hero">
       <svg viewBox="0 0 390 326" role="img" aria-label="Shops open now" data-ta="heroaria" id="hero-svg">
-        <text class="n" x="14" y="236" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="270" fill="#F4F4F4" opacity=".28" filter="url(#diffuse)" letter-spacing="-12"></text>
-        <text class="n" x="14" y="236" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="270" fill="#F4F4F4" opacity=".55" filter="url(#soft)" letter-spacing="-12"></text>
-        <text x="18" y="292" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="50" fill="#F4F4F4" letter-spacing="-1" data-t="opennow">OPEN NOW</text>
-        <text id="hero-of" x="20" y="318" font-family="'IBM Plex Mono','Georgian Text',monospace" font-size="10" letter-spacing="0.5" fill="#B5B5B5"></text>
+        <text class="n" x="14" y="236" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="270" style="fill:var(--fg)" opacity=".28" filter="url(#diffuse)" letter-spacing="-12"></text>
+        <text class="n" x="14" y="236" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="270" style="fill:var(--fg)" opacity=".55" filter="url(#soft)" letter-spacing="-12"></text>
+        <text x="18" y="292" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="50" style="fill:var(--fg)" letter-spacing="-1" data-t="opennow">OPEN NOW</text>
+        <text id="hero-of" x="20" y="318" font-family="'IBM Plex Mono','Georgian Text',monospace" font-size="10" letter-spacing="0.5" style="fill:var(--dim)"></text>
       </svg>
       <button class="hero-loc" id="hero-loc" type="button">Use my location</button>
     </div>
@@ -405,9 +465,9 @@ nav button[aria-selected="true"]{color:var(--fg)}
   <section class="view" id="faves" aria-label="Favourites">
     <div class="hero">
       <svg viewBox="0 0 390 210" role="img" aria-label="Saved shops" data-ta="favearia" id="fave-hero">
-        <text class="fn" x="14" y="150" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="190" fill="#F4F4F4" opacity=".28" filter="url(#diffuse)" letter-spacing="-8"></text>
-        <text class="fn" x="14" y="150" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="190" fill="#F4F4F4" opacity=".55" filter="url(#soft)" letter-spacing="-8"></text>
-        <text x="18" y="198" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="46" fill="#F4F4F4" letter-spacing="-1" data-t="favtitle">FAVOURITES</text>
+        <text class="fn" x="14" y="150" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="190" style="fill:var(--fg)" opacity=".28" filter="url(#diffuse)" letter-spacing="-8"></text>
+        <text class="fn" x="14" y="150" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="190" style="fill:var(--fg)" opacity=".55" filter="url(#soft)" letter-spacing="-8"></text>
+        <text x="18" y="198" font-family="'Archivo Black','Georgian Display',sans-serif" font-size="46" style="fill:var(--fg)" letter-spacing="-1" data-t="favtitle">FAVOURITES</text>
       </svg>
       <button class="share-btn" type="button" id="fave-share" aria-label="Share favourites as a picture" data-ta="share" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></button>
     </div>
@@ -513,7 +573,9 @@ const store = {
   set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
 };
 const favs = new Set(store.get("cm-favs", []));
-const prefs = Object.assign({brew:[], hideClosed:false, laptop:false, early:false}, store.get("cm-prefs", {}));
+const prefs = Object.assign({brew:[], hideClosed:false, laptop:false, early:false, theme:"auto"}, store.get("cm-prefs", {}));
+if(!["auto","light","dark"].includes(prefs.theme)) prefs.theme = "auto";
+if(window.matchMedia) matchMedia("(prefers-color-scheme: light)").addEventListener("change", () => { if(prefs.theme === "auto") cmApplyTheme("auto"); });
 prefs.laptop = false;   // the "Laptop-friendly first" switch was replaced by the language switch
 /* ============================================================
    LANGUAGE — English or Georgian (kept on this phone).
@@ -929,7 +991,9 @@ async function drawFavesCard(list){
   const W = 1080, H = 1920, P = 66;
   const c = document.createElement("canvas"); c.width = W; c.height = H;
   const x = c.getContext("2d");
-  const FG = "#F4F4F4", DIM = "#B5B5B5", MUTE = "#777", LINE = "#2A2A2A", RED = "#FF3B2F", BG = "#0A0A0A", GOLD = "#F0B73C";
+  const LT = document.documentElement.dataset.theme === "light";   // the picture follows the app's theme
+  const FG = LT ? "#0A0A0A" : "#F4F4F4", DIM = LT ? "#5C5C58" : "#B5B5B5", MUTE = LT ? "#8E8E89" : "#777", LINE = LT ? "#D5D5CF" : "#2A2A2A", RED = LT ? "#D9261A" : "#FF3B2F", BG = LT ? "#F4F4F0" : "#0A0A0A", GOLD = "#F0B73C";
+  const MAPBG = LT ? "#ECECE7" : "#0F0F0F", ROAD1 = LT ? "#FFFFFF" : "#262626", ROAD2 = LT ? "#FFFFFF" : "#3A3A3A", RING = LT ? "#0A0A0A" : "#0F0F0F";
   const DISP = "'Archivo Black', 'Georgian Display', 'Arial Black', sans-serif", MONO = "'IBM Plex Mono', 'Georgian Text', ui-monospace, monospace";
   try{ await Promise.all([document.fonts.load(`400 60px "Archivo Black"`), document.fonts.load(`500 30px "IBM Plex Mono"`), document.fonts.load(`400 30px "IBM Plex Mono"`), document.fonts.load(`400 60px "Georgian Display"`, "ა"), document.fonts.load(`500 30px "Georgian Text"`, "ა"), document.fonts.load(`400 30px "Georgian Text"`, "ა")]); }catch(e){}
 
@@ -962,11 +1026,11 @@ async function drawFavesCard(list){
   const mapH = Math.max(520, Math.min(1100, 1700 - mapY - 36 - listH));
 
   // the map: a quiet street grid, then the pins at their real positions, fitted to your favourites
-  x.fillStyle = "#0F0F0F"; x.fillRect(mapX, mapY, mapW, mapH);
+  x.fillStyle = MAPBG; x.fillRect(mapX, mapY, mapW, mapH);
   x.save(); x.beginPath(); x.rect(mapX, mapY, mapW, mapH); x.clip();
   const seg = (x1, y1, x2, y2, w, col) => { x.strokeStyle = col; x.lineWidth = w; x.lineCap = "round"; x.beginPath(); x.moveTo(mapX + x1*mapW/320, mapY + y1*mapH/300); x.lineTo(mapX + x2*mapW/320, mapY + y2*mapH/300); x.stroke(); };
-  [[-60,70,380,90],[-60,210,380,175],[90,-10,110,310],[250,-10,270,310],[-60,145,380,155]].forEach(l => seg(...l, 6, "#262626"));
-  [[-60,35,380,60],[-60,255,380,235],[160,-10,170,310]].forEach(l => seg(...l, 10, "#3A3A3A"));
+  [[-60,70,380,90],[-60,210,380,175],[90,-10,110,310],[250,-10,270,310],[-60,145,380,155]].forEach(l => seg(...l, 6, ROAD1));
+  [[-60,35,380,60],[-60,255,380,235],[160,-10,170,310]].forEach(l => seg(...l, 10, ROAD2));
 
   const lats = list.map(s => s.coords[0]), lngs = list.map(s => s.coords[1]);
   const minLat = Math.min(...lats), maxLat = Math.max(...lats), minLng = Math.min(...lngs), maxLng = Math.max(...lngs);
@@ -981,11 +1045,11 @@ async function drawFavesCard(list){
   }
   pts.forEach(q => { q.x = Math.min(mapX + mapW - q.r - 6, Math.max(mapX + q.r + 6, q.x)); q.y = Math.min(mapY + mapH - q.r - 6, Math.max(mapY + q.r + 6, q.y)); });
   pts.forEach(q => { const g = x.createRadialGradient(q.x, q.y, 0, q.x, q.y, 110); g.addColorStop(0, "rgba(240,183,60,.22)"); g.addColorStop(1, "rgba(240,183,60,0)"); x.fillStyle = g; x.fillRect(q.x - 110, q.y - 110, 220, 220); });
-  pts.filter(q => q.i >= MAX).forEach(q => { x.fillStyle = GOLD; x.beginPath(); x.arc(q.x, q.y, q.r, 0, Math.PI*2); x.fill(); });
+  pts.filter(q => q.i >= MAX).forEach(q => { x.fillStyle = GOLD; x.strokeStyle = RING; x.lineWidth = 3; x.beginPath(); x.arc(q.x, q.y, q.r, 0, Math.PI*2); x.fill(); if(LT) x.stroke(); });
   x.textAlign = "center"; x.textBaseline = "middle";
   pts.filter(q => q.i < MAX).forEach(q => {
-    x.fillStyle = GOLD; x.strokeStyle = "#0F0F0F"; x.lineWidth = 6; x.beginPath(); x.arc(q.x, q.y, q.r, 0, Math.PI*2); x.fill(); x.stroke();
-    x.fillStyle = BG; x.font = `400 30px ${DISP}`; x.fillText(String(q.i + 1), q.x, q.y + 2);
+    x.fillStyle = GOLD; x.strokeStyle = RING; x.lineWidth = LT ? 4 : 6; x.beginPath(); x.arc(q.x, q.y, q.r, 0, Math.PI*2); x.fill(); x.stroke();
+    x.fillStyle = "#0A0A0A"; x.font = `400 30px ${DISP}`; x.fillText(String(q.i + 1), q.x, q.y + 2);
   });
   x.textAlign = "left"; x.textBaseline = "alphabetic";
   x.restore();
@@ -1221,7 +1285,8 @@ const PREF_SWITCHES = () => [["hideClosed",tr("Hide closed shops","დაკე�
 const chipHtml = (attr, key, label, on) => `<button class="chip" type="button" ${attr}="${key}" aria-pressed="${on}">${label}</button>`;
 function renderPrefs(){
   document.getElementById("pref-brew").innerHTML = BREW_LABELS().map(([k,l]) => chipHtml("data-pbrew", k, l, prefs.brew.includes(k))).join("");
-  document.getElementById("pref-switches").innerHTML = PREF_SWITCHES().map(([k,l]) => k === "lang"
+  const THEMES = [["auto",tr("Auto","ავტო")],["light",tr("Light","ღია")],["dark",tr("Dark","მუქი")]];
+  document.getElementById("pref-switches").innerHTML = `<div class="trow"><span>${tr("Theme","თემა")}</span><span class="tseg" role="group" aria-label="${tr("Theme","თემა")}">${THEMES.map(([k,l]) => `<button type="button" data-theme-set="${k}" aria-pressed="${prefs.theme === k}">${l}</button>`).join("")}</span></div>` + PREF_SWITCHES().map(([k,l]) => k === "lang"
     ? `<button class="sw" type="button" role="switch" data-lang aria-checked="${lang === "ka"}" lang="ka"><span>${l}</span><i></i></button>`
     : `<button class="sw" type="button" role="switch" data-pref="${k}" aria-checked="${prefs[k]}"><span>${l}</span><i></i></button>`).join("");
 }
@@ -1256,6 +1321,8 @@ document.getElementById("contact").addEventListener("click", e => {
     prefs.brew = prefs.brew.includes(k) ? prefs.brew.filter(x => x !== k) : [...prefs.brew, k];
     store.set("cm-prefs", prefs); render(); return;
   }
+  const th = e.target.closest("[data-theme-set]");
+  if(th){ prefs.theme = th.dataset.themeSet; store.set("cm-prefs", prefs); cmApplyTheme(prefs.theme); countEvent("theme/" + prefs.theme, "Theme: " + prefs.theme); renderPrefs(); return; }
   const sw = e.target.closest("[data-pref]");
   if(sw){ prefs[sw.dataset.pref] = !prefs[sw.dataset.pref]; store.set("cm-prefs", prefs); render(); return; }
   if(e.target.closest("[data-lang]")){ setLang(lang === "ka" ? "en" : "ka"); return; }
@@ -1304,7 +1371,7 @@ function drawMe(center){
   if(!map || !me) return;
   if(meMarker){ meMarker.setLatLng(me); meCircle.setLatLng(me).setRadius(accuracy); }
   else{
-    meCircle = L.circle(me, {radius:accuracy, color:"#F4F4F4", weight:1, fillColor:"#F4F4F4", fillOpacity:.08, interactive:false}).addTo(map);
+    meCircle = L.circle(me, {radius:accuracy, className:"me-ring", weight:1, fillOpacity:.08, interactive:false}).addTo(map);
     meMarker = L.marker(me, {icon:L.divIcon({className:"", html:'<div class="me"></div>', iconSize:[18,18], iconAnchor:[9,9]}), interactive:false, zIndexOffset:1000}).addTo(map);
   }
   if(center) map.setView(me, Math.max(map.getZoom(), 15));
