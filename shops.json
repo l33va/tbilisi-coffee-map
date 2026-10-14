@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13",
+  "updated": "2026-10-14",
   "shops": [
     {
       "id": "shavi-original",
@@ -1313,6 +1313,67 @@
       "place_id": "ChIJU4C7sU8NREARCrnyli_pqig",
       "note": "Cosy little spot near Marjanishvili metro with good pastries and a shelf of vintage tableware.",
       "note_ka": "მყუდრო პატარა ადგილი მარჯანიშვილის მეტროსთან, კარგი საცხობით და ვინტაჟური ჭურჭლის თაროთი."
+    },
+    {
+      "id": "chiti-takaishvili",
+      "name": "Chiti — Takaishvili",
+      "area": "Vake",
+      "address": "3 Ekvtime Takaishvili St",
+      "coords": [
+        41.7085458,
+        44.77761
+      ],
+      "hours": [
+        "10:00-21:00",
+        "10:00-21:00",
+        "10:00-21:00",
+        "10:00-21:00",
+        "10:00-21:00",
+        "10:00-21:00",
+        "10:00-21:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "chiti.cafe",
+      "place_id": "ChIJpYi0zcQNREARL6F2rJl8bNw",
+      "note": "Calm light-food café with all-day breakfast and a kids' play corner. Known for zucchini waffles and draniki.",
+      "note_ka": "მშვიდი კაფე მსუბუქი კერძებით, საუზმე მთელი დღე და საბავშვო კუთხე. ცნობილია ყაბაყის ვაფლებით და დრანიკებით."
+    },
+    {
+      "id": "chiti-chavchavadze",
+      "name": "Chiti — Vake Park",
+      "area": "Vake",
+      "address": "76 Ilia Chavchavadze Ave",
+      "coords": [
+        41.711699,
+        44.7513941
+      ],
+      "hours": [
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": true,
+      "pets": true,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "chiti.cafe",
+      "place_id": "ChIJIbVdAf9zREAR0Lg0SC861cc",
+      "note": "Small café at the edge of Vake Park with a shady terrace and resident cats. Kid and pet friendly; good syrniki and draniki.",
+      "note_ka": "პატარა კაფე ვაკის პარკის კიდეზე, ჩრდილიანი ტერასით და კატებით. ბავშვებით და ცხოველებით მისვლა შეიძლება; კარგი სირნიკები და დრანიკები."
     }
   ]
 }
