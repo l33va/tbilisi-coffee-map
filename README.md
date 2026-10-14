@@ -42,6 +42,7 @@ Each shop looks like this:
 ## Favourites, preferences and contact forms
 
 - **Faves** tab: tap the heart on any shop to save it. Favourites and the preferences in **Contact → Suggest** (brew methods, hide closed shops, laptop-friendly first, early openers first) are kept on the phone only, in the browser's local storage.
+- **Theme**: Contact → Suggest → Your preferences has Auto (follows the phone, the default), Light and Dark. Light is warm off-white with ink text and a deeper red; it also switches the map tiles and the "My Tbilisi" share picture. Colours live in the `:root` and `html[data-theme="light"]` blocks at the top of `index.html`.
 - **Contact** tab: the "Suggest a shop" and "Add your shop" forms open the visitor's email app with the message filled in, addressed to the email in `CONTACT` near the top of the script in `index.html`. Nothing is stored on a server.
 
 ## Publishing on GitHub Pages
