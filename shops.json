@@ -1454,6 +1454,44 @@
       "place_id": "ChIJtfBNl4JzREARZAFlwH08nU8",
       "note": "Small, cosy coffee shop in Vake with good filter coffee, good music and friendly baristas. Try the warm chicken and mushroom pie.",
       "note_ka": "პატარა, მყუდრო ყავის ადგილი ვაკეში, კარგი ფილტრით, კარგი მუსიკით და მეგობრული ბარისტებით. სცადე თბილი ქათმისა და სოკოს ღვეზელი."
+    },
+    {
+      "id": "coffee22",
+      "name": "Coffee22",
+      "area": "Sololaki",
+      "address": "31 Atoneli St",
+      "coords": [
+        41.7001946,
+        44.8021534
+      ],
+      "hours": [
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": [
+        "espresso",
+        "v60"
+      ],
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          9,
+          13
+        ]
+      },
+      "score": null,
+      "instagram": "coffee22.tbilisi",
+      "place_id": "ChIJI82m9a4NREARq014nFAQn2U",
+      "note": "Cosy café on busy Atoneli St, open till 22:00. V60 and iced drip, plus a full food menu from breakfast to dinner.",
+      "note_ka": "მყუდრო კაფე ხმაურიან ატონელის ქუჩაზე, ღიაა 22:00-მდე. V60 და ცივი დრიპი, ასევე სრული მენიუ საუზმიდან ვახშმამდე."
     }
   ]
 }
