@@ -1404,6 +1404,37 @@
       "place_id": "ChIJt6ipv5gNREARDy8NAkT_9tc",
       "note": "Small specialty bar in Saburtalo with signature drinks like orange cappuccino and bumble, plus flavoured cold brews. Better for a quick cup than a long sit.",
       "note_ka": "პატარა სპეშელთი ბარი საბურთალოზე, საფირმო სასმელებით, როგორიცაა ფორთოხლის კაპუჩინო და ბამბლი, და არომატიზებული cold brew-ებით. უფრო სწრაფი ყავისთვისაა, ვიდრე დიდხანს დასაჯდომად."
+    },
+    {
+      "id": "nur",
+      "name": "Nur",
+      "area": "Vake",
+      "address": "7 Lado Kavsadze St",
+      "coords": [
+        41.708787,
+        44.761431
+      ],
+      "hours": [
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-20:00",
+        "09:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": [
+        "espresso",
+        "v60"
+      ],
+      "score": null,
+      "instagram": "nur_coffeeshop",
+      "place_id": "ChIJtfBNl4JzREARZAFlwH08nU8",
+      "note": "Small, cosy coffee shop in Vake with good filter coffee, good music and friendly baristas. Try the warm chicken and mushroom pie.",
+      "note_ka": "პატარა, მყუდრო ყავის ადგილი ვაკეში, კარგი ფილტრით, კარგი მუსიკით და მეგობრული ბარისტებით. სცადე თბილი ქათმისა და სოკოს ღვეზელი."
     }
   ]
 }
