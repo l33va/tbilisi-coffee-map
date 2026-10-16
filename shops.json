@@ -1238,7 +1238,25 @@
       "prices": {
         "espresso": 6,
         "cappuccino": 12
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/808-1.webp",
+          "alt": "808 from the street: a glass corner front under vines, with blue drawings on the window"
+        },
+        {
+          "src": "photos/808-2.webp",
+          "alt": "A sesame onigiri and a coffee in an 808 cup on a steel table"
+        },
+        {
+          "src": "photos/808-3.webp",
+          "alt": "Two blue stadium seats under menu posters for onigirazu, matcha and porridge"
+        },
+        {
+          "src": "photos/808-4.webp",
+          "alt": "808's lit sign and blue neon window at night"
+        }
+      ]
     },
     {
       "id": "corner",
