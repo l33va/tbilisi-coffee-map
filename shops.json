@@ -1223,7 +1223,7 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
+      "laptop": true,
       "roaster": [
         "Mamuli"
       ],
@@ -1256,7 +1256,8 @@
           "src": "photos/808-4.webp",
           "alt": "808's lit sign and blue neon window at night"
         }
-      ]
+      ],
+      "pets": true
     },
     {
       "id": "corner",
