@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-14",
+  "updated": "2026-10-16",
   "shops": [
     {
       "id": "shavi-original",
@@ -1374,6 +1374,36 @@
       "place_id": "ChIJIbVdAf9zREAR0Lg0SC861cc",
       "note": "Small café at the edge of Vake Park with a shady terrace and resident cats. Kid and pet friendly; good syrniki and draniki.",
       "note_ka": "პატარა კაფე ვაკის პარკის კიდეზე, ჩრდილიანი ტერასით და კატებით. ბავშვებით და ცხოველებით მისვლა შეიძლება; კარგი სირნიკები და დრანიკები."
+    },
+    {
+      "id": "unity-bistro",
+      "name": "Unity Bistro",
+      "area": "Saburtalo",
+      "address": "70 Archil Tsagareli St",
+      "coords": [
+        41.7235294,
+        44.7630816
+      ],
+      "hours": [
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "unity_bistro",
+      "place_id": "ChIJt6ipv5gNREARDy8NAkT_9tc",
+      "note": "Small specialty bar in Saburtalo with signature drinks like orange cappuccino and bumble, plus flavoured cold brews. Better for a quick cup than a long sit.",
+      "note_ka": "პატარა სპეშელთი ბარი საბურთალოზე, საფირმო სასმელებით, როგორიცაა ფორთოხლის კაპუჩინო და ბამბლი, და არომატიზებული cold brew-ებით. უფრო სწრაფი ყავისთვისაა, ვიდრე დიდხანს დასაჯდომად."
     }
   ]
 }
