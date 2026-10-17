@@ -1599,6 +1599,37 @@
       "place_id": "ChIJPdw3ZwANREARCm5l1y_I2jI",
       "note": "Small roaster-café in the old town that roasts its own beans and sells them by the bag. Homemade cakes; the lemon cake is the one to get.",
       "note_ka": "პატარა როუსტერ-კაფე ძველ ქალაქში, რომელიც საკუთარ მარცვალს ხალავს და ყიდის. სახლური ნამცხვრები; აუცილებლად სცადე ლიმნის ნამცხვარი."
+    },
+    {
+      "id": "daily-grind",
+      "name": "Daily Grind",
+      "area": "Old Tbilisi",
+      "address": "4 Kote Afkhazi St",
+      "coords": [
+        41.6931526,
+        44.8028439
+      ],
+      "hours": [
+        "07:00-17:00",
+        "07:00-17:00",
+        "07:00-17:00",
+        "07:00-17:00",
+        "07:00-17:00",
+        "07:00-18:00",
+        "07:00-18:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": [
+        "espresso",
+        "v60"
+      ],
+      "score": null,
+      "instagram": "dailygrindtbilisi",
+      "place_id": "ChIJV7h5rJMNREARI1uRtZM0wag",
+      "note": "Friendly little coffee bar on the old town's main street, open from 7. V60 alongside espresso, and well-loved cheesecake.",
+      "note_ka": "მეგობრული პატარა ყავის ბარი ძველი ქალაქის მთავარ ქუჩაზე, ღიაა 7-დან. V60 და ესპრესო, და ყველას საყვარელი ჩიზქეიქი."
     }
   ]
 }
