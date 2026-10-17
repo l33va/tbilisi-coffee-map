@@ -897,7 +897,17 @@
           12
         ],
         "batch": 8
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/pulp-janashia-1.webp",
+          "alt": "Pulp's shelf of sourdough tartines, baguettes, challah and Hokkaido milk bread, with Pulp T-shirts"
+        },
+        {
+          "src": "photos/pulp-janashia-2.webp",
+          "alt": "Fresh Hokkaido milk bread loaves cooling on a steel rack"
+        }
+      ]
     },
     {
       "id": "shukura",
