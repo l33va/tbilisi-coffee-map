@@ -1278,7 +1278,13 @@
       "instagram": "nomomocafe",
       "place_id": "ChIJX9_iDTMNREARo0AmMRRrNnI",
       "note": "Charming breakfast café on Kostava with good coffee and loud, well-picked music.",
-      "note_ka": "მომხიბვლელი საუზმის კაფე კოსტავაზე, კარგი ყავით და ხმამაღალი, კარგად შერჩეული მუსიკით."
+      "note_ka": "მომხიბვლელი საუზმის კაფე კოსტავაზე, კარგი ყავით და ხმამაღალი, კარგად შერჩეული მუსიკით.",
+      "photos": [
+        {
+          "src": "photos/no-more-mondays-1.webp",
+          "alt": "No More Mondays' open corner front on Kostava, with cushions on the tiled ledge and warm lamps over the bar"
+        }
+      ]
     },
     {
       "id": "baba-bakery",
