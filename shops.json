@@ -916,7 +916,11 @@
           "alt": "Fresh Hokkaido milk bread loaves cooling on a steel rack"
         }
       ],
-      "pets": true
+      "pets": true,
+      "roaster": [
+        "Shavi",
+        "Coffee LAB"
+      ]
     },
     {
       "id": "shukura",
