@@ -900,8 +900,16 @@
       },
       "photos": [
         {
+          "src": "photos/pulp-janashia-3.webp",
+          "alt": "The Pulp team outside the café's big front window"
+        },
+        {
           "src": "photos/pulp-janashia-1.webp",
           "alt": "Pulp's shelf of sourdough tartines, baguettes, challah and Hokkaido milk bread, with Pulp T-shirts"
+        },
+        {
+          "src": "photos/pulp-janashia-4.webp",
+          "alt": "A Pulp barista holding bags of guest coffee at the bar"
         },
         {
           "src": "photos/pulp-janashia-2.webp",
