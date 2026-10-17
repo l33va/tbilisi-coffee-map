@@ -109,7 +109,7 @@
       ],
       "roasts": true,
       "beans": true,
-      "laptop": false,
+      "laptop": true,
       "pets": true,
       "brew": [
         "espresso",
