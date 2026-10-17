@@ -1569,6 +1569,36 @@
       "place_id": "ChIJ1V6MHjYNREARp3SYjRvFasE",
       "note": "Cosy breakfast café off Freedom Square with friendly staff and resident cats. Georgian, English and continental breakfasts, plus options for different diets.",
       "note_ka": "მყუდრო საუზმის კაფე თავისუფლების მოედანთან, მეგობრული პერსონალით და კატებით. ქართული, ინგლისური და კონტინენტური საუზმე, ასევე სხვადასხვა დიეტის ვარიანტები."
+    },
+    {
+      "id": "beanbourbon",
+      "name": "Beanbourbon Roasters",
+      "area": "Old Tbilisi",
+      "address": "6/9 Ovanes Tumaniani St",
+      "coords": [
+        41.6898655,
+        44.8069131
+      ],
+      "hours": [
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00"
+      ],
+      "roasts": true,
+      "beans": true,
+      "laptop": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "beanbourbon.roasters",
+      "place_id": "ChIJPdw3ZwANREARCm5l1y_I2jI",
+      "note": "Small roaster-café in the old town that roasts its own beans and sells them by the bag. Homemade cakes; the lemon cake is the one to get.",
+      "note_ka": "პატარა როუსტერ-კაფე ძველ ქალაქში, რომელიც საკუთარ მარცვალს ხალავს და ყიდის. სახლური ნამცხვრები; აუცილებლად სცადე ლიმნის ნამცხვარი."
     }
   ]
 }
