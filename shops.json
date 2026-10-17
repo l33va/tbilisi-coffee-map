@@ -265,7 +265,8 @@
           "src": "photos/tsvari-5.webp",
           "alt": "Shelves of Tsvari coffee bags, matcha tins and drip bags for sale"
         }
-      ]
+      ],
+      "pets": true
     },
     {
       "id": "brewio",
