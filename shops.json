@@ -32,7 +32,18 @@
       "instagram": "shavi.coffee",
       "place_id": "ChIJQ8xRsO4NREARdIUSKVZklMQ",
       "note": "The roastery's home bar. Order a hand-brew to taste the beans at their best.",
-      "note_ka": "როუსტერის საკუთარი ბარი. შეუკვეთე ხელით მოდუღებული ყავა, რომ მარცვალი საუკეთესო სახით გასინჯო."
+      "note_ka": "როუსტერის საკუთარი ბარი. შეუკვეთე ხელით მოდუღებული ყავა, რომ მარცვალი საუკეთესო სახით გასინჯო.",
+      "prices": {
+        "espresso": [
+          5,
+          7
+        ],
+        "cappuccino": 10,
+        "batch": [
+          9,
+          11
+        ]
+      }
     },
     {
       "id": "shavi-ninoshvili",
@@ -65,7 +76,18 @@
       "instagram": "shavi.coffee",
       "place_id": "ChIJW4QwnfcNREAR_a4D8iMld18",
       "note": "Roomy, with plugs in the back for laptops. Fills up mid-morning.",
-      "note_ka": "ფართო სივრცე, უკან როზეტებით ლეპტოპებისთვის. დილის შუა ხანს ივსება."
+      "note_ka": "ფართო სივრცე, უკან როზეტებით ლეპტოპებისთვის. დილის შუა ხანს ივსება.",
+      "prices": {
+        "espresso": [
+          5,
+          7
+        ],
+        "cappuccino": 10,
+        "batch": [
+          9,
+          11
+        ]
+      }
     },
     {
       "id": "shavi-garage",
@@ -104,7 +126,18 @@
           "src": "photos/shavi-garage-1.webp",
           "alt": "Shavi Garage's tiny open bar with folding wooden doors, opening onto a gravel courtyard with benches"
         }
-      ]
+      ],
+      "prices": {
+        "espresso": [
+          5,
+          7
+        ],
+        "cappuccino": 10,
+        "batch": [
+          9,
+          11
+        ]
+      }
     },
     {
       "id": "shavi-bagebi",
