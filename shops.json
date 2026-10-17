@@ -889,7 +889,15 @@
       "instagram": "pulp.tbilisi",
       "place_id": "ChIJf_Mu8P0NREARWWZEbxclDvM",
       "note": "Relaxed, buzzy room with careful hand brew and batch. Buns and pastries; a laptop table and outdoor seats.",
-      "note_ka": "მშვიდი, ცოცხალი სივრცე, ფრთხილად მომზადებული ფილტრი და ბეჩ ბრიუ. ფუნთუშები და საცხობი; ლეპტოპის მაგიდა და გარე სკამები."
+      "note_ka": "მშვიდი, ცოცხალი სივრცე, ფრთხილად მომზადებული ფილტრი და ბეჩ ბრიუ. ფუნთუშები და საცხობი; ლეპტოპის მაგიდა და გარე სკამები.",
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          8,
+          12
+        ],
+        "batch": 8
+      }
     },
     {
       "id": "shukura",
