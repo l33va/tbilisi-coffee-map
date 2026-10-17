@@ -1179,7 +1179,33 @@
       "instagram": "brinks.cafe",
       "place_id": "ChIJ-4JB5IKLQ0ARl1NB9oBcEFo",
       "note": "All-day breakfast spot with V60 and batch brew. Very dog friendly; good music.",
-      "note_ka": "მთელი დღის საუზმის ადგილი V60-ით და ბეჩ ბრიუთი. ძაღლებს აქ ძალიან უყვართ; კარგი მუსიკა."
+      "note_ka": "მთელი დღის საუზმის ადგილი V60-ით და ბეჩ ბრიუთი. ძაღლებს აქ ძალიან უყვართ; კარგი მუსიკა.",
+      "photos": [
+        {
+          "src": "photos/brinks-1.webp",
+          "alt": "BRINKS' glowing yellow sign on a stone façade"
+        },
+        {
+          "src": "photos/brinks-2.webp",
+          "alt": "People at BRINKS' sunny terrace tables by the big iron-framed door"
+        },
+        {
+          "src": "photos/brinks-3.webp",
+          "alt": "Crêpes with strawberries and two sauces at BRINKS"
+        },
+        {
+          "src": "photos/brinks-4.webp",
+          "alt": "Two takeaway coffees, one marked OAT, on a terrace table"
+        },
+        {
+          "src": "photos/brinks-5.webp",
+          "alt": "Breakfast on the BRINKS terrace in front of the open café door"
+        },
+        {
+          "src": "photos/brinks-6.webp",
+          "alt": "A KURO × BRINKS drip coffee bag, Ethiopia + Colombia"
+        }
+      ]
     },
     {
       "id": "no-more-mondays",
