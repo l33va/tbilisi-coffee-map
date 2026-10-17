@@ -640,7 +640,21 @@
       "instagram": "okroroastery",
       "place_id": "ChIJ5QdNuqINREARN63aGjGuxaw",
       "note": "Big, beautiful roastery-bakery. Weekly roasts, long-fermented bread, strong pastry case. No laptops.",
-      "note_ka": "დიდი, ლამაზი როუსტერი და საცხობი. ყოველკვირეული მოხალვა, ხანგრძლივი ფერმენტაციის პური, კარგი საცხობის ვიტრინა. ლეპტოპები არ შეიძლება."
+      "note_ka": "დიდი, ლამაზი როუსტერი და საცხობი. ყოველკვირეული მოხალვა, ხანგრძლივი ფერმენტაციის პური, კარგი საცხობის ვიტრინა. ლეპტოპები არ შეიძლება.",
+      "photos": [
+        {
+          "src": "photos/okro-1.webp",
+          "alt": "A cappuccino with latte art and pastries on steel plates, on granite steps outside OKRO"
+        },
+        {
+          "src": "photos/okro-2.webp",
+          "alt": "OKRO's industrial interior: concrete ceiling, high tables and the menu boards over the counter"
+        },
+        {
+          "src": "photos/okro-3.webp",
+          "alt": "Trays of OKRO's cookies: red velvet, chocolate walnut and chocolate-drizzled"
+        }
+      ]
     },
     {
       "id": "roots-kakabadze",
