@@ -98,7 +98,13 @@
       "instagram": "shavi.coffee",
       "place_id": "ChIJjdGqyBUNREARk3kcT2m8TcE",
       "note": "Tiny bar on a beautiful Sololaki street. Batch brew and a courtyard.",
-      "note_ka": "პატარა ბარი სოლოლაკის ლამაზ ქუჩაზე. ბეჩ ბრიუ და ეზო."
+      "note_ka": "პატარა ბარი სოლოლაკის ლამაზ ქუჩაზე. ბეჩ ბრიუ და ეზო.",
+      "photos": [
+        {
+          "src": "photos/shavi-garage-1.webp",
+          "alt": "Shavi Garage's tiny open bar with folding wooden doors, opening onto a gravel courtyard with benches"
+        }
+      ]
     },
     {
       "id": "shavi-bagebi",
