@@ -243,7 +243,29 @@
       "instagram": "tsvari_coffee",
       "place_id": "ChIJZZwo7FINREARsspj1geRYt8",
       "note": "Newer roaster with a big, bright room and a small shop inside.",
-      "note_ka": "ახალი როუსტერი დიდი, ნათელი დარბაზით და პატარა მაღაზიით შიგნით."
+      "note_ka": "ახალი როუსტერი დიდი, ნათელი დარბაზით და პატარა მაღაზიით შიგნით.",
+      "photos": [
+        {
+          "src": "photos/tsvari-1.webp",
+          "alt": "Tsvari's corner café with its lit COFFEE sign, terrace chairs and a motorcycle out front"
+        },
+        {
+          "src": "photos/tsvari-2.webp",
+          "alt": "Tsvari's big, bright room with a pink bar, pendant lamps and a long wooden table"
+        },
+        {
+          "src": "photos/tsvari-3.webp",
+          "alt": "A sunny corner with armchairs and a pegboard shop of caps, pins and tote bags"
+        },
+        {
+          "src": "photos/tsvari-4.webp",
+          "alt": "A solid oak table with coffee books and dried flowers in pink vases"
+        },
+        {
+          "src": "photos/tsvari-5.webp",
+          "alt": "Shelves of Tsvari coffee bags, matcha tins and drip bags for sale"
+        }
+      ]
     },
     {
       "id": "brewio",
