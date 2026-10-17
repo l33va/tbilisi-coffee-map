@@ -1536,6 +1536,39 @@
       "place_id": "ChIJjfehnG4NREARK7NY0VOuYXA",
       "note": "Hat shop and coffee bar in one, in Chugureti. Guest beans from roasters like Kurasu and Standout, brewed as lever espresso, V60 or siphon.",
       "note_ka": "ქუდების მაღაზია და ყავის ბარი ერთად, ჩუღურეთში. სტუმარი მარცვალი ისეთი როუსტერებისგან, როგორიცაა Kurasu და Standout — ბერკეტიანი ესპრესო, V60 ან სიფონი."
+    },
+    {
+      "id": "ruby",
+      "name": "Ruby",
+      "area": "Sololaki",
+      "address": "5 Mitropane Laghidze St",
+      "coords": [
+        41.6998461,
+        44.7955965
+      ],
+      "hours": [
+        "09:00-18:00",
+        "09:00-18:00",
+        "09:00-18:00",
+        "09:00-18:00",
+        "09:00-18:00",
+        "09:00-18:00",
+        "09:00-18:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "roaster": [
+        "Mamuli"
+      ],
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "ruby_tbilisi",
+      "place_id": "ChIJ1V6MHjYNREARp3SYjRvFasE",
+      "note": "Cosy breakfast café off Freedom Square with friendly staff and resident cats. Georgian, English and continental breakfasts, plus options for different diets.",
+      "note_ka": "მყუდრო საუზმის კაფე თავისუფლების მოედანთან, მეგობრული პერსონალით და კატებით. ქართული, ინგლისური და კონტინენტური საუზმე, ასევე სხვადასხვა დიეტის ვარიანტები."
     }
   ]
 }
