@@ -237,7 +237,9 @@
       "laptop": true,
       "brew": [
         "espresso",
-        "v60"
+        "v60",
+        "batch",
+        "aeropress"
       ],
       "score": null,
       "instagram": "tsvari_coffee",
@@ -266,7 +268,18 @@
           "alt": "Shelves of Tsvari coffee bags, matcha tins and drip bags for sale"
         }
       ],
-      "pets": true
+      "pets": true,
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": [
+          8,
+          10
+        ]
+      }
     },
     {
       "id": "brewio",
