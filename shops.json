@@ -1157,7 +1157,7 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
+      "laptop": true,
       "pets": true,
       "roaster": [
         "Kuro"
@@ -1186,7 +1186,7 @@
           "alt": "BRINKS' glowing yellow sign on a stone façade"
         },
         {
-          "src": "photos/brinks-2.webp",
+          "src": "photos/brinks-2a.webp",
           "alt": "People at BRINKS' sunny terrace tables by the big iron-framed door"
         },
         {
@@ -1198,7 +1198,7 @@
           "alt": "Two takeaway coffees, one marked OAT, on a terrace table"
         },
         {
-          "src": "photos/brinks-5.webp",
+          "src": "photos/brinks-5a.webp",
           "alt": "Breakfast on the BRINKS terrace in front of the open café door"
         },
         {
