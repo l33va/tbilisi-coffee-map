@@ -1496,7 +1496,7 @@
     {
       "id": "hats-and-coffee",
       "name": "Hats and Coffee",
-      "area": "Old Tbilisi",
+      "area": "Chugureti",
       "address": "2 Tkviavi St",
       "coords": [
         41.7033572,
@@ -1534,8 +1534,8 @@
       "score": null,
       "instagram": "hatsandcoffeetbilisi",
       "place_id": "ChIJjfehnG4NREARK7NY0VOuYXA",
-      "note": "Hat shop and coffee bar in one, in the old town. Guest beans from roasters like Kurasu and Standout, brewed as lever espresso, V60 or siphon.",
-      "note_ka": "ქუდების მაღაზია და ყავის ბარი ერთად, ძველ ქალაქში. სტუმარი მარცვალი ისეთი როუსტერებისგან, როგორიცაა Kurasu და Standout — ბერკეტიანი ესპრესო, V60 ან სიფონი."
+      "note": "Hat shop and coffee bar in one, in Chugureti. Guest beans from roasters like Kurasu and Standout, brewed as lever espresso, V60 or siphon.",
+      "note_ka": "ქუდების მაღაზია და ყავის ბარი ერთად, ჩუღურეთში. სტუმარი მარცვალი ისეთი როუსტერებისგან, როგორიცაა Kurasu და Standout — ბერკეტიანი ესპრესო, V60 ან სიფონი."
     }
   ]
 }
