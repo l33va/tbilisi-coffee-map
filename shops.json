@@ -1807,13 +1807,29 @@
       "beans": true,
       "laptop": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "beanbourbon.roasters",
       "place_id": "ChIJPdw3ZwANREARCm5l1y_I2jI",
       "note": "Small roaster-café in the old town that roasts its own beans and sells them by the bag. Homemade cakes; the lemon cake is the one to get.",
-      "note_ka": "პატარა როუსტერ-კაფე ძველ ქალაქში, რომელიც საკუთარ მარცვალს ხალავს და ყიდის. სახლური ნამცხვრები; აუცილებლად სცადე ლიმნის ნამცხვარი."
+      "note_ka": "პატარა როუსტერ-კაფე ძველ ქალაქში, რომელიც საკუთარ მარცვალს ხალავს და ყიდის. სახლური ნამცხვრები; აუცილებლად სცადე ლიმნის ნამცხვარი.",
+      "prices": {
+        "espresso": [
+          5,
+          7
+        ],
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": [
+          8,
+          10
+        ]
+      }
     },
     {
       "id": "daily-grind",
