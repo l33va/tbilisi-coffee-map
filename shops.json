@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-17",
+  "updated": "2026-10-18",
   "shops": [
     {
       "id": "shavi-original",
@@ -1786,6 +1786,44 @@
       "place_id": "ChIJV7h5rJMNREARI1uRtZM0wag",
       "note": "Friendly little coffee bar on the old town's main street, open from 7. V60 alongside espresso, and well-loved cheesecake.",
       "note_ka": "მეგობრული პატარა ყავის ბარი ძველი ქალაქის მთავარ ქუჩაზე, ღიაა 7-დან. V60 და ესპრესო, და ყველას საყვარელი ჩიზქეიქი."
+    },
+    {
+      "id": "pitna",
+      "name": "Pitna",
+      "area": "Vera",
+      "address": "73 Vasil Barnov St",
+      "coords": [
+        41.7072259,
+        44.7775432
+      ],
+      "hours": [
+        "11:00-20:00",
+        "11:00-20:00",
+        "11:00-20:00",
+        "11:00-20:00",
+        "11:00-20:00",
+        "11:00-20:00",
+        "11:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": [
+        "espresso",
+        "v60"
+      ],
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          8,
+          10
+        ]
+      },
+      "score": null,
+      "instagram": "pitna.coffee",
+      "place_id": "ChIJPWKrOrQNREARAXajyh8J7rg",
+      "note": "Small, cosy matcha and coffee house on Barnov St. Known for flavoured matcha lattes like lavender and strawberry; hand brew too. Few seats, good for a cup to go.",
+      "note_ka": "პატარა, მყუდრო მაჩისა და ყავის სახლი ბარნოვის ქუჩაზე. ცნობილია არომატიზებული მაჩა ლატეებით, მაგალითად ლავანდით და მარწყვით; აქვს ფილტრიც. ადგილი ცოტაა, კარგია წასაღებად."
     }
   ]
 }
