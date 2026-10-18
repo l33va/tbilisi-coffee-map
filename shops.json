@@ -1146,7 +1146,8 @@
         "Shavi"
       ],
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "slinkcafe",
@@ -1166,7 +1167,12 @@
           "src": "photos/slink-3.webp",
           "alt": "Brunch with coffee at Slink Café"
         }
-      ]
+      ],
+      "prices": {
+        "espresso": 7,
+        "cappuccino": 11,
+        "batch": 9
+      }
     },
     {
       "id": "barr",
