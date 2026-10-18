@@ -348,13 +348,22 @@
       "brew": [
         "espresso",
         "v60",
+        "batch",
         "aeropress"
       ],
       "score": null,
       "instagram": "brewio.ge",
       "place_id": "ChIJF5v0mNINREARGdXfVex2oo4",
       "note": "Brew bar on a quiet dead end off the tourist streets. Strong milk drinks.",
-      "note_ka": "ბრიუ ბარი მშვიდ ჩიხში, ტურისტული ქუჩებიდან მოშორებით. ძლიერი რძიანი სასმელები."
+      "note_ka": "ბრიუ ბარი მშვიდ ჩიხში, ტურისტული ქუჩებიდან მოშორებით. ძლიერი რძიანი სასმელები.",
+      "prices": {
+        "espresso": 8,
+        "cappuccino": 11,
+        "batch": [
+          8,
+          11
+        ]
+      }
     },
     {
       "id": "cityhikers",
