@@ -767,7 +767,7 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
+      "laptop": true,
       "brew": [
         "espresso",
         "v60",
@@ -795,6 +795,10 @@
           "src": "photos/roots-kakabadze-2.webp",
           "alt": "Folding glass doors open onto Roots' balcony terrace with camping chairs and a city view"
         }
+      ],
+      "pets": true,
+      "roaster": [
+        "Coffee LAB"
       ]
     },
     {
