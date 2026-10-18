@@ -1493,13 +1493,26 @@
       "laptop": false,
       "pets": true,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "asters_coffeeplace_tbilisi",
       "place_id": "ChIJU4C7sU8NREARCrnyli_pqig",
       "note": "Cosy little spot near Marjanishvili metro with good pastries and a shelf of vintage tableware.",
-      "note_ka": "მყუდრო პატარა ადგილი მარჯანიშვილის მეტროსთან, კარგი საცხობით და ვინტაჟური ჭურჭლის თაროთი."
+      "note_ka": "მყუდრო პატარა ადგილი მარჯანიშვილის მეტროსთან, კარგი საცხობით და ვინტაჟური ჭურჭლის თაროთი.",
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          9,
+          12
+        ],
+        "batch": [
+          8,
+          9
+        ]
+      }
     },
     {
       "id": "chiti-takaishvili",
