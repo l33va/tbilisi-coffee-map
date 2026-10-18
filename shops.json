@@ -769,13 +769,23 @@
       "beans": false,
       "laptop": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "roots.coffeeandmore",
       "place_id": "ChIJbfcWjkINREARsEgA0_qaQdQ",
       "note": "Bright, roomy space with a balcony and a big city view. Breakfast all day, open till midnight on weekends.",
-      "note_ka": "ნათელი, ფართო სივრცე აივნით და ქალაქის დიდი ხედით. საუზმე მთელი დღე, შაბათ-კვირას ღიაა შუაღამემდე."
+      "note_ka": "ნათელი, ფართო სივრცე აივნით და ქალაქის დიდი ხედით. საუზმე მთელი დღე, შაბათ-კვირას ღიაა შუაღამემდე.",
+      "prices": {
+        "espresso": 6,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": 9
+      }
     },
     {
       "id": "roots-concept",
