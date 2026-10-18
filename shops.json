@@ -1829,7 +1829,17 @@
           8,
           10
         ]
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/beanbourbon-1.webp",
+          "alt": "Beanbourbon's hanging sign, glass door and two wooden stools by the window on Tumaniani St"
+        },
+        {
+          "src": "photos/beanbourbon-2.webp",
+          "alt": "Shelves of Beanbourbon's own roasted coffee bags from Rwanda and Ethiopia"
+        }
+      ]
     },
     {
       "id": "daily-grind",
