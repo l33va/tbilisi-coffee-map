@@ -403,7 +403,18 @@
       ],
       "place_id": "ChIJgdpVPQANREARf6Ce9n9bdTg",
       "note": "Riverside, inside the park by the bridge. More of a hangout than a coffee bar.",
-      "note_ka": "მდინარის პირას, პარკში, ხიდთან. უფრო შესახვედრი ადგილია, ვიდრე ყავის ბარი."
+      "note_ka": "მდინარის პირას, პარკში, ხიდთან. უფრო შესახვედრი ადგილია, ვიდრე ყავის ბარი.",
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": [
+          8,
+          10
+        ]
+      }
     },
     {
       "id": "coffeelab-kazbegi",
