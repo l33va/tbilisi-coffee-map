@@ -821,7 +821,7 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
+      "laptop": true,
       "brew": [
         "espresso",
         "v60"
@@ -830,7 +830,11 @@
       "instagram": "roots.coffeeandmore",
       "place_id": "ChIJNZy9f2ENREARqROeI-ROlXk",
       "note": "Café and shop with a tree growing inside and a quiet backyard. Good filter coffee and matcha.",
-      "note_ka": "კაფე და მაღაზია, შიგნით ხე იზრდება, უკან მშვიდი ეზოა. კარგი ფილტრი და მაჩა."
+      "note_ka": "კაფე და მაღაზია, შიგნით ხე იზრდება, უკან მშვიდი ეზოა. კარგი ფილტრი და მაჩა.",
+      "pets": true,
+      "roaster": [
+        "Coffee LAB"
+      ]
     },
     {
       "id": "chika-rustaveli",
