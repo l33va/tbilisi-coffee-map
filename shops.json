@@ -785,7 +785,17 @@
           12
         ],
         "batch": 9
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/roots-kakabadze-1.webp",
+          "alt": "Roots' bright room under a big paper lantern, with steel tables, a monstera and people working and chatting"
+        },
+        {
+          "src": "photos/roots-kakabadze-2.webp",
+          "alt": "Folding glass doors open onto Roots' balcony terrace with camping chairs and a city view"
+        }
+      ]
     },
     {
       "id": "roots-concept",
