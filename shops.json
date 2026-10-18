@@ -367,6 +367,20 @@
       "roaster": [
         "Urban Roastery",
         "Tanat"
+      ],
+      "photos": [
+        {
+          "src": "photos/brewio-1.webp",
+          "alt": "Brewio's brew bar: espresso machine, hand grinders and bags of guest coffee on a wooden counter"
+        },
+        {
+          "src": "photos/brewio-2.webp",
+          "alt": "Brewio's sign, 'Specialty coffee shop & brew bar', under a vine-covered railing"
+        },
+        {
+          "src": "photos/brewio-3.webp",
+          "alt": "Brewio on its quiet cobbled lane, and an iced coffee in a blue cup"
+        }
       ]
     },
     {
