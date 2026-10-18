@@ -1503,14 +1503,14 @@
       "note": "Cosy little spot near Marjanishvili metro with good pastries and a shelf of vintage tableware.",
       "note_ka": "მყუდრო პატარა ადგილი მარჯანიშვილის მეტროსთან, კარგი საცხობით და ვინტაჟური ჭურჭლის თაროთი.",
       "prices": {
-        "espresso": 7,
+        "espresso": 8,
         "cappuccino": [
-          9,
+          10,
           12
         ],
         "batch": [
-          8,
-          9
+          9,
+          10
         ]
       }
     },
