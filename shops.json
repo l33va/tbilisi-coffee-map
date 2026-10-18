@@ -379,7 +379,8 @@
       "laptop": true,
       "brew": [
         "espresso",
-        "v60"
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "cityhikers_tbilisi",
