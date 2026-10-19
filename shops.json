@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-18",
+  "updated": "2026-10-19",
   "shops": [
     {
       "id": "shavi-original",
@@ -1942,6 +1942,36 @@
       "place_id": "ChIJPWKrOrQNREARAXajyh8J7rg",
       "note": "Small, cosy matcha and coffee house on Barnov St. Known for flavoured matcha lattes like lavender and strawberry; hand brew too. Few seats, good for a cup to go.",
       "note_ka": "პატარა, მყუდრო მაჩისა და ყავის სახლი ბარნოვის ქუჩაზე. ცნობილია არომატიზებული მაჩა ლატეებით, მაგალითად ლავანდით და მარწყვით; აქვს ფილტრიც. ადგილი ცოტაა, კარგია წასაღებად."
+    },
+    {
+      "id": "21pm",
+      "name": "21PM",
+      "area": "Vera",
+      "address": "21 Petre Melikishvili St",
+      "coords": [
+        41.7084121,
+        44.7823225
+      ],
+      "hours": [
+        "09:00-22:00",
+        "09:00-23:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "21pm.cafe",
+      "place_id": "ChIJrVMVXbINREARVlXPCgt8VNc",
+      "note": "Kitchen, coffee and bar in one on Melikishvili, open from breakfast till late. Calm room with plants, comfortable chairs and good music.",
+      "note_ka": "სამზარეულო, ყავა და ბარი ერთად მელიქიშვილზე, ღიაა საუზმიდან გვიანობამდე. მშვიდი სივრცე მცენარეებით, კომფორტული სკამებით და კარგი მუსიკით."
     }
   ]
 }
