@@ -40,6 +40,12 @@ function cmApplyTheme(choice){
   --red:#FF3B2F;        /* closing soon, the pin on the logo */
   --pin:var(--red);     /* used by the logo symbol */
   --on-red:#141414;     /* text on red buttons */
+  --nb1:#3D7BFF;        /* new shops: blue gradient, deep end */
+  --nb2:#35D6FF;        /* new shops: blue gradient, light end */
+  --nb-ink:#35D6FF;     /* blue for small text on this background */
+  --on-new:#0A0A0A;     /* text on the blue gradient */
+  --nw1:rgba(61,123,255,.20);--nw2:rgba(53,214,255,.10);--nw3:rgba(53,214,255,0);
+  --nb-halo:rgba(53,214,255,.25);--nb-glow:rgba(53,214,255,.5);
   --note:var(--note);       /* body copy */
   --shut:#777;          /* closed pins */
   --row-active:#141414;
@@ -67,6 +73,9 @@ function cmApplyTheme(choice){
 /* ---------- Light theme: warm off-white, ink, a deeper red ---------- */
 html[data-theme="light"]{
   --bg:#F4F4F0; --fg:#0A0A0A; --dim:#5C5C58; --mute:#8E8E89; --hair:#A9A9A3; --line:#D5D5CF; --red:#D9261A;
+  --nb1:#1F4FE0; --nb2:#1AA6EE; --nb-ink:#1F4FE0; --on-new:#FFFFFF;
+  --nw1:rgba(31,79,224,.16); --nw2:rgba(26,166,238,.08); --nw3:rgba(26,166,238,0);
+  --nb-halo:rgba(31,79,224,.2); --nb-glow:rgba(26,166,238,.45);
   --on-red:#FFFFFF; --note:#2A2A28; --shut:#A9A9A3; --row-active:#E9E9E4; --nav-off:#8E8E89;
   --press:rgba(10,10,10,.06); --attr-bg:rgba(244,244,240,.8); --sel-ring:rgba(10,10,10,.18); --me-fill:rgba(10,10,10,.12);
   --pic-bg:#E9E9E4; --lb-bg:rgba(244,244,240,.97);
@@ -125,6 +134,8 @@ header{
   padding:8px 10px;border:1px solid var(--hair);color:var(--fg);
 }
 .chip[aria-pressed="true"]{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.chip[data-k="new"]{border-color:transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(90deg,var(--nb1),var(--nb2)) border-box}
+.chip[data-k="new"][aria-pressed="true"]{background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new)}
 
 /* ---------- Views ---------- */
 main{position:fixed;top:var(--hdr);bottom:calc(var(--nav) + var(--safe-b));left:0;right:0}
@@ -174,6 +185,14 @@ html[data-theme="light"] #map .leaflet-tile-pane{filter:grayscale(1) contrast(.9
 .row.soon .ix,.row.soon .nm,.row.soon .dist,.row.soon .meta{color:var(--red)}
 .row.shut .ix,.row.shut .meta{color:var(--mute)}
 .row.shut .note,.row.shut .tags{opacity:.55}
+/* new shops: blue gradient name, tag, bar and wash */
+.gradtext{background:linear-gradient(90deg,var(--nb1),var(--nb2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.newtag{flex:none;display:inline-flex;align-items:center;height:16px;padding:0 7px;background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new);font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;line-height:1}
+.newname{display:flex;align-items:center;gap:8px}
+.row.new{position:relative;margin-inline:-20px;padding-inline:20px;background:linear-gradient(90deg,var(--nw1),var(--nw2) 55%,var(--nw3))}
+.row.new::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--nb2),var(--nb1))}
+.row.new .ix,.row.new .fav{color:var(--nb-ink)}
+.row.new .nm{width:fit-content;background:linear-gradient(90deg,var(--nb1),var(--nb2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
 .empty{font-size:12px;line-height:1.6;color:var(--dim);text-align:center;padding:48px 16px;text-transform:uppercase;letter-spacing:.04em}
 
 /* ---------- Bottom nav ---------- */
@@ -195,6 +214,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
 }
 .pin.soon{background:var(--red)}
 .pin.shut{background:var(--shut)}
+.pin.new{background:radial-gradient(circle at 35% 30%,var(--nb2),var(--nb1));box-shadow:0 0 0 4px var(--nb-halo),0 0 14px 4px var(--nb-glow)}
 .pin.starred{background:var(--gold)}
 .pin.sel{box-shadow:0 0 0 5px var(--sel-ring),0 0 0 6px var(--fg);filter:none;opacity:1}
 .leaflet-container{font-family:var(--mono)}
@@ -216,6 +236,10 @@ nav button[aria-selected="true"]{color:var(--fg)}
   padding:16px 20px 18px;max-height:70%;overflow-y:auto;
 }
 .sheet[hidden]{display:none}
+.sheet.new{border-top:3px solid transparent;border-image:linear-gradient(90deg,var(--nb1),var(--nb2)) 1;background-image:linear-gradient(180deg,var(--nw1),transparent 80px)}
+.sheet.new h3{width:fit-content;background:linear-gradient(90deg,var(--nb1),var(--nb2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.sheet.new .go{background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new)}
+.sheet .top .tl{display:flex;align-items:center;gap:8px}
 .sheet .top{padding-right:76px;display:flex;justify-content:space-between;gap:12px;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
 .sheet .top .st{color:var(--fg)}
 .sheet.soon .top .st{color:var(--red)}
@@ -525,6 +549,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
           <b style="filter:blur(2.4px);opacity:.6" data-t="blur">Blurred</b><span data-t="blurd">Closed or far away</span>
           <b style="color:var(--red);filter:blur(1.2px)" data-t="red">Red</b><span data-t="redd">Closing in 45 minutes or less</span>
           <b style="color:var(--gold)" data-t="gold">Gold</b><span data-t="goldd">Your favourite, on the map</span>
+          <b class="gradtext" data-t="blue">Blue</b><span data-t="blued">New in the last 14 days</span>
         </div>
       </div>
       <div class="about-sec"><div class="lab" style="margin-top:0" data-t="privh">Privacy</div><p data-t="priv">We count visits anonymously with GoatCounter. No cookies, no accounts, nothing personal. Your favourites stay on your phone.</p></div>
@@ -595,7 +620,7 @@ const KA = {
   tagline:"თბილისის სპეშელთი ყავის რუკა ტელეფონისთვის",
   whath:"რას აკეთებს", what:"გაჩვენებს, რომელი სპეშელთი კაფეებია ახლა ღია, რომლებია შენთან ახლოს და როგორ ამზადებენ ყავას. ერთხელ გახსნის შემდეგ ინტერნეტის გარეშეც მუშაობს.",
   readh:"როგორ წავიკითხოთ", sharp:"მკვეთრი", sharpd:"ღიაა და ახლოსაა", blur:"ბუნდოვანი", blurd:"დაკეტილია ან შორსაა",
-  red:"წითელი", redd:"იკეტება 45 წუთში ან უფრო ადრე", gold:"ოქროსფერი", goldd:"შენი რჩეული, რუკაზე",
+  red:"წითელი", redd:"იკეტება 45 წუთში ან უფრო ადრე", gold:"ოქროსფერი", goldd:"შენი რჩეული, რუკაზე", blue:"ლურჯი", blued:"ახალი, ბოლო 14 დღეში",
   privh:"კონფიდენციალურობა", priv:"ვიზიტებს ანონიმურად ვითვლით GoatCounter-ით. არანაირი cookie, ანგარიში ან პირადი მონაცემი. რჩეულები შენს ტელეფონში რჩება.",
   datah:"მონაცემები და კრედიტები", touchh:"დაგვიკავშირდი", touch:"შექმნილია თბილისში, ავტორი ლევან ბეზარაშვილი. მოგვწერე:",
   nlist:"სია", nfaves:"რჩეულები", ncontact:"კონტაქტი", nmap:"რუკა"
@@ -632,6 +657,17 @@ const prefsOn = () => prefs.brew.length > 0 || prefs.hideClosed || prefs.laptop 
    TIME — always computed in Tbilisi time, whatever the phone's zone
    ============================================================ */
 const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+/* A shop is "new" for NEW_DAYS days after the `added` date in shops.json. */
+const NEW_DAYS = 14;
+const newAge = s => {
+  if(!s.added) return -1;
+  const today = new Intl.DateTimeFormat("en-CA", {timeZone:"Asia/Tbilisi"}).format(new Date());
+  const d = Math.round((Date.parse(today) - Date.parse(s.added)) / 864e5);
+  return isNaN(d) ? -1 : d;
+};
+const isNew = s => { const d = newAge(s); return d >= 0 && d <= NEW_DAYS; };
+const addedText = s => { const d = newAge(s); return d === 0 ? tr("added today","დაემატა დღეს") : d === 1 ? tr("added yesterday","დაემატა გუშინ") : tr(`added ${d} days ago`, `დაემატა ${d} დღის წინ`); };
+const newTag = () => `<span class="newtag">${tr("NEW","ახალი")}</span>`;
 function tbilisiNow(){
   const p = Object.fromEntries(new Intl.DateTimeFormat("en-US",{
     timeZone:"Asia/Tbilisi",weekday:"short",hour:"2-digit",minute:"2-digit",hourCycle:"h23"
@@ -708,6 +744,7 @@ const FILTERS = [
   {key:"laptop",   label:"Laptop OK",      ka:"ლეპტოპით",         test:s => s.laptop},
   {key:"early",    label:"Opens before 9", ka:"იხსნება 9-მდე",    test:s => opensBefore9(s)},
   {key:"beans",    label:"Sells beans",    ka:"ყიდის მარცვალს",   test:s => s.beans},
+  {key:"new",      label:"New",            ka:"ახალი",            test:s => isNew(s)},
 ];
 const active = new Set();
 
@@ -753,7 +790,7 @@ function closePhoto(){ const lb = document.getElementById("lightbox"); lb.hidden
 let sortBy = "open";   // "open" | "score"
 
 function metaLine(s, now){
-  return [areaOf(s), whenText(s._st, now)].map(x => esc(x)).join(" · ") + rating(s) + (s.brew.length ? ` · ${brewLetters(s)}` : "");
+  return [areaOf(s), whenText(s._st, now)].map(x => esc(x)).join(" · ") + rating(s) + (s.brew.length ? ` · ${brewLetters(s)}` : "") + (isNew(s) ? ` · ${addedText(s)}` : "");
 }
 function tagsHtml(s){
   const t = [];
@@ -790,7 +827,7 @@ function visible(){
 }
 
 function renderChips(){
-  document.getElementById("chips").innerHTML = FILTERS.map(f =>
+  document.getElementById("chips").innerHTML = FILTERS.filter(f => f.key !== "new" || SHOPS.some(isNew)).map(f =>
     `<button class="chip" data-k="${f.key}" aria-pressed="${active.has(f.key)}">${tr(f.label, f.ka)}</button>`).join("");
 }
 
@@ -812,12 +849,12 @@ function renderList(list){
   }
   const now = tbilisiNow();
   const order = tr("Open first, ", "ჯერ ღია, ") + (me ? tr("nearest", "უახლოესი") : tr("A–Z", "A–Z"));
-  el.innerHTML = `<div class="legend">${query ? tr(`${list.length} match${list.length===1?"":"es"} · `, `${list.length} შედეგი · `) : ""}${SHOPS.some(hasScore) ? `<button class="sortby" id="sortby" type="button">${sortBy === "score" ? tr("Best score first","ჯერ საუკეთესო ქულით") : order}</button>` : order}${prefsOn() ? tr(" · your preferences"," · შენი არჩევანით") : ""}${UPDATED ? tr(" · updated "," · განახლდა ") + esc(UPDATED) : ""} · ${tr("Brew: E espresso · V V60 · B batch · A AeroPress · C Chemex","მომზადება: E ესპრესო · V V60 · B ბეჩ ბრიუ · A AeroPress · C Chemex")}</div>` +
+  el.innerHTML = `<div class="legend">${query ? tr(`${list.length} match${list.length===1?"":"es"} · `, `${list.length} შედეგი · `) : ""}${SHOPS.some(hasScore) ? `<button class="sortby" id="sortby" type="button">${sortBy === "score" ? tr("Best score first","ჯერ საუკეთესო ქულით") : order}</button>` : order}${prefsOn() ? tr(" · your preferences"," · შენი არჩევანით") : ""}${UPDATED ? tr(" · updated "," · განახლდა ") + esc(UPDATED) : ""}${SHOPS.some(isNew) ? ` · <span class="gradtext">${tr("Blue = new","ლურჯი = ახალი")}</span>` : ""} · ${tr("Brew: E espresso · V V60 · B batch · A AeroPress · C Chemex","მომზადება: E ესპრესო · V V60 · B ბეჩ ბრიუ · A AeroPress · C Chemex")}</div>` +
   list.map((s,i) => `
-    <article class="row ${s._f.cls}" data-id="${esc(s.id)}">
+    <article class="row ${s._f.cls}${isNew(s) ? " new" : ""}" data-id="${esc(s.id)}">
       <span class="ix">${String(i+1).padStart(2,"0")}</span>
       <div>
-        <h2 class="nm" style="--b:${s._f.b}px;--o:${s._f.o}">${esc(s.name)}</h2>
+        <div${isNew(s) ? ' class="newname"' : ""}><h2 class="nm" style="--b:${s._f.b}px;--o:${s._f.o}">${esc(s.name)}</h2>${isNew(s) ? newTag() : ""}</div>
         <div class="meta">${metaLine(s, now)}</div>
         <p class="note">${esc(noteOf(s))}</p>
         ${tagsHtml(s)}
@@ -893,7 +930,7 @@ function renderMap(list){
   Object.keys(markers).forEach(k => delete markers[k]);
   list.forEach(s => {
     const f = s._f;
-    const icon = L.divIcon({className:"", html:`<div class="pin ${f.cls} ${favs.has(s.id)?"starred":""} ${s.id===sel?"sel":""}" style="--b:${f.b}px;--o:${f.o}"></div>`, iconSize:[16,16], iconAnchor:[8,8]});
+    const icon = L.divIcon({className:"", html:`<div class="pin ${f.cls} ${isNew(s)?"new":""} ${favs.has(s.id)?"starred":""} ${s.id===sel?"sel":""}" style="--b:${f.b}px;--o:${f.o}"></div>`, iconSize:[16,16], iconAnchor:[8,8]});
     markers[s.id] = L.marker(s.coords, {icon, title:s.name, alt:s.name}).on("click", () => openSheet(s.id)).addTo(layer);
   });
   if(sel && !markers[sel]) closeSheet();
@@ -907,10 +944,10 @@ function openSheet(id, pan = true){
   const now = tbilisiNow();
   const sh = document.getElementById("sheet");
   const idx = visible().findIndex(x => x.id === id);
-  sh.className = "sheet" + (s._st.open && s._st.closesIn <= 45 ? " soon" : "");
+  sh.className = "sheet" + (s._st.open && s._st.closesIn <= 45 ? " soon" : "") + (isNew(s) ? " new" : "");
   sh.hidden = false;
   sh.innerHTML = `<button class="x" type="button" aria-label="${tr("Close","დახურვა")}" id="sheet-x">&times;</button>${favBtn(s.id).replace('class="fav"', 'class="fav sheet-fav"')}
-    <div class="top"><span>${idx >= 0 ? String(idx+1).padStart(2,"0") + " / " + String(visible().length).padStart(2,"0") : ""}</span><span class="st">${s._st.open ? "● " : "○ "}${esc(whenText(s._st, now))}${rating(s)}</span></div>
+    <div class="top"><span class="tl">${isNew(s) ? newTag() + addedText(s).toUpperCase() : idx >= 0 ? String(idx+1).padStart(2,"0") + " / " + String(visible().length).padStart(2,"0") : ""}</span><span class="st">${s._st.open ? "● " : "○ "}${esc(whenText(s._st, now))}${rating(s)}</span></div>
     <h3>${esc(s.name)}</h3>
     <div class="meta">${esc(areaOf(s))} · ${esc(s.address)}${s._d != null ? " · " + fmtDist(s._d) : ""}</div>
     <p class="note">${esc(noteOf(s))}</p>
