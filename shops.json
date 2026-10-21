@@ -2027,7 +2027,7 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
+      "laptop": true,
       "brew": [
         "espresso"
       ],
@@ -2035,7 +2035,8 @@
       "instagram": "anxiousandtired.coffeeshop",
       "place_id": "ChIJpy8IxAQNREARiugZxiwSFcM",
       "note": "Cosy little café in Chugureti with coffee, matcha drinks, teas and cake. Open 9:00–21:00 every day.",
-      "note_ka": "მყუდრო პატარა კაფე ჩუღურეთში: ყავა, მატჩას სასმელები, ჩაი და ნამცხვრები. ღიაა ყოველდღე 9:00–21:00."
+      "note_ka": "მყუდრო პატარა კაფე ჩუღურეთში: ყავა, მატჩას სასმელები, ჩაი და ნამცხვრები. ღიაა ყოველდღე 9:00–21:00.",
+      "pets": true
     }
   ]
 }
