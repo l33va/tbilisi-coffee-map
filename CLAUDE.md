@@ -31,7 +31,8 @@ More than one Claude chat works on this repo (one for shop data, one for design)
 - `hours`: Mon..Sun, "HH:MM-HH:MM", "" = closed.
 - `prices` in GEL: `espresso`, `cappuccino`, `batch`; a number or two sizes `[9, 13]`.
   Only from a menu or Levan's confirmation. Never guess.
-- `pets`, `laptop`, `beans`, `roasts`, `roaster`: only set when confirmed. Say what's unconfirmed.
+- `pets`, `laptop`: leave them out of new shops (the app shows "Not listed"); add `true`/`false` only when confirmed.
+- `beans`, `roasts`, `roaster`: only set when confirmed. Say what's unconfirmed.
 - `place_id`: Google place ID (for the reviews link). `instagram`: handle without @.
 - Never copy Google ratings or review text into the app.
 - Bump `"updated"` at the top of shops.json to today's date.

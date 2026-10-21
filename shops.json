@@ -344,7 +344,6 @@
       ],
       "roasts": false,
       "beans": true,
-      "laptop": false,
       "brew": [
         "espresso",
         "v60",
@@ -755,7 +754,6 @@
       ],
       "roasts": true,
       "beans": true,
-      "laptop": false,
       "brew": [
         "espresso",
         "v60"
@@ -889,7 +887,6 @@
       ],
       "roasts": true,
       "beans": true,
-      "laptop": false,
       "brew": [
         "espresso",
         "v60"
@@ -920,7 +917,6 @@
       ],
       "roasts": true,
       "beans": true,
-      "laptop": false,
       "brew": [
         "espresso",
         "v60"
@@ -951,7 +947,6 @@
       ],
       "roasts": true,
       "beans": true,
-      "laptop": false,
       "brew": [
         "espresso",
         "v60"
@@ -1154,7 +1149,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "brew": [
         "espresso"
       ],
@@ -1201,7 +1195,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "pets": true,
       "roaster": [
         "Shavi"
@@ -1255,7 +1248,6 @@
       ],
       "roasts": false,
       "beans": true,
-      "laptop": false,
       "roaster": [
         "Bonanza"
       ],
@@ -1385,7 +1377,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "pets": true,
       "brew": [
         "espresso",
@@ -1428,7 +1419,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "brew": [
         "espresso"
       ],
@@ -1514,7 +1504,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "brew": [
         "espresso",
         "v60",
@@ -1557,7 +1546,6 @@
       ],
       "roasts": false,
       "beans": true,
-      "laptop": false,
       "pets": true,
       "brew": [
         "espresso",
@@ -1601,7 +1589,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "brew": [
         "espresso"
       ],
@@ -1662,7 +1649,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "brew": [
         "espresso"
       ],
@@ -1692,7 +1678,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "brew": [
         "espresso",
         "v60"
@@ -1723,7 +1708,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "brew": [
         "espresso",
         "v60"
@@ -1761,7 +1745,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "roaster": [
         "Kurasu",
         "Standout"
@@ -1805,7 +1788,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "roaster": [
         "Mamuli"
       ],
@@ -1838,7 +1820,6 @@
       ],
       "roasts": true,
       "beans": true,
-      "laptop": false,
       "brew": [
         "espresso",
         "v60",
@@ -1894,7 +1875,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "brew": [
         "espresso",
         "v60"
@@ -1925,7 +1905,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "brew": [
         "espresso",
         "v60"
@@ -1963,7 +1942,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "brew": [
         "espresso"
       ],
@@ -1994,7 +1972,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "brew": [
         "espresso"
       ],
@@ -2058,7 +2035,6 @@
       ],
       "roasts": false,
       "beans": false,
-      "laptop": false,
       "brew": [
         "espresso"
       ],

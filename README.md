@@ -18,7 +18,6 @@ Each shop looks like this:
   "hours": ["08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "08:00-21:00", "09:00-21:00", ""],
   "roasts": true,
   "beans": true,
-  "laptop": false,
   "brew": ["espresso", "v60"],
   "note": "One honest sentence."
 }
