@@ -2037,6 +2037,37 @@
       "note": "Cosy little café in Chugureti with coffee, matcha drinks, teas and cake. Open 9:00–21:00 every day.",
       "note_ka": "მყუდრო პატარა კაფე ჩუღურეთში: ყავა, მატჩას სასმელები, ჩაი და ნამცხვრები. ღიაა ყოველდღე 9:00–21:00.",
       "pets": true
+    },
+    {
+      "id": "krab",
+      "added": "2026-10-22",
+      "name": "KRAB Specialty Coffee",
+      "area": "Sololaki",
+      "address": "4 Vaso Abashidze St",
+      "coords": [
+        41.7006878,
+        44.7968387
+      ],
+      "hours": [
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "krab.coffee",
+      "place_id": "ChIJ7QWeZDUNREARVP_3MxGojeY",
+      "note": "Small specialty café on a quiet Sololaki side street, with breakfast and a few outdoor seats. Open 8:00–20:00 every day.",
+      "note_ka": "პატარა სპეშელთი კაფე სოლოლაკის მყუდრო ქუჩაზე, საუზმით და რამდენიმე გარე მაგიდით. ღიაა ყოველდღე 8:00–20:00."
     }
   ]
 }
