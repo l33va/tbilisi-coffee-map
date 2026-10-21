@@ -2001,7 +2001,10 @@
       "instagram": "arka_store_tbilisi",
       "place_id": "ChIJo4RSoulzREAR8BBJnT6-Rgw",
       "note": "Home goods concept store in Vake that also serves specialty coffee. Open till 22:00.",
-      "note_ka": "სახლის ნივთების კონცეპტ-მაღაზია ვაკეში, სადაც სპეშელთი ყავაც მზადდება. ღიაა 22:00-მდე."
+      "note_ka": "სახლის ნივთების კონცეპტ-მაღაზია ვაკეში, სადაც სპეშელთი ყავაც მზადდება. ღიაა 22:00-მდე.",
+      "roaster": [
+        "Shavi"
+      ]
     }
   ]
 }
