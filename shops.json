@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "shops": [
     {
       "id": "shavi-original",
@@ -2006,6 +2006,36 @@
       "roaster": [
         "Shavi"
       ]
+    },
+    {
+      "id": "anxious-and-tired",
+      "name": "Anxious and Tired",
+      "area": "Chugureti",
+      "address": "105 Mikheil Tsinamdzghvrishvili St",
+      "coords": [
+        41.7141711,
+        44.7975515
+      ],
+      "hours": [
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "laptop": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "anxiousandtired.coffeeshop",
+      "place_id": "ChIJpy8IxAQNREARiugZxiwSFcM",
+      "note": "Cosy little café in Chugureti with coffee, matcha drinks, teas and cake. Open 9:00–21:00 every day.",
+      "note_ka": "მყუდრო პატარა კაფე ჩუღურეთში: ყავა, მატჩას სასმელები, ჩაი და ნამცხვრები. ღიაა ყოველდღე 9:00–21:00."
     }
   ]
 }
