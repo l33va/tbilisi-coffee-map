@@ -738,13 +738,13 @@ function focus(s){
    FILTERS
    ============================================================ */
 const FILTERS = [
+  {key:"new",      label:"New",            ka:"ახალი",            test:s => isNew(s)},
   {key:"open",     label:"Open now",       ka:"ახლა ღიაა",        test:s => status(s).open},
   {key:"roasts",   label:"Roasts own",     ka:"საკუთარი მოხალვა", test:s => s.roasts},
   {key:"pour",     label:"Pour-over",      ka:"ფილტრი",           test:s => s.brew.includes("v60") || s.brew.includes("chemex") || s.brew.includes("aeropress")},
   {key:"laptop",   label:"Laptop OK",      ka:"ლეპტოპით",         test:s => s.laptop},
   {key:"early",    label:"Opens before 9", ka:"იხსნება 9-მდე",    test:s => opensBefore9(s)},
   {key:"beans",    label:"Sells beans",    ka:"ყიდის მარცვალს",   test:s => s.beans},
-  {key:"new",      label:"New",            ka:"ახალი",            test:s => isNew(s)},
 ];
 const active = new Set();
 
