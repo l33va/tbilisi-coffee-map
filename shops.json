@@ -2108,13 +2108,23 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "slow.tbilisi",
       "place_id": "ChIJA11plsptREARDRO6_y35ppo",
       "note": "Bright café on pedestrian Aghmashenebeli Avenue with window tables, a terrace, breakfast and homemade desserts.",
-      "note_ka": "ნათელი კაფე აღმაშენებლის ქვეითთა გამზირზე: მაგიდები ფანჯარასთან, ტერასა, საუზმე და სახლის დესერტები."
+      "note_ka": "ნათელი კაფე აღმაშენებლის ქვეითთა გამზირზე: მაგიდები ფანჯარასთან, ტერასა, საუზმე და სახლის დესერტები.",
+      "prices": {
+        "espresso": 8,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": 10
+      }
     },
     {
       "id": "slow-vake",
@@ -2137,13 +2147,23 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "slow.tbilisi",
       "place_id": "ChIJnxlRsmANREARVa2vk7x2FJ4",
       "note": "Second Slow, in Vake: roomy café with big tables, breakfast and pastries.",
-      "note_ka": "Slow-ის მეორე ფილიალი ვაკეში: ფართო კაფე დიდი მაგიდებით, საუზმით და ნამცხვრებით."
+      "note_ka": "Slow-ის მეორე ფილიალი ვაკეში: ფართო კაფე დიდი მაგიდებით, საუზმით და ნამცხვრებით.",
+      "prices": {
+        "espresso": 8,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": 10
+      }
     }
   ]
 }
