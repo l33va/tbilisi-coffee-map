@@ -2164,6 +2164,36 @@
         ],
         "batch": 10
       }
+    },
+    {
+      "id": "loomba",
+      "added": "2026-10-22",
+      "name": "Food Lab by Loomba",
+      "area": "Vera",
+      "address": "10 Akaki Shanidze St",
+      "coords": [
+        41.7069708,
+        44.7811777
+      ],
+      "hours": [
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "loombafoodlab",
+      "place_id": "ChIJTZvslyPX3WgRkWcO0vAGeCk",
+      "note": "Healthy breakfast café with specialty coffee, matcha and granola. Open from 8:00 every day.",
+      "note_ka": "ჯანსაღი საუზმის კაფე სპეშელთი ყავით, მატჩათი და გრანოლით. ღიაა ყოველდღე 8:00-დან."
     }
   ]
 }
