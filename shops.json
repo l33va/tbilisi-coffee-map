@@ -2065,13 +2065,27 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch",
+        "aeropress"
       ],
       "score": null,
       "instagram": "the_little_coffeehouse",
       "place_id": "ChIJZQlgQWlzREARqi2n1Dp-hOg",
       "note": "Small neighbourhood specialty coffee house on Chavchavadze Avenue in Vake. Open late, till 23:00 every day.",
-      "note_ka": "პატარა სპეშელთი ყავის სახლი ვაკეში, ჭავჭავაძის გამზირზე. გვიანობამდე ღიაა, ყოველდღე 23:00-მდე."
+      "note_ka": "პატარა სპეშელთი ყავის სახლი ვაკეში, ჭავჭავაძის გამზირზე. გვიანობამდე ღიაა, ყოველდღე 23:00-მდე.",
+      "prices": {
+        "espresso": 8,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": [
+          10,
+          14
+        ]
+      }
     }
   ]
 }
