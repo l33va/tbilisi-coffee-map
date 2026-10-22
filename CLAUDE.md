@@ -1,7 +1,7 @@
 # Tbilisi Coffee Map — rules for Claude
 
 Phone-first web app of specialty coffee shops in Tbilisi. Static site on GitHub Pages
-(https://l33va.github.io/tbilisi-coffee-map/), no build step. Owner: Levan (l33va).
+(https://tbilisicoffeemap.com, was l33va.github.io/tbilisi-coffee-map), no build step. Owner: Levan (l33va).
 More than one Claude chat works on this repo (one for shop data, one for design).
 
 ## Files
