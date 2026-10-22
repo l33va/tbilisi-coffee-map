@@ -2086,6 +2086,64 @@
           14
         ]
       }
+    },
+    {
+      "id": "slow-chugureti",
+      "name": "Slow — Chugureti",
+      "area": "Chugureti",
+      "address": "36 Davit Aghmashenebeli Ave",
+      "coords": [
+        41.7045806,
+        44.8015757
+      ],
+      "hours": [
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "slow.tbilisi",
+      "place_id": "ChIJA11plsptREARDRO6_y35ppo",
+      "note": "Bright café on pedestrian Aghmashenebeli Avenue with window tables, a terrace, breakfast and homemade desserts.",
+      "note_ka": "ნათელი კაფე აღმაშენებლის ქვეითთა გამზირზე: მაგიდები ფანჯარასთან, ტერასა, საუზმე და სახლის დესერტები."
+    },
+    {
+      "id": "slow-vake",
+      "name": "Slow — Vake",
+      "area": "Vake",
+      "address": "17 Mtskheta St",
+      "coords": [
+        41.7063421,
+        44.7717748
+      ],
+      "hours": [
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "slow.tbilisi",
+      "place_id": "ChIJnxlRsmANREARVa2vk7x2FJ4",
+      "note": "Second Slow, in Vake: roomy café with big tables, breakfast and pastries.",
+      "note_ka": "Slow-ის მეორე ფილიალი ვაკეში: ფართო კაფე დიდი მაგიდებით, საუზმით და ნამცხვრებით."
     }
   ]
 }
