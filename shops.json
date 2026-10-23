@@ -2231,6 +2231,44 @@
       "place_id": "ChIJ05kFXS8NREARer4jsab6FzU",
       "note": "Brunch café in Vake known for its signature -86 dirty coffee. Open till 22:00 every day.",
       "note_ka": "საუზმის კაფე ვაკეში, ცნობილი თავისი -86 დერთი ყავით. ღიაა ყოველდღე 22:00-მდე."
+    },
+    {
+      "id": "coffee-place",
+      "name": "Coffee Place",
+      "area": "Sololaki",
+      "address": "24 Galaktion Tabidze St",
+      "coords": [
+        41.6898608,
+        44.8013999
+      ],
+      "hours": [
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso",
+        "v60",
+        "aeropress"
+      ],
+      "prices": {
+        "espresso": 9,
+        "cappuccino": [
+          14,
+          16
+        ]
+      },
+      "score": null,
+      "instagram": "coffeeplace_tbilisi",
+      "place_id": "ChIJUYMkXeINREARzNK3sV12dhc",
+      "note": "Cosy café in an old Sololaki building with vintage furniture, V60 and AeroPress, and plant-based milk only.",
+      "note_ka": "მყუდრო კაფე სოლოლაკის ძველ შენობაში ვინტაჟური ავეჯით, V60-ით და AeroPress-ით. მხოლოდ მცენარეული რძე."
     }
   ]
 }
