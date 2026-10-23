@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22",
+  "updated": "2026-10-23",
   "shops": [
     {
       "id": "shavi-original",
@@ -2194,6 +2194,35 @@
       "place_id": "ChIJTZvslyPX3WgRkWcO0vAGeCk",
       "note": "Healthy breakfast café with specialty coffee, matcha and granola. Open from 8:00 every day.",
       "note_ka": "ჯანსაღი საუზმის კაფე სპეშელთი ყავით, მატჩათი და გრანოლით. ღიაა ყოველდღე 8:00-დან."
+    },
+    {
+      "id": "day-off",
+      "name": "day off.",
+      "area": "Vake",
+      "address": "22 Irakli Abashidze St",
+      "coords": [
+        41.7073245,
+        44.7691043
+      ],
+      "hours": [
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "dayoff.geo",
+      "place_id": "ChIJ05kFXS8NREARer4jsab6FzU",
+      "note": "Brunch café in Vake known for its signature -86 dirty coffee. Open till 22:00 every day.",
+      "note_ka": "საუზმის კაფე ვაკეში, ცნობილი თავისი -86 დერთი ყავით. ღიაა ყოველდღე 22:00-მდე."
     }
   ]
 }
