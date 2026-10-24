@@ -2291,13 +2291,23 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "minda.cafe",
       "place_id": "ChIJ4ShiKH4NREAROUP0Auq5ChY",
       "note": "Small brunch café by Freedom Square, popular for syrniki and eggs Benedict. Can get busy at weekends.",
-      "note_ka": "პატარა საუზმის კაფე თავისუფლების მოედანთან, ცნობილი სირნიკებით და ბენედიქტის კვერცხით. შაბათ-კვირას შეიძლება გადატვირთული იყოს."
+      "note_ka": "პატარა საუზმის კაფე თავისუფლების მოედანთან, ცნობილი სირნიკებით და ბენედიქტის კვერცხით. შაბათ-კვირას შეიძლება გადატვირთული იყოს.",
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          10,
+          13
+        ],
+        "batch": 10
+      }
     }
   ]
 }
