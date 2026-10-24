@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-23",
+  "updated": "2026-10-24",
   "shops": [
     {
       "id": "shavi-original",
@@ -2269,6 +2269,35 @@
       "place_id": "ChIJUYMkXeINREARzNK3sV12dhc",
       "note": "Cosy café in an old Sololaki building with vintage furniture, V60 and AeroPress, and plant-based milk only.",
       "note_ka": "მყუდრო კაფე სოლოლაკის ძველ შენობაში ვინტაჟური ავეჯით, V60-ით და AeroPress-ით. მხოლოდ მცენარეული რძე."
+    },
+    {
+      "id": "minda",
+      "name": "Minda",
+      "area": "Sololaki",
+      "address": "10 Aleksandr Pushkin St",
+      "coords": [
+        41.6962454,
+        44.8027288
+      ],
+      "hours": [
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "minda.cafe",
+      "place_id": "ChIJ4ShiKH4NREAROUP0Auq5ChY",
+      "note": "Small brunch café by Freedom Square, popular for syrniki and eggs Benedict. Can get busy at weekends.",
+      "note_ka": "პატარა საუზმის კაფე თავისუფლების მოედანთან, ცნობილი სირნიკებით და ბენედიქტის კვერცხით. შაბათ-კვირას შეიძლება გადატვირთული იყოს."
     }
   ]
 }
