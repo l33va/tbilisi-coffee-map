@@ -191,7 +191,7 @@ html[data-theme="light"] #map .leaflet-tile-pane{filter:grayscale(1) contrast(.9
 .row.shut .bl{opacity:.6}
 /* new shops: aqua gradient name, tag, bar and wash */
 .gradtext{background:linear-gradient(90deg,var(--nb1),var(--nb2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
-.newtag{display:inline-flex;align-items:center;height:16px;padding:0 7px;margin-left:8px;vertical-align:4px;background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new);font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;line-height:1}
+.newtag{display:inline;padding:2px 7px;margin-left:8px;vertical-align:4px;background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new);font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;line-height:1}
 .row.new{position:relative;margin-inline:-20px;padding-inline:20px;background:linear-gradient(90deg,var(--nw1),var(--nw2) 55%,var(--nw3))}
 .row.new::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--nb2),var(--nb1))}
 .row.new .ix,.row.new .fav{color:var(--nb-ink)}
@@ -244,6 +244,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .sheet.new h3{width:fit-content;background:linear-gradient(90deg,var(--nb1),var(--nb2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
 .sheet.new .go{background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new)}
 .sheet .top .tl{display:flex;align-items:center;gap:8px}
+.sheet .top .tl .newtag{display:inline-flex;align-items:center;height:16px;padding:0 7px;margin-left:0;vertical-align:baseline}
 .sheet .top{padding-right:76px;display:flex;justify-content:space-between;gap:12px;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
 .sheet .top .st{color:var(--fg)}
 .sheet.soon .top .st{color:var(--red)}
