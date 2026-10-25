@@ -2379,13 +2379,30 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "eleven.window",
       "place_id": "ChIJDaPKbwANREARlIFIrBFrPDo",
-      "note": "Cosy, quiet café and bakery in Sololaki with sandwiches and pastries. Service can be slow when busy.",
-      "note_ka": "მყუდრო, მშვიდი კაფე-საცხობი სოლოლაკში სენდვიჩებით და ნამცხვრებით. დატვირთვისას მომსახურება შეიძლება ნელი იყოს."
+      "note": "Cosy, quiet café in Sololaki with sandwiches and good background music. Good for working. Service can be slow when busy.",
+      "note_ka": "მყუდრო, მშვიდი კაფე სოლოლაკში სენდვიჩებით და კარგი მუსიკით. კარგია სამუშაოდ. დატვირთვისას მომსახურება შეიძლება ნელი იყოს.",
+      "pets": true,
+      "laptop": true,
+      "prices": {
+        "espresso": [
+          5,
+          7
+        ],
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": [
+          8,
+          10
+        ]
+      }
     }
   ]
 }
