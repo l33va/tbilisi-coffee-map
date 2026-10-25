@@ -191,12 +191,12 @@ html[data-theme="light"] #map .leaflet-tile-pane{filter:grayscale(1) contrast(.9
 .row.shut .bl{opacity:.6}
 /* new shops: aqua gradient name, tag, bar and wash */
 .gradtext{background:linear-gradient(90deg,var(--nb1),var(--nb2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
-.newtag{flex:none;display:inline-flex;align-items:center;height:16px;padding:0 7px;background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new);font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;line-height:1}
-.newname{display:flex;align-items:center;gap:8px}
+.newtag{display:inline-flex;align-items:center;height:16px;padding:0 7px;margin-left:8px;vertical-align:4px;background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new);font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;line-height:1}
 .row.new{position:relative;margin-inline:-20px;padding-inline:20px;background:linear-gradient(90deg,var(--nw1),var(--nw2) 55%,var(--nw3))}
 .row.new::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--nb2),var(--nb1))}
 .row.new .ix,.row.new .fav{color:var(--nb-ink)}
-.row.new .nm{width:fit-content;background:linear-gradient(90deg,var(--nb1),var(--nb2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.row.new .nm{filter:none;opacity:1}
+.row.new .nmt{filter:blur(var(--b,0px));opacity:var(--o,1);background:linear-gradient(90deg,var(--nb1),var(--nb2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .empty{font-size:12px;line-height:1.6;color:var(--dim);text-align:center;padding:48px 16px;text-transform:uppercase;letter-spacing:.04em}
 
 /* ---------- Bottom nav ---------- */
@@ -354,7 +354,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
 #fave-rows .row,#rows .row{transition:filter .42s ease,opacity .36s ease,transform .42s ease,background-color .11s ease}
 #fave-rows.busy .row:not(.pressed),#rows.busy .row:not(.pressed){transform:scale(.985);opacity:.9}
 #fave-rows .row.pressed,#rows .row.pressed{background:var(--press)}
-#fave-rows .row.pressed .nm,#rows .row.pressed .nm{filter:blur(0) !important;opacity:1 !important}
+#fave-rows .row.pressed .nm,#rows .row.pressed .nm,#rows .row.pressed .nmt{filter:blur(0) !important;opacity:1 !important}
 .glass{
   position:fixed;inset:0;z-index:2000;color:var(--fg);visibility:hidden;box-sizing:border-box;
   padding:calc(env(safe-area-inset-top,0px) + 20px) 20px calc(env(safe-area-inset-bottom,0px) + 20px);
@@ -858,7 +858,7 @@ function renderList(list){
     <article class="row ${s._f.cls}${isNew(s) ? " new" : ""}" data-id="${esc(s.id)}">
       <span class="ix">${String(i+1).padStart(2,"0")}</span>
       <div>
-        <div${isNew(s) ? ' class="newname"' : ""}><h2 class="nm" style="--b:${s._f.b}px;--o:${s._f.o}">${esc(s.name)}</h2>${isNew(s) ? newTag() : ""}</div>
+        <h2 class="nm" style="--b:${s._f.b}px;--o:${s._f.o}">${isNew(s) ? `<span class="nmt">${esc(s.name)}</span>${newTag()}` : esc(s.name)}</h2>
         <div class="meta">${metaLine(s, now)}</div>
         <p class="note">${esc(noteOf(s))}</p>
         ${tagsHtml(s)}
