@@ -2380,6 +2380,7 @@
       "beans": false,
       "brew": [
         "espresso",
+        "v60",
         "batch"
       ],
       "score": null,
