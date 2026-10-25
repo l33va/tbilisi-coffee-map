@@ -2432,7 +2432,11 @@
       "instagram": "grindcoffeeshop_",
       "place_id": "ChIJxwstEvYNREAR39wh94xa8L0",
       "note": "Specialty café and streetwear concept store in an old Sololaki building, set up as an open workspace.",
-      "note_ka": "სპეშელთი კაფე და სტრითვეარის კონცეპტ-მაღაზია სოლოლაკის ძველ შენობაში, მოწყობილია როგორც ღია სამუშაო სივრცე."
+      "note_ka": "სპეშელთი კაფე და სტრითვეარის კონცეპტ-მაღაზია სოლოლაკის ძველ შენობაში, მოწყობილია როგორც ღია სამუშაო სივრცე.",
+      "laptop": true,
+      "roaster": [
+        "Coffee LAB"
+      ]
     }
   ]
 }
