@@ -2330,7 +2330,9 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "coffee_line.ge",
@@ -2339,7 +2341,22 @@
       "note_ka": "საუზმის კაფე ავლაბარში, სამების ტაძართან: ადგილები შიგნით, ტერასაზე და ეზოში. ღიაა 8:00-დან.",
       "roaster": [
         "Coffee LAB"
-      ]
+      ],
+      "prices": {
+        "espresso": [
+          6,
+          7
+        ],
+        "cappuccino": [
+          9,
+          11,
+          14
+        ],
+        "batch": [
+          9,
+          13
+        ]
+      }
     }
   ]
 }
