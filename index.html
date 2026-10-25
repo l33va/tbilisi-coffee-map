@@ -40,6 +40,7 @@ function cmApplyTheme(choice){
   --red:#FF3B2F;        /* closing soon, the pin on the logo */
   --pin:var(--red);     /* used by the logo symbol */
   --on-red:#141414;     /* text on red buttons */
+  --brew:#F01181;       /* brew-method letters: E V B A C */
   --nb1:#3D7BFF;        /* new shops: blue gradient, deep end */
   --nb2:#35D6FF;        /* new shops: blue gradient, light end */
   --nb-ink:#35D6FF;     /* blue for small text on this background */
@@ -73,6 +74,7 @@ function cmApplyTheme(choice){
 /* ---------- Light theme: warm off-white, ink, a deeper red ---------- */
 html[data-theme="light"]{
   --bg:#F4F4F0; --fg:#0A0A0A; --dim:#5C5C58; --mute:#8E8E89; --hair:#A9A9A3; --line:#D5D5CF; --red:#D9261A;
+  --brew:#DE0C71;
   --nb1:#1F4FE0; --nb2:#1AA6EE; --nb-ink:#1F4FE0; --on-new:#FFFFFF;
   --nw1:rgba(31,79,224,.16); --nw2:rgba(26,166,238,.08); --nw3:rgba(26,166,238,0);
   --nb-halo:rgba(31,79,224,.2); --nb-glow:rgba(26,166,238,.45);
@@ -185,6 +187,8 @@ html[data-theme="light"] #map .leaflet-tile-pane{filter:grayscale(1) contrast(.9
 .row.soon .ix,.row.soon .nm,.row.soon .dist,.row.soon .meta{color:var(--red)}
 .row.shut .ix,.row.shut .meta{color:var(--mute)}
 .row.shut .note,.row.shut .tags{opacity:.55}
+.bl{color:var(--brew);font-style:normal}
+.row.shut .bl{opacity:.6}
 /* new shops: blue gradient name, tag, bar and wash */
 .gradtext{background:linear-gradient(90deg,var(--nb1),var(--nb2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
 .newtag{flex:none;display:inline-flex;align-items:center;height:16px;padding:0 7px;background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new);font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;line-height:1}
@@ -764,7 +768,7 @@ function matches(s){
    ============================================================ */
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const BREW = [["espresso","E"],["v60","V"],["batch","B"],["aeropress","A"],["chemex","C"]];
-const brewLetters = s => BREW.filter(([k]) => s.brew.includes(k)).map(([,l]) => l).join(" ");
+const brewLetters = s => BREW.filter(([k]) => s.brew.includes(k)).map(([,l]) => `<i class="bl">${l}</i>`).join(" ");
 const hasScore = s => typeof s.score === "number";
 const rating = s => hasScore(s) ? ` · ★ ${s.score.toFixed(1)}/10` : "";
 const googleUrl = s => s.place_id
@@ -849,7 +853,7 @@ function renderList(list){
   }
   const now = tbilisiNow();
   const order = tr("Open first, ", "ჯერ ღია, ") + (me ? tr("nearest", "უახლოესი") : tr("A–Z", "A–Z"));
-  el.innerHTML = `<div class="legend">${query ? tr(`${list.length} match${list.length===1?"":"es"} · `, `${list.length} შედეგი · `) : ""}${SHOPS.some(hasScore) ? `<button class="sortby" id="sortby" type="button">${sortBy === "score" ? tr("Best score first","ჯერ საუკეთესო ქულით") : order}</button>` : order}${prefsOn() ? tr(" · your preferences"," · შენი არჩევანით") : ""}${UPDATED ? tr(" · updated "," · განახლდა ") + esc(UPDATED) : ""}${SHOPS.some(isNew) ? ` · <span class="gradtext">${tr("Blue = new","ლურჯი = ახალი")}</span>` : ""} · ${tr("Brew: E espresso · V V60 · B batch · A AeroPress · C Chemex","მომზადება: E ესპრესო · V V60 · B ბეჩ ბრიუ · A AeroPress · C Chemex")}</div>` +
+  el.innerHTML = `<div class="legend">${query ? tr(`${list.length} match${list.length===1?"":"es"} · `, `${list.length} შედეგი · `) : ""}${SHOPS.some(hasScore) ? `<button class="sortby" id="sortby" type="button">${sortBy === "score" ? tr("Best score first","ჯერ საუკეთესო ქულით") : order}</button>` : order}${prefsOn() ? tr(" · your preferences"," · შენი არჩევანით") : ""}${UPDATED ? tr(" · updated "," · განახლდა ") + esc(UPDATED) : ""}${SHOPS.some(isNew) ? ` · <span class="gradtext">${tr("Blue = new","ლურჯი = ახალი")}</span>` : ""} · ${tr('Brew: <i class="bl">E</i> espresso · <i class="bl">V</i> V60 · <i class="bl">B</i> batch · <i class="bl">A</i> AeroPress · <i class="bl">C</i> Chemex','მომზადება: <i class="bl">E</i> ესპრესო · <i class="bl">V</i> V60 · <i class="bl">B</i> ბეჩ ბრიუ · <i class="bl">A</i> AeroPress · <i class="bl">C</i> Chemex')}</div>` +
   list.map((s,i) => `
     <article class="row ${s._f.cls}${isNew(s) ? " new" : ""}" data-id="${esc(s.id)}">
       <span class="ix">${String(i+1).padStart(2,"0")}</span>
