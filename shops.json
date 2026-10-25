@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-24",
+  "updated": "2026-10-25",
   "shops": [
     {
       "id": "shavi-original",
@@ -2308,6 +2308,35 @@
         ],
         "batch": 10
       }
+    },
+    {
+      "id": "coffee-line",
+      "name": "Coffee Line",
+      "area": "Avlabari",
+      "address": "10 Konstantine Eristavi St",
+      "coords": [
+        41.6951042,
+        44.8160615
+      ],
+      "hours": [
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "coffee_line.ge",
+      "place_id": "ChIJP--jA28NREARGcS4zV8mwMk",
+      "note": "Brunch café by Sameba Cathedral in Avlabari, with seats indoors, on a terrace and in a courtyard. Open from 8:00.",
+      "note_ka": "საუზმის კაფე ავლაბარში, სამების ტაძართან: ადგილები შიგნით, ტერასაზე და ეზოში. ღიაა 8:00-დან."
     }
   ]
 }
