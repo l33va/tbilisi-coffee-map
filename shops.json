@@ -2357,6 +2357,35 @@
           13
         ]
       }
+    },
+    {
+      "id": "eleven-window",
+      "name": "Eleven Window",
+      "area": "Sololaki",
+      "address": "6 Niaghvari St",
+      "coords": [
+        41.6952304,
+        44.7932364
+      ],
+      "hours": [
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "eleven.window",
+      "place_id": "ChIJDaPKbwANREARlIFIrBFrPDo",
+      "note": "Cosy, quiet café and bakery in Sololaki with sandwiches and pastries. Service can be slow when busy.",
+      "note_ka": "მყუდრო, მშვიდი კაფე-საცხობი სოლოლაკში სენდვიჩებით და ნამცხვრებით. დატვირთვისას მომსახურება შეიძლება ნელი იყოს."
     }
   ]
 }
