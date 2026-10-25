@@ -2361,7 +2361,7 @@
     {
       "id": "eleven-window",
       "name": "Eleven Window",
-      "area": "Sololaki",
+      "area": "Mtatsminda",
       "address": "6 Niaghvari St",
       "coords": [
         41.6952304,
@@ -2386,8 +2386,8 @@
       "score": null,
       "instagram": "eleven.window",
       "place_id": "ChIJDaPKbwANREARlIFIrBFrPDo",
-      "note": "Cosy, quiet café in Sololaki with sandwiches and good background music. Good for working.",
-      "note_ka": "მყუდრო, მშვიდი კაფე სოლოლაკში სენდვიჩებით და კარგი მუსიკით. კარგია სამუშაოდ.",
+      "note": "Cosy, quiet café in Mtatsminda with sandwiches and good background music. Good for working.",
+      "note_ka": "მყუდრო, მშვიდი კაფე მთაწმინდაზე სენდვიჩებით და კარგი მუსიკით. კარგია სამუშაოდ.",
       "pets": true,
       "laptop": true,
       "prices": {
