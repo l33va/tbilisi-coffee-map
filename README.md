@@ -35,7 +35,7 @@ Each shop looks like this:
 - **roaster** (optional): who roasts the beans, as text (`"Shavi"`) or a list (`["Shavi", "Mamuli", "Tasty"]`). Shops with `"roasts": true` and no `roaster` show "Own roastery".
 - **prices** (optional): `{"espresso": 6, "cappuccino": 8, "batch": 7}` in GEL. For two sizes, give both: `"espresso": [5, 7]` shows as 5/7. Any price you leave out shows as a dash.
 - **pets** (optional): `true` or `false`. Leave it out and the card says "Not listed". **laptop** works the same way.
-- **added** (optional): the date you put the shop on the map, like `"2026-10-21"`. For 14 days after that date the shop shows in blue (name, "NEW" tag, pin on the map, a "New" filter). Add it to every new shop; leave it out of the older ones.
+- **added** (optional): the date you put the shop on the map, like `"2026-10-21"`. For 14 days after that date the shop shows in aqua (name, "NEW" tag, pin on the map, a "New" filter). Add it to every new shop; leave it out of the older ones.
 - **own** (optional): add `"own": true` to show the "Ours" tag.
 - Change `"updated"` at the top of the file to today's date when you edit it.
 
