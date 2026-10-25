@@ -2336,7 +2336,10 @@
       "instagram": "coffee_line.ge",
       "place_id": "ChIJP--jA28NREARGcS4zV8mwMk",
       "note": "Brunch café by Sameba Cathedral in Avlabari, with seats indoors, on a terrace and in a courtyard. Open from 8:00.",
-      "note_ka": "საუზმის კაფე ავლაბარში, სამების ტაძართან: ადგილები შიგნით, ტერასაზე და ეზოში. ღიაა 8:00-დან."
+      "note_ka": "საუზმის კაფე ავლაბარში, სამების ტაძართან: ადგილები შიგნით, ტერასაზე და ეზოში. ღიაა 8:00-დან.",
+      "roaster": [
+        "Coffee LAB"
+      ]
     }
   ]
 }
