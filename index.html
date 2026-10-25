@@ -41,12 +41,12 @@ function cmApplyTheme(choice){
   --pin:var(--red);     /* used by the logo symbol */
   --on-red:#141414;     /* text on red buttons */
   --brew:#F01181;       /* brew-method letters: E V B A C */
-  --nb1:#3D7BFF;        /* new shops: blue gradient, deep end */
-  --nb2:#35D6FF;        /* new shops: blue gradient, light end */
-  --nb-ink:#35D6FF;     /* blue for small text on this background */
-  --on-new:#0A0A0A;     /* text on the blue gradient */
-  --nw1:rgba(61,123,255,.20);--nw2:rgba(53,214,255,.10);--nw3:rgba(53,214,255,0);
-  --nb-halo:rgba(53,214,255,.25);--nb-glow:rgba(53,214,255,.5);
+  --nb1:#2FE6D8;        /* new shops: aqua gradient, deep end */
+  --nb2:#7BFFFF;        /* new shops: aqua gradient, light end */
+  --nb-ink:#7BFFFF;     /* aqua for small text on this background */
+  --on-new:#0A0A0A;     /* text on the aqua gradient */
+  --nw1:rgba(47,230,216,.20);--nw2:rgba(123,255,255,.10);--nw3:rgba(123,255,255,0);
+  --nb-halo:rgba(123,255,255,.25);--nb-glow:rgba(123,255,255,.5);
   --note:var(--note);       /* body copy */
   --shut:#777;          /* closed pins */
   --row-active:#141414;
@@ -75,9 +75,9 @@ function cmApplyTheme(choice){
 html[data-theme="light"]{
   --bg:#F4F4F0; --fg:#0A0A0A; --dim:#5C5C58; --mute:#8E8E89; --hair:#A9A9A3; --line:#D5D5CF; --red:#D9261A;
   --brew:#DE0C71;
-  --nb1:#1F4FE0; --nb2:#1AA6EE; --nb-ink:#1F4FE0; --on-new:#FFFFFF;
-  --nw1:rgba(31,79,224,.16); --nw2:rgba(26,166,238,.08); --nw3:rgba(26,166,238,0);
-  --nb-halo:rgba(31,79,224,.2); --nb-glow:rgba(26,166,238,.45);
+  --nb1:#007F80; --nb2:#009C9C; --nb-ink:#007F80; --on-new:#FFFFFF;
+  --nw1:rgba(0,127,128,.16); --nw2:rgba(0,156,156,.08); --nw3:rgba(0,156,156,0);
+  --nb-halo:rgba(0,127,128,.2); --nb-glow:rgba(0,156,156,.45);
   --on-red:#FFFFFF; --note:#2A2A28; --shut:#A9A9A3; --row-active:#E9E9E4; --nav-off:#8E8E89;
   --press:rgba(10,10,10,.06); --attr-bg:rgba(244,244,240,.8); --sel-ring:rgba(10,10,10,.18); --me-fill:rgba(10,10,10,.12);
   --pic-bg:#E9E9E4; --lb-bg:rgba(244,244,240,.97);
@@ -189,7 +189,7 @@ html[data-theme="light"] #map .leaflet-tile-pane{filter:grayscale(1) contrast(.9
 .row.shut .note,.row.shut .tags{opacity:.55}
 .bl{color:var(--brew);font-style:normal}
 .row.shut .bl{opacity:.6}
-/* new shops: blue gradient name, tag, bar and wash */
+/* new shops: aqua gradient name, tag, bar and wash */
 .gradtext{background:linear-gradient(90deg,var(--nb1),var(--nb2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
 .newtag{flex:none;display:inline-flex;align-items:center;height:16px;padding:0 7px;background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new);font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;line-height:1}
 .newname{display:flex;align-items:center;gap:8px}
@@ -553,7 +553,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
           <b style="filter:blur(2.4px);opacity:.6" data-t="blur">Blurred</b><span data-t="blurd">Closed or far away</span>
           <b style="color:var(--red);filter:blur(1.2px)" data-t="red">Red</b><span data-t="redd">Closing in 45 minutes or less</span>
           <b style="color:var(--gold)" data-t="gold">Gold</b><span data-t="goldd">Your favourite, on the map</span>
-          <b class="gradtext" data-t="blue">Blue</b><span data-t="blued">New in the last 14 days</span>
+          <b class="gradtext" data-t="blue">Aqua</b><span data-t="blued">New in the last 14 days</span>
         </div>
       </div>
       <div class="about-sec"><div class="lab" style="margin-top:0" data-t="privh">Privacy</div><p data-t="priv">We count visits anonymously with GoatCounter. No cookies, no accounts, nothing personal. Your favourites stay on your phone.</p></div>
@@ -624,7 +624,7 @@ const KA = {
   tagline:"თბილისის სპეშელთი ყავის რუკა ტელეფონისთვის",
   whath:"რას აკეთებს", what:"გაჩვენებს, რომელი სპეშელთი კაფეებია ახლა ღია, რომლებია შენთან ახლოს და როგორ ამზადებენ ყავას. ერთხელ გახსნის შემდეგ ინტერნეტის გარეშეც მუშაობს.",
   readh:"როგორ წავიკითხოთ", sharp:"მკვეთრი", sharpd:"ღიაა და ახლოსაა", blur:"ბუნდოვანი", blurd:"დაკეტილია ან შორსაა",
-  red:"წითელი", redd:"იკეტება 45 წუთში ან უფრო ადრე", gold:"ოქროსფერი", goldd:"შენი რჩეული, რუკაზე", blue:"ლურჯი", blued:"ახალი, ბოლო 14 დღეში",
+  red:"წითელი", redd:"იკეტება 45 წუთში ან უფრო ადრე", gold:"ოქროსფერი", goldd:"შენი რჩეული, რუკაზე", blue:"ცისფერი", blued:"ახალი, ბოლო 14 დღეში",
   privh:"კონფიდენციალურობა", priv:"ვიზიტებს ანონიმურად ვითვლით GoatCounter-ით. არანაირი cookie, ანგარიში ან პირადი მონაცემი. რჩეულები შენს ტელეფონში რჩება.",
   datah:"მონაცემები და კრედიტები", touchh:"დაგვიკავშირდი", touch:"შექმნილია თბილისში, ავტორი ლევან ბეზარაშვილი. მოგვწერე:",
   nlist:"სია", nfaves:"რჩეულები", ncontact:"კონტაქტი", nmap:"რუკა"
@@ -853,7 +853,7 @@ function renderList(list){
   }
   const now = tbilisiNow();
   const order = tr("Open first, ", "ჯერ ღია, ") + (me ? tr("nearest", "უახლოესი") : tr("A–Z", "A–Z"));
-  el.innerHTML = `<div class="legend">${query ? tr(`${list.length} match${list.length===1?"":"es"} · `, `${list.length} შედეგი · `) : ""}${SHOPS.some(hasScore) ? `<button class="sortby" id="sortby" type="button">${sortBy === "score" ? tr("Best score first","ჯერ საუკეთესო ქულით") : order}</button>` : order}${prefsOn() ? tr(" · your preferences"," · შენი არჩევანით") : ""}${UPDATED ? tr(" · updated "," · განახლდა ") + esc(UPDATED) : ""}${SHOPS.some(isNew) ? ` · <span class="gradtext">${tr("Blue = new","ლურჯი = ახალი")}</span>` : ""} · ${tr('Brew: <i class="bl">E</i> espresso · <i class="bl">V</i> V60 · <i class="bl">B</i> batch · <i class="bl">A</i> AeroPress · <i class="bl">C</i> Chemex','მომზადება: <i class="bl">E</i> ესპრესო · <i class="bl">V</i> V60 · <i class="bl">B</i> ბეჩ ბრიუ · <i class="bl">A</i> AeroPress · <i class="bl">C</i> Chemex')}</div>` +
+  el.innerHTML = `<div class="legend">${query ? tr(`${list.length} match${list.length===1?"":"es"} · `, `${list.length} შედეგი · `) : ""}${SHOPS.some(hasScore) ? `<button class="sortby" id="sortby" type="button">${sortBy === "score" ? tr("Best score first","ჯერ საუკეთესო ქულით") : order}</button>` : order}${prefsOn() ? tr(" · your preferences"," · შენი არჩევანით") : ""}${UPDATED ? tr(" · updated "," · განახლდა ") + esc(UPDATED) : ""}${SHOPS.some(isNew) ? ` · <span class="gradtext">${tr("Aqua = new","ცისფერი = ახალი")}</span>` : ""} · ${tr('Brew: <i class="bl">E</i> espresso · <i class="bl">V</i> V60 · <i class="bl">B</i> batch · <i class="bl">A</i> AeroPress · <i class="bl">C</i> Chemex','მომზადება: <i class="bl">E</i> ესპრესო · <i class="bl">V</i> V60 · <i class="bl">B</i> ბეჩ ბრიუ · <i class="bl">A</i> AeroPress · <i class="bl">C</i> Chemex')}</div>` +
   list.map((s,i) => `
     <article class="row ${s._f.cls}${isNew(s) ? " new" : ""}" data-id="${esc(s.id)}">
       <span class="ix">${String(i+1).padStart(2,"0")}</span>
