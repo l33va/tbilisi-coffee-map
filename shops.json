@@ -2404,6 +2404,35 @@
           10
         ]
       }
+    },
+    {
+      "id": "grind",
+      "name": "GRIND Specialty Coffee & Concept Store",
+      "area": "Sololaki",
+      "address": "14 Ivane Machabeli St",
+      "coords": [
+        41.6906062,
+        44.7999672
+      ],
+      "hours": [
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00",
+        "08:30-19:00",
+        "10:00-18:00",
+        "10:00-18:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "grindcoffeeshop_",
+      "place_id": "ChIJxwstEvYNREAR39wh94xa8L0",
+      "note": "Specialty café and streetwear concept store in an old Sololaki building, set up as an open workspace.",
+      "note_ka": "სპეშელთი კაფე და სტრითვეარის კონცეპტ-მაღაზია სოლოლაკის ძველ შენობაში, მოწყობილია როგორც ღია სამუშაო სივრცე."
     }
   ]
 }
