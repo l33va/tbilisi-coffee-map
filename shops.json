@@ -716,7 +716,8 @@
       ],
       "brew": [
         "espresso",
-        "v60"
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "sash.coffee",
@@ -732,7 +733,15 @@
       ],
       "place_id": "ChIJiwFNMQANREARSDZUO_YLBQ8",
       "note": "Weekend-breakfast spot first, coffee second. Good cold brew.",
-      "note_ka": "უპირველესად შაბათ-კვირის საუზმის ადგილი, მერე ყავა. კარგი cold brew."
+      "note_ka": "უპირველესად შაბათ-კვირის საუზმის ადგილი, მერე ყავა. კარგი cold brew.",
+      "prices": {
+        "espresso": 10,
+        "cappuccino": [
+          11,
+          13
+        ],
+        "batch": 11
+      }
     },
     {
       "id": "okro",
