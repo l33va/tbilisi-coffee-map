@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25",
+  "updated": "2026-10-27",
   "shops": [
     {
       "id": "shavi-original",
@@ -2446,6 +2446,35 @@
       "roaster": [
         "Coffee LAB"
       ]
+    },
+    {
+      "id": "limona",
+      "name": "Limona Bistro",
+      "area": "Sololaki",
+      "address": "Zurab Zhvania Turn",
+      "coords": [
+        41.6972247,
+        44.7961182
+      ],
+      "hours": [
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "limona_bistro",
+      "place_id": "ChIJM19bX2ENREARPV1JYeGssOw",
+      "note": "Breakfast bistro in a quiet courtyard in Sololaki, with a terrace and desserts.",
+      "note_ka": "საუზმის ბისტრო სოლოლაკის მშვიდ ეზოში, ტერასით და დესერტებით."
     }
   ]
 }
