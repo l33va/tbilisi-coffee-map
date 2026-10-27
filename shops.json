@@ -2468,13 +2468,19 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "limona_bistro",
       "place_id": "ChIJM19bX2ENREARPV1JYeGssOw",
       "note": "Breakfast bistro in a quiet courtyard in Sololaki, with a terrace and desserts.",
-      "note_ka": "საუზმის ბისტრო სოლოლაკის მშვიდ ეზოში, ტერასით და დესერტებით."
+      "note_ka": "საუზმის ბისტრო სოლოლაკის მშვიდ ეზოში, ტერასით და დესერტებით.",
+      "prices": {
+        "espresso": 7,
+        "cappuccino": 10,
+        "batch": 8
+      }
     }
   ]
 }
