@@ -2548,7 +2548,10 @@
       "instagram": "kartli.joys",
       "place_id": "ChIJm8tC7_QNREARCyETpDMwKkw",
       "note": "Small, cosy brunch café known for syrniki and draniki. Kitchen closes at 18:00.",
-      "note_ka": "პატარა, მყუდრო საუზმის კაფე, ცნობილი სირნიკებით და დრანიკებით. სამზარეულო 18:00-ზე იკეტება."
+      "note_ka": "პატარა, მყუდრო საუზმის კაფე, ცნობილი სირნიკებით და დრანიკებით. სამზარეულო 18:00-ზე იკეტება.",
+      "roaster": [
+        "Shavi"
+      ]
     }
   ]
 }
