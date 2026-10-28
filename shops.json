@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27",
+  "updated": "2026-10-28",
   "shops": [
     {
       "id": "shavi-original",
@@ -2481,6 +2481,35 @@
         "cappuccino": 10,
         "batch": 8
       }
+    },
+    {
+      "id": "they-said-books",
+      "name": "They Said Books",
+      "area": "Rustaveli",
+      "address": "10 Giorgi Akhvlediani St",
+      "coords": [
+        41.705493,
+        44.7900705
+      ],
+      "hours": [
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "theysaidbooks.coffeeshop",
+      "place_id": "ChIJhXtdIrANREARPOnPAPsbhQE",
+      "note": "Bookshop café with breakfast and lunch, a quiet place to read or work.",
+      "note_ka": "კაფე-წიგნის მაღაზია საუზმით და სადილით, მშვიდი ადგილი კითხვისთვის ან სამუშაოდ."
     }
   ]
 }
