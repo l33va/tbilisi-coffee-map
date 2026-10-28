@@ -2693,6 +2693,35 @@
       "place_id": "ChIJF02D_BANREARGCFin0CCyhU",
       "note": "Quiet courtyard café with handmade chocolates, brunch and evening drinks. Open till 22:00.",
       "note_ka": "მშვიდი კაფე ეზოში, ხელნაკეთი შოკოლადით, საუზმით და საღამოს სასმელებით. ღიაა 22:00-მდე."
+    },
+    {
+      "id": "fika",
+      "name": "FIKA Swedish Cafe",
+      "area": "Vake",
+      "address": "4 Iovel Kutateladze St",
+      "coords": [
+        41.7060932,
+        44.776451
+      ],
+      "hours": [
+        "",
+        "13:00-19:00",
+        "13:00-19:00",
+        "13:00-19:00",
+        "13:00-19:00",
+        "13:00-19:00",
+        ""
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "fika_swedish_cafe",
+      "place_id": "ChIJfwMi50QNREARy2XyDMvSJeU",
+      "note": "Family-run Swedish café with cinnamon buns, semla and meatballs. Afternoons only, closed Sunday and Monday.",
+      "note_ka": "ოჯახური შვედური კაფე დარიჩინის ფუნთუშებით, სემლით და კოტლეტებით. ღიაა მხოლოდ შუადღიდან, კვირას და ორშაბათს დაკეტილია."
     }
   ]
 }
