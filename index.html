@@ -128,11 +128,11 @@ header{
 .search button[hidden]{display:none}
 .chips{
   display:flex;gap:8px;margin-top:10px;overflow-x:auto;scrollbar-width:none;
-  margin-inline:-20px;padding-inline:20px;
 }
 .chips::-webkit-scrollbar{display:none}
-.chips{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 56px),transparent)}
-.chips.end{-webkit-mask-image:none;mask-image:none}
+.chips{--fl:40px;--fr:40px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent);mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent)}
+.chips.start{--fl:0px}
+.chips.end{--fr:0px}
 .chip{
   flex:0 0 auto;font-family:var(--mono);font-size:10px;font-weight:500;line-height:1;text-transform:uppercase;letter-spacing:.05em;
   padding:8px 10px;border:1px solid var(--hair);color:var(--fg);
@@ -1507,7 +1507,10 @@ if("IntersectionObserver" in window){
 }
 /* chips: fade the right edge until you've scrolled to the end */
 const chipsEl = document.getElementById("chips");
-const chipsEnd = () => chipsEl.classList.toggle("end", chipsEl.scrollLeft + chipsEl.clientWidth >= chipsEl.scrollWidth - 4);
+const chipsEnd = () => {
+  chipsEl.classList.toggle("start", chipsEl.scrollLeft <= 4);
+  chipsEl.classList.toggle("end", chipsEl.scrollLeft + chipsEl.clientWidth >= chipsEl.scrollWidth - 4);
+};
 chipsEl.addEventListener("scroll", chipsEnd, {passive:true}); addEventListener("resize", chipsEnd); setTimeout(chipsEnd, 0);
 
 function fitToMatches(){
