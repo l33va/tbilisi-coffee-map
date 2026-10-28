@@ -2715,7 +2715,8 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "fika_swedish_cafe",
@@ -2724,7 +2725,15 @@
       "note_ka": "ოჯახური შვედური კაფე დარიჩინის ფუნთუშებით, სემლით და კოტლეტებით. ღიაა მხოლოდ შუადღიდან, კვირას და ორშაბათს დაკეტილია.",
       "roaster": [
         "Shavi"
-      ]
+      ],
+      "prices": {
+        "espresso": [
+          5,
+          7
+        ],
+        "cappuccino": 10,
+        "batch": 10
+      }
     }
   ]
 }
