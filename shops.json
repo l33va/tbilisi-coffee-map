@@ -2520,6 +2520,35 @@
         "cappuccino": 8,
         "batch": 8
       }
+    },
+    {
+      "id": "kartli-joys",
+      "name": "Kartli Joys",
+      "area": "Vera",
+      "address": "16 Napareuli St",
+      "coords": [
+        41.7074947,
+        44.776986
+      ],
+      "hours": [
+        "10:00-19:00",
+        "10:00-19:00",
+        "10:00-19:00",
+        "10:00-19:00",
+        "10:00-19:00",
+        "10:00-19:00",
+        "10:00-19:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "kartli.joys",
+      "place_id": "ChIJm8tC7_QNREARCyETpDMwKkw",
+      "note": "Small, cosy brunch café known for syrniki and draniki. Kitchen closes at 18:00.",
+      "note_ka": "პატარა, მყუდრო საუზმის კაფე, ცნობილი სირნიკებით და დრანიკებით. სამზარეულო 18:00-ზე იკეტება."
     }
   ]
 }
