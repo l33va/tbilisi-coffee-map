@@ -2721,7 +2721,10 @@
       "instagram": "fika_swedish_cafe",
       "place_id": "ChIJfwMi50QNREARy2XyDMvSJeU",
       "note": "Family-run Swedish café with cinnamon buns, semla and meatballs. Afternoons only, closed Sunday and Monday.",
-      "note_ka": "ოჯახური შვედური კაფე დარიჩინის ფუნთუშებით, სემლით და კოტლეტებით. ღიაა მხოლოდ შუადღიდან, კვირას და ორშაბათს დაკეტილია."
+      "note_ka": "ოჯახური შვედური კაფე დარიჩინის ფუნთუშებით, სემლით და კოტლეტებით. ღიაა მხოლოდ შუადღიდან, კვირას და ორშაბათს დაკეტილია.",
+      "roaster": [
+        "Shavi"
+      ]
     }
   ]
 }
