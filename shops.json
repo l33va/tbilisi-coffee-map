@@ -2522,9 +2522,9 @@
       }
     },
     {
-      "id": "kartli-joys",
-      "name": "Kartli Joys",
-      "area": "Vera",
+      "id": "kartli-joys-napareuli",
+      "name": "Kartli Joys — Napareuli",
+      "area": "Vake",
       "address": "16 Napareuli St",
       "coords": [
         41.7074947,
@@ -2551,7 +2551,77 @@
       "note_ka": "პატარა, მყუდრო საუზმის კაფე, ცნობილი სირნიკებით და დრანიკებით. სამზარეულო 18:00-ზე იკეტება.",
       "roaster": [
         "Shavi"
-      ]
+      ],
+      "pets": true,
+      "laptop": true
+    },
+    {
+      "id": "kartli-joys-chavchavadze",
+      "name": "Kartli Joys — Chavchavadze",
+      "area": "Vake",
+      "address": "7 Ilia Chavchavadze Ave",
+      "coords": [
+        41.7098144,
+        44.7752828
+      ],
+      "hours": [
+        "09:30-19:00",
+        "09:30-19:00",
+        "09:30-19:00",
+        "09:30-19:00",
+        "09:30-19:00",
+        "10:00-19:00",
+        "10:00-19:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "kartli.joys",
+      "roaster": [
+        "Shavi"
+      ],
+      "pets": true,
+      "laptop": true,
+      "place_id": "ChIJF6h7IdVzREAR1wKaSnHG3dQ",
+      "note": "Kartli Joys on Chavchavadze, set back from the avenue, with waffles and crêpes.",
+      "note_ka": "Kartli Joys ჭავჭავაძეზე, გამზირიდან ოდნავ შიგნით, ვაფლებით და ბლინებით."
+    },
+    {
+      "id": "kartli-joys-aghmashenebeli",
+      "name": "Kartli Joys — Aghmashenebeli",
+      "area": "Chugureti",
+      "address": "22 Davit Aghmashenebeli Ave",
+      "coords": [
+        41.7038435,
+        44.8025962
+      ],
+      "hours": [
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "kartli.joys",
+      "roaster": [
+        "Shavi"
+      ],
+      "pets": true,
+      "laptop": true,
+      "place_id": "ChIJK8JF5CQNREARqa-TeoaEjIw",
+      "note": "Kartli Joys on Aghmashenebeli Avenue, with brunch and seats inside and out.",
+      "note_ka": "Kartli Joys აღმაშენებლის გამზირზე, საუზმით და ადგილებით შიგნით და გარეთ."
     }
   ]
 }
