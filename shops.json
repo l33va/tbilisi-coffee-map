@@ -2509,7 +2509,10 @@
       "instagram": "theysaidbooks.coffeeshop",
       "place_id": "ChIJhXtdIrANREARPOnPAPsbhQE",
       "note": "Bookshop café with breakfast and lunch, a quiet place to read or work.",
-      "note_ka": "კაფე-წიგნის მაღაზია საუზმით და სადილით, მშვიდი ადგილი კითხვისთვის ან სამუშაოდ."
+      "note_ka": "კაფე-წიგნის მაღაზია საუზმით და სადილით, მშვიდი ადგილი კითხვისთვის ან სამუშაოდ.",
+      "roaster": [
+        "Five Elephant"
+      ]
     }
   ]
 }
