@@ -2542,7 +2542,8 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "kartli.joys",
@@ -2553,7 +2554,18 @@
         "Shavi"
       ],
       "pets": true,
-      "laptop": true
+      "laptop": true,
+      "prices": {
+        "espresso": 8,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": [
+          8,
+          10
+        ]
+      }
     },
     {
       "id": "kartli-joys-chavchavadze",
@@ -2576,7 +2588,8 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "kartli.joys",
@@ -2587,7 +2600,18 @@
       "laptop": true,
       "place_id": "ChIJF6h7IdVzREAR1wKaSnHG3dQ",
       "note": "Kartli Joys on Chavchavadze, set back from the avenue, with waffles and crêpes.",
-      "note_ka": "Kartli Joys ჭავჭავაძეზე, გამზირიდან ოდნავ შიგნით, ვაფლებით და ბლინებით."
+      "note_ka": "Kartli Joys ჭავჭავაძეზე, გამზირიდან ოდნავ შიგნით, ვაფლებით და ბლინებით.",
+      "prices": {
+        "espresso": 8,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": [
+          8,
+          10
+        ]
+      }
     },
     {
       "id": "kartli-joys-aghmashenebeli",
@@ -2610,7 +2634,8 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "kartli.joys",
@@ -2621,7 +2646,18 @@
       "laptop": true,
       "place_id": "ChIJK8JF5CQNREARqa-TeoaEjIw",
       "note": "Kartli Joys on Aghmashenebeli Avenue, with brunch and seats inside and out.",
-      "note_ka": "Kartli Joys აღმაშენებლის გამზირზე, საუზმით და ადგილებით შიგნით და გარეთ."
+      "note_ka": "Kartli Joys აღმაშენებლის გამზირზე, საუზმით და ადგილებით შიგნით და გარეთ.",
+      "prices": {
+        "espresso": 8,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": [
+          8,
+          10
+        ]
+      }
     }
   ]
 }
