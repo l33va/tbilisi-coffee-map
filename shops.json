@@ -2734,6 +2734,35 @@
         "cappuccino": 10,
         "batch": 10
       }
+    },
+    {
+      "id": "dodonut",
+      "name": "Dodonut",
+      "area": "Vake",
+      "address": "1a Ekvtime Takaishvili St",
+      "coords": [
+        41.7086886,
+        44.7774917
+      ],
+      "hours": [
+        "11:00-22:00",
+        "11:00-22:00",
+        "11:00-22:00",
+        "11:00-22:00",
+        "11:00-22:00",
+        "11:00-22:00",
+        "11:00-22:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "dodonut___",
+      "place_id": "ChIJ4diHUAANREARFlxswIHBO18",
+      "note": "Small doughnut shop with filled doughnuts baked through the day and a few seats. Open till 22:00.",
+      "note_ka": "პატარა დონატების მაღაზია, სადაც შიგთავსიან დონატებს მთელი დღე აცხობენ. რამდენიმე ადგილი. ღიაა 22:00-მდე."
     }
   ]
 }
