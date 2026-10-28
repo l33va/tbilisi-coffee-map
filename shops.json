@@ -2886,13 +2886,19 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "hurma_cafe",
       "place_id": "ChIJ90gte9EMREAR6bP8CfzD5MU",
       "note": "All-day breakfast café near Rustaveli metro with vegan options and a laptop corner. Open till 23:00.",
-      "note_ka": "მთელი დღის საუზმის კაფე რუსთაველის მეტროსთან, ვეგანური არჩევანით და ლეპტოპის კუთხით. ღიაა 23:00-მდე."
+      "note_ka": "მთელი დღის საუზმის კაფე რუსთაველის მეტროსთან, ვეგანური არჩევანით და ლეპტოპის კუთხით. ღიაა 23:00-მდე.",
+      "prices": {
+        "espresso": 7,
+        "cappuccino": 11,
+        "batch": 8
+      }
     }
   ]
 }
