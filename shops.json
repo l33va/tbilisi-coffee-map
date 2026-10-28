@@ -2664,6 +2664,35 @@
           10
         ]
       }
+    },
+    {
+      "id": "maluli",
+      "name": "Maluli by Chocoart",
+      "area": "Chugureti",
+      "address": "10 Nino Chkheidze St",
+      "coords": [
+        41.7028803,
+        44.8080469
+      ],
+      "hours": [
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "maluli.cafe",
+      "place_id": "ChIJF02D_BANREARGCFin0CCyhU",
+      "note": "Quiet courtyard café with handmade chocolates, brunch and evening drinks. Open till 22:00.",
+      "note_ka": "მშვიდი კაფე ეზოში, ხელნაკეთი შოკოლადით, საუზმით და საღამოს სასმელებით. ღიაა 22:00-მდე."
     }
   ]
 }
