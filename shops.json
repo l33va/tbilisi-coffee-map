@@ -2830,7 +2830,14 @@
       "instagram": "breakfastis_",
       "place_id": "ChIJmwShh54NREARSkHPpV4uoJE",
       "note": "Small, busy breakfast spot with eggs Benedict and shakshuka. Expect a wait in the morning; closes at 17:00 (20:00 on Sunday).",
-      "note_ka": "პატარა, ხალხმრავალი საუზმის ადგილი ბენედიქტის კვერცხით და შაქშუკით. დილით შეიძლება მოგიწიოთ ლოდინი; იკეტება 17:00-ზე (კვირას 20:00-ზე)."
+      "note_ka": "პატარა, ხალხმრავალი საუზმის ადგილი ბენედიქტის კვერცხით და შაქშუკით. დილით შეიძლება მოგიწიოთ ლოდინი; იკეტება 17:00-ზე (კვირას 20:00-ზე).",
+      "prices": {
+        "espresso": 7,
+        "cappuccino": 9
+      },
+      "roaster": [
+        "Shavi"
+      ]
     }
   ]
 }
