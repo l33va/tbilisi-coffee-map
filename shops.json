@@ -2762,7 +2762,14 @@
       "instagram": "dodonut___",
       "place_id": "ChIJ4diHUAANREARFlxswIHBO18",
       "note": "Small doughnut shop with filled doughnuts baked through the day and a few seats. Open till 22:00.",
-      "note_ka": "პატარა დონატების მაღაზია, სადაც შიგთავსიან დონატებს მთელი დღე აცხობენ. რამდენიმე ადგილი. ღიაა 22:00-მდე."
+      "note_ka": "პატარა დონატების მაღაზია, სადაც შიგთავსიან დონატებს მთელი დღე აცხობენ. რამდენიმე ადგილი. ღიაა 22:00-მდე.",
+      "prices": {
+        "espresso": [
+          6,
+          9
+        ],
+        "cappuccino": 9
+      }
     }
   ]
 }
