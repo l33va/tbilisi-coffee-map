@@ -2773,6 +2773,35 @@
       "roaster": [
         "Shavi"
       ]
+    },
+    {
+      "id": "chicos",
+      "name": "Chicos",
+      "area": "Vake",
+      "address": "11a Ilia Chavchavadze Ave",
+      "coords": [
+        41.7093405,
+        44.7737789
+      ],
+      "hours": [
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-24:00",
+        "10:00-24:00",
+        "10:00-23:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "chicos.tbilisi",
+      "place_id": "ChIJ0-beyH0NREAR2vG8ZBzGnao",
+      "note": "All-day café and restaurant on Chavchavadze with a red interior, a terrace, breakfast and cocktails.",
+      "note_ka": "მთელი დღის კაფე-რესტორანი ჭავჭავაძეზე, წითელი ინტერიერით, ტერასით, საუზმით და კოქტეილებით."
     }
   ]
 }
