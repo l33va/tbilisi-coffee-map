@@ -2864,6 +2864,35 @@
           "alt": "Empty breakfast tray after the meal"
         }
       ]
+    },
+    {
+      "id": "hurma",
+      "name": "HURMA",
+      "area": "Vera",
+      "address": "9 Petre Melikishvili St",
+      "coords": [
+        41.7079525,
+        44.7835653
+      ],
+      "hours": [
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00",
+        "09:00-23:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "hurma_cafe",
+      "place_id": "ChIJ90gte9EMREAR6bP8CfzD5MU",
+      "note": "All-day breakfast café near Rustaveli metro with vegan options and a laptop corner. Open till 23:00.",
+      "note_ka": "მთელი დღის საუზმის კაფე რუსთაველის მეტროსთან, ვეგანური არჩევანით და ლეპტოპის კუთხით. ღიაა 23:00-მდე."
     }
   ]
 }
