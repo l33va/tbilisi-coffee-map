@@ -2837,6 +2837,28 @@
       },
       "roaster": [
         "Shavi"
+      ],
+      "photos": [
+        {
+          "src": "photos/breakfast-is-1.webp",
+          "alt": "Espresso and filter coffee on a white tablecloth"
+        },
+        {
+          "src": "photos/breakfast-is-2.webp",
+          "alt": "Yoghurt with granola, orange and mint"
+        },
+        {
+          "src": "photos/breakfast-is-3.webp",
+          "alt": "Tray of homemade granola with nuts"
+        },
+        {
+          "src": "photos/breakfast-is-4.webp",
+          "alt": "Pans, bowls and cherry tomatoes in the kitchen"
+        },
+        {
+          "src": "photos/breakfast-is-5.webp",
+          "alt": "Empty breakfast tray after the meal"
+        }
       ]
     }
   ]
