@@ -2503,7 +2503,9 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "theysaidbooks.coffeeshop",
@@ -2512,7 +2514,12 @@
       "note_ka": "კაფე-წიგნის მაღაზია საუზმით და სადილით, მშვიდი ადგილი კითხვისთვის ან სამუშაოდ.",
       "roaster": [
         "Five Elephant"
-      ]
+      ],
+      "prices": {
+        "espresso": 7,
+        "cappuccino": 8,
+        "batch": 8
+      }
     }
   ]
 }
