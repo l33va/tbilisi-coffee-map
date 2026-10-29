@@ -2928,6 +2928,35 @@
       "place_id": "ChIJ1UT6q5xzREARQ_Fer2MIBlI",
       "note": "Small specialty coffee bar in Vake with a rotating choice of beans, decaf and seasonal pastries.",
       "note_ka": "პატარა სპეშელთი ყავის ბარი ვაკეში, მარცვლის ცვალებადი არჩევანით, დეკაფით და სეზონური ნამცხვრებით."
+    },
+    {
+      "id": "baho",
+      "name": "Baho",
+      "area": "Saburtalo",
+      "address": "41 Alexander Kazbegi Ave",
+      "coords": [
+        41.7247104,
+        44.7456077
+      ],
+      "hours": [
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "baho_georgia",
+      "place_id": "ChIJ3bXdJ6NzREARf0HrA3i3Hqo",
+      "note": "Small café near Delisi metro serving Rwandan coffee, with breakfast and plenty of sockets.",
+      "note_ka": "პატარა კაფე დელისის მეტროსთან რუანდული ყავით, საუზმით და ბევრი როზეტით."
     }
   ]
 }
