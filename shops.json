@@ -2947,7 +2947,7 @@
         "10:00-20:00",
         "10:00-20:00"
       ],
-      "roasts": false,
+      "roasts": true,
       "beans": false,
       "brew": [
         "espresso"
@@ -2955,8 +2955,8 @@
       "score": null,
       "instagram": "baho_georgia",
       "place_id": "ChIJ3bXdJ6NzREARf0HrA3i3Hqo",
-      "note": "Small café near Delisi metro serving Rwandan coffee, with breakfast and plenty of sockets.",
-      "note_ka": "პატარა კაფე დელისის მეტროსთან რუანდული ყავით, საუზმით და ბევრი როზეტით."
+      "note": "Small café near Delisi metro that roasts its own Rwandan coffee, with breakfast and plenty of sockets.",
+      "note_ka": "პატარა კაფე დელისის მეტროსთან, რომელიც თავად ხალავს რუანდულ ყავას; საუზმით და ბევრი როზეტით."
     }
   ]
 }
