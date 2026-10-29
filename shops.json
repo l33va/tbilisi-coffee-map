@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28",
+  "updated": "2026-10-29",
   "shops": [
     {
       "id": "shavi-original",
@@ -2899,6 +2899,35 @@
         "cappuccino": 11,
         "batch": 8
       }
+    },
+    {
+      "id": "kanary",
+      "name": "kanary",
+      "area": "Vake",
+      "address": "44 Irakli Abashidze St",
+      "coords": [
+        41.7078536,
+        44.762381
+      ],
+      "hours": [
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "kanarycoffee",
+      "place_id": "ChIJ1UT6q5xzREARQ_Fer2MIBlI",
+      "note": "Small specialty coffee bar in Vake with a rotating choice of beans, decaf and seasonal pastries.",
+      "note_ka": "პატარა სპეშელთი ყავის ბარი ვაკეში, მარცვლის ცვალებადი არჩევანით, დეკაფით და სეზონური ნამცხვრებით."
     }
   ]
 }
