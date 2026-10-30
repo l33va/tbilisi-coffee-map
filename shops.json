@@ -1914,7 +1914,11 @@
       "prices": {
         "espresso": 10,
         "cappuccino": 15
-      }
+      },
+      "roaster": [
+        "Tasty Coffee",
+        "Onyx"
+      ]
     },
     {
       "id": "pitna",
