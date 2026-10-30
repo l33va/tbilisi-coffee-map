@@ -330,7 +330,7 @@
     },
     {
       "id": "brewio",
-      "name": "Brewio Old Town",
+      "name": "Brewio — Old Town",
       "area": "Old Tbilisi",
       "address": "1 Ovanes Tumaniani II Dead End",
       "coords": [
@@ -385,6 +385,35 @@
           "alt": "Brewio on its quiet cobbled lane, and an iced coffee in a blue cup"
         }
       ]
+    },
+    {
+      "id": "brewio-marjanishvili",
+      "name": "Brewio — Marjanishvili",
+      "area": "Marjanishvili",
+      "address": "57 Arnold Chikobava St",
+      "coords": [
+        41.7097723,
+        44.8041397
+      ],
+      "hours": [
+        "10:00-19:00",
+        "10:00-19:00",
+        "10:00-19:00",
+        "10:00-19:00",
+        "10:00-19:00",
+        "10:00-19:00",
+        "12:00-18:00"
+      ],
+      "roasts": false,
+      "beans": true,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "brewio.ge",
+      "place_id": "ChIJpysBdrwNREARuPYcP3IthpY",
+      "note": "Small brew bar near Marjanishvili with coffees from several roasters, beans and brewing gear to buy.",
+      "note_ka": "პატარა ბრიუ-ბარი მარჯანიშვილთან, რამდენიმე როუსტერის ყავით, მარცვლითა და მოსამზადებელი აღჭურვილობით."
     },
     {
       "id": "cityhikers",
