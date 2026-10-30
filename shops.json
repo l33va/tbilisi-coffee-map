@@ -1870,7 +1870,9 @@
           11
         ],
         "batch": 8
-      }
+      },
+      "laptop": true,
+      "pets": true
     },
     {
       "id": "beanbourbon",
