@@ -578,6 +578,64 @@
       "note_ka": "დახლი ორბელიანის ბაზრის დარბაზში. ძირითადად ესპრესო."
     },
     {
+      "id": "coffeelab-lisi",
+      "name": "Coffee LAB — Lisi Lake",
+      "area": "Saburtalo",
+      "address": "Lisi Lake",
+      "coords": [
+        41.7392345,
+        44.7429689
+      ],
+      "hours": [
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00"
+      ],
+      "roasts": true,
+      "beans": true,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "coffeelabgeorgia",
+      "place_id": "ChIJhTUDFQBzREARDUqZFkCBQhY",
+      "note": "By Lisi Lake, with outdoor seats and a full breakfast menu. Open till 22:00.",
+      "note_ka": "ლისის ტბასთან, გარე მაგიდებით და სრული საუზმის მენიუთი. ღიაა 22:00-მდე."
+    },
+    {
+      "id": "coffeelab-citymall",
+      "name": "Coffee LAB — City Mall",
+      "area": "Saburtalo",
+      "address": "City Mall Saburtalo, 2nd floor, 1 Petre Kavtaradze St",
+      "coords": [
+        41.7234997,
+        44.7379344
+      ],
+      "hours": [
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00"
+      ],
+      "roasts": true,
+      "beans": true,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "coffeelabgeorgia",
+      "place_id": "ChIJ5evSnxJzREARZA0vkm_jsf0",
+      "note": "Small counter on the second floor of City Mall, good for a quick coffee while shopping. Sells beans and brewing gear.",
+      "note_ka": "პატარა ბარი სითი მოლის მეორე სართულზე, კარგია სწრაფი ყავისთვის შოპინგის დროს. ყიდის მარცვალს და აქსესუარებს."
+    },
+    {
       "id": "pro-barista",
       "name": "Pro Barista",
       "area": "Station Square",
