@@ -1896,7 +1896,21 @@
       "instagram": "dailygrindtbilisi",
       "place_id": "ChIJV7h5rJMNREARI1uRtZM0wag",
       "note": "Friendly little coffee bar on the old town's main street, open from 7. V60 alongside espresso, and well-loved cheesecake.",
-      "note_ka": "მეგობრული პატარა ყავის ბარი ძველი ქალაქის მთავარ ქუჩაზე, ღიაა 7-დან. V60 და ესპრესო, და ყველას საყვარელი ჩიზქეიქი."
+      "note_ka": "მეგობრული პატარა ყავის ბარი ძველი ქალაქის მთავარ ქუჩაზე, ღიაა 7-დან. V60 და ესპრესო, და ყველას საყვარელი ჩიზქეიქი.",
+      "photos": [
+        {
+          "src": "photos/daily-grind-1.webp",
+          "alt": "Daily Grind shopfront with a dog resting outside"
+        },
+        {
+          "src": "photos/daily-grind-2.webp",
+          "alt": "Coffee bar with La Marzocco machine and bags of beans"
+        },
+        {
+          "src": "photos/daily-grind-3.webp",
+          "alt": "Wall table and stools with a dog asleep on the tiled floor"
+        }
+      ]
     },
     {
       "id": "pitna",
