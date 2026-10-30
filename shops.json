@@ -1829,7 +1829,8 @@
       "roasts": false,
       "beans": false,
       "roaster": [
-        "Mamuli"
+        "Mamuli",
+        "Tsvari"
       ],
       "brew": [
         "espresso"
