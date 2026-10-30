@@ -1839,7 +1839,29 @@
       "instagram": "ruby_tbilisi",
       "place_id": "ChIJ1V6MHjYNREARp3SYjRvFasE",
       "note": "Cosy breakfast café off Freedom Square with friendly staff and resident cats. Georgian, English and continental breakfasts, plus options for different diets.",
-      "note_ka": "მყუდრო საუზმის კაფე თავისუფლების მოედანთან, მეგობრული პერსონალით და კატებით. ქართული, ინგლისური და კონტინენტური საუზმე, ასევე სხვადასხვა დიეტის ვარიანტები."
+      "note_ka": "მყუდრო საუზმის კაფე თავისუფლების მოედანთან, მეგობრული პერსონალით და კატებით. ქართული, ინგლისური და კონტინენტური საუზმე, ასევე სხვადასხვა დიეტის ვარიანტები.",
+      "photos": [
+        {
+          "src": "photos/ruby-1.webp",
+          "alt": "Ruby's lit sign and entrance on a cobbled street"
+        },
+        {
+          "src": "photos/ruby-2.webp",
+          "alt": "Eggs Benedict on toast and an English breakfast"
+        },
+        {
+          "src": "photos/ruby-3.webp",
+          "alt": "A dachshund on a guest's lap at an outdoor table"
+        },
+        {
+          "src": "photos/ruby-4.webp",
+          "alt": "Inside Ruby: wooden beams, the bar and the open kitchen"
+        },
+        {
+          "src": "photos/ruby-5.webp",
+          "alt": "Courtyard with string lights, wine rack and flowers"
+        }
+      ]
     },
     {
       "id": "beanbourbon",
