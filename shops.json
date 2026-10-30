@@ -457,14 +457,20 @@
         "aeropress"
       ],
       "roaster": [
-        "Urban Roastery",
-        "Tanat"
+        "Tanat",
+        "DAK"
       ],
       "score": null,
       "instagram": "brewio.ge",
       "place_id": "ChIJhdCXgkwNREARa5ROwFdfAUw",
       "note": "Brewio's coffee inside Unfound Door, a restaurant and hotel in a quiet courtyard off Aghmashenebeli Avenue.",
-      "note_ka": "Brewio-ს ყავა Unfound Door-ში — რესტორანი და სასტუმრო აღმაშენებლის გამზირის მშვიდ ეზოში."
+      "note_ka": "Brewio-ს ყავა Unfound Door-ში — რესტორანი და სასტუმრო აღმაშენებლის გამზირის მშვიდ ეზოში.",
+      "photos": [
+        {
+          "src": "photos/brewio-unfound-1.webp",
+          "alt": "Coffee bar at Unfound Door with Tanat beans on the counter"
+        }
+      ]
     },
     {
       "id": "cityhikers",
