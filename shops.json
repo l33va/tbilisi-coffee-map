@@ -1910,7 +1910,11 @@
           "src": "photos/daily-grind-3.webp",
           "alt": "Wall table and stools with a dog asleep on the tiled floor"
         }
-      ]
+      ],
+      "prices": {
+        "espresso": 10,
+        "cappuccino": 15
+      }
     },
     {
       "id": "pitna",
