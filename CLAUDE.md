@@ -34,6 +34,7 @@ More than one Claude chat works on this repo (one for shop data, one for design)
 - `pets`, `laptop`: leave them out of new shops (the app shows "Not listed"); add `true`/`false` only when confirmed.
 - `beans`, `roasts`, `roaster`: only set when confirmed. Say what's unconfirmed.
 - `place_id`: Google place ID (for the reviews link). `instagram`: handle without @.
+- When adding a shop, also follow its Instagram from @tbilisicoffeemap in the built-in browser (if Levan's computer is reachable; slowly, never in bulk).
 - Never copy Google ratings or review text into the app.
 - Bump `"updated"` at the top of shops.json to today's date.
 
