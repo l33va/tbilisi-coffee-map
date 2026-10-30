@@ -1878,13 +1878,13 @@
         44.8028439
       ],
       "hours": [
-        "07:00-17:00",
-        "07:00-17:00",
-        "07:00-17:00",
-        "07:00-17:00",
-        "07:00-17:00",
-        "07:00-18:00",
-        "07:00-18:00"
+        "07:30-16:00",
+        "07:30-16:00",
+        "07:30-16:00",
+        "07:30-16:00",
+        "07:30-16:00",
+        "07:30-18:00",
+        "07:30-18:00"
       ],
       "roasts": false,
       "beans": false,
@@ -1895,8 +1895,8 @@
       "score": null,
       "instagram": "dailygrindtbilisi",
       "place_id": "ChIJV7h5rJMNREARI1uRtZM0wag",
-      "note": "Friendly little coffee bar on the old town's main street, open from 7. V60 alongside espresso, and well-loved cheesecake.",
-      "note_ka": "მეგობრული პატარა ყავის ბარი ძველი ქალაქის მთავარ ქუჩაზე, ღიაა 7-დან. V60 და ესპრესო, და ყველას საყვარელი ჩიზქეიქი.",
+      "note": "Friendly little coffee bar on the old town's main street, open from 7:30. V60 alongside espresso, and well-loved cheesecake.",
+      "note_ka": "მეგობრული პატარა ყავის ბარი ძველი ქალაქის მთავარ ქუჩაზე, ღიაა 7:30-დან. V60 და ესპრესო, და ყველას საყვარელი ჩიზქეიქი.",
       "photos": [
         {
           "src": "photos/daily-grind-1a.webp",
