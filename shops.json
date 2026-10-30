@@ -1833,7 +1833,8 @@
         "Tsvari"
       ],
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "ruby_tbilisi",
@@ -1861,7 +1862,15 @@
           "src": "photos/ruby-5.webp",
           "alt": "Courtyard with string lights, wine rack and flowers"
         }
-      ]
+      ],
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          9,
+          11
+        ],
+        "batch": 8
+      }
     },
     {
       "id": "beanbourbon",
