@@ -1408,7 +1408,9 @@
       "laptop": true,
       "pets": true,
       "roaster": [
-        "Kuro"
+        "Kuro",
+        "Mamuli",
+        "Tasty Coffee"
       ],
       "brew": [
         "espresso",
