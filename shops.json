@@ -407,13 +407,28 @@
       "roasts": false,
       "beans": true,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch",
+        "aeropress"
       ],
       "score": null,
       "instagram": "brewio.ge",
       "place_id": "ChIJpysBdrwNREARuPYcP3IthpY",
       "note": "Small brew bar near Marjanishvili with coffees from several roasters, beans and brewing gear to buy.",
-      "note_ka": "პატარა ბრიუ-ბარი მარჯანიშვილთან, რამდენიმე როუსტერის ყავით, მარცვლითა და მოსამზადებელი აღჭურვილობით."
+      "note_ka": "პატარა ბრიუ-ბარი მარჯანიშვილთან, რამდენიმე როუსტერის ყავით, მარცვლითა და მოსამზადებელი აღჭურვილობით.",
+      "prices": {
+        "espresso": 8,
+        "cappuccino": 11,
+        "batch": [
+          8,
+          11
+        ]
+      },
+      "roaster": [
+        "Urban Roastery",
+        "Tanat"
+      ]
     },
     {
       "id": "cityhikers",
