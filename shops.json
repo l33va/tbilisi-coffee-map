@@ -1192,7 +1192,8 @@
       "laptop": true,
       "brew": [
         "espresso",
-        "v60"
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "salty__cafe",
@@ -1216,7 +1217,18 @@
       ],
       "place_id": "ChIJz9eWpFNzREARWh1-IyW7acY",
       "note": "Cosy coffee bar with a bike mechanic on site, a cyclists' favourite. Good filter, great banana bread.",
-      "note_ka": "მყუდრო ყავის ბარი, ადგილზე ველოსიპედის ხელოსნით, ველოსიპედისტების საყვარელი. კარგი ფილტრი, შესანიშნავი ბანანის პური."
+      "note_ka": "მყუდრო ყავის ბარი, ადგილზე ველოსიპედის ხელოსნით, ველოსიპედისტების საყვარელი. კარგი ფილტრი, შესანიშნავი ბანანის პური.",
+      "prices": {
+        "espresso": 9,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": [
+          8,
+          10
+        ]
+      }
     },
     {
       "id": "pulp-janashia",
