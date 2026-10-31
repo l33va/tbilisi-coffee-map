@@ -1395,7 +1395,21 @@
           11
         ],
         "batch": 8
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/minimalist-1.webp",
+          "alt": "Black coffee in a Minimalist mug"
+        },
+        {
+          "src": "photos/minimalist-2.webp",
+          "alt": "'Let coffee & food connect us' on the wall"
+        },
+        {
+          "src": "photos/minimalist-3.webp",
+          "alt": "Two iced matcha lattes at an outside table"
+        }
+      ]
     },
     {
       "id": "karaqi-zubalashvili",
