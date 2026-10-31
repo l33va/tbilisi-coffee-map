@@ -1744,7 +1744,9 @@
           "src": "photos/baba-bakery-2.webp",
           "alt": "Counter full of croissants, cruffins and focaccia sandwiches"
         }
-      ]
+      ],
+      "laptop": true,
+      "pets": true
     },
     {
       "id": "808",
