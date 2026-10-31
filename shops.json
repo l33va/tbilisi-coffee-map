@@ -1379,13 +1379,22 @@
       "beans": false,
       "laptop": true,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "minimalist.tbilisi",
       "place_id": "ChIJJ_4Qf8ZzREAROM9C9BVeCeg",
       "note": "Clean, modern café at the top of Paliashvili with a dedicated work zone. Strong breakfast menu; the syrniki are the order.",
-      "note_ka": "სუფთა, თანამედროვე კაფე ფალიაშვილის თავში, ცალკე სამუშაო ზონით. ძლიერი საუზმის მენიუ; აუცილებლად სცადე სირნიკები."
+      "note_ka": "სუფთა, თანამედროვე კაფე ფალიაშვილის თავში, ცალკე სამუშაო ზონით. ძლიერი საუზმის მენიუ; აუცილებლად სცადე სირნიკები.",
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          9,
+          11
+        ],
+        "batch": 8
+      }
     },
     {
       "id": "karaqi-zubalashvili",
