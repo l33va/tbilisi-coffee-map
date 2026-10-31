@@ -1876,13 +1876,26 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "unity_bistro",
       "place_id": "ChIJt6ipv5gNREARDy8NAkT_9tc",
       "note": "Small specialty bar in Saburtalo with signature drinks like orange cappuccino and bumble, plus flavoured cold brews. Better for a quick cup than a long sit.",
-      "note_ka": "პატარა სპეშელთი ბარი საბურთალოზე, საფირმო სასმელებით, როგორიცაა ფორთოხლის კაპუჩინო და ბამბლი, და არომატიზებული cold brew-ებით. უფრო სწრაფი ყავისთვისაა, ვიდრე დიდხანს დასაჯდომად."
+      "note_ka": "პატარა სპეშელთი ბარი საბურთალოზე, საფირმო სასმელებით, როგორიცაა ფორთოხლის კაპუჩინო და ბამბლი, და არომატიზებული cold brew-ებით. უფრო სწრაფი ყავისთვისაა, ვიდრე დიდხანს დასაჯდომად.",
+      "prices": {
+        "espresso": 9,
+        "cappuccino": [
+          10,
+          13
+        ],
+        "batch": [
+          10,
+          12
+        ]
+      }
     },
     {
       "id": "nur",
