@@ -32,7 +32,7 @@ Each shop looks like this:
 - **photos** (optional): a list of pictures shown on the shop card, each like `{"src": "photos/shop-1.webp", "alt": "what's in the picture"}`. Put the image files in the `photos/` folder. Keep them small: about 1400 px on the long side, WebP or JPEG, under 200 KB each.
 - **instagram** (optional): the shop's Instagram handle without the @, like `"shavi.coffee"`. Leave it `""` if there isn't one.
 - **place_id**: the shop's Google place ID, used for the "Google reviews" link. Find it with Google's Place ID Finder (search "Place ID Finder"). Without it, the link falls back to a Google Maps search for the shop name.
-- **roaster** (optional): who roasts the beans, as text (`"Shavi"`) or a list (`["Shavi", "Mamuli", "Tasty"]`). Shops with `"roasts": true` and no `roaster` show "Own roastery".
+- **roaster** (optional): who roasts the beans, as text (`"Shavi"`) or a list (`["Shavi", "Mamuli", "Tasty Coffee"]`). Spell each roaster the same way every time (it powers the Roaster filter). Shops with `"roasts": true` and no `roaster` count under their own name (the part before " — ", without "Roasters").
 - **prices** (optional): `{"espresso": 6, "cappuccino": 8, "batch": 7}` in GEL. For two sizes, give both: `"espresso": [5, 7]` shows as 5/7. Any price you leave out shows as a dash.
 - **pets** (optional): `true` or `false`. Leave it out and the card says "Not listed". **laptop** works the same way.
 - **added** (optional): the date you put the shop on the map, like `"2026-10-21"`. For 14 days after that date the shop shows in aqua (name, "NEW" tag, pin on the map, a "New" filter). Add it to every new shop; leave it out of the older ones.
