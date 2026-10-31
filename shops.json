@@ -1576,7 +1576,9 @@
           "src": "photos/barr-4.webp",
           "alt": "BARR's steel menu board"
         }
-      ]
+      ],
+      "laptop": true,
+      "pets": true
     },
     {
       "id": "brinks",
