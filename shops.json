@@ -1899,6 +1899,24 @@
       "roaster": [
         "Tasty Coffee",
         "Mamuli"
+      ],
+      "photos": [
+        {
+          "src": "photos/unity-bistro-1.webp",
+          "alt": "Wooden coffee bar with straw pendant lamps and a V60 setup"
+        },
+        {
+          "src": "photos/unity-bistro-2.webp",
+          "alt": "Takeaway coffees and breakfast in a carrier"
+        },
+        {
+          "src": "photos/unity-bistro-3.webp",
+          "alt": "A glass of natural white wine"
+        },
+        {
+          "src": "photos/unity-bistro-4.webp",
+          "alt": "Blini with red caviar and sour cream"
+        }
       ]
     },
     {
