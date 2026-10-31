@@ -1895,7 +1895,11 @@
           10,
           12
         ]
-      }
+      },
+      "roaster": [
+        "Tasty Coffee",
+        "Mamuli"
+      ]
     },
     {
       "id": "nur",
