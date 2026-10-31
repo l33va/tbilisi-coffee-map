@@ -2061,7 +2061,21 @@
       "instagram": "nur_coffeeshop",
       "place_id": "ChIJtfBNl4JzREARZAFlwH08nU8",
       "note": "Small, cosy coffee shop in Vake with good filter coffee, good music and friendly baristas. Try the warm chicken and mushroom pie.",
-      "note_ka": "პატარა, მყუდრო ყავის ადგილი ვაკეში, კარგი ფილტრით, კარგი მუსიკით და მეგობრული ბარისტებით. სცადე თბილი ქათმისა და სოკოს ღვეზელი."
+      "note_ka": "პატარა, მყუდრო ყავის ადგილი ვაკეში, კარგი ფილტრით, კარგი მუსიკით და მეგობრული ბარისტებით. სცადე თბილი ქათმისა და სოკოს ღვეზელი.",
+      "photos": [
+        {
+          "src": "photos/nur-1.webp",
+          "alt": "NUR's pink shopfront with chalkboard menus and people on the steps"
+        },
+        {
+          "src": "photos/nur-2.webp",
+          "alt": "Two slices of almond tart"
+        },
+        {
+          "src": "photos/nur-3.webp",
+          "alt": "Bags of NUR Neighbourhood Urban Roastery coffee"
+        }
+      ]
     },
     {
       "id": "coffee22",
