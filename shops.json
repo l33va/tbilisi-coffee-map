@@ -3199,6 +3199,64 @@
       "place_id": "ChIJ3bXdJ6NzREARf0HrA3i3Hqo",
       "note": "Small café near Delisi metro that roasts its own Rwandan coffee, with breakfast and plenty of sockets.",
       "note_ka": "პატარა კაფე დელისის მეტროსთან, რომელიც თავად ხალავს რუანდულ ყავას; საუზმით და ბევრი როზეტით."
+    },
+    {
+      "id": "daisy-vake",
+      "name": "Daisy — Vake",
+      "area": "Vake",
+      "address": "39 Irakli Abashidze St",
+      "coords": [
+        41.70812,
+        44.7625395
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "daisycafe.ge",
+      "hours": [
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00"
+      ],
+      "place_id": "ChIJC_h9KVBzREARf84EC1vnqZQ",
+      "note": "Breakfast café on Abashidze Street with croissants, cakes and an all-day menu. Can be slow when busy.",
+      "note_ka": "საუზმის კაფე აბაშიძის ქუჩაზე კრუასანებით, ნამცხვრებით და მთელი დღის მენიუთი. დატვირთვისას შეიძლება ნელა მოემსახურონ."
+    },
+    {
+      "id": "daisy-saburtalo",
+      "name": "Daisy — Saburtalo",
+      "area": "Saburtalo",
+      "address": "65 Sairme St",
+      "coords": [
+        41.7233475,
+        44.7544018
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "daisycafe.ge",
+      "hours": [
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00"
+      ],
+      "place_id": "ChIJy32uMKFzREARa1YHSss2hmE",
+      "note": "Daisy's Saburtalo café: cakes, croissants and a few hot dishes like draniki.",
+      "note_ka": "Daisy-ს საბურთალოს კაფე: ნამცხვრები, კრუასანები და რამდენიმე ცხელი კერძი, მაგალითად დრანიკი."
     }
   ]
 }
