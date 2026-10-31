@@ -802,7 +802,12 @@
       "instagram": "caffeine.workin",
       "place_id": "ChIJVWiRT2dzREARLdHZoDW32Tg",
       "note": "Designed for work: big tables and a call booth. Pastry is the highlight.",
-      "note_ka": "სამუშაოდ შექმნილი: დიდი მაგიდები და სასაუბრო ჯიხური. ყველაზე კარგი აქ საცხობია."
+      "note_ka": "სამუშაოდ შექმნილი: დიდი მაგიდები და სასაუბრო ჯიხური. ყველაზე კარგი აქ საცხობია.",
+      "prices": {
+        "espresso": 8,
+        "cappuccino": 10,
+        "batch": 8
+      }
     },
     {
       "id": "industrial",
