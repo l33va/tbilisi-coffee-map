@@ -1262,7 +1262,11 @@
           8,
           10
         ]
-      }
+      },
+      "roaster": [
+        "Shavi"
+      ],
+      "pets": true
     },
     {
       "id": "pulp-janashia",
