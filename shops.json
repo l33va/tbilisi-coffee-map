@@ -745,7 +745,8 @@
       "pets": true,
       "brew": [
         "espresso",
-        "v60"
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "probarista.ge",
@@ -769,7 +770,15 @@
       ],
       "place_id": "ChIJRbPAwFUNREARSnQfMx3pmoU",
       "note": "Small roaster-café by the station with a serious single-origin list.",
-      "note_ka": "პატარა როუსტერ-კაფე სადგურთან, სერიოზული single origin არჩევანით."
+      "note_ka": "პატარა როუსტერ-კაფე სადგურთან, სერიოზული single origin არჩევანით.",
+      "prices": {
+        "espresso": 8,
+        "cappuccino": [
+          10,
+          11
+        ],
+        "batch": 10
+      }
     },
     {
       "id": "caffeine-workin",
