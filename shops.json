@@ -3227,7 +3227,14 @@
       ],
       "place_id": "ChIJC_h9KVBzREARf84EC1vnqZQ",
       "note": "Breakfast café on Abashidze Street with croissants, cakes and an all-day menu.",
-      "note_ka": "საუზმის კაფე აბაშიძის ქუჩაზე კრუასანებით, ნამცხვრებით და მთელი დღის მენიუთი."
+      "note_ka": "საუზმის კაფე აბაშიძის ქუჩაზე კრუასანებით, ნამცხვრებით და მთელი დღის მენიუთი.",
+      "prices": {
+        "espresso": 5,
+        "cappuccino": [
+          9,
+          11
+        ]
+      }
     },
     {
       "id": "daisy-saburtalo",
@@ -3256,7 +3263,14 @@
       ],
       "place_id": "ChIJy32uMKFzREARa1YHSss2hmE",
       "note": "Daisy's Saburtalo café: cakes, croissants and a few hot dishes like draniki.",
-      "note_ka": "Daisy-ს საბურთალოს კაფე: ნამცხვრები, კრუასანები და რამდენიმე ცხელი კერძი, მაგალითად დრანიკი."
+      "note_ka": "Daisy-ს საბურთალოს კაფე: ნამცხვრები, კრუასანები და რამდენიმე ცხელი კერძი, მაგალითად დრანიკი.",
+      "prices": {
+        "espresso": 5,
+        "cappuccino": [
+          9,
+          11
+        ]
+      }
     }
   ]
 }
