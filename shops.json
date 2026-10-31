@@ -881,7 +881,21 @@
           7,
           10
         ]
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/industrial-1.webp",
+          "alt": "Breakfast spread: scrambled eggs, croissant sandwich, syrniki and granola bowl"
+        },
+        {
+          "src": "photos/industrial-2.webp",
+          "alt": "Yellow chairs by the window, with a vintage coffee van outside"
+        },
+        {
+          "src": "photos/industrial-3.webp",
+          "alt": "Yellow bar stools, tiled wall and a round mirror"
+        }
+      ]
     },
     {
       "id": "sash",
