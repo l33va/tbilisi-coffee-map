@@ -1793,7 +1793,25 @@
       "instagram": "corner.tbilisi",
       "place_id": "ChIJP758ujRzREAR-tpS2w9gkT4",
       "note": "Calm little café near Vake Park with V60, batch brew and good pastries.",
-      "note_ka": "მშვიდი პატარა კაფე ვაკის პარკთან, V60-ით, ბეჩ ბრიუთი და კარგი საცხობით."
+      "note_ka": "მშვიდი პატარა კაფე ვაკის პარკთან, V60-ით, ბეჩ ბრიუთი და კარგი საცხობით.",
+      "photos": [
+        {
+          "src": "photos/corner-1.webp",
+          "alt": "Green shopfront under the trees with outdoor tables"
+        },
+        {
+          "src": "photos/corner-2.webp",
+          "alt": "Orange chairs and tables by the 'Flowers for love / Coffee for joy' windows"
+        },
+        {
+          "src": "photos/corner-3.webp",
+          "alt": "Stack of sausage rolls on plates"
+        },
+        {
+          "src": "photos/corner-4.webp",
+          "alt": "Cappuccino with pastries and cake on an outdoor table"
+        }
+      ]
     },
     {
       "id": "asters",
