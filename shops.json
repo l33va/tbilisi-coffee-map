@@ -1646,7 +1646,8 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "baba_bakery_tbilisi",
@@ -1655,7 +1656,18 @@
       "note_ka": "პატარა ვიტრინა სოლოლაკში, რომელიც ლამაზ დარბაზში გადადის. შესანიშნავი კრუასანები და კრაფინები; ღიაა 8:30-დან.",
       "roaster": [
         "Harmony Roasters"
-      ]
+      ],
+      "prices": {
+        "espresso": 8,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": [
+          10,
+          13
+        ]
+      }
     },
     {
       "id": "808",
