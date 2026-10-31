@@ -394,6 +394,11 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .gback{height:44px;padding:0 14px;border:1.5px solid var(--g-btn);font-size:12px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:8px;box-sizing:border-box;text-align:left}
 .gback:hover,.gback:focus-visible{background:var(--fg);color:var(--bg)}
 .gm{font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.ghead{margin-top:28px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.gshare{flex:none;display:flex;align-items:center;gap:8px;height:40px;padding:0 14px;border:1.5px solid var(--g-btn);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.gshare svg{width:16px;height:16px}
+.gshare:hover,.gshare:focus-visible{background:var(--fg);color:var(--bg)}
+.gshare:disabled{opacity:.5}
 .gm .newtag{margin:0 8px 0 0;vertical-align:1px}
 .gname.gnew{width:fit-content;background:linear-gradient(90deg,var(--nb1),var(--nb2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
 .gdir.new{background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new)}
@@ -1504,7 +1509,7 @@ function glassHtml(s, i, total, back){
       <span class="fx s1"><button class="gback" id="gback" type="button"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M6 1 1 6l5 5M1 6h14" stroke="currentColor" stroke-width="1.6"/></svg>${back}</button></span>
       <span class="fx s1 gm">${String(i+1).padStart(2,"0")} / ${String(total).padStart(2,"0")}</span>
     </div>
-    <span class="fx s1 gm" style="margin-top:32px">${isNew(s) ? newTag() : ""}${esc(s.address)}${isNew(s) ? " · " + esc(addedText(s)) : ""}</span>
+    <div class="fx s1 ghead"><span class="gm">${isNew(s) ? newTag() : ""}${esc(s.address)}${isNew(s) ? " · " + esc(addedText(s)) : ""}</span><button type="button" class="gshare" id="gshare" aria-label="${tr("Share to Instagram story","სთორიში გაზიარება")}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span>${tr("Share","გაზიარება")}</span></button></div>
     <span class="fx s2 gname${isNew(s) ? " gnew" : ""}">${esc(a)}</span>
     ${b ? `<span class="fx s3 gname${isNew(s) ? " gnew" : ""}" style="margin-top:0">${esc(b)}</span>` : ""}
     <span class="fx s4 gstat ${soon ? "soon" : ""}"><i style="background:${st.open ? (soon ? "var(--red)" : "var(--fg)") : "transparent"}"></i>${esc(status)}</span>
@@ -1519,7 +1524,7 @@ function glassHtml(s, i, total, back){
       <span class="fx s7 ginf"><span>${tr("Hours today","დღეს ღიაა")}</span><span>${esc(hrs)}</span></span>
       <div class="fx s7 g2"><span class="ginf"><span>${tr("Pets","ცხოველები")}</span>${yesNo(s.pets)}</span><span class="ginf"><span>${tr("Laptop","ლეპტოპი")}</span>${yesNo(s.laptop)}</span></div>
     </div>
-    <div class="fx s7 glinks"><button type="button" id="gshare">${tr("Share to story ↗","სთორიში გაზიარება ↗")}</button><button type="button" id="gmap">${tr("Show on map →","რუკაზე ნახვა →")}</button><a href="${googleUrl(s)}" target="_blank" rel="noopener" data-ev="google" data-shop="${s.id}">${tr("Google reviews","Google შეფასებები")} ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener" data-ev="instagram" data-shop="${s.id}">Instagram ↗</a>` : ""}</div>
+    <div class="fx s7 glinks"><button type="button" id="gmap">${tr("Show on map →","რუკაზე ნახვა →")}</button><a href="${googleUrl(s)}" target="_blank" rel="noopener" data-ev="google" data-shop="${s.id}">${tr("Google reviews","Google შეფასებები")} ↗</a>${ig ? `<a href="${ig}" target="_blank" rel="noopener" data-ev="instagram" data-shop="${s.id}">Instagram ↗</a>` : ""}</div>
     <span class="fx s8"><a class="gdir${isNew(s) ? " new" : ""}" href="https://www.google.com/maps/dir/?api=1&destination=${s.coords[0]},${s.coords[1]}" target="_blank" rel="noopener" data-ev="directions" data-shop="${s.id}"><span>${tr("Directions","მარშრუტი")}</span><svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M13 1l7 7-7 7M20 8H1" stroke="currentColor" stroke-width="2"/></svg></a></span>`;
 }
 /* "Know them? Tell us" opens the suggestion form with the shop already filled in */
