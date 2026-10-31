@@ -1374,7 +1374,8 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "karaqi.bakery.tbi",
@@ -1397,7 +1398,15 @@
         }
       ],
       "note": "Small bakery behind the music school: flaky croissants, cruffins and canelés, with coffee to go with them.",
-      "note_ka": "პატარა საცხობი მუსიკალური სკოლის უკან: ფენოვანი კრუასანები, კრაფინები და კანელეები, მათთან ერთად ყავა."
+      "note_ka": "პატარა საცხობი მუსიკალური სკოლის უკან: ფენოვანი კრუასანები, კრაფინები და კანელეები, მათთან ერთად ყავა.",
+      "prices": {
+        "espresso": 8,
+        "cappuccino": [
+          9,
+          11
+        ],
+        "batch": 8
+      }
     },
     {
       "id": "slink",
