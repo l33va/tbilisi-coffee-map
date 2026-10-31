@@ -2051,11 +2051,13 @@
         "09:00-20:00",
         "09:00-20:00"
       ],
-      "roasts": false,
-      "beans": false,
+      "roasts": true,
+      "beans": true,
       "brew": [
         "espresso",
-        "v60"
+        "v60",
+        "batch",
+        "aeropress"
       ],
       "score": null,
       "instagram": "nur_coffeeshop",
@@ -2075,7 +2077,19 @@
           "src": "photos/nur-3.webp",
           "alt": "Bags of NUR Neighbourhood Urban Roastery coffee"
         }
-      ]
+      ],
+      "prices": {
+        "espresso": 6,
+        "cappuccino": [
+          7,
+          10,
+          12.5
+        ],
+        "batch": [
+          7,
+          9
+        ]
+      }
     },
     {
       "id": "coffee22",
