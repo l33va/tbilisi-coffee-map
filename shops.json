@@ -807,7 +807,29 @@
         "espresso": 8,
         "cappuccino": 10,
         "batch": 8
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/caffeine-workin-1.webp",
+          "alt": "Caffeine's entrance and steps on Pekini Avenue"
+        },
+        {
+          "src": "photos/caffeine-workin-2.webp",
+          "alt": "Pink Caffeine by WorkIn takeaway cups"
+        },
+        {
+          "src": "photos/caffeine-workin-3.webp",
+          "alt": "Crumble muffin on a plate in the sun"
+        },
+        {
+          "src": "photos/caffeine-workin-4.webp",
+          "alt": "A dog at an outdoor table next to an iced coffee"
+        },
+        {
+          "src": "photos/caffeine-workin-5.webp",
+          "alt": "Cappuccino with latte art and a muffin"
+        }
+      ]
     },
     {
       "id": "industrial",
