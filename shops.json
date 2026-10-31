@@ -1652,7 +1652,10 @@
       "instagram": "baba_bakery_tbilisi",
       "place_id": "ChIJ-QWDUjsNREARIVXBAwdmClA",
       "note": "Small storefront in Sololaki that opens into a pretty seating room. Excellent croissants and cruffins; open from 8:30.",
-      "note_ka": "პატარა ვიტრინა სოლოლაკში, რომელიც ლამაზ დარბაზში გადადის. შესანიშნავი კრუასანები და კრაფინები; ღიაა 8:30-დან."
+      "note_ka": "პატარა ვიტრინა სოლოლაკში, რომელიც ლამაზ დარბაზში გადადის. შესანიშნავი კრუასანები და კრაფინები; ღიაა 8:30-დან.",
+      "roaster": [
+        "Harmony Roasters"
+      ]
     },
     {
       "id": "808",
