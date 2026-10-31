@@ -1380,6 +1380,7 @@
       "laptop": true,
       "brew": [
         "espresso",
+        "v60",
         "batch"
       ],
       "score": null,
