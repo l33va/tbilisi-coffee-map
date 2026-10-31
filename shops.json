@@ -864,13 +864,24 @@
       "laptop": true,
       "brew": [
         "espresso",
-        "v60"
+        "v60",
+        "chemex"
       ],
       "score": null,
       "instagram": "industrialcoffee.ge",
       "place_id": "ChIJa8Xw2YRzREARAIVDNM6xwfc",
       "note": "Early opener on Chavchavadze. Pet friendly, kitchen closes at 17:00.",
-      "note_ka": "ადრე იხსნება, ჭავჭავაძეზე. ცხოველებით შეიძლება, სამზარეულო 17:00-ზე იკეტება."
+      "note_ka": "ადრე იხსნება, ჭავჭავაძეზე. ცხოველებით შეიძლება, სამზარეულო 17:00-ზე იკეტება.",
+      "prices": {
+        "espresso": [
+          6,
+          8
+        ],
+        "cappuccino": [
+          7,
+          10
+        ]
+      }
     },
     {
       "id": "sash",
