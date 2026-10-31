@@ -2185,13 +2185,26 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "21pm.cafe",
       "place_id": "ChIJrVMVXbINREARVlXPCgt8VNc",
       "note": "Kitchen, coffee and bar in one on Melikishvili, open from breakfast till late. Calm room with plants, comfortable chairs and good music.",
-      "note_ka": "სამზარეულო, ყავა და ბარი ერთად მელიქიშვილზე, ღიაა საუზმიდან გვიანობამდე. მშვიდი სივრცე მცენარეებით, კომფორტული სკამებით და კარგი მუსიკით."
+      "note_ka": "სამზარეულო, ყავა და ბარი ერთად მელიქიშვილზე, ღიაა საუზმიდან გვიანობამდე. მშვიდი სივრცე მცენარეებით, კომფორტული სკამებით და კარგი მუსიკით.",
+      "prices": {
+        "espresso": [
+          6,
+          7
+        ],
+        "cappuccino": [
+          10,
+          12,
+          15
+        ],
+        "batch": 9
+      }
     },
     {
       "id": "arka",
