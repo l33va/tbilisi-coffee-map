@@ -1319,7 +1319,7 @@ async function drawShopCard(s, mode = "story"){
   const CY = Math.max(200, Math.round((H - cardH - 170) / 2));   // card + footer centred, clear of Instagram's top and bottom bars
 
   x.save(); if(!CARD_ONLY){ x.shadowColor = "rgba(0,0,0,.55)"; x.shadowBlur = 90; x.shadowOffsetY = 40; }
-  roundRect(x, CX, CY, CW, cardH, 60); x.fillStyle = CARD; x.fill(); x.restore();
+  roundRect(x, CX, CY, CW, cardH, CARD_ONLY ? 0 : 60); x.fillStyle = CARD; x.fill(); x.restore();   // card only: square, since Instagram fills see-through corners with black
 
   // the photo, or a big blurred initial with the logo
   const IX = CX + PAD, IY = CY + PAD;
@@ -1382,7 +1382,7 @@ async function drawShopCard(s, mode = "story"){
   const fy = CARD_ONLY ? CY + cardH - PAD - 30 : CY + cardH + 100;
   if(CARD_ONLY){ x.fillStyle = "rgba(244,244,244,.14)"; x.fillRect(IX, fy - 46, IN, 2); }
   x.font = `500 25px ${MONO}`; const url = APP_URL.toUpperCase(), uw = x.measureText(url).width, total = 60 + 24 + uw;
-  drawCup(x, (W - total) / 2 + 30, fy, 60, FG, CARD_ONLY ? CARD : BG);
+  drawCup(x, (W - total) / 2, fy - 30, 60, FG, CARD_ONLY ? CARD : BG);   // drawCup takes the top-left corner
   x.fillStyle = FG; x.textBaseline = "middle"; x.fillText(url, (W - total) / 2 + 84, fy + 2); x.textBaseline = "alphabetic";
 
   // light film grain, like the app (transparent pixels stay transparent)
@@ -1390,7 +1390,7 @@ async function drawShopCard(s, mode = "story"){
   for(let i = 0; i < a.length; i += 4){ if(!a[i+3]) continue; const r = (Math.random() - .5) * 20; a[i] += r; a[i+1] += r; a[i+2] += r; }
   x.putImageData(g, 0, 0);
   if(CARD_ONLY){                                 // crop to the card with a small clear margin
-    const M = 24, out = document.createElement("canvas"); out.width = CW + 2 * M; out.height = cardH + 2 * M;
+    const M = 0, out = document.createElement("canvas"); out.width = CW + 2 * M; out.height = cardH + 2 * M;
     out.getContext("2d").drawImage(c, CX - M, CY - M, out.width, out.height, 0, 0, out.width, out.height);
     return new Promise(res => out.toBlob(res, "image/png"));
   }
