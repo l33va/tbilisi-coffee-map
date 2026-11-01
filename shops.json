@@ -2702,7 +2702,9 @@
           "src": "photos/loomba-6.webp",
           "alt": "Yoghurt bowl with granola, banana and nut butter"
         }
-      ]
+      ],
+      "pets": true,
+      "laptop": true
     },
     {
       "id": "day-off",
