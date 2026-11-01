@@ -2449,7 +2449,8 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "arka_store_tbilisi",
@@ -2464,7 +2465,8 @@
         "cappuccino": [
           13,
           15
-        ]
+        ],
+        "batch": 9
       }
     },
     {
