@@ -2679,7 +2679,7 @@
         "08:00-20:00",
         "08:00-20:00"
       ],
-      "roasts": false,
+      "roasts": true,
       "beans": false,
       "brew": [
         "espresso",
