@@ -1377,6 +1377,19 @@ async function drawShopCard(s){
   x.putImageData(g, 0, 0);
   return new Promise(res => c.toBlob(res, "image/png"));
 }
+/* a link that opens straight on this shop's card: tbilisicoffeemap.com/#shop/brinks */
+const shopLink = id => location.origin + location.pathname.replace(/index\.html$/, "") + "#shop/" + encodeURIComponent(id);
+function openFromLink(){
+  const m = location.hash.match(/^#shop\/([^/?#]+)/); if(!m) return;
+  const id = decodeURIComponent(m[1]);
+  history.replaceState(null, "", location.pathname + location.search);   // so closing the card or reloading doesn't reopen it
+  if(!SHOPS.some(x => x.id === id)) return;
+  countEvent("open-link/" + id, "Opened shared link · " + id);
+  if(glassPhase !== "closed") closeGlass(true);
+  if(current !== "list") show("list");
+  setTimeout(() => openGlass(id, "list"), 120);
+}
+addEventListener("hashchange", openFromLink);
 async function shareShop(id){
   const s = SHOPS.find(o => o.id === id); if(!s) return;
   countEvent("share-shop/" + id, "Share shop · " + s.name);
@@ -1384,7 +1397,7 @@ async function shareShop(id){
   try{
     const blob = await drawShopCard(s);
     const file = new File([blob], `${id}-tbilisi-coffee-map.png`, {type:"image/png"});
-    const text = `${s.name} — ${location.origin + location.pathname}`;
+    const text = `${s.name} — ${shopLink(id)}`;
     if(navigator.canShare && navigator.canShare({files:[file]})){
       await navigator.share({files:[file], title:s.name, text});
     }else{
@@ -1540,7 +1553,11 @@ function tellUs(id){
 function openGlass(id, src = "faves"){
   if(glassPhase !== "closed") return;
   glassSrc = src;
-  const list = src === "list" ? visible() : faveList(), i = list.findIndex(x => x.id === id);
+  let list = src === "list" ? visible() : faveList(), i = list.findIndex(x => x.id === id);
+  if(i < 0 && src === "list"){   // opened from a shared link but hidden by a filter: show it anyway
+    const sh = SHOPS.find(x => x.id === id); if(!sh) return;
+    list = [decorate(sh, tbilisiNow())]; i = 0;
+  }
   if(i < 0) return;
   glassTimers.forEach(clearTimeout); glassTimers = [];
   glassId = id;
@@ -1818,6 +1835,7 @@ async function boot(){
     const data = await r.json();
     SHOPS = data.shops; UPDATED = data.updated || "";
     render();
+    openFromLink();
     setInterval(render, 60000);
   }catch(err){
     document.getElementById("rows").innerHTML =
