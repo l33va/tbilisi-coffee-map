@@ -2670,7 +2670,8 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "loombafoodlab",
@@ -2704,7 +2705,11 @@
         }
       ],
       "pets": true,
-      "laptop": true
+      "laptop": true,
+      "prices": {
+        "espresso": 7,
+        "batch": 8
+      }
     },
     {
       "id": "day-off",
