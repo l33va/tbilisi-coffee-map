@@ -2720,7 +2720,8 @@
       "laptop": true,
       "prices": {
         "espresso": 7,
-        "batch": 8
+        "batch": 8,
+        "cappuccino": 10
       }
     },
     {
