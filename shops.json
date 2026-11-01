@@ -2467,7 +2467,17 @@
           15
         ],
         "batch": 9
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/arka-1.webp",
+          "alt": "Arka's white shopfront with a bench and outdoor tables"
+        },
+        {
+          "src": "photos/arka-2.webp",
+          "alt": "Iced matcha at a table under the coffee menu"
+        }
+      ]
     },
     {
       "id": "anxious-and-tired",
