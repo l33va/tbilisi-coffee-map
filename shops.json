@@ -2676,7 +2676,33 @@
       "instagram": "loombafoodlab",
       "place_id": "ChIJTZvslyPX3WgRkWcO0vAGeCk",
       "note": "Healthy breakfast café with specialty coffee, matcha and granola. Open from 8:00 every day.",
-      "note_ka": "ჯანსაღი საუზმის კაფე სპეშელთი ყავით, მატჩათი და გრანოლით. ღიაა ყოველდღე 8:00-დან."
+      "note_ka": "ჯანსაღი საუზმის კაფე სპეშელთი ყავით, მატჩათი და გრანოლით. ღიაა ყოველდღე 8:00-დან.",
+      "photos": [
+        {
+          "src": "photos/loomba-1.webp",
+          "alt": "Light-blue long table with salads and iced matcha"
+        },
+        {
+          "src": "photos/loomba-2.webp",
+          "alt": "Espresso cup on a Food Lab by Loomba menu"
+        },
+        {
+          "src": "photos/loomba-3.webp",
+          "alt": "Iced latte and iced matcha on a round wooden table"
+        },
+        {
+          "src": "photos/loomba-4.webp",
+          "alt": "Food Lab cups stacked on a metal chair"
+        },
+        {
+          "src": "photos/loomba-5.webp",
+          "alt": "Soft-boiled eggs with toast, cheese, butter and honey"
+        },
+        {
+          "src": "photos/loomba-6.webp",
+          "alt": "Yoghurt bowl with granola, banana and nut butter"
+        }
+      ]
     },
     {
       "id": "day-off",
