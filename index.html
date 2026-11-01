@@ -399,6 +399,15 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .gshare svg{width:18px;height:18px}
 .gshare:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
 .gshare:disabled{opacity:.5}
+.ghead{position:relative;z-index:6}
+.gsmenu{position:absolute;right:0;top:52px;z-index:5;min-width:230px;overflow:hidden;border-radius:16px;background:var(--glass-2);-webkit-backdrop-filter:blur(22px) saturate(140%);backdrop-filter:blur(22px) saturate(140%);border:1px solid var(--g-line);box-shadow:inset 0 1px 0 var(--edge-1),0 18px 40px rgba(0,0,0,.35)}
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){.gsmenu{background:var(--glass-fb)}}
+.gc.in .ghead{filter:none}   /* a filter here would stop the menu's frost from blurring what's behind it */
+.gsmenu button{display:block;width:100%;padding:12px 14px;text-align:left}
+.gsmenu button+button{border-top:1px solid var(--g-line)}
+.gsmenu b{display:block;font-family:var(--display);font-weight:400;font-size:17px;line-height:1.1;text-transform:uppercase}
+.gsmenu span{display:block;margin-top:4px;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
+.gsmenu button:hover,.gsmenu button:focus-visible{background:var(--press);outline:none}
 .gm .newtag{margin:0 8px 0 0;vertical-align:1px}
 .gname.gnew{width:fit-content;background:linear-gradient(90deg,var(--nb1),var(--nb2));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
 .gdir.new{background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new)}
@@ -1267,7 +1276,8 @@ function drawCup(x, cx, cy, size, fg, cut){
   x.fillStyle = "#FF3B2F"; x.strokeStyle = cut; x.lineWidth = 3; x.beginPath(); x.arc(66, 28, 8, 0, Math.PI * 2); x.fill(); x.stroke();
   x.restore();
 }
-async function drawShopCard(s){
+async function drawShopCard(s, mode = "story"){
+  const CARD_ONLY = mode === "card";   // card only: transparent around the rounded card, so Instagram lets you move it
   const W = 1080, H = 1920, BG = "#0A0A0A", CARD = "#0E0E0E", FG = "#F4F4F4", DIM = "#B5B5B5", PINK = "#F01181";
   const DISP = "'Archivo Black', 'Georgian Display', 'Arial Black', sans-serif", MONO = "'IBM Plex Mono', 'Georgian Text', ui-monospace, monospace";
   try{ await Promise.all([document.fonts.load(`400 60px "Archivo Black"`), document.fonts.load(`500 30px "IBM Plex Mono"`), document.fonts.load(`400 30px "IBM Plex Mono"`), document.fonts.load(`400 60px "Georgian Display"`, "ა"), document.fonts.load(`500 30px "Georgian Text"`, "ა"), document.fonts.load(`400 30px "Georgian Text"`, "ა")]); }catch(e){}
@@ -1279,8 +1289,10 @@ async function drawShopCard(s){
   const upper = t => lang === "ka" ? t : t.toUpperCase();
 
   // background: the photo blurred and darkened, or the name blurred in huge type
-  x.fillStyle = BG; x.fillRect(0, 0, W, H);
-  if(img){
+  if(CARD_ONLY){}
+  else{ x.fillStyle = BG; x.fillRect(0, 0, W, H); }
+  if(CARD_ONLY){}
+  else if(img){
     blurInto(x, t => drawCover(t, img, -120, -120, W + 240, H + 240), 0, 0, W, H, 40);
     x.fillStyle = "rgba(10,10,10,.5)"; x.fillRect(0, 0, W, H);
   }else{
@@ -1302,10 +1314,11 @@ async function drawShopCard(s){
   lines = lines.slice(0, 3).map(l => fit(l, `400 ${size}px ${DISP}`, nameMax));
   const nameH = lines.length * size * 1.02;
   const MAPH = 222;
-  const cardH = PAD + IMG + 42 + nameH + 30 + 26 + 42 + MAPH + 42 + 26 + PAD;
+  const FOOT = CARD_ONLY ? 92 : 0;              // card only: logo + address go inside the card
+  const cardH = PAD + IMG + 42 + nameH + 30 + 26 + 42 + MAPH + 42 + 26 + FOOT + PAD;
   const CY = Math.max(200, Math.round((H - cardH - 170) / 2));   // card + footer centred, clear of Instagram's top and bottom bars
 
-  x.save(); x.shadowColor = "rgba(0,0,0,.55)"; x.shadowBlur = 90; x.shadowOffsetY = 40;
+  x.save(); if(!CARD_ONLY){ x.shadowColor = "rgba(0,0,0,.55)"; x.shadowBlur = 90; x.shadowOffsetY = 40; }
   roundRect(x, CX, CY, CW, cardH, 60); x.fillStyle = CARD; x.fill(); x.restore();
 
   // the photo, or a big blurred initial with the logo
@@ -1365,16 +1378,22 @@ async function drawShopCard(s){
   if(isPrice(pr.cappuccino)) bits.push(tr("Cappuccino ", "კაპუჩინო ") + fmtPrice(pr.cappuccino));
   if(bits.length){ x.font = `400 25px ${MONO}`; x.fillStyle = DIM; x.textAlign = "right"; x.fillText(fit(upper(bits.join(" · ")), `400 25px ${MONO}`, IN - (lx - IX) - 30), IX + IN, y + 22); x.textAlign = "left"; }
 
-  // footer: logo + address of the app
-  const fy = CY + cardH + 100;
+  // footer: logo + address of the app (below the card, or inside it for card only)
+  const fy = CARD_ONLY ? CY + cardH - PAD - 30 : CY + cardH + 100;
+  if(CARD_ONLY){ x.fillStyle = "rgba(244,244,244,.14)"; x.fillRect(IX, fy - 46, IN, 2); }
   x.font = `500 25px ${MONO}`; const url = APP_URL.toUpperCase(), uw = x.measureText(url).width, total = 60 + 24 + uw;
-  drawCup(x, (W - total) / 2 + 30, fy, 60, FG, BG);
+  drawCup(x, (W - total) / 2 + 30, fy, 60, FG, CARD_ONLY ? CARD : BG);
   x.fillStyle = FG; x.textBaseline = "middle"; x.fillText(url, (W - total) / 2 + 84, fy + 2); x.textBaseline = "alphabetic";
 
-  // light film grain, like the app
+  // light film grain, like the app (transparent pixels stay transparent)
   const g = x.getImageData(0, 0, W, H), a = g.data;
-  for(let i = 0; i < a.length; i += 4){ const r = (Math.random() - .5) * 20; a[i] += r; a[i+1] += r; a[i+2] += r; }
+  for(let i = 0; i < a.length; i += 4){ if(!a[i+3]) continue; const r = (Math.random() - .5) * 20; a[i] += r; a[i+1] += r; a[i+2] += r; }
   x.putImageData(g, 0, 0);
+  if(CARD_ONLY){                                 // crop to the card with a small clear margin
+    const M = 24, out = document.createElement("canvas"); out.width = CW + 2 * M; out.height = cardH + 2 * M;
+    out.getContext("2d").drawImage(c, CX - M, CY - M, out.width, out.height, 0, 0, out.width, out.height);
+    return new Promise(res => out.toBlob(res, "image/png"));
+  }
   return new Promise(res => c.toBlob(res, "image/png"));
 }
 /* a link that opens straight on this shop's card: tbilisicoffeemap.com/#shop/brinks */
@@ -1390,13 +1409,25 @@ function openFromLink(){
   setTimeout(() => openGlass(id, "list"), 120);
 }
 addEventListener("hashchange", openFromLink);
-async function shareShop(id){
+/* Share menu: "Story" = full 9:16 picture; "Card" = just the card, Instagram lets you move and resize it */
+function toggleShareMenu(id){
+  const old = document.getElementById("gsmenu"); if(old){ old.remove(); return; }
+  const btn = document.getElementById("gshare"); if(!btn) return;
+  const m = document.createElement("div"); m.className = "gsmenu"; m.id = "gsmenu"; m.setAttribute("role", "menu");
+  m.innerHTML = `<button type="button" role="menuitem" data-mode="story"><b>${tr("Story","სთორი")}</b><span>${tr("Full picture with the background","სრული სურათი ფონით")}</span></button><button type="button" role="menuitem" data-mode="card"><b>${tr("Card","ბარათი")}</b><span>${tr("Just the card, move it freely","მხოლოდ ბარათი, თავისუფლად გადაადგილე")}</span></button>`;
+  btn.parentElement.appendChild(m);
+  m.querySelector("button").focus({preventScroll:true});
+  m.onclick = e => { const b = e.target.closest("[data-mode]"); if(!b) return; m.remove(); shareShop(id, b.dataset.mode); };
+}
+document.addEventListener("click", e => { const m = document.getElementById("gsmenu"); if(m && !e.target.closest("#gsmenu,#gshare")) m.remove(); }, true);
+addEventListener("keydown", e => { const m = document.getElementById("gsmenu"); if(e.key === "Escape" && m){ m.remove(); e.stopImmediatePropagation(); const b = document.getElementById("gshare"); if(b) b.focus(); } }, true);
+async function shareShop(id, mode = "story"){
   const s = SHOPS.find(o => o.id === id); if(!s) return;
-  countEvent("share-shop/" + id, "Share shop · " + s.name);
+  countEvent(`share-shop/${mode}/${id}`, `Share shop (${mode}) · ${s.name}`);
   const btn = document.getElementById("gshare"); if(btn) btn.disabled = true;
   try{
-    const blob = await drawShopCard(s);
-    const file = new File([blob], `${id}-tbilisi-coffee-map.png`, {type:"image/png"});
+    const blob = await drawShopCard(s, mode);
+    const file = new File([blob], `${id}-${mode}-tbilisi-coffee-map.png`, {type:"image/png"});
     const text = `${s.name} — ${shopLink(id)}`;
     if(navigator.canShare && navigator.canShare({files:[file]})){
       await navigator.share({files:[file], title:s.name, text});
@@ -1522,7 +1553,7 @@ function glassHtml(s, i, total, back){
       <span class="fx s1"><button class="gback" id="gback" type="button"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M6 1 1 6l5 5M1 6h14" stroke="currentColor" stroke-width="1.6"/></svg>${back}</button></span>
       <span class="fx s1 gm">${String(i+1).padStart(2,"0")} / ${String(total).padStart(2,"0")}</span>
     </div>
-    <div class="fx s1 ghead"><span class="gm">${isNew(s) ? newTag() : ""}${esc(s.address)}${isNew(s) ? " · " + esc(addedText(s)) : ""}</span><button type="button" class="gshare" id="gshare" aria-label="${tr("Share to Instagram story","სთორიში გაზიარება")}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></button></div>
+    <div class="fx s1 ghead"><span class="gm">${isNew(s) ? newTag() : ""}${esc(s.address)}${isNew(s) ? " · " + esc(addedText(s)) : ""}</span><button type="button" class="gshare" id="gshare" aria-haspopup="menu" aria-label="${tr("Share to Instagram story","სთორიში გაზიარება")}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></button></div>
     <span class="fx s2 gname${isNew(s) ? " gnew" : ""}">${esc(a)}</span>
     ${b ? `<span class="fx s3 gname${isNew(s) ? " gnew" : ""}" style="margin-top:0">${esc(b)}</span>` : ""}
     <span class="fx s4 gstat ${soon ? "soon" : ""}"><i style="background:${st.open ? (soon ? "var(--red)" : "var(--fg)") : "transparent"}"></i>${esc(status)}</span>
@@ -1564,7 +1595,7 @@ function openGlass(id, src = "faves"){
   gc.innerHTML = glassHtml(list[i], i, list.length, src === "list" ? tr("List","სია") : tr("Faves","რჩეულები"));
   document.getElementById("gback").onclick = closeGlass;
   document.getElementById("gmap").onclick = () => { closeGlass(true); openOnMap(id); };
-  document.getElementById("gshare").onclick = () => shareShop(id);
+  document.getElementById("gshare").onclick = () => toggleShareMenu(id);
   bindSave(id); bindDist();
   const tell = document.getElementById("gtell"); if(tell) tell.onclick = () => tellUs(id);
   if(calm()){
