@@ -3609,6 +3609,35 @@
           13
         ]
       }
+    },
+    {
+      "id": "coffee-lair",
+      "name": "Coffee Lair",
+      "area": "Marjanishvili",
+      "address": "14 Giorgi Chitaia St",
+      "coords": [
+        41.7140642,
+        44.8027691
+      ],
+      "hours": [
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "10:00-22:00",
+        "10:00-22:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "coffee.lair",
+      "place_id": "ChIJO5NT-x0NREARn152Om2lyVs",
+      "note": "Café and co-working space with paninis, brunch and a big craft beer selection. Hosts events.",
+      "note_ka": "კაფე და საერთო სამუშაო სივრცე პანინებით, საუზმით და კრაფტ ლუდის დიდი არჩევანით. მასპინძლობს ღონისძიებებს."
     }
   ]
 }
