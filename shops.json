@@ -3631,13 +3631,26 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "coffee.lair",
       "place_id": "ChIJO5NT-x0NREARn152Om2lyVs",
       "note": "Café and co-working space with paninis, brunch and a big craft beer selection. Hosts events.",
-      "note_ka": "კაფე და საერთო სამუშაო სივრცე პანინებით, საუზმით და კრაფტ ლუდის დიდი არჩევანით. მასპინძლობს ღონისძიებებს."
+      "note_ka": "კაფე და საერთო სამუშაო სივრცე პანინებით, საუზმით და კრაფტ ლუდის დიდი არჩევანით. მასპინძლობს ღონისძიებებს.",
+      "prices": {
+        "espresso": 8,
+        "cappuccino": [
+          11,
+          13
+        ],
+        "batch": [
+          10,
+          12
+        ]
+      }
     }
   ]
 }
