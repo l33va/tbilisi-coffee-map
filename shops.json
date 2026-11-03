@@ -3589,13 +3589,28 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "blackcup.ge",
       "place_id": "ChIJYT4rnFZvREARt2cSS5nsMBk",
       "note": "Small, quiet café with a vintage feel, tucked off Rustaveli Avenue. Vegan cookies and plant milks.",
-      "note_ka": "პატარა, მშვიდი კაფე ვინტაჟური განწყობით, რუსთაველის გამზირთან ახლოს. ვეგანური ნამცხვრები და მცენარეული რძე."
+      "note_ka": "პატარა, მშვიდი კაფე ვინტაჟური განწყობით, რუსთაველის გამზირთან ახლოს. ვეგანური ნამცხვრები და მცენარეული რძე.",
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          9,
+          10,
+          14
+        ],
+        "batch": [
+          7,
+          9,
+          13
+        ]
+      }
     }
   ]
 }
