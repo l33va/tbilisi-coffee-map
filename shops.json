@@ -3602,12 +3602,10 @@
         "espresso": 7,
         "cappuccino": [
           9,
-          10,
           14
         ],
         "batch": [
           7,
-          9,
           13
         ]
       }
