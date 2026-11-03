@@ -3567,6 +3567,35 @@
       "place_id": "ChIJH0UgtilzREARxkBfjbKP80E",
       "note": "Relaxed café, formerly Salut, with a short breakfast menu and homemade cakes. Good for working or a quick bite.",
       "note_ka": "მშვიდი კაფე (ყოფილი Salut) მოკლე საუზმის მენიუთი და სახლის ნამცხვრებით. კარგია სამუშაოდ ან სწრაფი წახემსებისთვის."
+    },
+    {
+      "id": "black-cup",
+      "name": "Black Cup",
+      "area": "Rustaveli",
+      "address": "2/3 Mikheil Zandukeli St",
+      "coords": [
+        41.703697,
+        44.7895344
+      ],
+      "hours": [
+        "10:00-21:00",
+        "10:00-21:00",
+        "10:00-21:00",
+        "10:00-21:00",
+        "10:00-21:00",
+        "10:00-21:00",
+        "10:00-21:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "blackcup.ge",
+      "place_id": "ChIJYT4rnFZvREARt2cSS5nsMBk",
+      "note": "Small, quiet café with a vintage feel, tucked off Rustaveli Avenue. Vegan cookies and plant milks.",
+      "note_ka": "პატარა, მშვიდი კაფე ვინტაჟური განწყობით, რუსთაველის გამზირთან ახლოს. ვეგანური ნამცხვრები და მცენარეული რძე."
     }
   ]
 }
