@@ -1277,7 +1277,8 @@ function drawCup(x, cx, cy, size, fg, cut){
   x.restore();
 }
 async function drawShopCard(s, mode = "story"){
-  const CARD_ONLY = mode === "card";   // card only: transparent around the rounded card, so Instagram lets you move it
+  const CARD_ONLY = mode !== "story";   // card / sticker: just the card, so Instagram lets you move it
+  const STICKER = mode === "sticker";   // sticker: rounded with clear corners (pasted stickers keep transparency)
   const W = 1080, H = 1920, BG = "#0A0A0A", CARD = "#0E0E0E", FG = "#F4F4F4", DIM = "#B5B5B5", PINK = "#F01181";
   const DISP = "'Archivo Black', 'Georgian Display', 'Arial Black', sans-serif", MONO = "'IBM Plex Mono', 'Georgian Text', ui-monospace, monospace";
   try{ await Promise.all([document.fonts.load(`400 60px "Archivo Black"`), document.fonts.load(`500 30px "IBM Plex Mono"`), document.fonts.load(`400 30px "IBM Plex Mono"`), document.fonts.load(`400 60px "Georgian Display"`, "ა"), document.fonts.load(`500 30px "Georgian Text"`, "ა"), document.fonts.load(`400 30px "Georgian Text"`, "ა")]); }catch(e){}
@@ -1319,7 +1320,7 @@ async function drawShopCard(s, mode = "story"){
   const CY = Math.max(200, Math.round((H - cardH - 170) / 2));   // card + footer centred, clear of Instagram's top and bottom bars
 
   x.save(); if(!CARD_ONLY){ x.shadowColor = "rgba(0,0,0,.55)"; x.shadowBlur = 90; x.shadowOffsetY = 40; }
-  roundRect(x, CX, CY, CW, cardH, CARD_ONLY ? 0 : 60); x.fillStyle = CARD; x.fill(); x.restore();   // card only: square, since Instagram fills see-through corners with black
+  roundRect(x, CX, CY, CW, cardH, CARD_ONLY && !STICKER ? 0 : 60); x.fillStyle = CARD; x.fill(); x.restore();   // card only: square, since Instagram fills see-through corners with black
 
   // the photo, or a big blurred initial with the logo
   const IX = CX + PAD, IY = CY + PAD;
@@ -1414,13 +1415,27 @@ function toggleShareMenu(id){
   const old = document.getElementById("gsmenu"); if(old){ old.remove(); return; }
   const btn = document.getElementById("gshare"); if(!btn) return;
   const m = document.createElement("div"); m.className = "gsmenu"; m.id = "gsmenu"; m.setAttribute("role", "menu");
-  m.innerHTML = `<button type="button" role="menuitem" data-mode="story"><b>${tr("Story","სთორი")}</b><span>${tr("Full picture with the background","სრული სურათი ფონით")}</span></button><button type="button" role="menuitem" data-mode="card"><b>${tr("Card","ბარათი")}</b><span>${tr("Just the card, move it freely","მხოლოდ ბარათი, თავისუფლად გადაადგილე")}</span></button>`;
+  m.innerHTML = `<button type="button" role="menuitem" data-mode="story"><b>${tr("Story","სთორი")}</b><span>${tr("Full picture with the background","სრული სურათი ფონით")}</span></button><button type="button" role="menuitem" data-mode="card"><b>${tr("Card","ბარათი")}</b><span>${tr("Just the card, move it freely","მხოლოდ ბარათი, თავისუფლად გადაადგილე")}</span></button>` +
+    (canCopyImage() ? `<button type="button" role="menuitem" data-mode="sticker"><b>${tr("Copy sticker","სტიკერის კოპირება")}</b><span>${tr("Rounded card, paste it in your story","მომრგვალებული ბარათი, ჩასვი სთორიში")}</span></button>` : "");
   btn.parentElement.appendChild(m);
   m.querySelector("button").focus({preventScroll:true});
-  m.onclick = e => { const b = e.target.closest("[data-mode]"); if(!b) return; m.remove(); shareShop(id, b.dataset.mode); };
+  m.onclick = e => { const b = e.target.closest("[data-mode]"); if(!b) return; m.remove(); if(b.dataset.mode === "sticker") copySticker(id); else shareShop(id, b.dataset.mode); };
 }
 document.addEventListener("click", e => { const m = document.getElementById("gsmenu"); if(m && !e.target.closest("#gsmenu,#gshare")) m.remove(); }, true);
 addEventListener("keydown", e => { const m = document.getElementById("gsmenu"); if(e.key === "Escape" && m){ m.remove(); e.stopImmediatePropagation(); const b = document.getElementById("gshare"); if(b) b.focus(); } }, true);
+/* Copy sticker: puts the rounded card (clear corners) on the clipboard; in Instagram it pastes as a movable sticker.
+   The picture is handed over as a promise so Safari keeps the tap as the user's permission while it's drawn. */
+const canCopyImage = () => !!(window.ClipboardItem && navigator.clipboard && navigator.clipboard.write);
+async function copySticker(id){
+  const s = SHOPS.find(o => o.id === id); if(!s) return;
+  countEvent(`share-shop/sticker/${id}`, `Share shop (sticker) · ${s.name}`);
+  try{
+    await navigator.clipboard.write([new ClipboardItem({"image/png": drawShopCard(s, "sticker")})]);
+    toast(tr("Copied. In your Instagram story, tap and hold, then Paste.","დაკოპირდა. Instagram-ის სთორიში დააჭირე ხანგრძლივად და ჩასვი."));
+  }catch(err){
+    toast(tr("Couldn't copy here. Use Card instead.","აქ ვერ დაკოპირდა. გამოიყენე „ბარათი“."));
+  }
+}
 async function shareShop(id, mode = "story"){
   const s = SHOPS.find(o => o.id === id); if(!s) return;
   countEvent(`share-shop/${mode}/${id}`, `Share shop (${mode}) · ${s.name}`);
