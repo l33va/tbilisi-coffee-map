@@ -404,6 +404,19 @@ nav button[aria-selected="true"]{color:var(--fg)}
 @supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){.gsmenu{background:var(--glass-fb)}}
 .gc.in .ghead{filter:none}   /* a filter here would stop the menu's frost from blurring what's behind it */
 .gsmenu button{display:block;width:100%;padding:12px 14px;text-align:left}
+/* share menu opens like the rest of the app: out of focus into focus, growing from the button */
+.gsmenu{transform-origin:calc(100% - 22px) -8px;animation:gsIn .32s cubic-bezier(.16,1,.3,1) both}
+.gsmenu button{animation:gsItem .42s cubic-bezier(.16,1,.3,1) both}
+.gsmenu button:nth-child(2){animation-delay:.05s}.gsmenu button:nth-child(3){animation-delay:.1s}
+.gsmenu.out{animation:gsOut .16s ease both}
+@keyframes gsIn{from{opacity:0;transform:scale(.86) translateY(-6px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes gsItem{from{opacity:0;transform:translateY(6px);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
+@keyframes gsOut{to{opacity:0;transform:scale(.94) translateY(-4px);filter:blur(4px)}}
+.gshare svg path:first-child{transition:transform .25s cubic-bezier(.16,1,.3,1)}
+.gshare.open svg path:first-child{transform:translateY(-2.5px)}
+.gshare:active{transform:scale(.92)}
+.gshare{transition:transform .12s ease}
+@media (prefers-reduced-motion:reduce){.gsmenu,.gsmenu button,.gsmenu.out{animation:none}.gshare,.gshare svg path:first-child{transition:none}}
 .gsmenu button+button{border-top:1px solid var(--g-line)}
 .gsmenu b{display:block;font-family:var(--display);font-weight:400;font-size:17px;line-height:1.1;text-transform:uppercase}
 .gsmenu span{display:block;margin-top:4px;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim)}
@@ -1412,17 +1425,24 @@ function openFromLink(){
 addEventListener("hashchange", openFromLink);
 /* Share menu: "Story" = full 9:16 picture; "Card" = just the card, Instagram lets you move and resize it */
 function toggleShareMenu(id){
-  const old = document.getElementById("gsmenu"); if(old){ old.remove(); return; }
+  const old = document.getElementById("gsmenu"); if(old){ closeShareMenu(); return; }
   const btn = document.getElementById("gshare"); if(!btn) return;
   const m = document.createElement("div"); m.className = "gsmenu"; m.id = "gsmenu"; m.setAttribute("role", "menu");
   m.innerHTML = `<button type="button" role="menuitem" data-mode="story"><b>${tr("Story","სთორი")}</b><span>${tr("Full picture with the background","სრული სურათი ფონით")}</span></button><button type="button" role="menuitem" data-mode="card"><b>${tr("Card","ბარათი")}</b><span>${tr("Just the card, move it freely","მხოლოდ ბარათი, თავისუფლად გადაადგილე")}</span></button>` +
     (canCopyImage() ? `<button type="button" role="menuitem" data-mode="sticker"><b>${tr("Copy sticker","სტიკერის კოპირება")}</b><span>${tr("Rounded card, paste it in your story","მომრგვალებული ბარათი, ჩასვი სთორიში")}</span></button>` : "");
-  btn.parentElement.appendChild(m);
+  btn.parentElement.appendChild(m); btn.classList.add("open"); btn.setAttribute("aria-expanded", "true");
   m.querySelector("button").focus({preventScroll:true});
-  m.onclick = e => { const b = e.target.closest("[data-mode]"); if(!b) return; m.remove(); if(b.dataset.mode === "sticker") copySticker(id); else shareShop(id, b.dataset.mode); };
+  m.onclick = e => { const b = e.target.closest("[data-mode]"); if(!b) return; closeShareMenu(); if(b.dataset.mode === "sticker") copySticker(id); else shareShop(id, b.dataset.mode); };
 }
-document.addEventListener("click", e => { const m = document.getElementById("gsmenu"); if(m && !e.target.closest("#gsmenu,#gshare")) m.remove(); }, true);
-addEventListener("keydown", e => { const m = document.getElementById("gsmenu"); if(e.key === "Escape" && m){ m.remove(); e.stopImmediatePropagation(); const b = document.getElementById("gshare"); if(b) b.focus(); } }, true);
+function closeShareMenu(){
+  const m = document.getElementById("gsmenu"), b = document.getElementById("gshare");
+  if(b){ b.classList.remove("open"); b.setAttribute("aria-expanded", "false"); }
+  if(!m || m.classList.contains("out")) return;
+  if(calm()){ m.remove(); return; }
+  m.id = ""; m.classList.add("out"); setTimeout(() => m.remove(), 170);
+}
+document.addEventListener("click", e => { const m = document.getElementById("gsmenu"); if(m && !e.target.closest("#gsmenu,#gshare")) closeShareMenu(); }, true);
+addEventListener("keydown", e => { const m = document.getElementById("gsmenu"); if(e.key === "Escape" && m){ closeShareMenu(); e.stopImmediatePropagation(); const b = document.getElementById("gshare"); if(b) b.focus(); } }, true);
 /* Copy sticker: puts the rounded card (clear corners) on the clipboard; in Instagram it pastes as a movable sticker.
    The picture is handed over as a promise so Safari keeps the tap as the user's permission while it's drawn. */
 const canCopyImage = () => !!(window.ClipboardItem && navigator.clipboard && navigator.clipboard.write);
