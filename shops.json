@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03",
+  "updated": "2026-11-06",
   "shops": [
     {
       "id": "shavi-original",
@@ -3651,6 +3651,35 @@
           12
         ]
       }
+    },
+    {
+      "id": "aut-vera",
+      "name": "Aut Vera",
+      "area": "Vera",
+      "address": "32 Mikheil Zandukeli St",
+      "coords": [
+        41.7041255,
+        44.7848654
+      ],
+      "hours": [
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00",
+        "10:00-22:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "aut_vera",
+      "place_id": "ChIJ8xvBnsgNREARaEaWck6FNwQ",
+      "note": "Café and bistro with Middle Eastern food (hummus, kebab, meze) and coffee, a few doors from Shavi The Original.",
+      "note_ka": "კაფე-ბისტრო ახლოაღმოსავლური კერძებით (ჰუმუსი, ქაბაბი, მეზე) და ყავით, Shavi The Original-ის მახლობლად."
     }
   ]
 }
