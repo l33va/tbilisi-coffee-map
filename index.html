@@ -124,7 +124,7 @@ header{
 .mbtn.x span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 .mbtn:focus-visible{outline:2px solid var(--fg);outline-offset:-4px}
 /* the menu: frosted glass that grows out of the button */
-.mglass{transition:clip-path .5s cubic-bezier(.76,0,.24,1);will-change:clip-path}
+.mglass{transition:clip-path .5s cubic-bezier(.76,0,.24,1);will-change:clip-path,opacity}
 /* menu rows: slide and fade only. A blur on every row while the glass grows made the first openings stutter */
 .mglass .fx{filter:none;transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .34s ease}
 .mglass .gc.out .fx{filter:none}
@@ -1722,18 +1722,24 @@ function openMenu(){
   const o = menuOrigin(), far = Math.hypot(innerWidth, innerHeight);
   menubtn.classList.add("x"); menubtn.setAttribute("aria-expanded", "true");
   mgc.scrollTop = 0; mgc.className = "gc";
-  if(calm()){ mglass.style.clipPath = "none"; mglass.className = "glass mglass show frost"; mgc.className = "gc in"; setInert(true); mclose.focus({preventScroll:true}); return; }
-  mglass.style.transition = "none"; mglass.style.clipPath = menuClip(0, o); mglass.className = "glass mglass show frost";
-  void mglass.offsetWidth; mglass.style.transition = "";
-  mglass.style.clipPath = menuClip(far, o);
-  mTimers.push(setTimeout(() => { mgc.className = "gc in"; }, 220));
-  mTimers.push(setTimeout(() => { setInert(true); mclose.focus({preventScroll:true}); }, 520));
+  if(calm()){ mglass.style.clipPath = "none"; mglass.style.opacity = ""; mglass.className = "glass mglass show frost"; mgc.className = "gc in"; setInert(true); mclose.focus({preventScroll:true}); return; }
+  // Chrome on Android can draw a new frosted layer unclipped for one frame (a full-screen flash),
+  // so it stays invisible for two frames before the circle starts growing.
+  mglass.style.transition = "none"; mglass.style.clipPath = menuClip(0, o); mglass.style.opacity = "0";
+  mglass.className = "glass mglass show frost";
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    if(!mOpen) return;
+    mglass.style.opacity = ""; mglass.style.transition = "";
+    mglass.style.clipPath = menuClip(far, o);
+    mTimers.push(setTimeout(() => { mgc.className = "gc in"; }, 220));
+    mTimers.push(setTimeout(() => { setInert(true); mclose.focus({preventScroll:true}); }, 520));
+  }));
 }
 function closeMenu(then){
   if(!mOpen) return;
   mOpen = false; mTimers.forEach(clearTimeout); mTimers = [];
   setInert(false); menubtn.classList.remove("x"); menubtn.setAttribute("aria-expanded", "false");
-  const done = () => { mglass.className = "glass mglass"; mgc.className = "gc"; mglass.style.clipPath = ""; if(then) then(); };
+  const done = () => { mglass.className = "glass mglass"; mgc.className = "gc"; mglass.style.clipPath = ""; mglass.style.opacity = ""; if(then) then(); };
   if(calm() || then){ done(); if(!then) menubtn.focus({preventScroll:true}); return; }
   mgc.className = "gc out";
   mglass.style.clipPath = menuClip(0, menuOrigin());
@@ -1744,11 +1750,11 @@ menubtn.onclick = () => mOpen ? closeMenu() : openMenu();
    so the phone has its layers ready before the first real tap. */
 function warmMenu(){
   if(mOpen) return;
-  mglass.style.transition = "none"; mglass.style.clipPath = "circle(0px at 100% 0)";
+  mglass.style.transition = "none"; mglass.style.clipPath = "circle(0px at 100% 0)"; mglass.style.opacity = "0";
   mglass.className = "glass mglass show frost"; mglass.setAttribute("aria-hidden", "true");
   requestAnimationFrame(() => requestAnimationFrame(() => {
     if(mOpen) return;
-    mglass.className = "glass mglass"; mglass.style.clipPath = ""; mglass.style.transition = ""; mglass.removeAttribute("aria-hidden");
+    mglass.className = "glass mglass"; mglass.style.clipPath = ""; mglass.style.transition = ""; mglass.style.opacity = ""; mglass.removeAttribute("aria-hidden");
   }));
 }
 (window.requestIdleCallback || (f => setTimeout(f, 1200)))(warmMenu, {timeout:2500});
