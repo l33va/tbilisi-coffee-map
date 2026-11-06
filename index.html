@@ -115,6 +115,32 @@ header{
 .meta-row .mid{text-align:center}
 .meta-row .count{text-align:right}
 .meta-row .count b{color:var(--fg);font-weight:500}
+/* menu button: three lines that turn into × */
+.mbtn{position:relative;flex:none;width:44px;height:44px;margin:-12px -11px 0 0;color:var(--fg)}
+.mbtn span{position:absolute;left:12px;width:20px;height:2px;background:currentColor;transition:transform .32s cubic-bezier(.76,0,.24,1),opacity .2s ease}
+.mbtn span:nth-child(1){top:15px}.mbtn span:nth-child(2){top:21px}.mbtn span:nth-child(3){top:27px}
+.mbtn.x span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.mbtn.x span:nth-child(2){opacity:0;transform:scaleX(.2)}
+.mbtn.x span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mbtn:focus-visible{outline:2px solid var(--fg);outline-offset:-4px}
+/* the menu: frosted glass that grows out of the button */
+.mglass{transition:clip-path .5s cubic-bezier(.76,0,.24,1)}
+.mglass .mbtn{position:fixed;margin:0;z-index:2}
+.mglass .gc{padding-top:64px}
+.mlab{margin-top:4px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.mlinks{margin-top:10px;border-top:1px solid var(--g-line)}
+.mlinks button{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;padding:14px 0;border-bottom:1px solid var(--g-line);text-align:left}
+.mlinks b{display:block;font-family:var(--display);font-weight:400;font-size:27px;line-height:1;text-transform:uppercase}
+.mlinks small{display:block;margin-top:6px;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--dim)}
+.mlinks i{font-style:normal;font-size:20px}
+.mprefs{margin-top:8px;border-top:1px solid var(--g-line)}
+.mprefs .trow,.mprefs .sw{border-bottom-color:var(--g-line)}
+.mbrew{padding:10px 0 12px;border-bottom:1px solid var(--g-line);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.mbrew .chips-wrap{margin-top:8px}
+.mig{align-self:flex-start;margin-top:22px;font-size:11px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--fg);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:2px}
+.mlinks button:focus-visible,.mig:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+/* Reduce motion (from the menu, or the phone's own setting) */
+html.calm *,html.calm *::before,html.calm *::after{animation-duration:0s !important;animation-delay:0s !important;transition-duration:0s !important;transition-delay:0s !important}
 .search{position:relative;margin-top:12px}
 .search svg{position:absolute;left:12px;top:50%;width:14px;height:14px;transform:translateY(-50%);color:var(--fg);pointer-events:none}
 .search input{
@@ -534,7 +560,7 @@ nav button[aria-selected="true"]{color:var(--fg)}
   <div class="meta-row">
     <h1 class="brand"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#cup"/></svg><span data-t="brand">Tbilisi<br>Coffee Map</span></h1>
     <div class="mid" id="mid">Focus = open<br>Blur = closed or far</div>
-    <div class="count" id="count"></div>
+    <button class="mbtn" id="menubtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="mglass" data-ta="menuopen" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
   <div class="search" role="search">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -585,12 +611,6 @@ nav button[aria-selected="true"]{color:var(--fg)}
         <div class="field"><label for="s-why" data-t="why">Why we should add it</label><textarea id="s-why" name="why" placeholder="Good V60, quiet in the morning…" data-tp="swhy"></textarea></div>
         <button class="btn" type="submit" data-t="sendsug">Send suggestion</button>
       </form>
-      <div class="prefs">
-        <div class="prefs-head"><h3 data-t="prefh">Your preferences</h3><span data-t="kept">Kept on this phone</span></div>
-        <div class="lab" data-t="idrink">I drink</div>
-        <div class="chips-wrap" id="pref-brew"></div>
-        <div class="switches" id="pref-switches"></div>
-      </div>
     </div>
 
     <div class="panel" id="panel-shops" hidden>
@@ -638,12 +658,26 @@ nav button[aria-selected="true"]{color:var(--fg)}
   <span class="rule"></span>
   <button id="tab-faves" aria-selected="false" data-t="nfaves">Faves</button>
   <span class="rule"></span>
-  <button id="tab-contact" aria-selected="false" data-t="ncontact">Contact</button>
-  <span class="rule"></span>
   <button id="tab-map" aria-selected="false" data-t="nmap">Map</button>
 </nav>
 <div class="glass" id="glass" role="dialog" aria-modal="true" aria-label="Shop details" data-ta="details"><div class="gc" id="gc"></div></div>
 <div class="glass" id="rglass" role="dialog" aria-modal="true" aria-label="Roasters"><div class="gc" id="rgc"></div></div>
+<div class="glass mglass" id="mglass" role="dialog" aria-modal="true" aria-label="Menu" data-ta="menu">
+  <button class="mbtn x" id="mclose" type="button" aria-label="Close menu" data-ta="menuclose"><span></span><span></span><span></span></button>
+  <div class="gc" id="mgc">
+    <span class="fx s1 mlab" data-t="menu">Menu</span>
+    <div class="fx s2 mlinks">
+      <button type="button" data-go="suggest"><span><b data-t="hsug">Suggest a shop</b><small data-t="msugd">Know a place we're missing?</small></span><i aria-hidden="true">→</i></button>
+      <button type="button" data-go="shops"><span><b data-t="mshop">For coffee shops</b><small data-t="mshopd">Add your shop to the map</small></span><i aria-hidden="true">→</i></button>
+      <button type="button" data-go="about"><span><b data-t="seg3">About</b><small data-t="maboutd">How to read the map · credits</small></span><i aria-hidden="true">→</i></button>
+    </div>
+    <span class="fx s3 mlab" style="margin-top:26px"><span data-t="prefh">Your preferences</span> · <span data-t="kept">Kept on this phone</span></span>
+    <div class="fx s4 mprefs" id="pref-switches"></div>
+    <div class="fx s4 mbrew"><span data-t="idrink">I drink</span><div class="chips-wrap" id="pref-brew"></div></div>
+    <a class="fx s5 mig" href="https://www.instagram.com/tbilisicoffeemap/" target="_blank" rel="noopener" data-ev="instagram" data-shop="app">Instagram ↗</a>
+    <div style="min-height:24px;flex:none"></div>
+  </div>
+</div>
 <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo" data-ta="photo"><span class="cap" id="lb-cap"></span><button class="lx" type="button" id="lb-x" aria-label="Close photo" data-ta="closephoto">&times;</button><img id="lb-img" alt=""></div>
 <div class="toast" id="toast"></div>
 
@@ -675,6 +709,8 @@ const prefs = Object.assign({brew:[], hideClosed:false, laptop:false, early:fals
 if(!["auto","light","dark"].includes(prefs.theme)) prefs.theme = "auto";
 if(window.matchMedia) matchMedia("(prefers-color-scheme: light)").addEventListener("change", () => { if(prefs.theme === "auto") cmApplyTheme("auto"); });
 prefs.laptop = false;   // the "Laptop-friendly first" switch was replaced by the language switch
+prefs.early = false;    // "Early openers first" was dropped when preferences moved into the menu
+if(!["list","faves","map"].includes(prefs.start)) prefs.start = "list";
 /* ============================================================
    LANGUAGE — English or Georgian (kept on this phone).
    Shop names stay in English. Notes come from note_ka in shops.json.
@@ -696,11 +732,12 @@ const KA = {
   red:"წითელი", redd:"იკეტება 45 წუთში ან უფრო ადრე", gold:"ოქროსფერი", goldd:"შენი რჩეული, რუკაზე", blue:"ცისფერი", blued:"ახალი, ბოლო 14 დღეში",
   privh:"კონფიდენციალურობა", priv:"ვიზიტებს ანონიმურად ვითვლით GoatCounter-ით. არანაირი cookie, ანგარიში ან პირადი მონაცემი. რჩეულები შენს ტელეფონში რჩება.",
   datah:"მონაცემები და კრედიტები", touchh:"დაგვიკავშირდი", touch:"შექმნილია თბილისში, ავტორი ლევან ბეზარაშვილი. მოგვწერე:",
-  nlist:"სია", nfaves:"რჩეულები", ncontact:"კონტაქტი", nmap:"რუკა"
+  nlist:"სია", nfaves:"რჩეულები", ncontact:"კონტაქტი", nmap:"რუკა",
+  menu:"მენიუ", msugd:"იცი კაფე, რომელიც ჯერ არ გვაქვს?", mshop:"კაფეებისთვის", mshopd:"დაამატე შენი კაფე რუკაზე", maboutd:"როგორ წავიკითხოთ რუკა · კრედიტები"
 };
 const KA_PH = {q:"მოძებნე კაფე, უბანი, ქუჩა", sname:"მაგ. Kokoro Coffee", sarea:"მაგ. ვაკე, ჭავჭავაძის გამზ.", swhy:"კარგი V60, დილით მშვიდია…",
   pname:"შენი კაფის სახელი", paddr:"ქუჩა, ნომერი, უბანი", phours:"ორშ–პარ 08–21, შაბ–კვ 09–20"};
-const KA_ARIA = {q:"კაფეების ძებნა", qclear:"ძებნის გასუფთავება", filters:"ფილტრები", heroaria:"ახლა ღია კაფეები", favearia:"შენახული კაფეები",
+const KA_ARIA = {menuopen:"მენიუ", menuclose:"მენიუს დახურვა", menu:"მენიუ", q:"კაფეების ძებნა", qclear:"ძებნის გასუფთავება", filters:"ფილტრები", heroaria:"ახლა ღია კაფეები", favearia:"შენახული კაფეები",
   share:"რჩეულების გაზიარება სურათად", logo:"ლოგო: ფინჯანი ზემოდან, წითელი ნიშნულით", details:"კაფის დეტალები", photo:"ფოტო", closephoto:"ფოტოს დახურვა"};
 const AREA_KA = {"Avlabari":"ავლაბარი","Bagebi":"ბაგები","Chugureti":"ჩუღურეთი","Dedaena Park":"დედაენის პარკი","Marjanishvili":"მარჯანიშვილი","Mtatsminda":"მთაწმინდა",
   "Old Tbilisi":"ძველი თბილისი","Rustaveli":"რუსთაველი","Saburtalo":"საბურთალო","Sololaki":"სოლოლაკი","Station Square":"სადგურის მოედანი","Vake":"ვაკე","Vera":"ვერა"};
@@ -1014,7 +1051,7 @@ function renderFaves(){
 /* ---------- Header text follows the tab ---------- */
 let current = "list";
 function updateHeader(){
-  const mid = document.getElementById("mid"), cnt = document.getElementById("count");
+  const mid = document.getElementById("mid"), cnt = document.getElementById("count") || {};
   document.body.className = "v-" + current;
   if(current === "contact"){ mid.innerHTML = ""; cnt.textContent = tr("Contact us","კონტაქტი"); return; }
   if(current === "faves"){
@@ -1116,7 +1153,7 @@ function show(view){
   current = view;
   VIEWS.forEach(v => {
     document.getElementById(v).classList.toggle("active", v===view);
-    document.getElementById("tab-"+v).setAttribute("aria-selected", v===view);
+    const t = document.getElementById("tab-"+v); if(t) t.setAttribute("aria-selected", v===view);
   });
   updateHeader();
   if(view!=="map") closeSheet();
@@ -1513,7 +1550,7 @@ document.getElementById("rows").addEventListener("click", e => {
   const c = e.target.closest(".row"); if(!c) return;
   openGlass(c.dataset.id, "list");
 });
-VIEWS.forEach(v => { document.getElementById("tab-"+v).onclick = () => show(v); });
+VIEWS.forEach(v => { const t = document.getElementById("tab-"+v); if(t) t.onclick = () => show(v); });
 
 
 /* ============================================================
@@ -1526,7 +1563,9 @@ const FULL = "inset(0px 0px 0px 0px round 0px)";
 let glassPhase = "closed", glassTimers = [], glassId = null, glassSrc = "faves";
 const srcSel = () => glassSrc === "list" ? "#rows" : "#fave-rows";
 const later = (fn, ms) => glassTimers.push(setTimeout(fn, ms));
-const calm = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+const calm = () => typeof prefs.calm === "boolean" ? prefs.calm : matchMedia("(prefers-reduced-motion: reduce)").matches;
+const applyCalm = () => document.documentElement.classList.toggle("calm", calm());
+applyCalm();
 const setInert = on => ["header","main","nav"].forEach(t => { const el = document.querySelector(t); if(el) el.inert = on; });
 const faveRow = id => document.querySelector(`${srcSel()} .row[data-id="${CSS.escape(id)}"]`);
 function rowClip(id){
@@ -1663,7 +1702,47 @@ function closeGlass(instant){
   later(() => { glass.className = "glass"; markRows(null); const r = faveRow(glassId); if(r) r.scrollIntoView({block:"nearest"}); }, 910);
   later(() => { glassPhase = "closed"; gc.className = "gc"; }, 1370);
 }
-addEventListener("keydown", e => { if(e.key !== "Escape") return; if(!document.getElementById("lightbox").hidden){ closePhoto(); return; } if(rOpen){ closeRoasters(); return; } closeGlass(); });
+addEventListener("keydown", e => { if(e.key !== "Escape") return; if(!document.getElementById("lightbox").hidden){ closePhoto(); return; } if(mOpen){ closeMenu(); return; } if(rOpen){ closeRoasters(); return; } closeGlass(); });
+
+/* ---------- Menu: the three lines turn into ×, frosted glass grows out of the button ---------- */
+const mglass = document.getElementById("mglass"), mgc = document.getElementById("mgc"), menubtn = document.getElementById("menubtn"), mclose = document.getElementById("mclose");
+let mOpen = false, mTimers = [];
+function menuOrigin(){
+  const r = menubtn.getBoundingClientRect();
+  mclose.style.left = r.left + "px"; mclose.style.top = r.top + "px";   // the × sits exactly where the lines were
+  return [r.left + r.width / 2, r.top + r.height / 2];
+}
+const menuClip = (rad, [x, y]) => `circle(${rad}px at ${x}px ${y}px)`;
+function openMenu(){
+  if(mOpen || glassPhase !== "closed" || rOpen) return;
+  mOpen = true; mTimers.forEach(clearTimeout); mTimers = [];
+  renderPrefs();
+  const o = menuOrigin(), far = Math.hypot(innerWidth, innerHeight);
+  menubtn.classList.add("x"); menubtn.setAttribute("aria-expanded", "true");
+  mgc.scrollTop = 0; mgc.className = "gc";
+  if(calm()){ mglass.style.clipPath = "none"; mglass.className = "glass mglass show frost"; mgc.className = "gc in"; setInert(true); mclose.focus({preventScroll:true}); return; }
+  mglass.style.transition = "none"; mglass.style.clipPath = menuClip(0, o); mglass.className = "glass mglass show frost";
+  void mglass.offsetWidth; mglass.style.transition = "";
+  mglass.style.clipPath = menuClip(far, o);
+  mTimers.push(setTimeout(() => { mgc.className = "gc in"; }, 160));
+  mTimers.push(setTimeout(() => { setInert(true); mclose.focus({preventScroll:true}); }, 520));
+}
+function closeMenu(then){
+  if(!mOpen) return;
+  mOpen = false; mTimers.forEach(clearTimeout); mTimers = [];
+  setInert(false); menubtn.classList.remove("x"); menubtn.setAttribute("aria-expanded", "false");
+  const done = () => { mglass.className = "glass mglass"; mgc.className = "gc"; mglass.style.clipPath = ""; if(then) then(); };
+  if(calm() || then){ done(); if(!then) menubtn.focus({preventScroll:true}); return; }
+  mgc.className = "gc out";
+  mglass.style.clipPath = menuClip(0, menuOrigin());
+  mTimers.push(setTimeout(() => { done(); menubtn.focus({preventScroll:true}); }, 520));
+}
+menubtn.onclick = () => mOpen ? closeMenu() : openMenu();
+mclose.onclick = () => closeMenu();
+mglass.addEventListener("click", e => {
+  const go = e.target.closest("[data-go]"); if(!go) return;
+  closeMenu(() => { show("contact"); const b = document.querySelector(`#seg [data-panel="${go.dataset.go}"]`); if(b) b.click(); });
+});
 
 /* ---------- Roaster picker: frosted glass, grows out of the chip ---------- */
 const rglass = document.getElementById("rglass"), rgc = document.getElementById("rgc");
@@ -1735,10 +1814,14 @@ const PREF_SWITCHES = () => [["hideClosed",tr("Hide closed shops","დაკე�
 const chipHtml = (attr, key, label, on) => `<button class="chip" type="button" ${attr}="${key}" aria-pressed="${on}">${label}</button>`;
 function renderPrefs(){
   document.getElementById("pref-brew").innerHTML = BREW_LABELS().map(([k,l]) => chipHtml("data-pbrew", k, l, prefs.brew.includes(k))).join("");
-  const THEMES = [["auto",tr("Auto","ავტო")],["light",tr("Light","ღია")],["dark",tr("Dark","მუქი")]];
-  document.getElementById("pref-switches").innerHTML = `<div class="trow"><span>${tr("Theme","თემა")}</span><span class="tseg" role="group" aria-label="${tr("Theme","თემა")}">${THEMES.map(([k,l]) => `<button type="button" data-theme-set="${k}" aria-pressed="${prefs.theme === k}">${l}</button>`).join("")}</span></div>` + PREF_SWITCHES().map(([k,l]) => k === "lang"
-    ? `<button class="sw" type="button" role="switch" data-lang aria-checked="${lang === "ka"}" lang="ka"><span>${l}</span><i></i></button>`
-    : `<button class="sw" type="button" role="switch" data-pref="${k}" aria-checked="${prefs[k]}"><span>${l}</span><i></i></button>`).join("");
+  const seg = (label, attr, opts, on) => `<div class="trow"><span>${label}</span><span class="tseg" role="group" aria-label="${label}">${opts.map(([k,l]) => `<button type="button" ${attr}="${k}" aria-pressed="${on === k}">${l}</button>`).join("")}</span></div>`;
+  const sw = (label, attr, on) => `<button class="sw" type="button" role="switch" ${attr} aria-checked="${on}"><span>${label}</span><i></i></button>`;
+  document.getElementById("pref-switches").innerHTML =
+    seg(tr("Theme","თემა"), "data-theme-set", [["auto",tr("Auto","ავტო")],["light",tr("Light","ღია")],["dark",tr("Dark","მუქი")]], prefs.theme) +
+    seg(tr("Start on","გახსნისას"), "data-start-set", [["list",tr("List","სია")],["faves",tr("Faves","რჩეულები")],["map",tr("Map","რუკა")]], prefs.start) +
+    seg(tr("Language","ენა"), "data-lang-set", [["en","EN"],["ka","ქარ"]], lang) +
+    sw(tr("Hide closed shops","დაკეტილების დამალვა"), 'data-pref="hideClosed"', prefs.hideClosed) +
+    sw(tr("Reduce motion","ნაკლები ანიმაცია"), "data-calm", calm());
 }
 function renderAbout(){
   document.getElementById("about-data").textContent =
@@ -1764,7 +1847,12 @@ document.getElementById("seg").addEventListener("click", e => {
   document.querySelectorAll(".panel").forEach(p => p.hidden = p.id !== "panel-" + b.dataset.panel);
   document.getElementById("contact").scrollTo(0, 0);
 });
-document.getElementById("contact").addEventListener("click", e => {
+function prefClick(e){
+  const st = e.target.closest("[data-start-set]");
+  if(st){ prefs.start = st.dataset.startSet; store.set("cm-prefs", prefs); renderPrefs(); return; }
+  const ls = e.target.closest("[data-lang-set]");
+  if(ls){ if(ls.dataset.langSet !== lang) setLang(ls.dataset.langSet); return; }
+  if(e.target.closest("[data-calm]")){ prefs.calm = !calm(); store.set("cm-prefs", prefs); applyCalm(); renderPrefs(); return; }
   const chip = e.target.closest("[data-pbrew]");
   if(chip){
     const k = chip.dataset.pbrew;
@@ -1778,7 +1866,9 @@ document.getElementById("contact").addEventListener("click", e => {
   if(e.target.closest("[data-lang]")){ setLang(lang === "ka" ? "en" : "ka"); return; }
   const tgl = e.target.closest("[data-ftag],[data-fbrew]");
   if(tgl) tgl.setAttribute("aria-pressed", tgl.getAttribute("aria-pressed") !== "true");
-});
+}
+document.getElementById("contact").addEventListener("click", prefClick);
+document.getElementById("mglass").addEventListener("click", prefClick);
 document.getElementById("f-suggest").addEventListener("submit", e => {
   e.preventDefault();
   const f = e.target;
@@ -1901,6 +1991,7 @@ async function boot(){
     const data = await r.json();
     SHOPS = data.shops; UPDATED = data.updated || "";
     render();
+    if(!/^#shop\//.test(location.hash) && prefs.start !== "list") show(prefs.start);
     openFromLink();
     setInterval(render, 60000);
   }catch(err){
