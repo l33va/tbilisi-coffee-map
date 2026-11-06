@@ -3724,7 +3724,14 @@
       "laptop": true,
       "place_id": "ChIJZ3ghbU9zREAR3-7BVlATLtE",
       "note": "Café on upper Kostava Street with sandwiches and good music, open from 8:00 till late.",
-      "note_ka": "კაფე კოსტავას ქუჩის ზედა ნაწილში სენდვიჩებით და კარგი მუსიკით, ღიაა 8:00-დან გვიანობამდე."
+      "note_ka": "კაფე კოსტავას ქუჩის ზედა ნაწილში სენდვიჩებით და კარგი მუსიკით, ღიაა 8:00-დან გვიანობამდე.",
+      "prices": {
+        "espresso": 7.2,
+        "cappuccino": [
+          7.2,
+          9.9
+        ]
+      }
     },
     {
       "id": "aurora-chavchavadze",
@@ -3755,7 +3762,14 @@
       "laptop": true,
       "place_id": "ChIJ9RffKvgNREARaS9TbCQ-JdU",
       "note": "Aurora's Vake café on Chavchavadze Avenue, open from 8:00 till late.",
-      "note_ka": "Aurora-ს ვაკის კაფე ჭავჭავაძის გამზირზე, ღიაა 8:00-დან გვიანობამდე."
+      "note_ka": "Aurora-ს ვაკის კაფე ჭავჭავაძის გამზირზე, ღიაა 8:00-დან გვიანობამდე.",
+      "prices": {
+        "espresso": 7.2,
+        "cappuccino": [
+          7.2,
+          9.9
+        ]
+      }
     }
   ]
 }
