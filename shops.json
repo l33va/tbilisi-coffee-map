@@ -3673,13 +3673,27 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "aut_vera",
       "place_id": "ChIJ8xvBnsgNREARaEaWck6FNwQ",
       "note": "Café and bistro with Middle Eastern food (hummus, kebab, meze) and coffee, a few doors from Shavi The Original.",
-      "note_ka": "კაფე-ბისტრო ახლოაღმოსავლური კერძებით (ჰუმუსი, ქაბაბი, მეზე) და ყავით, Shavi The Original-ის მახლობლად."
+      "note_ka": "კაფე-ბისტრო ახლოაღმოსავლური კერძებით (ჰუმუსი, ქაბაბი, მეზე) და ყავით, Shavi The Original-ის მახლობლად.",
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          8,
+          10
+        ],
+        "batch": 8
+      },
+      "roaster": [
+        "Mamuli"
+      ],
+      "pets": true,
+      "laptop": true
     }
   ]
 }
