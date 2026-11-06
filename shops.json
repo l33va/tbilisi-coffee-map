@@ -3694,6 +3694,68 @@
       ],
       "pets": true,
       "laptop": true
+    },
+    {
+      "id": "aurora-kostava",
+      "name": "Aurora — Kostava",
+      "area": "Saburtalo",
+      "address": "76 Merab Kostava St",
+      "coords": [
+        41.7226541,
+        44.7768245
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "auroracoffee.ge",
+      "hours": [
+        "08:00-23:00",
+        "08:00-23:00",
+        "08:00-23:00",
+        "08:00-23:00",
+        "08:00-23:00",
+        "08:00-23:00",
+        "08:00-23:00"
+      ],
+      "pets": true,
+      "laptop": true,
+      "place_id": "ChIJZ3ghbU9zREAR3-7BVlATLtE",
+      "note": "Café on upper Kostava Street with sandwiches and good music, open from 8:00 till late.",
+      "note_ka": "კაფე კოსტავას ქუჩის ზედა ნაწილში სენდვიჩებით და კარგი მუსიკით, ღიაა 8:00-დან გვიანობამდე."
+    },
+    {
+      "id": "aurora-chavchavadze",
+      "name": "Aurora — Chavchavadze",
+      "area": "Vake",
+      "address": "24 Ilia Chavchavadze Ave",
+      "coords": [
+        41.7086985,
+        44.7737884
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "auroracoffee.ge",
+      "hours": [
+        "08:00-23:00",
+        "08:00-23:00",
+        "08:00-23:00",
+        "08:00-23:00",
+        "08:00-23:00",
+        "08:00-23:00",
+        "08:00-23:00"
+      ],
+      "pets": true,
+      "laptop": true,
+      "place_id": "ChIJ9RffKvgNREARaS9TbCQ-JdU",
+      "note": "Aurora's Vake café on Chavchavadze Avenue, open from 8:00 till late.",
+      "note_ka": "Aurora-ს ვაკის კაფე ჭავჭავაძის გამზირზე, ღიაა 8:00-დან გვიანობამდე."
     }
   ]
 }
