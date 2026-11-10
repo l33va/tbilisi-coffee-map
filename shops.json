@@ -3853,7 +3853,21 @@
       "instagram": "coffee.abyssinia",
       "place_id": "ChIJ9Zp3MwANREARzpfde8gYUYw",
       "note": "Small, charming coffee spot on Besiki Square in Mtatsminda, with cakes and a vine-covered entrance.",
-      "note_ka": "პატარა, მომხიბვლელი ყავის ადგილი მთაწმინდაზე, ბესიკის მოედანზე, ნამცხვრებით და ვაზით შემოსილი შესასვლელით."
+      "note_ka": "პატარა, მომხიბვლელი ყავის ადგილი მთაწმინდაზე, ბესიკის მოედანზე, ნამცხვრებით და ვაზით შემოსილი შესასვლელით.",
+      "photos": [
+        {
+          "src": "photos/abyssinia-1.webp",
+          "alt": "Shelves of books next to a case with Abyssinia teas"
+        },
+        {
+          "src": "photos/abyssinia-2.webp",
+          "alt": "Wooden napkin holders on the counter, barista behind"
+        },
+        {
+          "src": "photos/abyssinia-3.webp",
+          "alt": "Wooden table with a magazine under a bookshelf and lamp"
+        }
+      ]
     }
   ]
 }
