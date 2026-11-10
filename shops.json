@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08",
+  "updated": "2026-11-10",
   "shops": [
     {
       "id": "shavi-original",
@@ -3812,6 +3812,46 @@
           9.9
         ]
       }
+    },
+    {
+      "id": "abyssinia",
+      "name": "Abyssinia",
+      "area": "Mtatsminda",
+      "address": "5 Besiki Square",
+      "coords": [
+        41.6960714,
+        44.7934049
+      ],
+      "hours": [
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "08:00-20:00",
+        "10:00-20:00",
+        "10:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso",
+        "batch"
+      ],
+      "roaster": [
+        "Coffee LAB"
+      ],
+      "prices": {
+        "cappuccino": 10,
+        "batch": [
+          8,
+          10
+        ]
+      },
+      "score": null,
+      "instagram": "coffee.abyssinia",
+      "place_id": "ChIJ9Zp3MwANREARzpfde8gYUYw",
+      "note": "Small, charming coffee spot on Besiki Square in Mtatsminda, with cakes and a vine-covered entrance.",
+      "note_ka": "პატარა, მომხიბვლელი ყავის ადგილი მთაწმინდაზე, ბესიკის მოედანზე, ნამცხვრებით და ვაზით შემოსილი შესასვლელით."
     }
   ]
 }
