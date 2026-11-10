@@ -3867,7 +3867,9 @@
           "src": "photos/abyssinia-3.webp",
           "alt": "Wooden table with a magazine under a bookshelf and lamp"
         }
-      ]
+      ],
+      "pets": true,
+      "laptop": true
     }
   ]
 }
