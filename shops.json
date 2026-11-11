@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10",
+  "updated": "2026-11-11",
   "shops": [
     {
       "id": "shavi-original",
@@ -3477,7 +3477,7 @@
     },
     {
       "id": "baho",
-      "name": "Baho",
+      "name": "Baho — Kazbegi",
       "area": "Saburtalo",
       "address": "41 Alexander Kazbegi Ave",
       "coords": [
@@ -3504,6 +3504,36 @@
       "place_id": "ChIJ3bXdJ6NzREARf0HrA3i3Hqo",
       "note": "Small café near Delisi metro that roasts its own Rwandan coffee, with breakfast and plenty of sockets.",
       "note_ka": "პატარა კაფე დელისის მეტროსთან, რომელიც თავად ხალავს რუანდულ ყავას; საუზმით და ბევრი როზეტით."
+    },
+    {
+      "id": "baho-tamarashvili",
+      "added": "2026-11-11",
+      "name": "Baho — Tamarashvili",
+      "area": "Saburtalo",
+      "address": "13o Mikheil Tamarashvili St",
+      "coords": [
+        41.7208929,
+        44.7478972
+      ],
+      "hours": [
+        "07:00-23:00",
+        "07:00-23:00",
+        "07:00-23:00",
+        "07:00-23:00",
+        "07:00-23:00",
+        "09:00-22:00",
+        "09:00-22:00"
+      ],
+      "roasts": true,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "baho_georgia",
+      "place_id": "ChIJjYLFiCNzREARqjMSeUmB7cY",
+      "note": "Baho's second café, in the same building as Prime Fitness on Tamarashvili. Opens at 7:00 on weekdays.",
+      "note_ka": "Baho-ს მეორე კაფე, Prime Fitness-ის შენობაში, თამარაშვილზე. სამუშაო დღეებში 7:00-ზე იხსნება."
     },
     {
       "id": "daisy-vake",
