@@ -3496,14 +3496,30 @@
       "roasts": true,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "baho_georgia",
       "delivery": "https://wolt.com/en/geo/tbilisi/restaurant/bahotbilisi",
       "place_id": "ChIJ3bXdJ6NzREARf0HrA3i3Hqo",
       "note": "Small café near Delisi metro that roasts its own Rwandan coffee, with breakfast and plenty of sockets.",
-      "note_ka": "პატარა კაფე დელისის მეტროსთან, რომელიც თავად ხალავს რუანდულ ყავას; საუზმით და ბევრი როზეტით."
+      "note_ka": "პატარა კაფე დელისის მეტროსთან, რომელიც თავად ხალავს რუანდულ ყავას; საუზმით და ბევრი როზეტით.",
+      "prices": {
+        "espresso": [
+          4.9,
+          5.9
+        ],
+        "cappuccino": [
+          8.9,
+          9.9
+        ],
+        "batch": [
+          5.9,
+          7.9
+        ]
+      }
     },
     {
       "id": "baho-tamarashvili",
@@ -3527,13 +3543,29 @@
       "roasts": true,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "baho_georgia",
       "place_id": "ChIJjYLFiCNzREARqjMSeUmB7cY",
       "note": "Baho's second café, in the same building as Prime Fitness on Tamarashvili. Opens at 7:00 on weekdays.",
-      "note_ka": "Baho-ს მეორე კაფე, Prime Fitness-ის შენობაში, თამარაშვილზე. სამუშაო დღეებში 7:00-ზე იხსნება."
+      "note_ka": "Baho-ს მეორე კაფე, Prime Fitness-ის შენობაში, თამარაშვილზე. სამუშაო დღეებში 7:00-ზე იხსნება.",
+      "prices": {
+        "espresso": [
+          4.9,
+          5.9
+        ],
+        "cappuccino": [
+          8.9,
+          9.9
+        ],
+        "batch": [
+          5.9,
+          7.9
+        ]
+      }
     },
     {
       "id": "daisy-vake",
