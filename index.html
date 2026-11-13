@@ -481,6 +481,9 @@ nav button[aria-selected="true"]{color:var(--fg)}
 .gpc small{display:block;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .gpc b{display:block;margin-top:4px;font-family:var(--display);font-weight:400;font-size:26px;line-height:1}
 .gpc b.na{color:var(--mute)}
+.gpc b.sm{font-size:21px}
+.gpc b.xs{font-size:18px;line-height:1.1}
+.gpc{min-width:0}.gpc b{overflow-wrap:anywhere}
 .g2{display:grid;grid-template-columns:1fr 1fr}
 .g2 .ginf:last-child{border-left:1px solid var(--g-line);padding-left:12px}
 .g2 .ginf:first-child{padding-right:12px}
@@ -1612,7 +1615,9 @@ const saveBtn = id => { const on = favs.has(id); return `<button class="gsaved" 
 /* a price is a number (8) or two sizes ([5, 7], shown as 5/7) */
 const isPrice = v => typeof v === "number" || (Array.isArray(v) && v.length > 0 && v.every(x => typeof x === "number"));
 const fmtPrice = v => (Array.isArray(v) ? v : [v]).map(x => Number.isInteger(x) ? String(x) : x.toFixed(1)).join("/");
-const priceCell = (label, v) => `<div class="gpc"><small>${label}</small><b class="${isPrice(v) ? "" : "na"}">${isPrice(v) ? fmtPrice(v) : "—"}</b></div>`;
+// long prices (three sizes, decimals) get smaller type and may wrap after a slash, so they never run into the next box
+const priceCell = (label, v) => { const t = isPrice(v) ? fmtPrice(v) : "—", fit = t.length > 7 ? "xs" : t.length > 4 ? "sm" : "";
+  return `<div class="gpc"><small>${label}</small><b class="${isPrice(v) ? fit : "na"}">${esc(t).replace(/\//g, "/<wbr>")}</b></div>`; };
 const yesNo = v => v === true ? `<span class="mk yes"><i></i>${tr("Yes","კი")}</span>` : v === false ? `<span class="mk no"><i></i>${tr("No","არა")}</span>` : `<span class="mk na"><i></i>${tr("Not listed","უცნობია")}</span>`;
 const roasterText = s => {
   const r = Array.isArray(s.roaster) ? s.roaster.join(", ") : s.roaster;
