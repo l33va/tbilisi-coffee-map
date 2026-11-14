@@ -45,7 +45,17 @@
           9,
           11
         ]
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/shavi-original-1.webp",
+          "alt": "Crowd outside the red-brick corner shopfront"
+        },
+        {
+          "src": "photos/shavi-original-2.webp",
+          "alt": "Polaroid of the baristas held up in front of the bar"
+        }
+      ]
     },
     {
       "id": "shavi-ninoshvili",
