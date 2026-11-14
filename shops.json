@@ -91,7 +91,21 @@
           9,
           11
         ]
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/shavi-ninoshvili-1.webp",
+          "alt": "Shavi Ninoshvili shopfront with painted coffee-cherry frame"
+        },
+        {
+          "src": "photos/shavi-ninoshvili-2.webp",
+          "alt": "Bar with green lamps and the arched doorway to the back room"
+        },
+        {
+          "src": "photos/shavi-ninoshvili-3.webp",
+          "alt": "Front room with big windows onto the street"
+        }
+      ]
     },
     {
       "id": "shavi-garage",
