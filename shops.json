@@ -2247,7 +2247,17 @@
       "instagram": "hatsandcoffeetbilisi",
       "place_id": "ChIJjfehnG4NREARK7NY0VOuYXA",
       "note": "Hat shop and coffee bar in one, in Chugureti. Guest beans from roasters like Kurasu and Standout, brewed as lever espresso, V60 or siphon.",
-      "note_ka": "ქუდების მაღაზია და ყავის ბარი ერთად, ჩუღურეთში. სტუმარი მარცვალი ისეთი როუსტერებისგან, როგორიცაა Kurasu და Standout — ბერკეტიანი ესპრესო, V60 ან სიფონი."
+      "note_ka": "ქუდების მაღაზია და ყავის ბარი ერთად, ჩუღურეთში. სტუმარი მარცვალი ისეთი როუსტერებისგან, როგორიცაა Kurasu და Standout — ბერკეტიანი ესპრესო, V60 ან სიფონი.",
+      "photos": [
+        {
+          "src": "photos/hats-and-coffee-1.webp",
+          "alt": "Wooden bar under a brick vault, with hats on shelves beside it"
+        },
+        {
+          "src": "photos/hats-and-coffee-2.webp",
+          "alt": "Wall of felt hats next to an old painted fresco"
+        }
+      ]
     },
     {
       "id": "ruby",
