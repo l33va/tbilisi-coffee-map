@@ -1969,7 +1969,21 @@
           9,
           10
         ]
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/asters-1.webp",
+          "alt": "Asters neon sign seen through the front window"
+        },
+        {
+          "src": "photos/asters-2.webp",
+          "alt": "Pastry case with cakes, buns and croissants"
+        },
+        {
+          "src": "photos/asters-3.webp",
+          "alt": "Stained-glass lamp and plants on a wooden shelf"
+        }
+      ]
     },
     {
       "id": "chiti-takaishvili",
