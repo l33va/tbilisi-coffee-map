@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11",
+  "updated": "2026-11-14",
   "shops": [
     {
       "id": "shavi-original",
@@ -3549,6 +3549,12 @@
       ],
       "score": null,
       "instagram": "baho_georgia",
+      "photos": [
+        {
+          "src": "photos/baho-tamarashvili-1.webp",
+          "alt": "Bright blue room with a grey concrete-look bar, espresso machine and bags of beans on the shelves"
+        }
+      ],
       "place_id": "ChIJjYLFiCNzREARqjMSeUmB7cY",
       "note": "Baho's second café, in the same building as Prime Fitness on Tamarashvili. Opens at 7:00 on weekdays.",
       "note_ka": "Baho-ს მეორე კაფე, Prime Fitness-ის შენობაში, თამარაშვილზე. სამუშაო დღეებში 7:00-ზე იხსნება.",
