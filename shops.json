@@ -266,7 +266,8 @@
       "instagram": "bnkr_coffee_georgia",
       "place_id": "ChIJAVbzDZcNREARWCWNGCy4oEI",
       "note": "Open till midnight, resident cats, signature coffee drinks with fruit.",
-      "note_ka": "ღიაა შუაღამემდე, აქ კატები ცხოვრობენ. საფირმო ყავის სასმელები ხილით."
+      "note_ka": "ღიაა შუაღამემდე, აქ კატები ცხოვრობენ. საფირმო ყავის სასმელები ხილით.",
+      "pets": true
     },
     {
       "id": "bnkr-janashia",
@@ -298,7 +299,8 @@
       "instagram": "bnkr_coffee_georgia",
       "place_id": "ChIJWWDAuCoNREAR76ry__TdU-I",
       "note": "Wide bean menu for pour-over. Small inside, nice terrace.",
-      "note_ka": "მარცვლის დიდი არჩევანი ფილტრისთვის. შიგნით პატარაა, ლამაზი ტერასით."
+      "note_ka": "მარცვლის დიდი არჩევანი ფილტრისთვის. შიგნით პატარაა, ლამაზი ტერასით.",
+      "pets": true
     },
     {
       "id": "tsvari",
