@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14",
+  "updated": "2026-11-15",
   "shops": [
     {
       "id": "shavi-original",
@@ -3016,7 +3016,21 @@
           8,
           10
         ]
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/eleven-window-1.webp",
+          "alt": "Old stone facade with colourful chairs and small tables on the pavement"
+        },
+        {
+          "src": "photos/eleven-window-2.webp",
+          "alt": "Long wooden table in front of the bar, with brick and stone walls"
+        },
+        {
+          "src": "photos/eleven-window-3.webp",
+          "alt": "Two blue armchairs by an old wooden bookcase"
+        }
+      ]
     },
     {
       "id": "grind",
