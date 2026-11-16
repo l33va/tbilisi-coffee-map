@@ -273,7 +273,15 @@ nav button{
 }
 nav button svg{width:22px;height:22px;flex:none}
 nav button span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-nav button[aria-selected="true"]{color:var(--fg);background-color:var(--pill-in);box-shadow:inset 0 0 0 1px var(--pill-edge)}
+nav button[aria-selected="true"]{color:var(--fg)}
+nav button{position:relative;z-index:1}
+/* the lighter inner pill glides to the chosen tab with a small springy settle */
+nav .ind{position:absolute;top:5px;bottom:5px;left:5px;width:calc((100% - 18px) / 3);border-radius:26px;z-index:0;pointer-events:none;
+  background-color:var(--pill-in);box-shadow:inset 0 0 0 1px var(--pill-edge);
+  transform:translateX(calc(var(--ti,0) * (100% + 4px)));transition:transform .42s cubic-bezier(.3,1.35,.5,1),opacity .2s ease}
+nav[data-ti="-1"] .ind{opacity:0}
+nav button.pop svg{animation:tabpop .38s cubic-bezier(.3,1.6,.5,1)}
+@keyframes tabpop{0%{transform:scale(.82)}60%{transform:scale(1.12)}100%{transform:none}}
 nav button:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
 @supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){nav{background-color:var(--glass-fb)}}
 .leaflet-bottom{bottom:calc(var(--nav) + var(--safe-b)) !important;z-index:800 !important}   /* under an open shop sheet */
@@ -689,7 +697,8 @@ nav button:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
   <aside class="sheet" id="sheet" hidden aria-live="polite"></aside>
 </main>
 
-<nav>
+<nav style="--ti:0" data-ti="0">
+  <span class="ind" aria-hidden="true"></span>
   <button id="tab-list" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M4 6H20M4 12H20M4 18H14"/></svg><span data-t="nlist">List</span></button>
   <button id="tab-faves" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7.2-4.6-9.4-9.2A5.4 5.4 0 0 1 12 6.3a5.4 5.4 0 0 1 9.4 5.5C19.2 16.4 12 21 12 21z"/></svg><span data-t="nfaves">Faves</span></button>
   <button id="tab-map" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.2"/></svg><span data-t="nmap">Map</span></button>
@@ -1200,8 +1209,17 @@ const navEl = document.querySelector("nav");
     else if(d > 6) navEl.classList.add("hide");
     else if(d < -6) navEl.classList.remove("hide");
     if(Math.abs(d) > 6) last = y; }, {passive:true}); });
+const TAB_ORDER = ["list","faves","map"];
 function show(view){
+  const from = TAB_ORDER.indexOf(current), to = TAB_ORDER.indexOf(view), changed = view !== current;
   current = view;
+  navEl.style.setProperty("--ti", Math.max(0, to)); navEl.dataset.ti = to;
+  if(changed && !calm()){
+    const tab = document.getElementById("tab-"+view);
+    if(tab){ tab.classList.remove("pop"); void tab.offsetWidth; tab.classList.add("pop"); }
+    const el = document.getElementById(view), dir = (from < 0 || to < 0) ? 0 : Math.sign(to - from);
+    if(el && el.animate) el.animate([{opacity:0, transform:`translateX(${dir*28}px)`},{opacity:1, transform:"none"}], {duration:300, easing:"cubic-bezier(.2,.8,.2,1)"});
+  }
   VIEWS.forEach(v => {
     document.getElementById(v).classList.toggle("active", v===view);
     const t = document.getElementById("tab-"+v); if(t) t.setAttribute("aria-selected", v===view);
