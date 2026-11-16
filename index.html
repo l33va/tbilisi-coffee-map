@@ -254,7 +254,7 @@ nav{
   transition:transform .28s cubic-bezier(.3,0,.2,1);
 }
 nav.hide{transform:translateY(110%)}
-nav:focus-within{transform:none}
+nav:has(:focus-visible){transform:none}   /* keyboard focus keeps the pills in view; a tap does not */
 nav button{
   flex:1;min-width:0;height:46px;border-radius:23px;pointer-events:auto;
   font-family:var(--display);font-size:16px;line-height:1;text-transform:uppercase;color:var(--fg);
