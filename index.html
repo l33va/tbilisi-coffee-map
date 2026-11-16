@@ -115,7 +115,7 @@ header{
 /* a soft fade above the floating header, so scrolled text doesn't show behind the status bar */
 body::before{content:"";position:fixed;left:0;right:0;top:0;height:calc(env(safe-area-inset-top,0px) + 22px);z-index:999;pointer-events:none;background:linear-gradient(var(--bg) 45%,transparent)}
 .meta-row{
-  display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
   font-size:9px;line-height:1.4;letter-spacing:.04em;text-transform:uppercase;color:var(--dim);
 }
 .brand{display:flex;align-items:center;gap:8px;font-size:9px;font-weight:400;color:var(--fg)}
@@ -124,7 +124,7 @@ body::before{content:"";position:fixed;left:0;right:0;top:0;height:calc(env(safe
 .meta-row .count{text-align:right}
 .meta-row .count b{color:var(--fg);font-weight:500}
 /* menu button: three lines that turn into × */
-.mbtn{position:relative;flex:none;width:44px;height:44px;margin:-12px -11px 0 0;color:var(--fg)}
+.mbtn{position:relative;flex:none;width:44px;height:44px;margin:-9px -6px -9px 0;color:var(--fg)}   /* centred on the logo row, clear of the panel's rounded corner */
 .mbtn span{position:absolute;left:12px;width:20px;height:2px;background:currentColor;transition:transform .32s cubic-bezier(.76,0,.24,1),opacity .2s ease}
 .mbtn span:nth-child(1){top:15px}.mbtn span:nth-child(2){top:21px}.mbtn span:nth-child(3){top:27px}
 .mbtn.x span:nth-child(1){transform:translateY(6px) rotate(45deg)}
@@ -191,7 +191,8 @@ main{position:fixed;top:0;bottom:0;left:0;right:0}   /* lists run under both gla
 .view.active{display:block}
 #list,#faves,#contact{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(var(--hdr-b) + 10px) 20px calc(var(--nav) + var(--safe-b) + 24px);
   scroll-padding:calc(var(--hdr-b) + 10px) 0 calc(var(--nav) + var(--safe-b) + 10px)}
-#map{top:calc(var(--hdr-b) + 8px)}
+/* the map runs under the floating header; its controls start below the glass */
+.leaflet-top{top:calc(var(--hdr-b) + 4px) !important}
 body.v-faves .search,body.v-faves .chips,body.v-contact .search,body.v-contact .chips{display:none}
 #map{background:var(--bg)}
 /* map tiles go black and white, then dark */
@@ -2047,7 +2048,10 @@ function fitToMatches(){
   if(!map || !query || !mapShown()) return;
   const list = visible();
   if(list.length === 1){ map.setView(list[0].coords, 16); openSheet(list[0].id, false); }
-  else if(list.length > 1) map.fitBounds(L.latLngBounds(list.map(s => s.coords)), {padding:[40,40], maxZoom:16});
+  else if(list.length > 1){   // keep pins clear of the glass header and the tab pill
+    const top = document.querySelector("header").getBoundingClientRect().bottom, bot = innerHeight - navEl.getBoundingClientRect().top;
+    map.fitBounds(L.latLngBounds(list.map(s => s.coords)), {paddingTopLeft:[40, top + 30], paddingBottomRight:[40, bot + 30], maxZoom:16});
+  }
 }
 let qTimer;
 qEl.addEventListener("input", () => {
