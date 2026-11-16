@@ -387,6 +387,19 @@ nav button:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
 .seg button+button{border-left:1px solid var(--hair)}
 .seg button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
 .panel{padding-top:20px}
+/* share the app: centred QR inside four corner marks */
+.shareapp{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:12px}
+.shareapp .shareico{width:34px;height:34px;color:var(--fg)}
+.shareapp .h{margin-top:14px}
+.shareapp p{max-width:30ch;margin:10px auto 0;font-size:13px;line-height:1.5;color:var(--note)}
+.qrbox{position:relative;width:min(64vw,250px);aspect-ratio:1;margin-top:28px;padding:16px;box-sizing:border-box;color:var(--fg)}
+.qrbox::before,.qrbox::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(var(--fg),var(--fg)) left top/20px 2px,linear-gradient(var(--fg),var(--fg)) left top/2px 20px,
+             linear-gradient(var(--fg),var(--fg)) right top/20px 2px,linear-gradient(var(--fg),var(--fg)) right top/2px 20px;background-repeat:no-repeat}
+.qrbox::after{transform:scaleY(-1)}
+.qrbox .qr{display:block;width:100%;height:100%}
+.shareapp .qrurl{margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.shareapp .btn{margin-top:26px}
 .panel[hidden]{display:none}
 .panel .h{font-family:var(--display);font-weight:400;font-size:30px;line-height:1;text-transform:uppercase}
 .panel .lead{margin-top:8px;font-size:11px;line-height:1.5;color:var(--dim)}
@@ -645,6 +658,7 @@ nav button:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
       <button type="button" role="tab" aria-selected="true" data-panel="suggest" data-t="seg1">Suggest</button>
       <button type="button" role="tab" aria-selected="false" data-panel="shops" data-t="seg2">For shops</button>
       <button type="button" role="tab" aria-selected="false" data-panel="about" data-t="seg3">About</button>
+      <button type="button" role="tab" aria-selected="false" data-panel="share" hidden>Share</button>
     </div>
 
     <div class="panel" id="panel-suggest">
@@ -672,6 +686,17 @@ nav button:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
         <div class="chips-wrap" id="shop-brew"></div>
         <button class="btn" type="submit" data-t="sendshop">Send for review</button>
       </form>
+    </div>
+
+    <div class="panel" id="panel-share" hidden>
+      <div class="shareapp">
+        <svg class="shareico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7.5 7.5 12 3l4.5 4.5"/><path d="M5 11v8.5h14V11"/></svg>
+        <h2 class="h" data-t="hshare">Share the app</h2>
+        <p data-t="sharep">Help your friends find good coffee in Tbilisi. Point their camera at the code, or send them the link.</p>
+        <div class="qrbox"><svg class="qr" viewBox="-2 -2 37 37" role="img" aria-label="QR code for tbilisicoffeemap.com" data-ta="qraria"><path fill="currentColor" d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM8 0h1v1h-1zM11 0h1v1h-1zM12 0h1v1h-1zM13 0h1v1h-1zM14 0h1v1h-1zM16 0h1v1h-1zM17 0h1v1h-1zM18 0h1v1h-1zM19 0h1v1h-1zM20 0h1v1h-1zM22 0h1v1h-1zM24 0h1v1h-1zM26 0h1v1h-1zM27 0h1v1h-1zM28 0h1v1h-1zM29 0h1v1h-1zM30 0h1v1h-1zM31 0h1v1h-1zM32 0h1v1h-1zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h1v1h-1zM11 1h1v1h-1zM12 1h1v1h-1zM13 1h1v1h-1zM17 1h1v1h-1zM18 1h1v1h-1zM19 1h1v1h-1zM24 1h1v1h-1zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM6 2h1v1h-1zM8 2h1v1h-1zM10 2h1v1h-1zM11 2h1v1h-1zM13 2h1v1h-1zM15 2h1v1h-1zM20 2h1v1h-1zM21 2h1v1h-1zM22 2h1v1h-1zM23 2h1v1h-1zM24 2h1v1h-1zM26 2h1v1h-1zM28 2h1v1h-1zM29 2h1v1h-1zM30 2h1v1h-1zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM9 3h1v1h-1zM10 3h1v1h-1zM12 3h1v1h-1zM13 3h1v1h-1zM15 3h1v1h-1zM19 3h1v1h-1zM21 3h1v1h-1zM23 3h1v1h-1zM26 3h1v1h-1zM28 3h1v1h-1zM29 3h1v1h-1zM30 3h1v1h-1zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM10 4h1v1h-1zM16 4h1v1h-1zM18 4h1v1h-1zM19 4h1v1h-1zM21 4h1v1h-1zM24 4h1v1h-1zM26 4h1v1h-1zM28 4h1v1h-1zM29 4h1v1h-1zM30 4h1v1h-1zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM11 5h1v1h-1zM12 5h1v1h-1zM13 5h1v1h-1zM15 5h1v1h-1zM18 5h1v1h-1zM20 5h1v1h-1zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM29 6h1v1h-1zM30 6h1v1h-1zM31 6h1v1h-1zM32 6h1v1h-1zM8 7h1v1h-1zM9 7h1v1h-1zM15 7h1v1h-1zM16 7h1v1h-1zM17 7h1v1h-1zM24 7h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM11 8h1v1h-1zM13 8h1v1h-1zM16 8h1v1h-1zM20 8h1v1h-1zM26 8h1v1h-1zM28 8h1v1h-1zM30 8h1v1h-1zM32 8h1v1h-1zM3 9h1v1h-1zM4 9h1v1h-1zM5 9h1v1h-1zM8 9h1v1h-1zM10 9h1v1h-1zM14 9h1v1h-1zM19 9h1v1h-1zM21 9h1v1h-1zM22 9h1v1h-1zM23 9h1v1h-1zM25 9h1v1h-1zM27 9h1v1h-1zM28 9h1v1h-1zM29 9h1v1h-1zM30 9h1v1h-1zM0 10h1v1h-1zM1 10h1v1h-1zM4 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM12 10h1v1h-1zM13 10h1v1h-1zM15 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM19 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM25 10h1v1h-1zM26 10h1v1h-1zM27 10h1v1h-1zM31 10h1v1h-1zM0 11h1v1h-1zM1 11h1v1h-1zM3 11h1v1h-1zM5 11h1v1h-1zM7 11h1v1h-1zM9 11h1v1h-1zM10 11h1v1h-1zM13 11h1v1h-1zM14 11h1v1h-1zM16 11h1v1h-1zM17 11h1v1h-1zM19 11h1v1h-1zM20 11h1v1h-1zM21 11h1v1h-1zM24 11h1v1h-1zM27 11h1v1h-1zM29 11h1v1h-1zM30 11h1v1h-1zM0 12h1v1h-1zM1 12h1v1h-1zM2 12h1v1h-1zM3 12h1v1h-1zM4 12h1v1h-1zM6 12h1v1h-1zM7 12h1v1h-1zM8 12h1v1h-1zM11 12h1v1h-1zM14 12h1v1h-1zM15 12h1v1h-1zM19 12h1v1h-1zM20 12h1v1h-1zM21 12h1v1h-1zM23 12h1v1h-1zM24 12h1v1h-1zM26 12h1v1h-1zM27 12h1v1h-1zM28 12h1v1h-1zM29 12h1v1h-1zM32 12h1v1h-1zM0 13h1v1h-1zM3 13h1v1h-1zM9 13h1v1h-1zM10 13h1v1h-1zM12 13h1v1h-1zM20 13h1v1h-1zM21 13h1v1h-1zM23 13h1v1h-1zM26 13h1v1h-1zM27 13h1v1h-1zM28 13h1v1h-1zM29 13h1v1h-1zM32 13h1v1h-1zM0 14h1v1h-1zM1 14h1v1h-1zM5 14h1v1h-1zM6 14h1v1h-1zM7 14h1v1h-1zM8 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM11 14h1v1h-1zM12 14h1v1h-1zM20 14h1v1h-1zM22 14h1v1h-1zM25 14h1v1h-1zM27 14h1v1h-1zM28 14h1v1h-1zM29 14h1v1h-1zM31 14h1v1h-1zM0 15h1v1h-1zM3 15h1v1h-1zM4 15h1v1h-1zM7 15h1v1h-1zM9 15h1v1h-1zM11 15h1v1h-1zM23 15h1v1h-1zM24 15h1v1h-1zM25 15h1v1h-1zM26 15h1v1h-1zM27 15h1v1h-1zM29 15h1v1h-1zM30 15h1v1h-1zM32 15h1v1h-1zM1 16h1v1h-1zM2 16h1v1h-1zM3 16h1v1h-1zM5 16h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM9 16h1v1h-1zM25 16h1v1h-1zM27 16h1v1h-1zM28 16h1v1h-1zM31 16h1v1h-1zM32 16h1v1h-1zM0 17h1v1h-1zM1 17h1v1h-1zM7 17h1v1h-1zM11 17h1v1h-1zM12 17h1v1h-1zM20 17h1v1h-1zM23 17h1v1h-1zM24 17h1v1h-1zM26 17h1v1h-1zM27 17h1v1h-1zM32 17h1v1h-1zM2 18h1v1h-1zM5 18h1v1h-1zM6 18h1v1h-1zM7 18h1v1h-1zM8 18h1v1h-1zM9 18h1v1h-1zM11 18h1v1h-1zM22 18h1v1h-1zM23 18h1v1h-1zM25 18h1v1h-1zM26 18h1v1h-1zM28 18h1v1h-1zM29 18h1v1h-1zM30 18h1v1h-1zM32 18h1v1h-1zM1 19h1v1h-1zM3 19h1v1h-1zM4 19h1v1h-1zM5 19h1v1h-1zM7 19h1v1h-1zM8 19h1v1h-1zM9 19h1v1h-1zM10 19h1v1h-1zM11 19h1v1h-1zM12 19h1v1h-1zM22 19h1v1h-1zM23 19h1v1h-1zM24 19h1v1h-1zM25 19h1v1h-1zM27 19h1v1h-1zM29 19h1v1h-1zM30 19h1v1h-1zM31 19h1v1h-1zM32 19h1v1h-1zM0 20h1v1h-1zM3 20h1v1h-1zM6 20h1v1h-1zM9 20h1v1h-1zM11 20h1v1h-1zM16 20h1v1h-1zM17 20h1v1h-1zM18 20h1v1h-1zM19 20h1v1h-1zM20 20h1v1h-1zM22 20h1v1h-1zM24 20h1v1h-1zM27 20h1v1h-1zM28 20h1v1h-1zM29 20h1v1h-1zM0 21h1v1h-1zM3 21h1v1h-1zM5 21h1v1h-1zM7 21h1v1h-1zM9 21h1v1h-1zM10 21h1v1h-1zM11 21h1v1h-1zM12 21h1v1h-1zM14 21h1v1h-1zM15 21h1v1h-1zM16 21h1v1h-1zM18 21h1v1h-1zM19 21h1v1h-1zM21 21h1v1h-1zM22 21h1v1h-1zM25 21h1v1h-1zM26 21h1v1h-1zM27 21h1v1h-1zM28 21h1v1h-1zM30 21h1v1h-1zM0 22h1v1h-1zM6 22h1v1h-1zM7 22h1v1h-1zM8 22h1v1h-1zM9 22h1v1h-1zM10 22h1v1h-1zM11 22h1v1h-1zM12 22h1v1h-1zM13 22h1v1h-1zM15 22h1v1h-1zM17 22h1v1h-1zM18 22h1v1h-1zM22 22h1v1h-1zM23 22h1v1h-1zM24 22h1v1h-1zM31 22h1v1h-1zM0 23h1v1h-1zM2 23h1v1h-1zM7 23h1v1h-1zM8 23h1v1h-1zM11 23h1v1h-1zM12 23h1v1h-1zM14 23h1v1h-1zM18 23h1v1h-1zM20 23h1v1h-1zM23 23h1v1h-1zM28 23h1v1h-1zM29 23h1v1h-1zM30 23h1v1h-1zM31 23h1v1h-1zM32 23h1v1h-1zM0 24h1v1h-1zM1 24h1v1h-1zM2 24h1v1h-1zM3 24h1v1h-1zM4 24h1v1h-1zM5 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM10 24h1v1h-1zM12 24h1v1h-1zM13 24h1v1h-1zM14 24h1v1h-1zM16 24h1v1h-1zM17 24h1v1h-1zM20 24h1v1h-1zM24 24h1v1h-1zM25 24h1v1h-1zM26 24h1v1h-1zM27 24h1v1h-1zM28 24h1v1h-1zM29 24h1v1h-1zM8 25h1v1h-1zM12 25h1v1h-1zM13 25h1v1h-1zM16 25h1v1h-1zM19 25h1v1h-1zM24 25h1v1h-1zM28 25h1v1h-1zM29 25h1v1h-1zM30 25h1v1h-1zM31 25h1v1h-1zM32 25h1v1h-1zM0 26h1v1h-1zM1 26h1v1h-1zM2 26h1v1h-1zM3 26h1v1h-1zM4 26h1v1h-1zM5 26h1v1h-1zM6 26h1v1h-1zM9 26h1v1h-1zM10 26h1v1h-1zM15 26h1v1h-1zM19 26h1v1h-1zM20 26h1v1h-1zM21 26h1v1h-1zM23 26h1v1h-1zM24 26h1v1h-1zM26 26h1v1h-1zM28 26h1v1h-1zM31 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h1v1h-1zM11 27h1v1h-1zM13 27h1v1h-1zM15 27h1v1h-1zM17 27h1v1h-1zM18 27h1v1h-1zM19 27h1v1h-1zM23 27h1v1h-1zM24 27h1v1h-1zM28 27h1v1h-1zM29 27h1v1h-1zM30 27h1v1h-1zM31 27h1v1h-1zM0 28h1v1h-1zM2 28h1v1h-1zM3 28h1v1h-1zM4 28h1v1h-1zM6 28h1v1h-1zM9 28h1v1h-1zM11 28h1v1h-1zM15 28h1v1h-1zM16 28h1v1h-1zM20 28h1v1h-1zM21 28h1v1h-1zM24 28h1v1h-1zM25 28h1v1h-1zM26 28h1v1h-1zM27 28h1v1h-1zM28 28h1v1h-1zM31 28h1v1h-1zM32 28h1v1h-1zM0 29h1v1h-1zM2 29h1v1h-1zM3 29h1v1h-1zM4 29h1v1h-1zM6 29h1v1h-1zM11 29h1v1h-1zM12 29h1v1h-1zM13 29h1v1h-1zM14 29h1v1h-1zM15 29h1v1h-1zM19 29h1v1h-1zM21 29h1v1h-1zM22 29h1v1h-1zM23 29h1v1h-1zM24 29h1v1h-1zM25 29h1v1h-1zM27 29h1v1h-1zM28 29h1v1h-1zM29 29h1v1h-1zM31 29h1v1h-1zM0 30h1v1h-1zM2 30h1v1h-1zM3 30h1v1h-1zM4 30h1v1h-1zM6 30h1v1h-1zM9 30h1v1h-1zM11 30h1v1h-1zM13 30h1v1h-1zM14 30h1v1h-1zM16 30h1v1h-1zM17 30h1v1h-1zM22 30h1v1h-1zM28 30h1v1h-1zM30 30h1v1h-1zM31 30h1v1h-1zM32 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM9 31h1v1h-1zM10 31h1v1h-1zM13 31h1v1h-1zM14 31h1v1h-1zM18 31h1v1h-1zM20 31h1v1h-1zM22 31h1v1h-1zM23 31h1v1h-1zM26 31h1v1h-1zM30 31h1v1h-1zM0 32h1v1h-1zM1 32h1v1h-1zM2 32h1v1h-1zM3 32h1v1h-1zM4 32h1v1h-1zM5 32h1v1h-1zM6 32h1v1h-1zM9 32h1v1h-1zM10 32h1v1h-1zM11 32h1v1h-1zM12 32h1v1h-1zM13 32h1v1h-1zM14 32h1v1h-1zM18 32h1v1h-1zM19 32h1v1h-1zM22 32h1v1h-1zM23 32h1v1h-1zM24 32h1v1h-1zM25 32h1v1h-1zM30 32h1v1h-1zM31 32h1v1h-1z"/><g transform="translate(16.5 16.5)"><rect x="-3.1" y="-3.1" width="6.2" height="6.2" rx="1.2" fill="var(--bg)"/><g transform="scale(0.048) translate(-52 -50)" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><circle cx="44" cy="52" r="34"/><path d="M79 40 H88 Q95 40 95 47 V57 Q95 64 88 64 H79"/><circle cx="66" cy="28" r="8" fill="#FF3B2F" stroke="var(--bg)" stroke-width="3"/></g></g></svg></div>
+        <p class="qrurl">tbilisicoffeemap.com</p>
+        <button class="btn" type="button" id="share-app" data-t="sharebtn">Share a link</button>
+      </div>
     </div>
 
     <div class="panel" id="panel-about" hidden>
@@ -714,6 +739,7 @@ nav button:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
     <div class="fx s2 mlinks">
       <button type="button" data-go="suggest"><span><b data-t="hsug">Suggest a shop</b><small data-t="msugd">Know a place we're missing?</small></span><i aria-hidden="true">→</i></button>
       <button type="button" data-go="shops"><span><b data-t="mshop">For coffee shops</b><small data-t="mshopd">Add your shop to the map</small></span><i aria-hidden="true">→</i></button>
+      <button type="button" data-go="share"><span><b data-t="mshare">Share the app</b><small data-t="mshared">QR code and a link for friends</small></span><i aria-hidden="true">→</i></button>
       <button type="button" data-go="about"><span><b data-t="seg3">About</b><small data-t="maboutd">How to read the map · credits</small></span><i aria-hidden="true">→</i></button>
     </div>
     <span class="fx s3 mlab" style="margin-top:26px"><span data-t="prefh">Your preferences</span> · <span data-t="kept">Kept on this phone</span></span>
@@ -764,6 +790,8 @@ if(!["list","faves","map"].includes(prefs.start)) prefs.start = "list";
 let lang = store.get("cm-lang", "en") === "ka" ? "ka" : "en";
 const tr = (en, ka) => lang === "ka" ? ka : en;
 const KA = {
+  mshare:"აპის გაზიარება", mshared:"QR კოდი და ბმული მეგობრებისთვის", hshare:"გაუზიარე აპი", sharebtn:"ბმულის გაზიარება",
+  sharep:"დაეხმარე მეგობრებს თბილისში კარგი ყავის პოვნაში. დაუმიზნონ კამერა კოდს, ან გაუგზავნე ბმული.",
   brand:"თბილისის<br>ყავის რუკა", opennow:"ახლა ღიაა", favtitle:"რჩეულები",
   seg1:"შემოთავაზება", seg2:"კაფეებისთვის", seg3:"შესახებ",
   hsug:"შემოგვთავაზე კაფე", leadsug:"იცი ადგილი, რომელიც აქ არ არის, ან რამე არასწორადაა მითითებული? მოგვწერე.",
@@ -783,7 +811,7 @@ const KA = {
 };
 const KA_PH = {q:"მოძებნე კაფე, უბანი, ქუჩა", sname:"მაგ. Kokoro Coffee", sarea:"მაგ. ვაკე, ჭავჭავაძის გამზ.", swhy:"კარგი V60, დილით მშვიდია…",
   pname:"შენი კაფის სახელი", paddr:"ქუჩა, ნომერი, უბანი", phours:"ორშ–პარ 08–21, შაბ–კვ 09–20"};
-const KA_ARIA = {menuopen:"მენიუ", menuclose:"მენიუს დახურვა", menu:"მენიუ", q:"კაფეების ძებნა", qclear:"ძებნის გასუფთავება", filters:"ფილტრები", heroaria:"ახლა ღია კაფეები", favearia:"შენახული კაფეები",
+const KA_ARIA = {qraria:"QR კოდი tbilisicoffeemap.com-ისთვის", menuopen:"მენიუ", menuclose:"მენიუს დახურვა", menu:"მენიუ", q:"კაფეების ძებნა", qclear:"ძებნის გასუფთავება", filters:"ფილტრები", heroaria:"ახლა ღია კაფეები", favearia:"შენახული კაფეები",
   share:"რჩეულების გაზიარება სურათად", logo:"ლოგო: ფინჯანი ზემოდან, წითელი ნიშნულით", details:"კაფის დეტალები", photo:"ფოტო", closephoto:"ფოტოს დახურვა"};
 const AREA_KA = {"Avlabari":"ავლაბარი","Bagebi":"ბაგები","Chugureti":"ჩუღურეთი","Dedaena Park":"დედაენის პარკი","Marjanishvili":"მარჯანიშვილი","Mtatsminda":"მთაწმინდა",
   "Old Tbilisi":"ძველი თბილისი","Rustaveli":"რუსთაველი","Saburtalo":"საბურთალო","Sololaki":"სოლოლაკი","Station Square":"სადგურის მოედანი","Vake":"ვაკე","Vera":"ვერა"};
@@ -1943,10 +1971,22 @@ function mailtoUrl(subject, rows){
 const picked = attr => [...document.querySelectorAll(`[${attr}][aria-pressed="true"]`)].map(b => b.getAttribute(attr)).join(", ");
 function sendMail(url){ toast(tr("Opening your email app…","იხსნება ელფოსტის აპი…")); location.href = url; }
 
+/* share the app: the phone's share sheet, else copy the link */
+document.getElementById("share-app").onclick = async () => {
+  const url = "https://tbilisicoffeemap.com";
+  countEvent("share-app", "Share the app");
+  if(navigator.share){
+    try{ await navigator.share({title:"Tbilisi Coffee Map", text:tr("Specialty coffee in Tbilisi, on one map.","თბილისის სპეშელთი ყავა ერთ რუკაზე."), url}); return; }
+    catch(e){ if(e && e.name === "AbortError") return; }
+  }
+  try{ await navigator.clipboard.writeText(url); toast(tr("Link copied","ბმული დაკოპირდა")); }
+  catch(e){ toast(url); }
+};
 document.getElementById("seg").addEventListener("click", e => {
   const b = e.target.closest("button"); if(!b) return;
   document.querySelectorAll("#seg button").forEach(x => x.setAttribute("aria-selected", x === b));
   document.querySelectorAll(".panel").forEach(p => p.hidden = p.id !== "panel-" + b.dataset.panel);
+  document.getElementById("seg").style.display = b.dataset.panel === "share" ? "none" : "";   // the share page stands on its own
   document.getElementById("contact").scrollTo(0, 0);
 });
 function prefClick(e){
