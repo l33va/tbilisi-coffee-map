@@ -191,7 +191,8 @@ main{position:fixed;top:0;bottom:0;left:0;right:0}   /* lists run under both gla
 .view.active{display:block}
 #list,#faves,#contact{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(var(--hdr-b) + 10px) 20px calc(var(--nav) + var(--safe-b) + 24px);
   scroll-padding:calc(var(--hdr-b) + 10px) 0 calc(var(--nav) + var(--safe-b) + 10px)}
-#map{top:calc(var(--hdr-b) + 8px)}
+/* the map runs under the floating header; its controls start below the glass */
+.leaflet-top{top:calc(var(--hdr-b) + 4px) !important}
 body.v-faves .search,body.v-faves .chips,body.v-contact .search,body.v-contact .chips{display:none}
 #map{background:var(--bg)}
 /* map tiles go black and white, then dark */
@@ -2047,7 +2048,10 @@ function fitToMatches(){
   if(!map || !query || !mapShown()) return;
   const list = visible();
   if(list.length === 1){ map.setView(list[0].coords, 16); openSheet(list[0].id, false); }
-  else if(list.length > 1) map.fitBounds(L.latLngBounds(list.map(s => s.coords)), {padding:[40,40], maxZoom:16});
+  else if(list.length > 1){   // keep pins clear of the glass header and the tab pill
+    const top = document.querySelector("header").getBoundingClientRect().bottom, bot = innerHeight - navEl.getBoundingClientRect().top;
+    map.fitBounds(L.latLngBounds(list.map(s => s.coords)), {paddingTopLeft:[40, top + 30], paddingBottomRight:[40, bot + 30], maxZoom:16});
+  }
 }
 let qTimer;
 qEl.addEventListener("input", () => {
