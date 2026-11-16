@@ -51,7 +51,7 @@ function cmApplyTheme(choice){
   --shut:#777;          /* closed pins */
   --row-active:#141414;
   --nav-off:#8A8A8A;
-  --pill:rgba(40,40,40,.55); --pill-on:rgba(244,244,244,.88); --pill-edge:rgba(255,255,255,.2); --pill-shadow:rgba(0,0,0,.35);   /* bottom tab pills */
+  --pill:rgba(28,28,28,.6); --pill-in:rgba(255,255,255,.14); --pill-edge:rgba(255,255,255,.16); --pill-shadow:rgba(0,0,0,.45);   /* floating glass: header and tab pill */
   --press:rgba(244,244,244,.09);
   --attr-bg:rgba(10,10,10,.75);
   --sel-ring:rgba(244,244,244,.25);
@@ -69,7 +69,7 @@ function cmApplyTheme(choice){
   --display:"Archivo Black","Georgian Display","Arial Black",Impact,sans-serif;
   --mono:"IBM Plex Mono","Georgian Text",ui-monospace,Menlo,monospace;
   --hdr:150px;
-  --nav:64px;
+  --nav:72px;   /* space kept clear for the floating tab pill (62 px + 10 px gap) */
   --safe-b:env(safe-area-inset-bottom,0px);
 }
 /* ---------- Light theme: warm off-white, ink, a deeper red ---------- */
@@ -80,7 +80,7 @@ html[data-theme="light"]{
   --nw1:rgba(0,127,128,.16); --nw2:rgba(0,156,156,.08); --nw3:rgba(0,156,156,0);
   --nb-halo:rgba(0,127,128,.2); --nb-glow:rgba(0,156,156,.45);
   --on-red:#FFFFFF; --note:#2A2A28; --shut:#A9A9A3; --row-active:#E9E9E4; --nav-off:#8E8E89;
-  --pill:rgba(255,255,255,.6); --pill-on:rgba(10,10,10,.86); --pill-edge:rgba(10,10,10,.14); --pill-shadow:rgba(0,0,0,.14);
+  --pill:rgba(255,255,255,.66); --pill-in:rgba(10,10,10,.08); --pill-edge:rgba(10,10,10,.1); --pill-shadow:rgba(0,0,0,.14);
   --press:rgba(10,10,10,.06); --attr-bg:rgba(244,244,240,.8); --sel-ring:rgba(10,10,10,.18); --me-fill:rgba(10,10,10,.12);
   --pic-bg:#E9E9E4; --lb-bg:rgba(244,244,240,.97);
   --glass-1:rgba(255,255,255,.18); --glass-2:rgba(255,255,255,.62); --glass-fb:rgba(244,244,240,.96);
@@ -104,10 +104,16 @@ html[data-theme="light"] .grain rect{filter:url(#grainf-l)}
 html[data-theme="light"] [filter="url(#diffuse)"]{filter:url(#diffuse-l)}
 
 /* ---------- Header ---------- */
+/* the header floats as a rounded frosted glass panel; lists scroll underneath it */
 header{
-  position:fixed;inset:0 0 auto 0;z-index:1000;background:var(--bg);color:var(--fg);
-  padding:calc(env(safe-area-inset-top,0px) + 14px) 20px 12px;border-bottom:1px solid var(--line);
+  position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);left:10px;right:10px;z-index:1000;color:var(--fg);
+  padding:12px 12px 12px 14px;border-radius:28px;
+  background-color:var(--pill);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);
+  box-shadow:inset 0 0 0 1px var(--pill-edge),inset 0 1px 0 var(--pill-edge),0 12px 32px var(--pill-shadow);
 }
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){header{background-color:var(--glass-fb)}}
+/* a soft fade above the floating header, so scrolled text doesn't show behind the status bar */
+body::before{content:"";position:fixed;left:0;right:0;top:0;height:calc(env(safe-area-inset-top,0px) + 22px);z-index:999;pointer-events:none;background:linear-gradient(var(--bg) 45%,transparent)}
 .meta-row{
   display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
   font-size:9px;line-height:1.4;letter-spacing:.04em;text-transform:uppercase;color:var(--dim);
@@ -153,15 +159,15 @@ header{
 /* Reduce motion (from the menu, or the phone's own setting) */
 html.calm *,html.calm *::before,html.calm *::after{animation-duration:0s !important;animation-delay:0s !important;transition-duration:0s !important;transition-delay:0s !important}
 .search{position:relative;margin-top:12px}
-.search svg{position:absolute;left:12px;top:50%;width:14px;height:14px;transform:translateY(-50%);color:var(--fg);pointer-events:none}
+.search svg{position:absolute;left:14px;top:50%;width:14px;height:14px;transform:translateY(-50%);color:var(--fg);pointer-events:none}
 .search input{
   width:100%;font:inherit;font-size:16px;color:var(--fg);background:transparent;
-  border:1px solid var(--fg);border-radius:0;padding:8px 38px 8px 36px;outline:none;-webkit-appearance:none;appearance:none;
+  border:1px solid var(--fg);border-radius:999px;padding:8px 40px 8px 38px;outline:none;-webkit-appearance:none;appearance:none;
 }
 .search input::placeholder{color:var(--dim);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
 .search input:focus{border-color:var(--red)}
 .search input::-webkit-search-cancel-button{display:none}
-.search button{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:32px;height:32px;color:var(--dim);font-size:20px;line-height:1}
+.search button{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:32px;height:32px;color:var(--dim);font-size:20px;line-height:1}
 .search button[hidden]{display:none}
 .chips{
   display:flex;gap:8px;margin-top:10px;overflow-x:auto;scrollbar-width:none;
@@ -172,17 +178,20 @@ html.calm *,html.calm *::before,html.calm *::after{animation-duration:0s !import
 .chips.end{--fr:0px}
 .chip{
   flex:0 0 auto;font-family:var(--mono);font-size:10px;font-weight:500;line-height:1;text-transform:uppercase;letter-spacing:.05em;
-  padding:8px 10px;border:1px solid var(--hair);color:var(--fg);
+  padding:8px 12px;border:1px solid var(--hair);border-radius:999px;color:var(--fg);
 }
 .chip[aria-pressed="true"]{background:var(--fg);border-color:var(--fg);color:var(--bg)}
 .chip[data-k="new"]{border-color:transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(90deg,var(--nb1),var(--nb2)) border-box}
 .chip[data-k="new"][aria-pressed="true"]{background:linear-gradient(90deg,var(--nb1),var(--nb2));color:var(--on-new)}
 
 /* ---------- Views ---------- */
-main{position:fixed;top:var(--hdr);bottom:0;left:0;right:0}   /* content runs under the glass tab pills */
+main{position:fixed;top:0;bottom:0;left:0;right:0}   /* lists run under both glass layers */
+:root{--hdr-b:calc(var(--hdr) + env(safe-area-inset-top,0px) + 8px)}   /* bottom edge of the floating header */
 .view{position:absolute;inset:0;display:none}
 .view.active{display:block}
-#list,#faves,#contact{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 20px calc(var(--nav) + var(--safe-b) + 24px)}
+#list,#faves,#contact{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(var(--hdr-b) + 10px) 20px calc(var(--nav) + var(--safe-b) + 24px);
+  scroll-padding:calc(var(--hdr-b) + 10px) 0 calc(var(--nav) + var(--safe-b) + 10px)}
+#map{top:calc(var(--hdr-b) + 8px)}
 body.v-faves .search,body.v-faves .chips,body.v-contact .search,body.v-contact .chips{display:none}
 #map{background:var(--bg)}
 /* map tiles go black and white, then dark */
@@ -192,7 +201,7 @@ html[data-theme="light"] #map .leaflet-tile-pane{filter:grayscale(1) contrast(.9
 
 /* ---------- Hero: the open count, diffused ---------- */
 .hero{position:relative;margin:0 -20px}
-.slim{position:sticky;top:0;z-index:5;height:46px;margin:0 -20px -46px;padding:0 20px;display:flex;align-items:center;gap:10px;background:var(--bg);border-bottom:1px solid var(--line);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s ease,transform .2s ease,visibility 0s .2s}
+.slim{position:sticky;top:0;z-index:5;height:46px;margin:0 -10px -46px;padding:0 14px;border-radius:23px;display:flex;align-items:center;gap:10px;background-color:var(--pill);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);box-shadow:inset 0 0 0 1px var(--pill-edge),0 8px 24px var(--pill-shadow);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s ease,transform .2s ease,visibility 0s .2s}
 .slim.on{opacity:1;visibility:visible;transform:none;transition:opacity .2s ease,transform .2s ease}
 .slim b{font-family:var(--display);font-weight:400;font-size:30px;line-height:1;letter-spacing:-.04em;opacity:.6;filter:blur(1.6px)}
 .slim span{font-family:var(--display);font-size:17px;line-height:1;text-transform:uppercase}
@@ -249,22 +258,24 @@ html[data-theme="light"] #map .leaflet-tile-pane{filter:grayscale(1) contrast(.9
 /* bottom tabs: three frosted glass pills that float over the content.
    They slide away when a list scrolls down and come back when it scrolls up. */
 nav{
-  position:fixed;left:0;right:0;bottom:0;z-index:1000;height:calc(var(--nav) + var(--safe-b));
-  padding:0 16px var(--safe-b);display:flex;align-items:center;gap:8px;pointer-events:none;
+  position:fixed;left:16px;right:16px;bottom:calc(var(--safe-b) + 10px);z-index:1000;height:62px;box-sizing:border-box;
+  padding:5px;border-radius:31px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;
+  background-color:var(--pill);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);
+  box-shadow:inset 0 0 0 1px var(--pill-edge),inset 0 1px 0 var(--pill-edge),0 12px 32px var(--pill-shadow);
   transition:transform .28s cubic-bezier(.3,0,.2,1);
 }
-nav.hide{transform:translateY(110%)}
-nav:has(:focus-visible){transform:none}   /* keyboard focus keeps the pills in view; a tap does not */
+nav.hide{transform:translateY(calc(100% + 10px + var(--safe-b) + 24px))}
+nav:has(:focus-visible){transform:none}   /* keyboard focus keeps the pill in view; a tap does not */
 nav button{
-  flex:1;min-width:0;height:46px;border-radius:23px;pointer-events:auto;
-  font-family:var(--display);font-size:16px;line-height:1;text-transform:uppercase;color:var(--fg);
-  background-color:var(--pill);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
-  box-shadow:inset 0 0 0 1px var(--pill-edge),0 8px 24px var(--pill-shadow);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 8px;
+  min-width:0;border-radius:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.08em;line-height:1;text-transform:uppercase;color:var(--nav-off);
+  transition:background-color .2s ease,color .2s ease;
 }
-nav button[aria-selected="true"]{background-color:var(--pill-on);color:var(--bg);box-shadow:inset 0 0 0 1px var(--pill-on),0 8px 24px var(--pill-shadow)}
-nav button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
-@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){nav button{background-color:var(--glass-fb)}}
+nav button svg{width:22px;height:22px;flex:none}
+nav button span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+nav button[aria-selected="true"]{color:var(--fg);background-color:var(--pill-in);box-shadow:inset 0 0 0 1px var(--pill-edge)}
+nav button:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){nav{background-color:var(--glass-fb)}}
 .leaflet-bottom{bottom:calc(var(--nav) + var(--safe-b)) !important;z-index:800 !important}   /* under an open shop sheet */
 
 /* ---------- Map markers, controls, sheet ---------- */
@@ -679,9 +690,9 @@ nav button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 </main>
 
 <nav>
-  <button id="tab-list" aria-selected="true" data-t="nlist">List</button>
-  <button id="tab-faves" aria-selected="false" data-t="nfaves">Faves</button>
-  <button id="tab-map" aria-selected="false" data-t="nmap">Map</button>
+  <button id="tab-list" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M4 6H20M4 12H20M4 18H14"/></svg><span data-t="nlist">List</span></button>
+  <button id="tab-faves" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7.2-4.6-9.4-9.2A5.4 5.4 0 0 1 12 6.3a5.4 5.4 0 0 1 9.4 5.5C19.2 16.4 12 21 12 21z"/></svg><span data-t="nfaves">Faves</span></button>
+  <button id="tab-map" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.2"/></svg><span data-t="nmap">Map</span></button>
 </nav>
 <div class="glass" id="glass" role="dialog" aria-modal="true" aria-label="Shop details" data-ta="details"><div class="gc" id="gc"></div></div>
 <div class="glass" id="rglass" role="dialog" aria-modal="true" aria-label="Roasters"><div class="gc" id="rgc"></div></div>
