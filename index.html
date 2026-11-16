@@ -1211,6 +1211,7 @@ const navEl = document.querySelector("nav");
     else if(d < -6) navEl.classList.remove("hide");
     if(Math.abs(d) > 6) last = y; }, {passive:true}); });
 const TAB_ORDER = ["list","faves","map"];
+let showRun = 0;   // the latest tab switch wins if taps come quickly
 function show(view){
   const from = TAB_ORDER.indexOf(current), to = TAB_ORDER.indexOf(view), changed = view !== current;
   current = view;
@@ -1219,10 +1220,22 @@ function show(view){
     const tab = document.getElementById("tab-"+view);
     if(tab){ tab.classList.remove("pop"); void tab.offsetWidth; tab.classList.add("pop"); }
     const el = document.getElementById(view), dir = (from < 0 || to < 0) ? 0 : Math.sign(to - from);
-    if(el && el.animate) el.animate([{opacity:0, transform:`translateX(${dir*28}px)`},{opacity:1, transform:"none"}], {duration:300, easing:"cubic-bezier(.2,.8,.2,1)"});
+    // Draw the new page invisibly as its own layer for two frames, then slide it in.
+    // Starting the slide on the same frame as the page appears made iPhone Safari stutter.
+    if(el && el.animate){
+      const run = ++showRun;
+      el.style.willChange = "transform, opacity"; el.style.opacity = "0";
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if(run !== showRun){ el.style.opacity = ""; el.style.willChange = ""; return; }
+        const a = el.animate([{opacity:0, transform:`translate3d(${dir*24}px,0,0)`},{opacity:1, transform:"translate3d(0,0,0)"}], {duration:280, easing:"cubic-bezier(.2,.8,.2,1)"});
+        el.style.opacity = "";
+        a.onfinish = a.oncancel = () => { if(run === showRun) el.style.willChange = ""; };
+      }));
+    }
   }
   VIEWS.forEach(v => {
-    document.getElementById(v).classList.toggle("active", v===view);
+    const ve = document.getElementById(v); if(v !== view){ ve.style.opacity = ""; ve.style.willChange = ""; }
+    ve.classList.toggle("active", v===view);
     const t = document.getElementById("tab-"+v); if(t) t.setAttribute("aria-selected", v===view);
   });
   updateHeader(); navEl.classList.remove("hide");
