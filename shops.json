@@ -4017,7 +4017,8 @@
         }
       ],
       "pets": true,
-      "laptop": true
+      "laptop": true,
+      "delivery": "https://wolt.com/en/geo/tbilisi/venue/abyssinia-specialty-coffee"
     }
   ]
 }
