@@ -3433,7 +3433,29 @@
       "prices": {
         "espresso": 8,
         "cappuccino": 11
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/chicos-1.webp",
+          "alt": "Red bar under a concrete ceiling, with tall windows onto the trees"
+        },
+        {
+          "src": "photos/chicos-2.webp",
+          "alt": "Lounge with a long bench, round tables and soft cream chairs"
+        },
+        {
+          "src": "photos/chicos-3.webp",
+          "alt": "Window seat with a palm, looking out onto the street"
+        },
+        {
+          "src": "photos/chicos-4.webp",
+          "alt": "Long red table in the hall with glass-block walls"
+        },
+        {
+          "src": "photos/chicos-5.webp",
+          "alt": "Matcha latte with pink mousse, a burger with fries and a salad"
+        }
+      ]
     },
     {
       "id": "breakfast-is",
