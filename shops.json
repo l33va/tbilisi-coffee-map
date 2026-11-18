@@ -3102,7 +3102,29 @@
         "espresso": 7,
         "cappuccino": 10,
         "batch": 8
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/limona-bistro-1.webp",
+          "alt": "Shaded courtyard with rattan chairs and a lion-head fountain"
+        },
+        {
+          "src": "photos/limona-bistro-2.webp",
+          "alt": "Round tables around a tree in the courtyard"
+        },
+        {
+          "src": "photos/limona-bistro-3.webp",
+          "alt": "Lion-head wall fountain beside pots of oleander"
+        },
+        {
+          "src": "photos/limona-bistro-4.webp",
+          "alt": "Syrniki with yoghurt, berries and jam"
+        },
+        {
+          "src": "photos/limona-bistro-5.webp",
+          "alt": "Green smoothie with a lemon wedge"
+        }
+      ]
     },
     {
       "id": "they-said-books",
