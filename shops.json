@@ -3455,7 +3455,12 @@
           "src": "photos/chicos-5.webp",
           "alt": "Matcha latte with pink mousse, a burger with fries and a salad"
         }
-      ]
+      ],
+      "roaster": [
+        "Shavi"
+      ],
+      "pets": true,
+      "laptop": true
     },
     {
       "id": "breakfast-is",
