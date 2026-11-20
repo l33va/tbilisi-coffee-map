@@ -2595,7 +2595,21 @@
       "place_id": "ChIJpy8IxAQNREARiugZxiwSFcM",
       "note": "Cosy little café in Chugureti with coffee, matcha drinks, teas and cake. Open 9:00–21:00 every day.",
       "note_ka": "მყუდრო პატარა კაფე ჩუღურეთში: ყავა, მატჩას სასმელები, ჩაი და ნამცხვრები. ღიაა ყოველდღე 9:00–21:00.",
-      "pets": true
+      "pets": true,
+      "photos": [
+        {
+          "src": "photos/anxious-and-tired-1.webp",
+          "alt": "Pink neon owl in the front window"
+        },
+        {
+          "src": "photos/anxious-and-tired-2.webp",
+          "alt": "Bar at the back, seen through the window past a mustard sofa"
+        },
+        {
+          "src": "photos/anxious-and-tired-3.webp",
+          "alt": "Iced espresso tonic on an outdoor table by the brick wall"
+        }
+      ]
     },
     {
       "id": "krab",
