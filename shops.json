@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20",
+  "updated": "2026-11-21",
   "shops": [
     {
       "id": "shavi-original",
@@ -4151,6 +4151,35 @@
       "pets": true,
       "laptop": true,
       "delivery": "https://wolt.com/en/geo/tbilisi/venue/abyssinia-specialty-coffee"
+    },
+    {
+      "id": "western-coffee",
+      "name": "Western Coffee",
+      "area": "Vake",
+      "address": "2a Veriko Anjaparidze St",
+      "coords": [
+        41.7110072,
+        44.782886
+      ],
+      "hours": [
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        ""
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "westerncoffee.ge",
+      "place_id": "ChIJVZ04VCYNREARaPV7lsKre2o",
+      "note": "Small neighbourhood café in Vake with coffee and sandwiches. Closed on Sundays.",
+      "note_ka": "პატარა უბნის კაფე ვაკეში, ყავით და სენდვიჩებით. კვირას დაკეტილია."
     }
   ]
 }
