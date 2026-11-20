@@ -4155,7 +4155,7 @@
     {
       "id": "western-coffee",
       "name": "Western Coffee",
-      "area": "Vake",
+      "area": "Vera",
       "address": "2a Veriko Anjaparidze St",
       "coords": [
         41.7110072,
@@ -4178,8 +4178,8 @@
       "score": null,
       "instagram": "westerncoffee.ge",
       "place_id": "ChIJVZ04VCYNREARaPV7lsKre2o",
-      "note": "Small neighbourhood café in Vake with coffee and sandwiches. Closed on Sundays.",
-      "note_ka": "პატარა უბნის კაფე ვაკეში, ყავით და სენდვიჩებით. კვირას დაკეტილია."
+      "note": "Small neighbourhood café in Vera with coffee and sandwiches. Closed on Sundays.",
+      "note_ka": "პატარა უბნის კაფე ვერაზე, ყავით და სენდვიჩებით. კვირას დაკეტილია."
     }
   ]
 }
