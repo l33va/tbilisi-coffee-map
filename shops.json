@@ -4173,13 +4173,22 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "westerncoffee.ge",
       "place_id": "ChIJVZ04VCYNREARaPV7lsKre2o",
       "note": "Small neighbourhood café in Vera with coffee and sandwiches. Closed on Sundays.",
-      "note_ka": "პატარა უბნის კაფე ვერაზე, ყავით და სენდვიჩებით. კვირას დაკეტილია."
+      "note_ka": "პატარა უბნის კაფე ვერაზე, ყავით და სენდვიჩებით. კვირას დაკეტილია.",
+      "prices": {
+        "espresso": 8,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": 10
+      }
     }
   ]
 }
