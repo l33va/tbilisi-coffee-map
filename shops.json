@@ -3353,7 +3353,29 @@
       "instagram": "maluli.cafe",
       "place_id": "ChIJF02D_BANREARGCFin0CCyhU",
       "note": "Quiet courtyard café with handmade chocolates, brunch and evening drinks. Open till 22:00.",
-      "note_ka": "მშვიდი კაფე ეზოში, ხელნაკეთი შოკოლადით, საუზმით და საღამოს სასმელებით. ღიაა 22:00-მდე."
+      "note_ka": "მშვიდი კაფე ეზოში, ხელნაკეთი შოკოლადით, საუზმით და საღამოს სასმელებით. ღიაა 22:00-მდე.",
+      "photos": [
+        {
+          "src": "photos/maluli-1.webp",
+          "alt": "Terrace by the brick wall with wooden chairs"
+        },
+        {
+          "src": "photos/maluli-2.webp",
+          "alt": "Window booth with a painted wall behind"
+        },
+        {
+          "src": "photos/maluli-3.webp",
+          "alt": "Toast with salmon and salad on the menu sheet"
+        },
+        {
+          "src": "photos/maluli-4.webp",
+          "alt": "Espresso pouring into a cup, and an omelette with toast and salad"
+        },
+        {
+          "src": "photos/maluli-5.webp",
+          "alt": "Iced latte on a dark wooden table"
+        }
+      ]
     },
     {
       "id": "fika",
