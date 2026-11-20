@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18",
+  "updated": "2026-11-20",
   "shops": [
     {
       "id": "shavi-original",
@@ -3800,13 +3800,26 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60",
+        "batch"
       ],
       "score": null,
       "instagram": "cavis.coffee",
       "place_id": "ChIJH0UgtilzREARxkBfjbKP80E",
       "note": "Relaxed café, formerly Salut, with a short breakfast menu and homemade cakes. Good for working or a quick bite.",
-      "note_ka": "მშვიდი კაფე (ყოფილი Salut) მოკლე საუზმის მენიუთი და სახლის ნამცხვრებით. კარგია სამუშაოდ ან სწრაფი წახემსებისთვის."
+      "note_ka": "მშვიდი კაფე (ყოფილი Salut) მოკლე საუზმის მენიუთი და სახლის ნამცხვრებით. კარგია სამუშაოდ ან სწრაფი წახემსებისთვის.",
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          10,
+          12
+        ],
+        "batch": [
+          8,
+          11
+        ]
+      }
     },
     {
       "id": "black-cup",
