@@ -3819,7 +3819,21 @@
           8,
           11
         ]
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/cavis-1.webp",
+          "alt": "Red-brick shopfront with a cat on the doorstep"
+        },
+        {
+          "src": "photos/cavis-2.webp",
+          "alt": "Bar with the menu painted on the wall and paper lanterns overhead"
+        },
+        {
+          "src": "photos/cavis-3.webp",
+          "alt": "Ordering at the counter under the wall menu"
+        }
+      ]
     },
     {
       "id": "black-cup",
