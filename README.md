@@ -63,7 +63,7 @@ If you change `index.html`, the icons or anything in `vendor/` (map library, fon
 
 ## Credits
 
-Map data © OpenStreetMap contributors. Map library: Leaflet (license in `vendor/leaflet/LICENSE`).
+Map: MapTiler (the "dataviz" style in light, "dataviz-dark" in dark), labels in the app's language. Map data © MapTiler © OpenStreetMap contributors. Libraries: Leaflet (license in `vendor/leaflet/LICENSE`), MapLibre GL and its Leaflet bridge (licenses in `vendor/maplibre/`). The MapTiler key (`MT_KEY` in index.html) is public by design and only works on tbilisicoffeemap.com, www.tbilisicoffeemap.com and l33va.github.io; it is set on Levan's MapTiler account. If the map can't load there (very old phone, key problem), the app falls back to plain OpenStreetMap tiles.
 Fonts: Archivo Black and IBM Plex Mono, bundled in `vendor/fonts/` (SIL Open Font License; license files included).
 
 ## Visitor counts

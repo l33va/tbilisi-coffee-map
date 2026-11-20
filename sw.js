@@ -9,7 +9,7 @@ const VERSION = "v56";
 const SHELL = `shell-${VERSION}`;
 const FONTS = "fonts";
 const TILES = "tiles";
-const MAX_TILES = 400;
+const MAX_TILES = 1500;   // map pieces, fonts and styles you have looked at
 const NETWORK_TIMEOUT_MS = 3000;
 
 const SHELL_FILES = [
@@ -19,6 +19,9 @@ const SHELL_FILES = [
   "manifest.json",
   "vendor/leaflet/leaflet.js",
   "vendor/leaflet/leaflet.css",
+  "vendor/maplibre/maplibre-gl.js",
+  "vendor/maplibre/maplibre-gl.css",
+  "vendor/maplibre/leaflet-maplibre-gl.js",
   "vendor/fonts/fonts.css",
   "vendor/fonts/archivo-black-latin-400-normal.woff2",
   "vendor/fonts/ibm-plex-mono-latin-400-normal.woff2",
@@ -56,7 +59,7 @@ self.addEventListener("fetch", event => {
     return;
   }
   // Map tiles: keep what's been viewed
-  if (url.hostname.endsWith("tile.openstreetmap.org")) {
+  if (url.hostname === "api.maptiler.com" || url.hostname.endsWith("tile.openstreetmap.org")) {
     event.respondWith(cacheFirst(req, TILES, MAX_TILES));
     return;
   }
