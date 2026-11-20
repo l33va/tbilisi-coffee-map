@@ -4210,7 +4210,9 @@
           "src": "photos/western-coffee-5.webp",
           "alt": "Cream-filled doughnuts in front of the menu"
         }
-      ]
+      ],
+      "pets": true,
+      "laptop": true
     }
   ]
 }
