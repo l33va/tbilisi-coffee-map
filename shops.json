@@ -4188,7 +4188,29 @@
           12
         ],
         "batch": 10
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/western-coffee-1.webp",
+          "alt": "Western Coffee sign with a cowboy and a cactus on the brick wall"
+        },
+        {
+          "src": "photos/western-coffee-2.webp",
+          "alt": "Shopfront lit up at night with people outside"
+        },
+        {
+          "src": "photos/western-coffee-3.webp",
+          "alt": "Wooden tables with laptops under a paper lantern"
+        },
+        {
+          "src": "photos/western-coffee-4.webp",
+          "alt": "Two cats on the rug and the mustard sofa"
+        },
+        {
+          "src": "photos/western-coffee-5.webp",
+          "alt": "Cream-filled doughnuts in front of the menu"
+        }
+      ]
     }
   ]
 }
