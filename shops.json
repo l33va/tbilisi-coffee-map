@@ -2721,7 +2721,17 @@
           12
         ],
         "batch": 10
-      }
+      },
+      "photos": [
+        {
+          "src": "photos/slow-chugureti-1.webp",
+          "alt": "Dark red door with the Slow logo on the glass"
+        },
+        {
+          "src": "photos/slow-chugureti-2.webp",
+          "alt": "Blue tables and chairs outside under the old painted shop sign"
+        }
+      ]
     },
     {
       "id": "slow-vake",
