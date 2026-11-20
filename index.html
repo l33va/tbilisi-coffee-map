@@ -196,8 +196,11 @@ main{position:fixed;top:0;bottom:0;left:0;right:0}   /* lists run under both gla
 body.v-faves .search,body.v-faves .chips,body.v-contact .search,body.v-contact .chips{display:none}
 #map{background:var(--bg)}
 /* map tiles go black and white, then dark */
-#map .leaflet-tile-pane{filter:invert(1) grayscale(1) brightness(.8) contrast(1.15)}
-html[data-theme="light"] #map .leaflet-tile-pane{filter:grayscale(1) contrast(.95) brightness(1.04)}
+#map.osm .leaflet-tile-pane{filter:invert(1) grayscale(1) brightness(.8) contrast(1.15)}   /* OpenStreetMap fallback only */
+html[data-theme="light"] #map.osm .leaflet-tile-pane{filter:grayscale(1) contrast(.95) brightness(1.04)}
+.mt-logo{position:absolute;left:10px;bottom:calc(var(--nav) + var(--safe-b) + 28px);z-index:800;line-height:0;opacity:.85}
+.mt-logo img{width:67px;height:20px}
+#map.osm .mt-logo{display:none}
 .me-ring{stroke:var(--fg);fill:var(--fg)}
 
 /* ---------- Hero: the open count, diffused ---------- */
@@ -832,7 +835,7 @@ function applyStatic(){
 function setLang(l){
   lang = l; store.set("cm-lang", l);
   countEvent("lang/" + l, "Language: " + l);
-  applyStatic(); renderShopForm(); heroLoc(); render();
+  applyStatic(); renderShopForm(); heroLoc(); render(); mapLabels();
   if(map){ const b = document.getElementById("locate"); if(b){ b.title = tr("My location","ჩემი მდებარეობა"); b.setAttribute("aria-label", tr("Show my location","ჩემი მდებარეობის ჩვენება")); } }
 }
 const prefsOn = () => prefs.brew.length > 0 || prefs.hideClosed || prefs.laptop || prefs.early;
@@ -1147,12 +1150,54 @@ function updateHeader(){
 /* ---------- Map (lazy) ---------- */
 let map = null, layer = null, sel = null;
 const markers = {};
+/* ============================================================
+   BASE MAP — MapTiler vector map, labels in the app's language.
+   Loaded the first time the map opens. If it can't run (no WebGL, or the
+   library didn't load), the old OpenStreetMap tiles are used instead.
+   The key is public by design and locked to this site's address.
+   ============================================================ */
+const MT_KEY = "wDnLSX33vrRkdPOWDx6d";
+const mtStyle = () => `https://api.maptiler.com/maps/${document.documentElement.dataset.theme === "light" ? "dataviz" : "dataviz-dark"}/style.json?key=${MT_KEY}`;
+const MT_ATTR = '<a href="https://www.maptiler.com/copyright/" target="_blank" rel="noopener">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap contributors</a>';
+let gl = null, osmLayer = null;
+function loadScript(src){ return new Promise((ok, no) => { const e = document.createElement("script"); e.src = src; e.onload = ok; e.onerror = no; document.head.appendChild(e); }); }
+function loadCss(href){ if(document.querySelector(`link[href="${href}"]`)) return; const l = document.createElement("link"); l.rel = "stylesheet"; l.href = href; document.head.appendChild(l); }
+function webglOK(){ try{ const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); }catch(e){ return false; } }
+function osmFallback(){
+  if(osmLayer || !map) return;
+  document.getElementById("map").classList.add("osm");
+  osmLayer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+  }).addTo(map);
+}
+// every label on the map follows the app language
+function mapLabels(){
+  const m = gl && gl.getMaplibreMap && gl.getMaplibreMap(); if(!m || !m.getStyle()) return;
+  const field = lang === "ka" ? ["coalesce", ["get","name:ka"], ["get","name"]] : ["coalesce", ["get","name:en"], ["get","name:latin"], ["get","name"]];
+  m.getStyle().layers.forEach(l => { if(l.type === "symbol" && m.getLayoutProperty(l.id, "text-field") !== undefined) m.setLayoutProperty(l.id, "text-field", field); });
+}
+function mapTheme(){ const m = gl && gl.getMaplibreMap && gl.getMaplibreMap(); if(m) m.setStyle(mtStyle()); }
+async function baseMap(){
+  if(!webglOK()){ osmFallback(); return; }
+  try{
+    loadCss("vendor/maplibre/maplibre-gl.css");
+    if(!window.maplibregl) await loadScript("vendor/maplibre/maplibre-gl.js");
+    if(!L.maplibreGL) await loadScript("vendor/maplibre/leaflet-maplibre-gl.js");
+    gl = L.maplibreGL({style: mtStyle(), interactive:false, attributionControl:{customAttribution: MT_ATTR}}).addTo(map);   // one credit line (the style's two sources repeat it)
+    const m = gl.getMaplibreMap();
+    m.on("style.load", mapLabels);
+    m.on("error", e => { if(e && e.error && /401|403/.test(String(e.error.status || e.error.message))) { map.removeLayer(gl); gl = null; osmFallback(); } });
+    const logo = document.createElement("a"); logo.className = "mt-logo"; logo.href = "https://www.maptiler.com"; logo.target = "_blank"; logo.rel = "noopener";
+    logo.innerHTML = '<img src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler">';
+    document.getElementById("map").appendChild(logo);
+    // the map follows theme changes
+    new MutationObserver(mapTheme).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+  }catch(e){ gl = null; osmFallback(); }
+}
 function initMap(){
   if(map || !window.L) return;
   map = L.map("map", {zoomControl:false, attributionControl:true}).setView([41.705, 44.785], 13);
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-  }).addTo(map);
+  baseMap();
   L.control.zoom({position:"topright"}).addTo(map);
   addLocateControl();
   layer = L.layerGroup().addTo(map);
