@@ -3833,7 +3833,9 @@
           "src": "photos/cavis-3.webp",
           "alt": "Ordering at the counter under the wall menu"
         }
-      ]
+      ],
+      "pets": true,
+      "laptop": true
     },
     {
       "id": "black-cup",
