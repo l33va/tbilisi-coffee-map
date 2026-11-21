@@ -4213,6 +4213,44 @@
       ],
       "pets": true,
       "laptop": true
+    },
+    {
+      "id": "dopamine-concept",
+      "name": "DOPAMINE concept",
+      "area": "Sololaki",
+      "address": "10 Ilia and Nino Nakashidzeebi St",
+      "coords": [
+        41.6950172,
+        44.8036743
+      ],
+      "hours": [
+        "",
+        "10:00-17:00",
+        "10:00-17:00",
+        "10:00-17:00",
+        "10:00-17:00",
+        "10:00-17:00",
+        "10:00-17:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso",
+        "batch"
+      ],
+      "score": null,
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          10,
+          13
+        ],
+        "batch": 10
+      },
+      "instagram": "dopamineconcept_",
+      "place_id": "ChIJac8y9DMNREARb_n4O43Zur8",
+      "note": "Small café on a quiet Sololaki side street, known for sourdough toasties and breakfast. Closed on Mondays.",
+      "note_ka": "პატარა კაფე სოლოლაკის მშვიდ ქუჩაზე, ცნობილი საფუვრიანი პურის სენდვიჩებით და საუზმით. ორშაბათს დაკეტილია."
     }
   ]
 }
