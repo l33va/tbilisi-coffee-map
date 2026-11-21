@@ -4251,6 +4251,35 @@
       "place_id": "ChIJac8y9DMNREARb_n4O43Zur8",
       "note": "Small café on a quiet Sololaki side street, known for sourdough toasties and breakfast. Closed on Mondays.",
       "note_ka": "პატარა კაფე სოლოლაკის მშვიდ ქუჩაზე, ცნობილი საფუვრიანი პურის სენდვიჩებით და საუზმით. ორშაბათს დაკეტილია."
+    },
+    {
+      "id": "ayanoma",
+      "name": "Ayanoma",
+      "area": "Rustaveli",
+      "address": "16 Shota Rustaveli Ave",
+      "coords": [
+        41.699102,
+        44.7971489
+      ],
+      "hours": [
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "ayanomacoffee",
+      "place_id": "ChIJg6VpFlINREARww3Zk_7rxmk",
+      "note": "Japanese-run coffee shop on Rustaveli with two rooms, one light and one in the style of an old Tokyo kissaten.",
+      "note_ka": "იაპონელების მიერ მართული ყავის მაღაზია რუსთაველზე, ორი ოთახით: ერთი ნათელი, მეორე ძველი ტოკიოს კისატენის სტილში."
     }
   ]
 }
