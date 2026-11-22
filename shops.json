@@ -4347,7 +4347,10 @@
       "place_id": "ChIJFwo_FAANREARAfA2K-h6Myc",
       "note": "Roomy café on Laghidze Street with coffee, pastries and breakfast. Open till 22:00.",
       "note_ka": "ფართო კაფე ლაღიძის ქუჩაზე, ყავით, ნამცხვრებით და საუზმით. ღიაა 22:00-მდე.",
-      "added": "2026-11-22"
+      "added": "2026-11-22",
+      "roaster": [
+        "The Barn"
+      ]
     },
     {
       "id": "bliss-corner",
@@ -4376,7 +4379,10 @@
       "instagram": "blisscorner___",
       "place_id": "ChIJF8p9TABzREARLeUUEm4tOyA",
       "note": "Café past Vake Park on Chavchavadze Avenue with croissants and a breakfast menu.",
-      "note_ka": "კაფე ვაკის პარკის იქით, ჭავჭავაძის გამზირზე, კრუასანებით და საუზმის მენიუთი."
+      "note_ka": "კაფე ვაკის პარკის იქით, ჭავჭავაძის გამზირზე, კრუასანებით და საუზმის მენიუთი.",
+      "roaster": [
+        "The Barn"
+      ]
     }
   ]
 }
