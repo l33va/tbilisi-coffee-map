@@ -4348,6 +4348,35 @@
       "note": "Roomy café on Laghidze Street with coffee, pastries and breakfast. Open till 22:00.",
       "note_ka": "ფართო კაფე ლაღიძის ქუჩაზე, ყავით, ნამცხვრებით და საუზმით. ღიაა 22:00-მდე.",
       "added": "2026-11-22"
+    },
+    {
+      "id": "bliss-corner",
+      "name": "Bliss Corner",
+      "area": "Vake",
+      "address": "83 Ilia Chavchavadze Ave",
+      "coords": [
+        41.7048292,
+        44.7390881
+      ],
+      "hours": [
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "blisscorner___",
+      "place_id": "ChIJF8p9TABzREARLeUUEm4tOyA",
+      "note": "Café past Vake Park on Chavchavadze Avenue with croissants and a breakfast menu.",
+      "note_ka": "კაფე ვაკის პარკის იქით, ჭავჭავაძის გამზირზე, კრუასანებით და საუზმის მენიუთი."
     }
   ]
 }
