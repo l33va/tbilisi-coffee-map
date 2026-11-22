@@ -4419,6 +4419,35 @@
       "place_id": "ChIJlf9eSwANREARxg94GBWTOx0",
       "note": "Tucked-away breakfast café from the Chiti team, a short walk off Rustaveli Avenue.",
       "note_ka": "ჩიტის გუნდის მყუდრო საუზმის კაფე, რუსთაველის გამზირიდან ორიოდე ნაბიჯში."
+    },
+    {
+      "id": "sakhli",
+      "name": "Sakhli",
+      "area": "Ortachala",
+      "address": "8 Tabori Mountain, 1st Turn",
+      "coords": [
+        41.6800718,
+        44.8166122
+      ],
+      "hours": [
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00",
+        "09:00-20:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "sakhli_coffee",
+      "place_id": "ChIJeU5nMbwNREAR8XrixiNN_xw",
+      "note": "Café up on Tabori hill with specialty coffee, cheese pancakes and desserts.",
+      "note_ka": "კაფე თაბორის მთაზე, სპეშელთი ყავით, სირნიკებით და დესერტებით."
     }
   ]
 }
