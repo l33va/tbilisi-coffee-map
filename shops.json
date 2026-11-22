@@ -4383,6 +4383,42 @@
       "roaster": [
         "The Barn"
       ]
+    },
+    {
+      "id": "spot-by-chiti",
+      "name": "SPOT by Chiti",
+      "area": "Rustaveli",
+      "address": "3 Vano Sarajishvili St",
+      "coords": [
+        41.7023886,
+        44.7911575
+      ],
+      "hours": [
+        "08:00-18:00",
+        "08:00-18:00",
+        "08:00-18:00",
+        "08:00-18:00",
+        "08:00-18:00",
+        "08:00-18:00",
+        "08:00-18:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "prices": {
+        "espresso": 7,
+        "cappuccino": [
+          10,
+          12
+        ]
+      },
+      "instagram": "spot.chiti",
+      "place_id": "ChIJlf9eSwANREARxg94GBWTOx0",
+      "note": "Tucked-away breakfast café from the Chiti team, a short walk off Rustaveli Avenue.",
+      "note_ka": "ჩიტის გუნდის მყუდრო საუზმის კაფე, რუსთაველის გამზირიდან ორიოდე ნაბიჯში."
     }
   ]
 }
