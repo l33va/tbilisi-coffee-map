@@ -4318,6 +4318,36 @@
       "note": "Small specialty coffee bar in Ortachala, with filter coffee and a long list of iced and matcha drinks.",
       "note_ka": "პატარა სპეშელთი ყავის ბარი ორთაჭალაში, ფილტრ ყავით და ცივი და მაჩას სასმელების დიდი არჩევანით.",
       "added": "2026-11-22"
+    },
+    {
+      "id": "bliss-tunes",
+      "name": "Bliss Tunes",
+      "area": "Sololaki",
+      "address": "8 Mitropan Laghidze St",
+      "coords": [
+        41.699056,
+        44.7954279
+      ],
+      "hours": [
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00",
+        "08:00-22:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "blisstunes_",
+      "place_id": "ChIJFwo_FAANREARAfA2K-h6Myc",
+      "note": "Roomy new café on Laghidze Street with coffee, pastries and breakfast. Open till 22:00.",
+      "note_ka": "ახალი, ფართო კაფე ლაღიძის ქუჩაზე, ყავით, ნამცხვრებით და საუზმით. ღიაა 22:00-მდე.",
+      "added": "2026-11-22"
     }
   ]
 }
