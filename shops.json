@@ -4441,13 +4441,21 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "v60"
       ],
       "score": null,
       "instagram": "sakhli_coffee",
       "place_id": "ChIJeU5nMbwNREAR8XrixiNN_xw",
       "note": "Café up on Tabori hill with specialty coffee, cheese pancakes and desserts.",
-      "note_ka": "კაფე თაბორის მთაზე, სპეშელთი ყავით, სირნიკებით და დესერტებით."
+      "note_ka": "კაფე თაბორის მთაზე, სპეშელთი ყავით, სირნიკებით და დესერტებით.",
+      "prices": {
+        "espresso": 6,
+        "cappuccino": [
+          9,
+          11
+        ]
+      }
     }
   ]
 }
