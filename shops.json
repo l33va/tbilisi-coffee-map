@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "shops": [
     {
       "id": "shavi-original",
@@ -4280,6 +4280,43 @@
       "place_id": "ChIJg6VpFlINREARww3Zk_7rxmk",
       "note": "Japanese-run coffee shop on Rustaveli with two rooms, one light and one in the style of an old Tokyo kissaten.",
       "note_ka": "იაპონელების მიერ მართული ყავის მაღაზია რუსთაველზე, ორი ოთახით: ერთი ნათელი, მეორე ძველი ტოკიოს კისატენის სტილში."
+    },
+    {
+      "id": "brio",
+      "name": "brio",
+      "area": "Ortachala",
+      "address": "61 Gorgasali St",
+      "coords": [
+        41.6781553,
+        44.824577
+      ],
+      "hours": [
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00",
+        "09:00-21:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso",
+        "batch"
+      ],
+      "score": null,
+      "prices": {
+        "espresso": [
+          6,
+          8
+        ],
+        "cappuccino": 8,
+        "batch": 6
+      },
+      "place_id": "ChIJaw2aGAANREARxMY8EhKut6s",
+      "note": "New specialty coffee bar in Ortachala, with filter coffee and a long list of iced and matcha drinks.",
+      "note_ka": "ახალი სპეშელთი ყავის ბარი ორთაჭალაში, ფილტრ ყავით და ცივი და მაჩას სასმელების დიდი არჩევანით."
     }
   ]
 }
