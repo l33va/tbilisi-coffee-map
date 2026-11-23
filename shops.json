@@ -4485,7 +4485,25 @@
       "place_id": "ChIJfaeZVGBzREARIKCIloXrtL0",
       "note": "Italian-style coffee bar and bistro on Kazbegi Avenue, over two floors with a terrace. Open till midnight.",
       "note_ka": "იტალიური სტილის ყავის ბარი და ბისტრო ყაზბეგის გამზირზე, ორ სართულზე, ტერასით. ღიაა შუაღამემდე.",
-      "added": "2026-11-23"
+      "added": "2026-11-23",
+      "photos": [
+        {
+          "src": "photos/bar-centrale-1.webp",
+          "alt": "Bar Centrale shopfront with the name above the big window"
+        },
+        {
+          "src": "photos/bar-centrale-2.webp",
+          "alt": "Striped paper cups beside the La Marzocco machine"
+        },
+        {
+          "src": "photos/bar-centrale-3.webp",
+          "alt": "Espresso and cappuccino with biscotti on a wooden table"
+        },
+        {
+          "src": "photos/bar-centrale-4.webp",
+          "alt": "Pasta, panzanella salad and a cappuccino from above"
+        }
+      ]
     }
   ]
 }
