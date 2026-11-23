@@ -4340,7 +4340,8 @@
       "roasts": false,
       "beans": false,
       "brew": [
-        "espresso"
+        "espresso",
+        "batch"
       ],
       "score": null,
       "instagram": "blisstunes_",
@@ -4350,7 +4351,18 @@
       "added": "2026-11-22",
       "roaster": [
         "The Barn"
-      ]
+      ],
+      "prices": {
+        "espresso": [
+          5,
+          7
+        ],
+        "cappuccino": [
+          9,
+          12
+        ],
+        "batch": 7
+      }
     },
     {
       "id": "bliss-corner",
