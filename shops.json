@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22",
+  "updated": "2026-11-23",
   "shops": [
     {
       "id": "shavi-original",
@@ -4456,6 +4456,35 @@
           11
         ]
       }
+    },
+    {
+      "id": "bar-centrale",
+      "name": "Bar Centrale",
+      "area": "Saburtalo",
+      "address": "7 Alexander Kazbegi Ave",
+      "coords": [
+        41.7264826,
+        44.7666504
+      ],
+      "hours": [
+        "08:30-24:00",
+        "08:30-24:00",
+        "08:30-24:00",
+        "08:30-24:00",
+        "08:30-24:00",
+        "08:30-24:00",
+        "08:30-24:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "barcentraletbilisi",
+      "place_id": "ChIJfaeZVGBzREARIKCIloXrtL0",
+      "note": "Italian-style coffee bar and bistro on Kazbegi Avenue, over two floors with a terrace. Open till midnight.",
+      "note_ka": "იტალიური სტილის ყავის ბარი და ბისტრო ყაზბეგის გამზირზე, ორ სართულზე, ტერასით. ღიაა შუაღამემდე."
     }
   ]
 }
