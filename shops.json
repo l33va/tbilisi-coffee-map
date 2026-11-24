@@ -4545,6 +4545,35 @@
       "place_id": "ChIJ6XZC7WpzREARItNUlVErdJY",
       "note": "Calm coffee bar in Saburtalo with matcha, kombucha and space to work.",
       "note_ka": "მშვიდი ყავის ბარი საბურთალოზე, მაჩათი, კომბუჩით და სამუშაო სივრცით."
+    },
+    {
+      "id": "cafe-stories",
+      "name": "Cafe Stories",
+      "area": "Vake",
+      "address": "14/16 Ilia Chavchavadze Ave",
+      "coords": [
+        41.7091092,
+        44.7761271
+      ],
+      "hours": [
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00",
+        "09:00-22:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "cafestories.ge",
+      "place_id": "ChIJeQ3pcp8NREARRBuLgLeeTAQ",
+      "note": "Brunch café on Chavchavadze Avenue with pancakes, salads and pastries. Open till 22:00.",
+      "note_ka": "საუზმის კაფე ჭავჭავაძის გამზირზე, ბლინებით, სალათებით და ნამცხვრებით. ღიაა 22:00-მდე."
     }
   ]
 }
