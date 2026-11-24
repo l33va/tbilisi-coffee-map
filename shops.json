@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "shops": [
     {
       "id": "shavi-original",
@@ -4516,6 +4516,35 @@
           "alt": "Pasta, panzanella salad and a cappuccino from above"
         }
       ]
+    },
+    {
+      "id": "no-coffee-no-prana",
+      "name": "No Coffee No Prana",
+      "area": "Saburtalo",
+      "address": "37 Otar Oniashvili St",
+      "coords": [
+        41.7315124,
+        44.7631758
+      ],
+      "hours": [
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00",
+        "09:00-19:00"
+      ],
+      "roasts": false,
+      "beans": false,
+      "brew": [
+        "espresso"
+      ],
+      "score": null,
+      "instagram": "nocoffee_noprana_tbilisi",
+      "place_id": "ChIJ6XZC7WpzREARItNUlVErdJY",
+      "note": "Calm coffee bar in Saburtalo with matcha, kombucha and space to work.",
+      "note_ka": "მშვიდი ყავის ბარი საბურთალოზე, მაჩათი, კომბუჩით და სამუშაო სივრცით."
     }
   ]
 }
