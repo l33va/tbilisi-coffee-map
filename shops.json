@@ -4212,7 +4212,10 @@
         }
       ],
       "pets": true,
-      "laptop": true
+      "laptop": true,
+      "roaster": [
+        "Pro Barista"
+      ]
     },
     {
       "id": "dopamine-concept",
